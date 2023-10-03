@@ -18,28 +18,14 @@ public class PlayerMovement : MonoBehaviour
         //Enable the actions
         _controls.Enable();
         
-        //_controls.GeneralActionMap.Movement.started += ctx => StartMove();
+        _controls.GeneralActionMap.Movement.started += ctx => InvokeRepeating(nameof(Move), 0, 0.01f);
+        _controls.GeneralActionMap.Movement.canceled += ctx => CancelInvoke(nameof(Move));
     }
+    
+     void Move()
+     {
+         float movementValue = _controls.GeneralActionMap.Movement.ReadValue<float>();
+         transform.position += new Vector3(playerData.movementSpeed * movementValue, 0,0);
+     }
 
-    // void StartMove()
-    // {
-    //     StopCoroutine(Move());
-    //     StartCoroutine(Move());
-    // }
-    // IEnumerator Move()
-    // {
-    //     while (_controls.GeneralActionMap.Movement.IsPressed())
-    //     {
-    //         float movementValue = _controls.GeneralActionMap.Movement.ReadValue<float>();
-    //         transform.position += new Vector3(playerData.movementSpeed * movementValue, 0,0);
-    //         yield return 0.01;
-    //     }
-    //     yield return null;
-    // }
-
-    private void FixedUpdate()
-    {
-        float movementValue = _controls.GeneralActionMap.Movement.ReadValue<float>();
-        transform.position += new Vector3(playerData.movementSpeed * movementValue, 0,0);
-    }
 }
