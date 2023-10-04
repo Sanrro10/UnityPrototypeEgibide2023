@@ -35,6 +35,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""bc0d40d5-18b6-4b3a-abfb-0a182ac41ac5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -70,6 +79,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""344f1ab5-2630-4aec-89d7-b8d98dc378e6"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -79,6 +99,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // GeneralActionMap
         m_GeneralActionMap = asset.FindActionMap("GeneralActionMap", throwIfNotFound: true);
         m_GeneralActionMap_Movement = m_GeneralActionMap.FindAction("Movement", throwIfNotFound: true);
+        m_GeneralActionMap_Jump = m_GeneralActionMap.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -141,11 +162,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_GeneralActionMap;
     private List<IGeneralActionMapActions> m_GeneralActionMapActionsCallbackInterfaces = new List<IGeneralActionMapActions>();
     private readonly InputAction m_GeneralActionMap_Movement;
+    private readonly InputAction m_GeneralActionMap_Jump;
     public struct GeneralActionMapActions
     {
         private @InputActions m_Wrapper;
         public GeneralActionMapActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_GeneralActionMap_Movement;
+        public InputAction @Jump => m_Wrapper.m_GeneralActionMap_Jump;
         public InputActionMap Get() { return m_Wrapper.m_GeneralActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -158,6 +181,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
         }
 
         private void UnregisterCallbacks(IGeneralActionMapActions instance)
@@ -165,6 +191,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
         }
 
         public void RemoveCallbacks(IGeneralActionMapActions instance)
@@ -185,5 +214,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     public interface IGeneralActionMapActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }

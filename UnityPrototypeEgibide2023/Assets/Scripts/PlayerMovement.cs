@@ -18,14 +18,23 @@ public class PlayerMovement : MonoBehaviour
         //Enable the actions
         _controls.Enable();
         
+        //Movement
         _controls.GeneralActionMap.Movement.started += ctx => InvokeRepeating(nameof(Move), 0, 0.01f);
         _controls.GeneralActionMap.Movement.canceled += ctx => CancelInvoke(nameof(Move));
+        
+        //Jump
+        _controls.GeneralActionMap.Jump.performed += ctx => Jump();
+       
     }
     
      void Move()
      {
          float movementValue = _controls.GeneralActionMap.Movement.ReadValue<float>();
          transform.position += new Vector3(playerData.movementSpeed * movementValue, 0,0);
-     }
-
+     }          
+     
+     void Jump()
+     {
+         GetComponent<Rigidbody2D>().velocity = Vector2.up * playerData.jumpPower;
+     }     
 }
