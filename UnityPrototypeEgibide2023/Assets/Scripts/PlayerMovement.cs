@@ -14,8 +14,6 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private PlayerData playerData;
     private Rigidbody2D playerBody;
-
-    private bool facingRight;
     
     // Start is called before the first frame update
     void Start()
@@ -43,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (direccion.Equals(Vector2.left) || direccion.Equals(Vector2.right))
         {
+            playerData.facingRight = direccion.x == 1 ? true : false; 
             transform.position += new Vector3(playerData.movementSpeed * direccion.x, 0, 0);
         }
 
