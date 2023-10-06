@@ -6,5 +6,6 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     public float movementSpeed;
+    public float jumpPower;
 }
 
