@@ -46,9 +46,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Floor")
+        if (collision.otherCollider.GetType() == typeof(BoxCollider2D))
         {
-            _onAir = false;
+            if (collision.gameObject.tag == "Floor")
+            {
+                _onAir = false;
+            }
         }
+        //When gets it in the body (for combat)
+        //else if (collision.otherCollider.GetType() == typeof(CapsuleCollider2D)) {}
+      
     }
 }
