@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private InputActions _controls;
     private Boolean _onAir;
     private Boolean _onDoubleJump;
+    private Boolean _onDownAttack;
+    
     [SerializeField] private PlayerData playerData;
 
     // Start is called before the first frame update
@@ -35,28 +37,33 @@ public class PlayerMovement : MonoBehaviour
         
         if (direccion.Equals(Vector2.left) || direccion.Equals(Vector2.right))
         {
-           
             transform.position += new Vector3(playerData.movementSpeed * direccion.x, 0, 0);
         }
-        
+
+        if (direccion.Equals(Vector2.down) && _onAir && !_onDownAttack)
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.down * playerData.downAttack;
+            _onDownAttack = true;
+        }
        
     }
 
     void Jump()
     {
-        if (!_onAir)
+        if (!_onDownAttack)
         {
-            GetComponent<Rigidbody2D>().velocity = Vector2.up * playerData.jumpPower;
-            _onAir = true;
-            _onDoubleJump = false;
+            if (!_onAir)
+            {
+                GetComponent<Rigidbody2D>().velocity = Vector2.up * playerData.jumpPower;
+                _onAir = true;
+                _onDoubleJump = false;
+            }
+            else if (!_onDoubleJump)
+            {
+                GetComponent<Rigidbody2D>().velocity = Vector2.up * playerData.jumpPower;
+                _onDoubleJump = true;
+            }
         }
-        else if (!_onDoubleJump)
-        {
-            GetComponent<Rigidbody2D>().velocity = Vector2.up * playerData.jumpPower;
-            _onDoubleJump = true;
-        }
-
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -67,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 _onAir = false;
                 _onDoubleJump = false;
+                _onDownAttack = false;
             }
         }
         //When gets it in the body (for combat)
