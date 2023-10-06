@@ -7,6 +7,7 @@ public class PlayerData : ScriptableObject
 {
     public float movementSpeed;
     public float jumpPower;
+    public bool facingRight;
     public float downAttack;
 }
 
