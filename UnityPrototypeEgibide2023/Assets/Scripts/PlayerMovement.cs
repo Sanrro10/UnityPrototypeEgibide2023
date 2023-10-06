@@ -31,8 +31,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        float movementValue = _controls.GeneralActionMap.Movement.ReadValue<float>();
-        transform.position += new Vector3(playerData.movementSpeed * movementValue, 0, 0);
+        Vector2 direccion = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
+        
+        if (direccion.Equals(Vector2.left) || direccion.Equals(Vector2.right))
+        {
+           
+            transform.position += new Vector3(playerData.movementSpeed * direccion.x, 0, 0);
+        }
+        
+       
     }
 
     void Jump()
