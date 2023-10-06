@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private InputActions _controls;
     private Boolean _onAir;
+    private Boolean _onDoubleJump;
     [SerializeField] private PlayerData playerData;
 
     // Start is called before the first frame update
@@ -40,7 +41,14 @@ public class PlayerMovement : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.up * playerData.jumpPower;
             _onAir = true;
+            _onDoubleJump = false;
         }
+        else if (!_onDoubleJump)
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.up * playerData.jumpPower;
+            _onDoubleJump = true;
+        }
+
 
     }
 
@@ -51,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
             if (collision.gameObject.tag == "Floor")
             {
                 _onAir = false;
+                _onDoubleJump = false;
             }
         }
         //When gets it in the body (for combat)
