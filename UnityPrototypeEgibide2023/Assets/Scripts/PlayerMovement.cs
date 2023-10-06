@@ -13,7 +13,10 @@ public class PlayerMovement : MonoBehaviour
     private Boolean _onDownAttack;
     
     [SerializeField] private PlayerData playerData;
+    private Rigidbody2D playerBody;
 
+    private bool facingRight;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
         //Jump
         _controls.GeneralActionMap.Jump.performed += ctx => Jump();
 
+        //Dash -> Add Force in the direction the player is facing
+        playerBody = GetComponent<Rigidbody2D>();
+        _controls.GeneralActionMap.Dash.performed += ctx => Dash();
     }
 
     void Move()
@@ -64,6 +70,13 @@ public class PlayerMovement : MonoBehaviour
                 _onDoubleJump = true;
             }
         }
+    }
+
+    void Dash()
+    {
+        float dashValue = _controls.GeneralActionMap.Movement.ReadValue<float>() * 160;
+        dashValue *= (playerData.facingRight ? 1 : -1);
+        playerBody.AddForce(transform.right * dashValue);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
