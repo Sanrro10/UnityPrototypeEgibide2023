@@ -11,9 +11,9 @@ public class PlayerMovement : MonoBehaviour
     private Boolean _onAir;
     private Boolean _onDoubleJump;
     private Boolean _onDownAttack;
+    private Boolean _onDash;
     
     [SerializeField] private PlayerData playerData;
-    private Rigidbody2D playerBody;
     
     // Start is called before the first frame update
     void Start()
@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
         _controls.GeneralActionMap.Jump.performed += ctx => Jump();
 
         //Dash -> Add Force in the direction the player is facing
-        playerBody = GetComponent<Rigidbody2D>();
         _controls.GeneralActionMap.Dash.performed += ctx => Dash();
     }
 
@@ -73,11 +72,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Dash()
     {
-        float dashValue = _controls.GeneralActionMap.Movement.ReadValue<float>() * 160;
-        dashValue *= (playerData.facingRight ? 1 : -1);
-        playerBody.AddForce(transform.right * dashValue);
+        if (!_onDash)
+        {
+            StartCoroutine(dashCooldown());
+            float dashValue = (playerData.movementSpeed * 100) * playerData.dashSpeed;
+            dashValue *= (playerData.facingRight ? 1 : -1);
+            GetComponent<Rigidbody2D>().velocity = Vector2.right * dashValue;
+        }
     }
-
+    
+    // --------------- EVENTS ----------------------
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.otherCollider.GetType() == typeof(BoxCollider2D))
@@ -93,4 +97,14 @@ public class PlayerMovement : MonoBehaviour
         //else if (collision.otherCollider.GetType() == typeof(CapsuleCollider2D)) {}
       
     }
+    
+    // -------------- COROUTINES -----------------
+    private IEnumerator dashCooldown()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        _onDash = false;
+
+    }
+
 }
