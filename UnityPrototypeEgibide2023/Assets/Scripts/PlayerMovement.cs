@@ -79,13 +79,19 @@ public class PlayerMovement : MonoBehaviour
         if (!_onDash)
         {
             _onDash = true;
-            StartCoroutine(dashCooldown());
+            StartCoroutine(dashDuration());
             float dashValue = (playerData.movementSpeed * 100) * playerData.dashSpeed;
             dashValue *= (playerData.facingRight ? 1 : -1);
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             GetComponent<Rigidbody2D>().velocity = Vector2.right * dashValue;
             GetComponent<Rigidbody2D>().gravityScale = 0;
+            Invoke(nameof(DashStop), playerData.dashCooldown);
         }
+    }
+
+    void DashStop()
+    {
+        _onDash = false;
     }
     
     // --------------- EVENTS ----------------------
@@ -102,13 +108,11 @@ public class PlayerMovement : MonoBehaviour
     }
     
     // -------------- COROUTINES -----------------
-    private IEnumerator dashCooldown()
+    private IEnumerator dashDuration()
     {
-        yield return new WaitForSeconds(0.35f);
+        yield return new WaitForSeconds(playerData.dashDuration);
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GetComponent<Rigidbody2D>().gravityScale = 2;
-        _onDash = false;
-
     }
 
 }
