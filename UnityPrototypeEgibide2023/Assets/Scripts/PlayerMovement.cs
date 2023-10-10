@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    
 
     void Dash()
     {
@@ -88,20 +89,16 @@ public class PlayerMovement : MonoBehaviour
     }
     
     // --------------- EVENTS ----------------------
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.otherCollider.GetType() == typeof(BoxCollider2D))
-        {
-            if (collision.gameObject.tag == "Floor")
-            {
-                _onAir = false;
-                _onDoubleJump = false;
-                _onDownAttack = false;
-            }
-        }
-        //When gets it in the body (for combat)
-        //else if (collision.otherCollider.GetType() == typeof(CapsuleCollider2D)) {}
       
+        if (collision.gameObject.tag == "Floor")
+        {
+            _onAir = false;
+            _onDoubleJump = false;
+            _onDownAttack = false;
+        }
+        
     }
     
     // -------------- COROUTINES -----------------
