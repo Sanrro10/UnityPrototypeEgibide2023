@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerControler : MonoBehaviour
+public class PlayerControler : EntityControler
 {
-    public HealthComponent health;
     public Text healthText;
+    public Text mainText;
     
     // Start is called before the first frame update
     void Start()
     {
-        health.Set(100);
-        healthText.text = health.Get().ToString();
+        _health.Set(100);
+        healthText.text = _health.Get().ToString();
     }
 
     // Update is called once per frame
@@ -27,8 +27,16 @@ public class PlayerControler : MonoBehaviour
         //Colision con el enemigo
         if (collision.gameObject.tag == "Enemy")
         {
-            health.RemoveHealth(25);
-            healthText.text = health.Get().ToString();
+            _health.RemoveHealth(25);
+            healthText.text = _health.Get().ToString();
         }
+    }
+
+    public override void OnDeath() 
+    {
+        base.OnDeath(); //The code in Entity Controler
+        Time.timeScale = 0f;
+        mainText.text = "Game over";
+        Debug.Log("Game over");
     }
 }
