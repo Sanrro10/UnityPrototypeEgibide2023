@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Boolean _onDoubleJump;
     private Boolean _onDownAttack;
     private Boolean _onDash;
+    private Boolean _onDashCooldown;
     
     [SerializeField] private PlayerData playerData;
     
@@ -49,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (direccion.Equals(Vector2.down) && _onAir && !_onDownAttack)
             {
+                GetComponent<Rigidbody2D>().gravityScale = 2;
                 GetComponent<Rigidbody2D>().velocity = Vector2.down * playerData.downAttack;
                 _onDownAttack = true;
             }
@@ -76,8 +78,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Dash()
     {
-        if (!_onDash)
+        if (!_onDash || !_onDashCooldown)
         {
+            _onDashCooldown = true;
             _onDash = true;
             StartCoroutine(dashDuration());
             float dashValue = (playerData.movementSpeed * 100) * playerData.dashSpeed;
@@ -91,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
     void DashStop()
     {
-        _onDash = false;
+        _onDashCooldown = false;
     }
     
     // --------------- EVENTS ----------------------
