@@ -5,7 +5,12 @@ using UnityEngine;
 public class HealthComponent : MonoBehaviour
 {
     private int _healthPoints;
-    
+    private EntityControler controler;
+
+    private void Start()
+    {
+        controler = GetComponent<EntityControler>();
+    }
     
     public void Set(int points)
     {
@@ -26,12 +31,10 @@ public class HealthComponent : MonoBehaviour
     {
         _healthPoints = _healthPoints - points;
 
-        //Death animation
+        
         if (_healthPoints <= 0)
         {
-            
-            //TO add call to parents animation
-            Debug.Log("Se murio ):");
+           controler.OnDeath();
         }
     }    
 }
