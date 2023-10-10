@@ -10,5 +10,7 @@ public class PlayerData : ScriptableObject
     public bool facingRight;
     public float downAttack;
     public float dashSpeed;
+    public float dashDuration;
+    public float dashCooldown;
 }
 
