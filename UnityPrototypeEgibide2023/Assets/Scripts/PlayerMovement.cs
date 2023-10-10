@@ -36,20 +36,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        Vector2 direccion = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
-        
-        if (direccion.Equals(Vector2.left) || direccion.Equals(Vector2.right))
+        if (!_onDash)
         {
-            playerData.facingRight = direccion.x == 1 ? true : false; 
-            transform.position += new Vector3(playerData.movementSpeed * direccion.x, 0, 0);
-        }
 
-        if (direccion.Equals(Vector2.down) && _onAir && !_onDownAttack)
-        {
-            GetComponent<Rigidbody2D>().velocity = Vector2.down * playerData.downAttack;
-            _onDownAttack = true;
+            Vector2 direccion = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
+
+            if (direccion.Equals(Vector2.left) || direccion.Equals(Vector2.right))
+            {
+                playerData.facingRight = direccion.x == 1 ? true : false;
+                transform.position += new Vector3(playerData.movementSpeed * direccion.x, 0, 0);
+            }
+
+            if (direccion.Equals(Vector2.down) && _onAir && !_onDownAttack)
+            {
+                GetComponent<Rigidbody2D>().velocity = Vector2.down * playerData.downAttack;
+                _onDownAttack = true;
+            }
         }
-       
     }
 
     void Jump()
@@ -74,10 +77,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!_onDash)
         {
+            _onDash = true;
             StartCoroutine(dashCooldown());
             float dashValue = (playerData.movementSpeed * 100) * playerData.dashSpeed;
             dashValue *= (playerData.facingRight ? 1 : -1);
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             GetComponent<Rigidbody2D>().velocity = Vector2.right * dashValue;
+            GetComponent<Rigidbody2D>().gravityScale = 0;
         }
     }
     
@@ -101,8 +107,9 @@ public class PlayerMovement : MonoBehaviour
     // -------------- COROUTINES -----------------
     private IEnumerator dashCooldown()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.35f);
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GetComponent<Rigidbody2D>().gravityScale = 2;
         _onDash = false;
 
     }
