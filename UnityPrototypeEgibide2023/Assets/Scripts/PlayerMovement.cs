@@ -95,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
     void DashStop()
     {
         _onDashCooldown = false;
+        _onDash = false;
     }
     
     // --------------- EVENTS ----------------------
