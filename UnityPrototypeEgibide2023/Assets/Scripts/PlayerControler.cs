@@ -11,6 +11,7 @@ public class PlayerControler : EntityControler
     private bool _onInvulneravility;
     private Rigidbody2D _rb;
     private CapsuleCollider2D _capsule;
+    public Slider healthBar;
     
     
     // Start is called before the first frame update
@@ -18,15 +19,9 @@ public class PlayerControler : EntityControler
     {
         _health.Set(100);
         healthText.text = _health.Get().ToString();
+        healthBar.value = _health.Get();
         _rb = GetComponent<Rigidbody2D>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -38,6 +33,7 @@ public class PlayerControler : EntityControler
                 _onInvulneravility = true;
                 _health.RemoveHealth(25);
                 healthText.text = _health.Get().ToString();
+                healthBar.value = _health.Get();
                 
                 Invoke(nameof(DamageCooldown), 0.5f);
             }
@@ -54,6 +50,7 @@ public class PlayerControler : EntityControler
                 _onInvulneravility = true;
                 _health.RemoveHealth(25);
                 healthText.text = _health.Get().ToString();
+                healthBar.value = _health.Get();
                 
                 Invoke(nameof(DamageCooldown), 0.5f);
             }
