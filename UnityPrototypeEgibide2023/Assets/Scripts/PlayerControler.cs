@@ -8,14 +8,17 @@ public class PlayerControler : EntityControler
 {
     public Text healthText;
     public Text mainText;
-    private Boolean _onInvulneravility;
-    public CapsuleCollider2D capsula;
+    private bool _onInvulneravility;
+    private Rigidbody2D _rb;
+    private CapsuleCollider2D _capsule;
+    
     
     // Start is called before the first frame update
     void Start()
     {
         _health.Set(100);
         healthText.text = _health.Get().ToString();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -32,7 +35,23 @@ public class PlayerControler : EntityControler
         {
             if (!_onInvulneravility)
             {
-                Debug.Log("hauch");
+                _onInvulneravility = true;
+                _health.RemoveHealth(25);
+                healthText.text = _health.Get().ToString();
+                
+                Invoke(nameof(DamageCooldown), 0.5f);
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        //Colision con el enemigo
+        if (other.gameObject.tag == "Enemy")
+        {
+            if (!_onInvulneravility)
+            {
+                _onInvulneravility = true;
                 _health.RemoveHealth(25);
                 healthText.text = _health.Get().ToString();
                 
@@ -49,8 +68,9 @@ public class PlayerControler : EntityControler
         Debug.Log("Game over");
     }
 
-    public void DamageCooldown(Collision2D collision)
+    public void DamageCooldown()
     {
-    _onInvulneravility = false;
+        _onInvulneravility = false;
+        _rb.WakeUp();
     }
 }

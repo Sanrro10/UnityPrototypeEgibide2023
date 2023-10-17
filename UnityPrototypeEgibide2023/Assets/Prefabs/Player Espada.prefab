@@ -387,7 +387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2700390549348944417, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       propertyPath: m_Name
-      value: Player Variant
+      value: Player Espada
       objectReference: {fileID: 0}
     - target: {fileID: 4126366074726665246, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       propertyPath: m_Sprite
@@ -409,6 +409,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2700390549348944417, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8437591410943034781}
+    - targetCorrespondingSourceObject: {fileID: 2700390549348944417, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8000877318929548911}
     - targetCorrespondingSourceObject: {fileID: 2700390549348944417, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2943323181144518240}
@@ -436,6 +439,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6e708b8b4182f44a16f94f448577d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8000877318929548911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937788470338340945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf3338c4725c624ca6f00ebe75544ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
+  mainText: {fileID: 0}
 --- !u!70 &2943323181144518240
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -493,10 +510,10 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &6047420604208864588
 Animator:
