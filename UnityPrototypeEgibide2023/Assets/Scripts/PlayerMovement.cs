@@ -9,17 +9,17 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private InputActions _controls;
-    private Boolean _onAir;
-    private Boolean _onDoubleJump;
-    private Boolean _onDownAttack;
-    private Boolean _onDash;
-    private Boolean _onDashCooldown;
     private bool facingRight = true;
     
     
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     
+    private bool _onAir;
+    private bool _onDoubleJump;
+    private bool _onDownAttack;
+    private bool _onDash;
+    private bool _onDashCooldown;
     
     [SerializeField] private PlayerData playerData;
     
@@ -117,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
     void DashStop()
     {
         _onDashCooldown = false;
+        _onDash = false;
     }
     
     // --------------- EVENTS ----------------------
