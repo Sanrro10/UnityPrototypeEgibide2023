@@ -389,6 +389,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Espada
       objectReference: {fileID: 0}
+    - target: {fileID: 2700390549348944417, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4126366074726665246, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -451,8 +455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf3338c4725c624ca6f00ebe75544ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 0}
-  mainText: {fileID: 0}
 --- !u!70 &2943323181144518240
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

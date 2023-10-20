@@ -97,6 +97,11 @@ public class PlayerMovement : MonoBehaviour
         _onDashCooldown = false;
         _onDash = false;
     }
+
+    public void ControlsDissable()
+    {
+        _controls.Disable();
+    }
     
     // --------------- EVENTS ----------------------
     private void OnTriggerEnter2D(Collider2D collision)
