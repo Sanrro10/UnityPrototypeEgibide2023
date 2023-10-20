@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //Este script gestiona las partes del combate cuerpo a cuerpo - Incluida la posicion de la espada
     
     private InputActions _controls;
 
-    private Animator animator;
+    private Animator _animator;
     
     void Start()
     {
         _controls = new InputActions();
-        animator = GetComponent<Animator>();
+        _animator = GameObject.Find("ElTodo").GetComponent<Animator>();
         
         _controls.Enable();
        
@@ -30,7 +30,11 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
-        animator.SetTrigger("MeleeAttack");
+        if (this._animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            Debug.Log("ATACOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            _animator.SetTrigger("Attack");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

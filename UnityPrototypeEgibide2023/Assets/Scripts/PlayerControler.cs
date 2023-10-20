@@ -14,15 +14,32 @@ public class PlayerControler : EntityControler
     private CapsuleCollider2D _capsule;
     public Slider healthBar;
     
+    public bool touchingFloor;
+    private GameObject _elTodo;
+    
     // Start is called before the first frame update
     void Start()
     {
         _health.Set(100);
         healthText.text = _health.Get().ToString();
         healthBar.value = _health.Get();
-        _rb = GetComponent<Rigidbody2D>();
+        //_rb = GetComponent<Rigidbody2D>();
+        
+        _elTodo = GameObject.Find("ElTodo");
     }
     
+    private void Update()
+    {
+        /*
+         * JMG
+         * Check if the onAir Variable in the PlayerMovement Script has changed.
+         * This is to check if the feet have touched the floor.
+         */
+
+        //touchingFloor = _elTodo.GetComponent<PlayerMovement>()
+            
+
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Colision con el enemigo
@@ -68,6 +85,22 @@ public class PlayerControler : EntityControler
     public void DamageCooldown()
     {
         _onInvulneravility = false;
-        _rb.WakeUp();
+        //_rb.WakeUp();
     }
+    
+    /**
+     * Check if the Feet of the player have touched the floor
+     */
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+      
+        if (collision.gameObject.tag == "Floor")
+        {
+            touchingFloor = true;
+            _elTodo.SendMessage("ResetJump");
+        }
+        
+    }
+
+
 }
