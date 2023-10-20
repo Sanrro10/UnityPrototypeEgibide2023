@@ -8,10 +8,11 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private InputActions _controls;
-    private Boolean _onAir;
-    private Boolean _onDoubleJump;
-    private Boolean _onDownAttack;
-    private Boolean _onDash;
+    private bool _onAir;
+    private bool _onDoubleJump;
+    private bool _onDownAttack;
+    private bool _onDash;
+    private bool _onDashCooldown;
     
     [SerializeField] private PlayerData playerData;
     
@@ -49,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (direccion.Equals(Vector2.down) && _onAir && !_onDownAttack)
             {
+                GetComponent<Rigidbody2D>().gravityScale = 2;
                 GetComponent<Rigidbody2D>().velocity = Vector2.down * playerData.downAttack;
                 _onDownAttack = true;
             }
@@ -76,8 +78,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Dash()
     {
-        if (!_onDash)
+        if (!_onDash || !_onDashCooldown)
         {
+            _onDashCooldown = true;
             _onDash = true;
             StartCoroutine(dashDuration());
             float dashValue = (playerData.movementSpeed * 100) * playerData.dashSpeed;
@@ -91,12 +94,14 @@ public class PlayerMovement : MonoBehaviour
 
     void DashStop()
     {
+        _onDashCooldown = false;
         _onDash = false;
     }
     
     // --------------- EVENTS ----------------------
     private void OnTriggerEnter2D(Collider2D collision)
     {
+      
         if (collision.gameObject.tag == "Floor")
         {
             _onAir = false;
