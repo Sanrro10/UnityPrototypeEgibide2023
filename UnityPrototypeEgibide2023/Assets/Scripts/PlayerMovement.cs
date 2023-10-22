@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private bool facingRight = true;
     
     
-    private Animator _animator;
+    public Animator _animator;
     private SpriteRenderer _spriteRenderer;
     
     private bool _onAir;
