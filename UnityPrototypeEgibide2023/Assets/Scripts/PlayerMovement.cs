@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,8 +21,11 @@ public class PlayerMovement : MonoBehaviour
     private bool _onDownAttack;
     private bool _onDash;
     private bool _onDashCooldown;
+    private bool _touchingFloor;
     
     [SerializeField] private PlayerData playerData;
+
+    private GameObject _player;
     
     // Start is called before the first frame update
     void Start()
@@ -42,6 +46,20 @@ public class PlayerMovement : MonoBehaviour
 
         //Dash -> Add Force in the direction the player is facing
         _controls.GeneralActionMap.Dash.performed += ctx => Dash();
+        
+        //Take the player item
+        _player = GameObject.Find("Player");
+    }
+    
+    private void Update()
+    {
+        /*
+         * JMG
+         * Check if the touchingFloor variable in the PlayerController Script has changed.
+         * This is to check if the feet have touched the floor
+         */
+
+        //_touchingFloor = _player.GetComponent<PlayerControler>().touchingFloor;
     }
 
 
@@ -119,9 +137,17 @@ public class PlayerMovement : MonoBehaviour
         _onDashCooldown = false;
         _onDash = false;
     }
-    
+
+
+    /*public void ResetJump()
+    {
+        _onAir = false;
+        _onDoubleJump = false;
+        _onDownAttack = false;
+    }*/
     // --------------- EVENTS ----------------------
-    private void OnTriggerEnter2D(Collider2D collision)
+    
+     private void OnTriggerEnter2D(Collider2D collision)
     {
         
         if (collision.gameObject.tag == "Floor")
@@ -133,6 +159,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
+    
     
     // -------------- COROUTINES -----------------
     private IEnumerator dashDuration()
