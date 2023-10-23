@@ -5,6 +5,7 @@
         public IState CurrentState { get; private set; }
         public event System.Action<IState> OnStateChanged;
         
+        
         public void Initialize(IState startingState)
         {
             CurrentState = startingState;
@@ -19,7 +20,7 @@
             OnStateChanged?.Invoke(CurrentState);
         }
 
-        public void Update()
+        public void StateUpdate()
         {
             CurrentState.Update();
         }

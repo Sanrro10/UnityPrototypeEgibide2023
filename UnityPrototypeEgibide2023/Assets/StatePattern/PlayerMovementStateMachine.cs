@@ -53,7 +53,7 @@ namespace StatePattern
             OnStateChanged?.Invoke(CurrentState);
         }
 
-        public void Update()
+        public void StateUpdate()
         {
             if (CurrentState != null)
             {

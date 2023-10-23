@@ -14,7 +14,9 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            // Debug.Log("Entering Walk State");
+            Debug.Log("Entering Walk State");
+            player.animator.SetBool("IsMoving", true);
+            player.InvokeRepeating(nameof(player.Move), 0, 0.01f);
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -22,12 +24,25 @@ namespace StatePattern.PlayerStates
         {
             // If we're no longer grounded, transition to the air state
             
+
+            if (player.isJumping)
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.JumpState);
+                return;
+            }
+
+            if (!player.isMoving)
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.IdleState);
+                return;
+            }
             
-            // if we press the jump button, transition to the jump state
+            if (player.isDashing)
+            {
+                player.pmStateMachine.TransitionTo((player.pmStateMachine.DashState));
+                return;
+            }
             
-            // if we press the attack button, transition to the attack state
-            
-            // if we press the dash button, transition to the dash state
             
             
             
@@ -36,6 +51,8 @@ namespace StatePattern.PlayerStates
         public void Exit()
         {
             // Debug.Log("Exiting Walk State");
+            player.CancelInvoke(nameof(player.Move));
+            player.animator.SetBool("IsMoving", false);
         }
     }
 }

@@ -14,16 +14,29 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            // Debug.Log("Entering Idle State");
+            Debug.Log("Entering Idle State");
         }
 
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
             // If we're no longer grounded, transition to the air state
-            if (!player.IsGrounded())
+            if (player.isMoving)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.WalkState);
+                return;
+            }
+
+            if (player.isDashing)
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.DashState);
+                return;
+            }
+
+            if (player.isJumping)
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.JumpState);
+                return;
             }
             
             
