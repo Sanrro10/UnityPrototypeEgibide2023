@@ -14,14 +14,18 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            // Debug.Log("Entering Jump State");
+            
+            Debug.Log("Entering Jump State");
+            player.animator.SetTrigger("Jump");
+            player.Jump();
+            
+            player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
         }
 
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
             // If we're no longer grounded, transition to the air state
-            
             
             // if we press the jump button, transition to the jump state
             
@@ -36,6 +40,7 @@ namespace StatePattern.PlayerStates
         public void Exit()
         {
             // Debug.Log("Exiting Jump State");
+            player.isJumping = false;
         }
     }
 }
