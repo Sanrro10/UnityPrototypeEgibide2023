@@ -42,6 +42,8 @@ public class PlayerCombat : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("LE HE DADO");
+            //Logica de Dañar enemigos
+            
         }
     }
 }
