@@ -30,11 +30,7 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
-        if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-        {
-            Debug.Log("ATACOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-            animator.SetTrigger("MeleeAttack");
-        }
+        animator.SetTrigger("MeleeAttack");
     }
 
     private void OnTriggerEnter2D(Collider2D other)

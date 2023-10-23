@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using StatePattern;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +19,6 @@ public class PlayerControler : EntityControler
     private Text mainText;
     private Slider healthBar;
     private Canvas canvas;
-    
     
     // Start is called before the first frame update
     void Start()
