@@ -139,14 +139,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void ResetJump()
+    /*public void ResetJump()
     {
         _onAir = false;
         _onDoubleJump = false;
         _onDownAttack = false;
-    }
+    }*/
     // --------------- EVENTS ----------------------
-    /*
+    
      private void OnTriggerEnter2D(Collider2D collision)
     {
         
@@ -159,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
-    */
+    
     
     // -------------- COROUTINES -----------------
     private IEnumerator dashDuration()

@@ -23,9 +23,7 @@ public class PlayerControler : EntityControler
         _health.Set(100);
         healthText.text = _health.Get().ToString();
         healthBar.value = _health.Get();
-        //_rb = GetComponent<Rigidbody2D>();
-        
-        _elTodo = GameObject.Find("ElTodo");
+        _rb = GetComponent<Rigidbody2D>();
     }
     
     private void Update()
@@ -85,7 +83,7 @@ public class PlayerControler : EntityControler
     public void DamageCooldown()
     {
         _onInvulneravility = false;
-        //_rb.WakeUp();
+        _rb.WakeUp();
     }
     
     /**
@@ -97,7 +95,7 @@ public class PlayerControler : EntityControler
         if (collision.gameObject.tag == "Floor")
         {
             touchingFloor = true;
-            _elTodo.SendMessage("ResetJump");
+            
         }
         
     }
