@@ -9,7 +9,7 @@ namespace StatePattern
         
         public void Initialize(IState startingState);
         public void TransitionTo(IState nextState);
-        public void Update();
+        public void StateUpdate();
         
     }
 }
