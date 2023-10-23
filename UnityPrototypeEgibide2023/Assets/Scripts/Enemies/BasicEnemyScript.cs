@@ -17,8 +17,6 @@ public class EnemyMovement : MonoBehaviour
     {
         origin = transform.position;
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        
-        
     }
 
     // Update is called once per frame
@@ -26,6 +24,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (followPlayer)
         {
+            Debug.Log(player.transform.position);
             _navMeshAgent.SetDestination(player.transform.position);
         }
         else
