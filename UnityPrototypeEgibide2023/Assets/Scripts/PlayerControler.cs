@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using StatePattern;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,14 +17,18 @@ public class PlayerControler : EntityControler
     
     public bool touchingFloor;
     private GameObject _elTodo;
+
+    private CinemachineImpulseSource _impulseSource;
     
     // Start is called before the first frame update
     void Start()
     {
+        _impulseSource = GetComponent<CinemachineImpulseSource>();
         _health.Set(100);
         healthText.text = _health.Get().ToString();
         healthBar.value = _health.Get();
         _rb = GetComponent<Rigidbody2D>();
+        
     }
     
     private void Update()
@@ -45,6 +50,7 @@ public class PlayerControler : EntityControler
         {
             if (!_onInvulneravility)
             {
+                CameraShakeManager.instance.CameraShake(_impulseSource);
                 _onInvulneravility = true;
                 _health.RemoveHealth(25);
                 healthText.text = _health.Get().ToString();
