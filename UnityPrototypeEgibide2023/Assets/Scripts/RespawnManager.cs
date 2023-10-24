@@ -7,17 +7,16 @@ using UnityEngine.SceneManagement;
 public class RespawnManager : EntityControler
 {
 
-    private Vector3 _lastCheckpoint;
-    private Scene _scene;
+    private static Vector3 _lastCheckpoint;
+    private string _scene;
 
     public GameObject playerPrefab;
-    private GameObject _player;
-        
-        
+
+    public static RespawnManager respawnManagerInstance;
+    
     // Start is called before the first frame update
     void Start()
     {
-        PlayerRespawn();
     }
 
     // Update is called once per frame
@@ -28,7 +27,18 @@ public class RespawnManager : EntityControler
     
     void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        if (respawnManagerInstance == null)
+        {
+            respawnManagerInstance = this;
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        PlayerRespawn();
+
+
     }
 
     public Vector3 GetCheckpoint()
@@ -39,18 +49,19 @@ public class RespawnManager : EntityControler
     public void SetCheckpoint(Vector3 cordinates)
     {
         _lastCheckpoint = cordinates;
-        _scene = SceneManager.GetActiveScene();
+        _scene = SceneManager.GetActiveScene().name;
 
     }
 
     public void PlayerRespawn()
     {
-        _player = Instantiate(playerPrefab, transform.position = _lastCheckpoint, Quaternion.identity);
+        Instantiate(playerPrefab, transform.position = _lastCheckpoint, Quaternion.identity);
     }
 
     public void SceneLoad()
     {
-        SceneManager.LoadScene(0);
+        Debug.Log(_scene.ToString());
+        SceneManager.LoadScene(_scene);
     }
     
 }
