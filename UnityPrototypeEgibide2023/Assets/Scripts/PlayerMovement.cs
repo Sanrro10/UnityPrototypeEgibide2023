@@ -169,4 +169,9 @@ public class PlayerMovement : MonoBehaviour
         GetComponent<Rigidbody2D>().gravityScale = 2;
     }
 
+    public void DisablePlayerControls()
+    {
+        _controls.Disable();
+    }
+
 }

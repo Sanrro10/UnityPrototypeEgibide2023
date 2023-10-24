@@ -8,26 +8,37 @@ using UnityEngine.UI;
 
 public class PlayerControler : EntityControler
 {
-    public Text healthText;
-    public Text mainText;
+    private Text healthText;
+    private Text mainText;
     private bool _onInvulneravility;
     private Rigidbody2D _rb;
     private CapsuleCollider2D _capsule;
-    public Slider healthBar;
+    private Slider healthBar;
     
     public bool touchingFloor;
     private GameObject _elTodo;
 
     private CinemachineImpulseSource _impulseSource;
     
+    private GameObject gameControler;
+    
     // Start is called before the first frame update
     void Start()
     {
-        _impulseSource = GetComponent<CinemachineImpulseSource>();
+        gameControler = GameObject.Find("GameControler");
+        healthText = GameObject.Find("TextHealth").GetComponent<Text>();
+        mainText = GameObject.Find("TextMain").GetComponent<Text>();
+        healthBar = GameObject.Find("SliderHealth").GetComponent<Slider>();
+        
+        //Set health
         _health.Set(100);
         healthText.text = _health.Get().ToString();
         healthBar.value = _health.Get();
+        
+        //Set the rigidBody
         _rb = GetComponent<Rigidbody2D>();
+        
+        _impulseSource = GetComponent<CinemachineImpulseSource>();
         
     }
     
@@ -78,12 +89,15 @@ public class PlayerControler : EntityControler
         }
     }
 
-    public override void OnDeath() 
+    public override void OnDeath()
     {
-        base.OnDeath(); //The code in Entity Controler
-        Time.timeScale = 0f;
-        mainText.text = "Game over";
-        Debug.Log("Game over");
+        GetComponent<PlayerMovement>().DisablePlayerControls();
+        Invoke(nameof(CallSceneLoad), 1);
+    }
+    
+    public void CallSceneLoad()
+    {
+        gameControler.GetComponent<RespawnManager>().SceneLoad();
     }
 
     public void DamageCooldown()
