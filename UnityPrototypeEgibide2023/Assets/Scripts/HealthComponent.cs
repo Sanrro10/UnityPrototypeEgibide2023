@@ -29,12 +29,15 @@ public class HealthComponent : MonoBehaviour
     
     public void RemoveHealth(int points)
     {
-        _healthPoints = _healthPoints - points;
-
+        if (_healthPoints > 0)
+        {
+            _healthPoints = _healthPoints - points;
+        }
         
         if (_healthPoints <= 0)
         {
            controler.OnDeath();
         }
-    }    
+
+    }   
 }
