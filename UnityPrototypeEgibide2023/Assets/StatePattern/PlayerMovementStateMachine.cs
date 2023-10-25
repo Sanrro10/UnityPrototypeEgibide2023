@@ -22,6 +22,7 @@ namespace StatePattern
         public DashState DashState;
         public JumpState JumpState;
         public DJumpState DJumpState;
+        public AirMoveState AirMoveState;
         
         
         // Constructor
@@ -33,6 +34,7 @@ namespace StatePattern
             this.DashState = new DashState(player);
             this.JumpState = new JumpState(player);
             this.DJumpState = new DJumpState(player);
+            this.AirMoveState = new AirMoveState(player);
         }
         
         public void Initialize(IState startingState)

@@ -14,18 +14,23 @@ public class PlayerController: MonoBehaviour
         public bool isJumping = false;
         public bool isDashing = false;
         public bool onDashCooldown = false;
+        public bool onDJump = false;
         public float horizontalSpeed;
         private float _verticalSpeed;
         private float _jumpForce;
+        [SerializeField] private GameObject feet;
         private float _currentGravity { get; set; }
         public Animator animator;
         private SpriteRenderer _spriteRenderer;
         private int _numberOfGrounds;
         private Rigidbody2D _rigidbody2D;
-        
+
+        [SerializeField] private BoxCollider2D feetBoxCollider;
+
         [SerializeField] private PlayerData playerData;
         void Start()
         {
+   
                 animator = GetComponent<Animator>();
                 _spriteRenderer = GetComponent<SpriteRenderer>();
                 _controls = new InputActions();
@@ -52,6 +57,7 @@ public class PlayerController: MonoBehaviour
 
         private void Update()
         {
+                //Debug.Log(IsGrounded());
                 pmStateMachine.StateUpdate();
                 
         }
@@ -105,24 +111,26 @@ public class PlayerController: MonoBehaviour
                 yield return new WaitForSeconds(playerData.dashDuration);
                 _rigidbody2D.velocity = Vector2.zero;
                 _rigidbody2D.gravityScale = 2;
-                pmStateMachine.TransitionTo(pmStateMachine.IdleState);
+                pmStateMachine.TransitionTo(pmStateMachine.AirState);
+        }
+
+        public IEnumerator GroundedCooldown()
+        {
+                feetBoxCollider.enabled = false;
+                yield return new WaitForSeconds(0.2f);
+                feetBoxCollider.enabled = true;
+        }
+
+        public void setNumberOfGrounds(int numberOfGrounds)
+        {
+                this._numberOfGrounds = numberOfGrounds;
+        }
+
+        public int getNumberOfGrounds()
+        {
+                return this._numberOfGrounds;
         }
         
         // --------------- EVENTS ----------------------
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-                if (collision.gameObject.tag.Equals("Floor"))
-                {
-                        _numberOfGrounds++;
-                }
-        
-        }
 
-        private void OnCollisionExit2D(Collision2D collision)
-        {
-                if (collision.gameObject.tag.Equals("Floor"))
-                {
-                        _numberOfGrounds--;
-                }
-        }
 }
