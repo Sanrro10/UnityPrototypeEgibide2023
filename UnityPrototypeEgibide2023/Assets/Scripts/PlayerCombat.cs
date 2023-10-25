@@ -13,7 +13,7 @@ public class PlayerCombat : MonoBehaviour
     /*--------VARIABLES----------*/
     private InputActions _controls;
 
-    private Animator _animator;
+    [SerializeField] private Animator _animator;
 
     private GameObject _player;
 
@@ -27,7 +27,6 @@ public class PlayerCombat : MonoBehaviour
     {
         _controls = new InputActions();
         _player = GameObject.Find("Player Espada");
-        _animator = _player.GetComponent<Animator>();
         
         //Sets the parent to be the player
         _playerConstraintSource.sourceTransform = _player.transform;

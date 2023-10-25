@@ -14,7 +14,7 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            Debug.Log("Entering Walk State");
+            //Debug.Log("Entering Walk State");
             player.animator.SetBool("IsMoving", true);
             player.InvokeRepeating(nameof(player.Move), 0, 0.01f);
         }
@@ -28,6 +28,11 @@ namespace StatePattern.PlayerStates
             if (player.isJumping)
             {
                 player.pmStateMachine.TransitionTo(player.pmStateMachine.JumpState);
+                return;
+            }
+            if (!player.IsGrounded())
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
                 return;
             }
 

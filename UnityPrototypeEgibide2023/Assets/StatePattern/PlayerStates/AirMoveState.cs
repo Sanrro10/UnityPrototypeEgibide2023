@@ -3,45 +3,51 @@ using UnityEngine;
 
 namespace StatePattern.PlayerStates
 {
-    public class IdleState: IState
+    public class AirMoveState : IState
     {
         private PlayerController player;
         
-        public IdleState(PlayerController player)
+        public AirMoveState(PlayerController player)
         {
             this.player = player;
         }
 
         public void Enter()
         {
-            Debug.Log("Entering Idle State");
-            player.onDJump = false;
+            // Debug.Log("Entering DJump State");
+            player.InvokeRepeating(nameof(player.Move), 0, 0.01f);
+            Debug.Log("Entering Air Move State");
+
         }
 
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
             // If we're no longer grounded, transition to the air state
-            if (player.isMoving)
+
+            
+            if (player.IsGrounded())
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.WalkState);
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.IdleState);
                 return;
             }
-
+            if (player.isJumping && !player.onDJump)
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.DJumpState);
+                return;
+            }
             if (player.isDashing)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.DashState);
+                player.pmStateMachine.TransitionTo((player.pmStateMachine.DashState));
+                return;
+            }
+            
+            if (!player.isMoving)
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
                 return;
             }
 
-            if (player.isJumping)
-            {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.JumpState);
-                return;
-            }
-            
-            
-            
             // if we press the jump button, transition to the jump state
             
             // if we press the attack button, transition to the attack state
@@ -54,7 +60,8 @@ namespace StatePattern.PlayerStates
         
         public void Exit()
         {
-            // Debug.Log("Exiting Idle State");
+            player.CancelInvoke(nameof(player.Move));
+            // Debug.Log("Exiting DJump State");
         }
     }
 }

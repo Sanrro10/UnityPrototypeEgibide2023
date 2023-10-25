@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6495408939162842929}
   - component: {fileID: 247002988172625619}
+  - component: {fileID: 2695071535495535820}
   m_Layer: 0
   m_Name: Feet
   m_TagString: Untagged
@@ -77,6 +78,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &2695071535495535820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3689923748673784380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d28db52cbc74ab540a714aa47c7da001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5937788470338340945}
 --- !u!1 &4648174051805007282
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +511,7 @@ Animator:
   m_GameObject: {fileID: 5937788470338340945}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0f84b6ce8a4a3824cabda35e41d9d95e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4eabec13e13a0914f8dc8aaa42ba1399, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -525,8 +539,11 @@ MonoBehaviour:
   isJumping: 0
   isDashing: 0
   onDashCooldown: 0
+  onDJump: 0
   horizontalSpeed: 0
+  feet: {fileID: 3689923748673784380}
   animator: {fileID: 0}
+  feetBoxCollider: {fileID: 247002988172625619}
   playerData: {fileID: 11400000, guid: 250688029bc5ce249ad115649f524455, type: 2}
 --- !u!4 &7731164896381682722 stripped
 Transform:
