@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 
+
 public class PlayerCombat : MonoBehaviour
 {
     /*This script manage all things melee combat
@@ -88,7 +89,7 @@ public class PlayerCombat : MonoBehaviour
             //     Destroy(other.gameObject);
             //     //Maybe the destroy is triggered inside the enemy proper
             // }
-            other.gameObject.GetComponent<EnemyReceivesDamage>().SendMessage("receiveDamage");
+            other.gameObject.GetComponent<EnemyReceivesDamage>().SendMessage("ReceiveDamage");
 
         }
     }

@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyReceivesDamage : MonoBehaviour
 {
-    private int currentHealth;
+    private int _currentHealth;
     
     
-    [SerializeField] private PassiveEnemyData _passiveEnemyData;
+    [SerializeField] private PassiveEnemyData passiveEnemyData;
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = _passiveEnemyData.health;
+        _currentHealth = passiveEnemyData.health;
     }
 
     // Update is called once per frame
@@ -21,16 +22,16 @@ public class EnemyReceivesDamage : MonoBehaviour
     }
 
     /*This makes the enemy receive damage, one damage, always, the PC will not have more than 1 damage*/
-    public void receiveDamage()
+    public void ReceiveDamage()
     {
-        currentHealth--;
-        if (currentHealth == 0)
+        _currentHealth--;
+        if (_currentHealth == 0)
         {
-            death();
+            Death();
         }
     }
 
-    private void death()
+    private void Death()
     {
         Destroy(gameObject);
     }
