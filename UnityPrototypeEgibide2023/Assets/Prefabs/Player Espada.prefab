@@ -393,6 +393,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3220501217885415931, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4126366074726665246, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -428,6 +432,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2700390549348944417, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7415724337861288616}
+    - targetCorrespondingSourceObject: {fileID: 2700390549348944417, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7171764894633747963}
   m_SourcePrefab: {fileID: 100100000, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
 --- !u!1 &5937788470338340945 stripped
 GameObject:
@@ -441,11 +448,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5937788470338340945}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b6e708b8b4182f44a16f94f448577d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!114 &8000877318929548911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +461,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5937788470338340945}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cdf3338c4725c624ca6f00ebe75544ba, type: 3}
   m_Name: 
@@ -531,7 +539,7 @@ Animator:
   m_GameObject: {fileID: 5937788470338340945}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0f84b6ce8a4a3824cabda35e41d9d95e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4eabec13e13a0914f8dc8aaa42ba1399, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -595,6 +603,29 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!114 &-7171764894633747963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937788470338340945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71d9debe16d415d93c0a0207513492c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingRight: 1
+  isMoving: 0
+  isJumping: 0
+  isDashing: 0
+  onDashCooldown: 0
+  onDJump: 0
+  horizontalSpeed: 0
+  feet: {fileID: 3689923748673784380}
+  animator: {fileID: 0}
+  feetBoxCollider: {fileID: 247002988172625619}
+  playerData: {fileID: 11400000, guid: 250688029bc5ce249ad115649f524455, type: 2}
 --- !u!4 &7731164896381682722 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2041371163009320530, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}

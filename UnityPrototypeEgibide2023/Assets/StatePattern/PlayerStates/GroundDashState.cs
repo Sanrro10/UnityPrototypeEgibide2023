@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace StatePattern.PlayerStates
 {
-    public class DashState : IState
+    public class GroundDashState : IState
     {
         private PlayerController player;
         
-        public DashState(PlayerController player)
+        public GroundDashState(PlayerController player)
         {
             this.player = player;
         }

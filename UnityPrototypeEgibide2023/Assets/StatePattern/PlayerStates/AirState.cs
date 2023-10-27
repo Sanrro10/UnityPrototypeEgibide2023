@@ -6,7 +6,8 @@ namespace StatePattern.PlayerStates
     public class AirState: IState
     {
         private PlayerController player;
-        
+        private float _gravity;
+        private float _friction;
         public AirState(PlayerController player)
         {
             this.player = player;
@@ -15,6 +16,8 @@ namespace StatePattern.PlayerStates
         public void Enter()
         {
             Debug.Log("Entering Air State");
+            player.gravity = _gravity;
+            player.friction = _friction;
             player.animator.SetBool("OnAir", true);
         }
         
@@ -36,7 +39,7 @@ namespace StatePattern.PlayerStates
             
             if (player.isDashing)
             {
-                player.pmStateMachine.TransitionTo((player.pmStateMachine.DashState));
+                player.pmStateMachine.TransitionTo((player.pmStateMachine.AirDashStartState));
                 return;
             }
 

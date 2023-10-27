@@ -1,25 +1,26 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace StatePattern.PlayerStates
 {
-    public class JumpState : IState
+    public class AirDashState : IState
     {
         private PlayerController player;
         
-        public JumpState(PlayerController player)
+        public AirDashState(PlayerController player)
         {
             this.player = player;
         }
 
         public void Enter()
         {
+            player.onDashCooldown = true;
+            player.isDashing = true;
+            //player.animator.SetTrigger("Dash");
+            player.AirDash();
+            player.StartCoroutine(player.AirDashDuration());
             
-            Debug.Log("Entering Jump State");
-            player.animator.SetTrigger("Jump");
-            player.Jump();
-            player.StartCoroutine(player.GroundedCooldown());
-            player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
+            Debug.Log("Entering Air Dash State");
+            // Initialize Dash
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -27,25 +28,21 @@ namespace StatePattern.PlayerStates
         {
             // If we're no longer grounded, transition to the air state
             
+            
             // if we press the jump button, transition to the jump state
             
             // if we press the attack button, transition to the attack state
             
             // if we press the dash button, transition to the dash state
-            if (player.isDashing)
-            {
-                player.pmStateMachine.TransitionTo((player.pmStateMachine.GroundDashState));
-                return;
-            }
+            
             
             
         }
         
         public void Exit()
         {
-            // Debug.Log("Exiting Jump State");
-            
-            player.isJumping = false;
+            player.isDashing = false;
+            player.onDashCooldown = false;
         }
     }
 }

@@ -161,6 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61cd2f6ab2f6254a899944733b580c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 1
-  verticalSpeed: 1
-  direction: 1
+  horizontalSpeed: 10
+  verticalSpeed: 10
+  horizontalDirection: 1
+  verticalDirection: 1
+  health: 0
+  owner: {fileID: 0}
+  explosion: {fileID: 0}
