@@ -393,6 +393,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3220501217885415931, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 6047420604208864588}
     - target: {fileID: 4126366074726665246, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -458,6 +462,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf3338c4725c624ca6f00ebe75544ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
+  mainText: {fileID: 0}
+  healthBar: {fileID: 0}
   touchingFloor: 0
 --- !u!70 &2943323181144518240
 CapsuleCollider2D:
@@ -531,7 +538,7 @@ Animator:
   m_GameObject: {fileID: 5937788470338340945}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0f84b6ce8a4a3824cabda35e41d9d95e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4eabec13e13a0914f8dc8aaa42ba1399, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
