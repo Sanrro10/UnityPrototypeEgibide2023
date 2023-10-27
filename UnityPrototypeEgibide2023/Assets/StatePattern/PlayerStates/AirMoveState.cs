@@ -38,7 +38,7 @@ namespace StatePattern.PlayerStates
             }
             if (player.isDashing)
             {
-                player.pmStateMachine.TransitionTo((player.pmStateMachine.DashState));
+                player.pmStateMachine.TransitionTo((player.pmStateMachine.AirDashStartState));
                 return;
             }
             

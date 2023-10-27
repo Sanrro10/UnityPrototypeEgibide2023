@@ -14,7 +14,7 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            //Debug.Log("Entering Walk State");
+            Debug.Log("Entering Walk State");
             player.animator.SetBool("IsMoving", true);
             player.InvokeRepeating(nameof(player.Move), 0, 0.01f);
         }
@@ -44,7 +44,7 @@ namespace StatePattern.PlayerStates
             
             if (player.isDashing)
             {
-                player.pmStateMachine.TransitionTo((player.pmStateMachine.DashState));
+                player.pmStateMachine.TransitionTo((player.pmStateMachine.GroundDashState));
                 return;
             }
             
