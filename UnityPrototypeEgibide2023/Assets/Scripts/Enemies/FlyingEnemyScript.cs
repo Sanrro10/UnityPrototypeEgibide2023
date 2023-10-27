@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEnemyscript : MonoBehaviour
+public class FlyingEnemyscript : EntityControler
 {
     [SerializeField] private float flyingSpeed;
 
     [SerializeField] private GameObject player;
+
+    [SerializeField] private FlyingEnemyData flyingEnemyData;
 
     private Vector3 _origin;
     private bool _followPlayer = false;
@@ -15,6 +17,9 @@ public class FlyingEnemyscript : MonoBehaviour
     void Start()
     {
         _origin = transform.position;
+        
+        //Set the Health Points
+        gameObject.GetComponent<HealthComponent>().SendMessage("Set",flyingEnemyData.health, SendMessageOptions.RequireReceiver);
     }
 
     // Update is called once per frame
@@ -54,4 +59,18 @@ public class FlyingEnemyscript : MonoBehaviour
             _followPlayer = false;
         }
     }
+    
+    public override void OnDeath()
+    {
+        //TO-DO Activar animacion de muerte y logica relacionada
+        
+        Invoke(nameof(DestroyThis),2f);
+        
+    }
+
+    private void DestroyThis()
+    {
+        Destroy(gameObject);
+    }
+    
 }

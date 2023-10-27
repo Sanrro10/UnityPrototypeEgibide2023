@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 615156084316339049}
   - component: {fileID: 2065636395610027962}
   - component: {fileID: 5221790752873934418}
+  - component: {fileID: 4262206691415032728}
   m_Layer: 0
   m_Name: PassiveEnemy
   m_TagString: Enemy
@@ -327,3 +328,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4262206691415032728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8763446005631552892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281bb796afffcd24c9bdb55115d04c67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passiveEnemyData: {fileID: 11400000, guid: 6d8931f7f3201154f9365b48b3005d3f, type: 2}

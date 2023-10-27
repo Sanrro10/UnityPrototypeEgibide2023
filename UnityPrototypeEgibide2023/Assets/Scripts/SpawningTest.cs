@@ -22,9 +22,6 @@ public class SpawningTest : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-            Debug.Log("Comemeloshuevos!!!");
-            Instantiate(enemyType, _spawnPos, Quaternion.identity);    
-        
-        
+            Instantiate(enemyType, _spawnPos, Quaternion.identity);   
     }
 }

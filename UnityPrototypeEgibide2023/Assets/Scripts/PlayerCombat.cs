@@ -88,8 +88,8 @@ public class PlayerCombat : MonoBehaviour
             //     //actions on that part, before destroying
             //     Destroy(other.gameObject);
             //     //Maybe the destroy is triggered inside the enemy proper
-            // }
-            other.gameObject.GetComponent<EnemyReceivesDamage>().SendMessage("ReceiveDamage");
+            // 
+            other.gameObject.GetComponent<HealthComponent>().SendMessage("RemoveHealth", 1);
 
         }
     }
