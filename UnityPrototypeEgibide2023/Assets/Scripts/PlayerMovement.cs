@@ -24,15 +24,23 @@ public class PlayerMovement : MonoBehaviour
     private bool _touchingFloor;
     
     [SerializeField] private PlayerData playerData;
-
+    
     private GameObject _player;
     
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _controls = new InputActions();
+    }
+
+    void Start()
+    {
+        // _animator = GetComponent<Animator>();
+        // _spriteRenderer = GetComponent<SpriteRenderer>();
+        // _controls = new InputActions();
         
         //Enable the actions
         _controls.Enable();

@@ -1042,11 +1042,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -15.266093, y: 5.443016}
+    - - {x: -21.035946, y: 9.365219}
+      - {x: -22.689104, y: -5.3153806}
       - {x: -15.26609, y: -5.3802104}
       - {x: -4.461879, y: -5.387491}
-      - {x: 5.3288074, y: -5.3197613}
-      - {x: 5.328807, y: 5.443016}
+      - {x: 11.844206, y: -5.190101}
+      - {x: 11.94145, y: 9.55971}
   m_UseDelaunayMesh: 0
 --- !u!4 &1648497463
 Transform:
@@ -1308,22 +1309,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameCameras
       objectReference: {fileID: 0}
-    - target: {fileID: 4464481884543399120, guid: 26edb9a2308e82746a2ea666c7af6299, type: 3}
-      propertyPath: m_BoundingShape2D
-      value: 
-      objectReference: {fileID: 1648497462}
+    - target: {fileID: 3555984666817956576, guid: 26edb9a2308e82746a2ea666c7af6299, type: 3}
+      propertyPath: m_ChildCameras.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7728232536249606237, guid: 26edb9a2308e82746a2ea666c7af6299, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 1648497462}
-    - target: {fileID: 8069918220171224648, guid: 26edb9a2308e82746a2ea666c7af6299, type: 3}
-      propertyPath: m_BoundingShape2D
-      value: 
-      objectReference: {fileID: 1648497462}
-    - target: {fileID: 8635059478593316138, guid: 26edb9a2308e82746a2ea666c7af6299, type: 3}
-      propertyPath: m_ChildCameras.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
