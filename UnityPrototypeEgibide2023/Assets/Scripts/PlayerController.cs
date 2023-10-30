@@ -38,7 +38,7 @@ public class PlayerController: MonoBehaviour
         [SerializeField] private PlayerData playerData;
         void Start()
         {
-                _force2D = GetComponent<ConstantForce2D>();
+                //_force2D = GetComponent<ConstantForce2D>();
                 animator = GetComponent<Animator>();
                 _spriteRenderer = GetComponent<SpriteRenderer>();
                 _controls = new InputActions();
@@ -95,7 +95,7 @@ public class PlayerController: MonoBehaviour
                 Vector2 direccion = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
                 facingRight = direccion.x == 1 ? true : false;
                 _spriteRenderer.flipX = !facingRight;
-                _force2D.relativeForce = new Vector2(facingRight ? horizontalSpeed : horizontalSpeed * -1, 0);
+                //_force2D.relativeForce = new Vector2(facingRight ? horizontalSpeed : horizontalSpeed * -1, 0);
         }
         
         public bool IsGrounded()
