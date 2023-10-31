@@ -23,6 +23,8 @@ public class PlayerControler : EntityControler
     public CinemachineStateDrivenCamera cinemachine;
     
     private GameObject gameControler;
+
+    private Canvas _canvasPausa;
     
     // Start is called before the first frame update
     void Start()
@@ -96,6 +98,7 @@ public class PlayerControler : EntityControler
     {
         GetComponent<PlayerMovement>().DisablePlayerControls();
         Invoke(nameof(CallSceneLoad), 1);
+        //_canvasPausa.gameObject.SetActive(true);
     }
     
     public void CallSceneLoad()
