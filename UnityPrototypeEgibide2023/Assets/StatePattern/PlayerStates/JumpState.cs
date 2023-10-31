@@ -18,7 +18,7 @@ namespace StatePattern.PlayerStates
             Debug.Log("Entering Jump State");
             player.animator.SetTrigger("Jump");
             player.Jump();
-            
+            player.StartCoroutine(player.GroundedCooldown());
             player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
         }
 
@@ -32,7 +32,11 @@ namespace StatePattern.PlayerStates
             // if we press the attack button, transition to the attack state
             
             // if we press the dash button, transition to the dash state
-            
+            if (player.isDashing)
+            {
+                player.pmStateMachine.TransitionTo((player.pmStateMachine.GroundDashState));
+                return;
+            }
             
             
         }
@@ -40,6 +44,7 @@ namespace StatePattern.PlayerStates
         public void Exit()
         {
             // Debug.Log("Exiting Jump State");
+            
             player.isJumping = false;
         }
     }

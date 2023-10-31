@@ -12,7 +12,7 @@ public class RespawnManager : EntityControler
 
     public GameObject playerPrefab;
 
-    public static RespawnManager respawnManagerInstance;
+    public static RespawnManager RespawnManagerInstance;
     
     // Start is called before the first frame update
     void Start()
@@ -27,9 +27,9 @@ public class RespawnManager : EntityControler
     
     void Awake()
     {
-        if (respawnManagerInstance == null)
+        if (RespawnManagerInstance == null)
         {
-            respawnManagerInstance = this;
+            RespawnManagerInstance = this;
             DontDestroyOnLoad(transform.gameObject);
         }
         else

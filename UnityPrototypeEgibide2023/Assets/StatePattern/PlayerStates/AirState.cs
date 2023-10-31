@@ -6,7 +6,8 @@ namespace StatePattern.PlayerStates
     public class AirState: IState
     {
         private PlayerController player;
-        
+        private float _gravity;
+        private float _friction;
         public AirState(PlayerController player)
         {
             this.player = player;
@@ -15,30 +16,45 @@ namespace StatePattern.PlayerStates
         public void Enter()
         {
             Debug.Log("Entering Air State");
-            Debug.Log(player.IsGrounded());
+
+            player.animator.SetBool("OnAir", true);
         }
         
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
-            
+
             if (player.IsGrounded())
             {
                 player.pmStateMachine.TransitionTo(player.pmStateMachine.IdleState);
                 return;
             }
             
-            if (player.isDashing)
+            if (player.isJumping && !player.onDJump)
             {
-                player.pmStateMachine.TransitionTo((player.pmStateMachine.DashState));
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.DJumpState);
                 return;
             }
+            
+            if (player.isDashing)
+            {
+                player.pmStateMachine.TransitionTo((player.pmStateMachine.AirDashStartState));
+                return;
+            }
+
+            if (player.isMoving)
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.AirMoveState);
+                return;
+            }
+
         }
         
         public void Exit()
         {
             // Debug.Log("Exiting Air State");
             
+            player.animator.SetBool("OnAir", false);
         }
     }
 }

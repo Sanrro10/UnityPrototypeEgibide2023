@@ -30,6 +30,11 @@ namespace StatePattern.PlayerStates
                 player.pmStateMachine.TransitionTo(player.pmStateMachine.JumpState);
                 return;
             }
+            if (!player.IsGrounded())
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
+                return;
+            }
 
             if (!player.isMoving)
             {
@@ -39,7 +44,7 @@ namespace StatePattern.PlayerStates
             
             if (player.isDashing)
             {
-                player.pmStateMachine.TransitionTo((player.pmStateMachine.DashState));
+                player.pmStateMachine.TransitionTo((player.pmStateMachine.GroundDashState));
                 return;
             }
             

@@ -15,6 +15,7 @@ namespace StatePattern.PlayerStates
         public void Enter()
         {
             Debug.Log("Entering Idle State");
+            player.onDJump = false;
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -29,7 +30,7 @@ namespace StatePattern.PlayerStates
 
             if (player.isDashing)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.DashState);
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.GroundDashState);
                 return;
             }
 

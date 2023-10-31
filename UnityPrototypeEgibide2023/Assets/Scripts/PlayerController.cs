@@ -13,19 +13,30 @@ public class PlayerController: MonoBehaviour
         public bool isMoving = false;
         public bool isJumping = false;
         public bool isDashing = false;
-        public bool onDashCooldown = false;
+        public bool onDJump = false;
         public float horizontalSpeed;
-        private float _verticalSpeed;
+        public float horizontalAcceleration;
+        public float maxVerticalSpeed;
+        public bool isCollidingLeft = false;
+        public bool isCollidingRight = false;
+        
+        public float friction;
+        public float airdashForce;
         private float _jumpForce;
-        private float _currentGravity { get; set; }
+        [SerializeField] private GameObject feet;
         public Animator animator;
         private SpriteRenderer _spriteRenderer;
         private int _numberOfGrounds;
         private Rigidbody2D _rigidbody2D;
-        
+        private ConstantForce2D _force2D;
+        [SerializeField] private float floatDuration;
+
+        [SerializeField] private BoxCollider2D feetBoxCollider;
+
         [SerializeField] private PlayerData playerData;
         void Start()
         {
+                //_force2D = GetComponent<ConstantForce2D>();
                 animator = GetComponent<Animator>();
                 _spriteRenderer = GetComponent<SpriteRenderer>();
                 _controls = new InputActions();
@@ -52,14 +63,15 @@ public class PlayerController: MonoBehaviour
 
         private void Update()
         {
+                //Debug.Log(IsGrounded());
                 pmStateMachine.StateUpdate();
-                
+                Vector2 clampVel = _rigidbody2D.velocity;
+                clampVel.y = Mathf.Clamp(clampVel.y, -maxVerticalSpeed, maxVerticalSpeed);
+
+                _rigidbody2D.velocity = clampVel;
         }
 
-        private void CalculateVertical()
-        {
-                
-        }
+
 
         public void Jump()
         {
@@ -71,8 +83,18 @@ public class PlayerController: MonoBehaviour
         {
                 Vector2 direccion = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
                 facingRight = direccion.x == 1 ? true : false;
+                Debug.Log("Right: " + (facingRight && isCollidingRight));
+                Debug.Log("Left: " + (!facingRight && isCollidingLeft));
                 _spriteRenderer.flipX = !facingRight;
-                transform.position += new Vector3((facingRight ? horizontalSpeed : horizontalSpeed * -1), 0, 0);
+                
+                if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
+                {
+                        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y); 
+                        return;
+                }
+
+                _rigidbody2D.velocity =
+                        new Vector2((facingRight ? horizontalSpeed : horizontalSpeed * -1), _rigidbody2D.velocity.y); 
         }
         
         public bool IsGrounded()
@@ -80,23 +102,24 @@ public class PlayerController: MonoBehaviour
                 return 0 < _numberOfGrounds;
         }
 
-        public void SetCurrentGravity(float gravity)
-        {
-                this._currentGravity = gravity;
-        }
 
-        public void ResetGravity()
-        {
-                this._currentGravity = playerData.gravity;
-        }
         
         public void Dash()
         {
                 float dashValue = (playerData.movementSpeed * 100) * playerData.dashSpeed;
-                dashValue *= (facingRight ? 1 : -1);
+                dashValue *= _controls.GeneralActionMap.Movement.ReadValue<Vector2>().x;
                 _rigidbody2D.velocity = Vector2.right * dashValue;
                 _rigidbody2D.gravityScale = 0;
+        } 
+        public void AirDash()
+        {
+                Vector2 direction = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
+                float hDirection = direction.x;
+                float vDirection = direction.y;
+
+                _rigidbody2D.velocity = new Vector2(hDirection * airdashForce, vDirection * airdashForce);
         }
+        
         
         
         // -------------- COROUTINES -----------------
@@ -105,24 +128,42 @@ public class PlayerController: MonoBehaviour
                 yield return new WaitForSeconds(playerData.dashDuration);
                 _rigidbody2D.velocity = Vector2.zero;
                 _rigidbody2D.gravityScale = 2;
-                pmStateMachine.TransitionTo(pmStateMachine.IdleState);
+                pmStateMachine.TransitionTo(pmStateMachine.AirState);
+        }
+
+        public IEnumerator AirDashDuration()
+        {
+                yield return new WaitForSeconds(floatDuration);
+                _rigidbody2D.velocity = Vector2.zero;
+                pmStateMachine.TransitionTo(pmStateMachine.AirState);
+        }
+        public IEnumerator FloatDuration()
+        {
+                _rigidbody2D.gravityScale = 0;
+                yield return new WaitForSeconds(0.5f);
+                _rigidbody2D.gravityScale = 2;
+                pmStateMachine.TransitionTo(pmStateMachine.AirDashState);
+        }
+
+        public IEnumerator GroundedCooldown()
+        {
+                feetBoxCollider.enabled = false;
+                yield return new WaitForSeconds(0.2f);
+                feetBoxCollider.enabled = true;
+        }
+
+        
+        
+        public void setNumberOfGrounds(int numberOfGrounds)
+        {
+                this._numberOfGrounds = numberOfGrounds;
+        }
+
+        public int getNumberOfGrounds()
+        {
+                return this._numberOfGrounds;
         }
         
         // --------------- EVENTS ----------------------
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-                if (collision.gameObject.tag.Equals("Floor"))
-                {
-                        _numberOfGrounds++;
-                }
-        
-        }
 
-        private void OnCollisionExit2D(Collision2D collision)
-        {
-                if (collision.gameObject.tag.Equals("Floor"))
-                {
-                        _numberOfGrounds--;
-                }
-        }
 }
