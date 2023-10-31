@@ -63,5 +63,23 @@ public class RespawnManager : EntityControler
         Debug.Log(_scene.ToString());
         SceneManager.LoadScene(_scene);
     }
+
+
+    public void ChangeScene(string escena)
+    {
+        SceneManager.LoadScene(escena);
+    }
+    
+    public void PauseContinue()
+    {
+        Time.timeScale = 1;
+        StartCoroutine(Wait());
+        gameObject.SetActive(false);
+    }
+    
+    public IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
+    }
     
 }
