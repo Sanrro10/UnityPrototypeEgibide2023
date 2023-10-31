@@ -64,9 +64,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pause"",
+                    ""name"": ""Potion"",
                     ""type"": ""Button"",
-                    ""id"": ""c10b496e-1386-4bb1-b409-2c65952bf6af"",
+                    ""id"": ""c8632d04-5444-4800-825c-7e5d0bc81f1f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -175,12 +175,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bc4f20b0-3ece-48ce-a2a2-17ae95c817d1"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""id"": ""b312e7ac-0a3d-48b1-823c-ac9a8d6fd1ad"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pause"",
+                    ""action"": ""Potion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -195,7 +195,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_GeneralActionMap_Jump = m_GeneralActionMap.FindAction("Jump", throwIfNotFound: true);
         m_GeneralActionMap_Dash = m_GeneralActionMap.FindAction("Dash", throwIfNotFound: true);
         m_GeneralActionMap_Attack = m_GeneralActionMap.FindAction("Attack", throwIfNotFound: true);
-        m_GeneralActionMap_Pause = m_GeneralActionMap.FindAction("Pause", throwIfNotFound: true);
+        m_GeneralActionMap_Potion = m_GeneralActionMap.FindAction("Potion", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -261,7 +261,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_GeneralActionMap_Jump;
     private readonly InputAction m_GeneralActionMap_Dash;
     private readonly InputAction m_GeneralActionMap_Attack;
-    private readonly InputAction m_GeneralActionMap_Pause;
+    private readonly InputAction m_GeneralActionMap_Potion;
     public struct GeneralActionMapActions
     {
         private @InputActions m_Wrapper;
@@ -270,7 +270,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_GeneralActionMap_Jump;
         public InputAction @Dash => m_Wrapper.m_GeneralActionMap_Dash;
         public InputAction @Attack => m_Wrapper.m_GeneralActionMap_Attack;
-        public InputAction @Pause => m_Wrapper.m_GeneralActionMap_Pause;
+        public InputAction @Potion => m_Wrapper.m_GeneralActionMap_Potion;
         public InputActionMap Get() { return m_Wrapper.m_GeneralActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -292,9 +292,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
-            @Pause.started += instance.OnPause;
-            @Pause.performed += instance.OnPause;
-            @Pause.canceled += instance.OnPause;
+            @Potion.started += instance.OnPotion;
+            @Potion.performed += instance.OnPotion;
+            @Potion.canceled += instance.OnPotion;
         }
 
         private void UnregisterCallbacks(IGeneralActionMapActions instance)
@@ -311,9 +311,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
-            @Pause.started -= instance.OnPause;
-            @Pause.performed -= instance.OnPause;
-            @Pause.canceled -= instance.OnPause;
+            @Potion.started -= instance.OnPotion;
+            @Potion.performed -= instance.OnPotion;
+            @Potion.canceled -= instance.OnPotion;
         }
 
         public void RemoveCallbacks(IGeneralActionMapActions instance)
@@ -337,6 +337,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
+        void OnPotion(InputAction.CallbackContext context);
     }
 }

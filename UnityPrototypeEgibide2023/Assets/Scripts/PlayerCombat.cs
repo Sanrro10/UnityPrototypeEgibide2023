@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -23,6 +24,8 @@ public class PlayerCombat : MonoBehaviour
     private Vector3 _leftAttackPos = new Vector3(-1f,0,0);
     private Vector3 _rightAttackPos = new Vector3(1f,0,0);
     private Vector3 _neutralPos = Vector3.zero;
+
+    public GameObject potion;
     
     /*-----------MAIN FUNCTIONS------------------*/
     void Start()
@@ -36,10 +39,14 @@ public class PlayerCombat : MonoBehaviour
         _playerConstraintSource.weight = 1;
         gameObject.GetComponent<ParentConstraint>().SetSource(0,_playerConstraintSource);
         
+        
         _controls.Enable();
        
         //Melee Attack
         _controls.GeneralActionMap.Attack.performed += ctx => Attack();
+        
+        //Potion launch
+        _controls.GeneralActionMap.Potion.performed += ctx => Potion();
     }
 
     // Update is called once per frame
@@ -72,6 +79,14 @@ public class PlayerCombat : MonoBehaviour
             //gameObject.GetComponent<ParentConstraint>().SetTranslationOffset(0,_neutralPos);
         }
     }
+    
+        void Potion()
+    {
+            Debug.Log("POTION LAUNCH");
+            
+            Instantiate( potion, new Vector2(_player.transform.position.x, _player.transform.position.y +2), Quaternion.identity);
+    }
+        
     
     /*---------------EVENTOS---------------*/
     private void OnTriggerEnter2D(Collider2D other)
