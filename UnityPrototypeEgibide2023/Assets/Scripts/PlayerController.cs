@@ -17,6 +17,8 @@ public class PlayerController: MonoBehaviour
         public float horizontalSpeed;
         public float horizontalAcceleration;
         public float maxVerticalSpeed;
+        public bool isCollidingLeft = false;
+        public bool isCollidingRight = false;
         
         public float friction;
         public float airdashForce;
@@ -81,7 +83,15 @@ public class PlayerController: MonoBehaviour
         {
                 Vector2 direccion = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
                 facingRight = direccion.x == 1 ? true : false;
+                Debug.Log("Right: " + (facingRight && isCollidingRight));
+                Debug.Log("Left: " + (!facingRight && isCollidingLeft));
                 _spriteRenderer.flipX = !facingRight;
+                
+                if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
+                {
+                        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y); 
+                        return;
+                }
 
                 _rigidbody2D.velocity =
                         new Vector2((facingRight ? horizontalSpeed : horizontalSpeed * -1), _rigidbody2D.velocity.y); 
