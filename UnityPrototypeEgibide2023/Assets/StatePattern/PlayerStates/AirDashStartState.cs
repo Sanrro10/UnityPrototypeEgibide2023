@@ -13,9 +13,9 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            player.onDashCooldown = true;
+
             player.isDashing = true;
-            player.SetCurrentGravity(0);
+
             
             player.animator.SetTrigger("Dash");
             

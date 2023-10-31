@@ -13,15 +13,11 @@ public class PlayerController: MonoBehaviour
         public bool isMoving = false;
         public bool isJumping = false;
         public bool isDashing = false;
-        public bool onDashCooldown = false;
         public bool onDJump = false;
         public float horizontalSpeed;
         public float horizontalAcceleration;
-        public float verticalSpeed;
-        public float verticalAcceleration;
-        public float maxHorizontalSpeed;
         public float maxVerticalSpeed;
-        public float gravity;
+        
         public float friction;
         public float airdashForce;
         private float _jumpForce;
@@ -67,22 +63,13 @@ public class PlayerController: MonoBehaviour
         {
                 //Debug.Log(IsGrounded());
                 pmStateMachine.StateUpdate();
-                
+                Vector2 clampVel = _rigidbody2D.velocity;
+                clampVel.y = Mathf.Clamp(clampVel.y, -maxVerticalSpeed, maxVerticalSpeed);
+
+                _rigidbody2D.velocity = clampVel;
         }
 
-        private void CalculateVertical()
-        {
-                
-        }
-        
-        private void CalculateHorizontal()
-        {
-                horizontalSpeed += horizontalAcceleration;
-                if (horizontalSpeed > maxHorizontalSpeed)
-                        horizontalSpeed -= friction;
-                
-                transform.position += new Vector3(horizontalSpeed, 0, 0);
-        }
+
 
         public void Jump()
         {
@@ -95,7 +82,9 @@ public class PlayerController: MonoBehaviour
                 Vector2 direccion = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
                 facingRight = direccion.x == 1 ? true : false;
                 _spriteRenderer.flipX = !facingRight;
-                //_force2D.relativeForce = new Vector2(facingRight ? horizontalSpeed : horizontalSpeed * -1, 0);
+
+                _rigidbody2D.velocity =
+                        new Vector2((facingRight ? horizontalSpeed : horizontalSpeed * -1), _rigidbody2D.velocity.y); 
         }
         
         public bool IsGrounded()
@@ -103,15 +92,7 @@ public class PlayerController: MonoBehaviour
                 return 0 < _numberOfGrounds;
         }
 
-        public void SetCurrentGravity(float gravity)
-        {
-                this.gravity = gravity;
-        }
 
-        public void ResetGravity()
-        {
-                this.gravity = playerData.gravity;
-        }
         
         public void Dash()
         {

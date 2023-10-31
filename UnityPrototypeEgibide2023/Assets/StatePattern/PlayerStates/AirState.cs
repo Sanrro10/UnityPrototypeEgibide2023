@@ -16,8 +16,7 @@ namespace StatePattern.PlayerStates
         public void Enter()
         {
             Debug.Log("Entering Air State");
-            player.gravity = _gravity;
-            player.friction = _friction;
+
             player.animator.SetBool("OnAir", true);
         }
         

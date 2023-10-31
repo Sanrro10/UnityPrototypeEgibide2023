@@ -13,7 +13,7 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            player.onDashCooldown = true;
+
             player.isDashing = true;
             //player.animator.SetTrigger("Dash");
             player.AirDash();
@@ -42,7 +42,7 @@ namespace StatePattern.PlayerStates
         public void Exit()
         {
             player.isDashing = false;
-            player.onDashCooldown = false;
+
         }
     }
 }
