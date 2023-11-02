@@ -21,7 +21,7 @@ jobs:
         unity-editor \
           -batchmode \
           -projectPath ${{ github.workspace }} \
-          -executeMethod YourNamespace.BuildScript.BuildWithCurrentSettings \
+          -executeMethod UnityPrototypeEgibide2023.BuildScript.BuildWithCurrentSettings \
           -quit
 
     - name: Upload Build Artifact
