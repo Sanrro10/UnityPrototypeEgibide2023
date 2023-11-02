@@ -28,7 +28,8 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         _controls = new InputActions();
-        _player = GameObject.Find("Player Espada");
+        _player = GameObject.Find("Player Espada(Clone)");
+        _animator = _player.GetComponent<Animator>();
         
         //Sets the parent to be the player
         _playerConstraintSource.sourceTransform = _player.transform;
