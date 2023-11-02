@@ -5,9 +5,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PassiveEnemyScript : MonoBehaviour
+public class PassiveEnemyScript : EntityControler
 {
-    
+
+    [SerializeField] private PassiveEnemyData passiveEnemyData;
     private Vector3 _leftLimitPosition;
     private Vector3 _rightLimitPosition;
     private bool _goingRight = true;
@@ -22,6 +23,9 @@ public class PassiveEnemyScript : MonoBehaviour
 
         var leftLimit = gameObject.transform.Find("LeftLimit");
         _leftLimitPosition = leftLimit.position;
+        
+        //Set the Health Points
+        gameObject.GetComponent<HealthComponent>().SendMessage("Set", passiveEnemyData.health);
     }
 
     // Update is called once per frame
@@ -41,4 +45,17 @@ public class PassiveEnemyScript : MonoBehaviour
         
     }
     
+    public override void OnDeath()
+    {
+        //TO-DO Activar animacion de muerte y logica relacionada
+        
+        Invoke(nameof(DestroyThis),2f);
+        
+    }
+
+    private void DestroyThis()
+    {
+        Destroy(gameObject);
+    }
+
 }

@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
+
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -85,8 +87,8 @@ public class PlayerCombat : MonoBehaviour
             //     //actions on that part, before destroying
             //     Destroy(other.gameObject);
             //     //Maybe the destroy is triggered inside the enemy proper
-            // }
-
+            // 
+            other.gameObject.GetComponent<HealthComponent>().SendMessage("RemoveHealth", 1);
 
         }
     }

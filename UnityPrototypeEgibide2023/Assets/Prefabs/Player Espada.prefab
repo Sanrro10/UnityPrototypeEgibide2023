@@ -397,6 +397,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 6047420604208864588}
     - target: {fileID: 4126366074726665246, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -466,6 +469,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf3338c4725c624ca6f00ebe75544ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
+  mainText: {fileID: 0}
+  healthBar: {fileID: 0}
   touchingFloor: 0
 --- !u!70 &2943323181144518240
 CapsuleCollider2D:
