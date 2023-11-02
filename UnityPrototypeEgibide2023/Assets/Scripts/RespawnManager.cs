@@ -40,7 +40,7 @@ public class RespawnManager : EntityControler
         }
         else
         {
-            Destroy(canvasPausa);
+            Destroy(canvasPausa.gameObject);
             Destroy(gameObject);
             Destroy(_jugador);
             //canvasPausa.gameObject.SetActive(false);
