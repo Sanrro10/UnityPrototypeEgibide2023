@@ -1,0 +1,31 @@
+name: Weekly Unity Build
+
+on:
+  schedule:
+    - cron: '16 14 * * 4'  # This schedule triggers every Friday at midnight.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Unity
+      uses: game-ci/unity-action@v2
+      with:
+        unity-version: '2020.3.0f1'  # Specify your Unity version here.
+
+    - name: Build Project
+      run: |
+        unity-editor \
+          -batchmode \
+          -projectPath ${{ github.workspace }} \
+          -executeMethod YourNamespace.BuildScript.BuildWithCurrentSettings \
+          -quit
+
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: UnityBuild
+        path: ${{ github.workspace }}/Builds/
