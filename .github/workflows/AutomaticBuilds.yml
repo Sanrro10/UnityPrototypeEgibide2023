@@ -2,7 +2,7 @@ name: Weekly Unity Build
 
 on:
   schedule:
-    - cron: '16 14 * * 4'  # This schedule triggers every Friday at midnight.
+    - cron: '25 14 * * 4'  # This schedule triggers every Friday at midnight.
 
 jobs:
   build:
