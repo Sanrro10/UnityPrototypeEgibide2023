@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PotionBehavior : MonoBehaviour
 {
 
+    private PlayerController _playerController;   
+    private GameObject _player;
 
-    [SerializeField] private float verticalSpeed;
+
+
+    [SerializeField] private float _speed;
 
     [SerializeField] private int health;
     
@@ -15,7 +20,10 @@ public class PotionBehavior : MonoBehaviour
     [SerializeField] private GameObject explosion;
     void Start()
     {
-
+        _player = GameObject.Find("Player Espada State");
+        _playerController = _player.GetComponent<PlayerController>();
+        
+        
         ApplyForce();
         
     }
@@ -43,7 +51,17 @@ public class PotionBehavior : MonoBehaviour
 
     private void ApplyForce()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1 * verticalSpeed );
+        if (_playerController.facingRight)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2( 1 * _speed, 0 );
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2( -1 * _speed, 0 );
+        }
+        
+        
+        
     }
 
     
