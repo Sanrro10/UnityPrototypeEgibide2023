@@ -177,4 +177,9 @@ public class PlayerController: MonoBehaviour
         {
                 _rigidbody2D.velocity = new Vector2(i, _rigidbody2D.velocity.y);
         }
+
+        public PlayerData GetPlayerData()
+        { 
+                return playerData;
+        }
 }

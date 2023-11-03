@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.UI;
 
 
 public class PlayerCombat : MonoBehaviour
@@ -19,11 +20,17 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Animator _animator;
 
     private GameObject _player;
+    private bool _onPotionColdown;
+    private Slider _sliderPotion;
+    private float _sliderPotionValue;
+    private PlayerData _playerData;
 
     private ConstraintSource _playerConstraintSource;
     private Vector3 _leftAttackPos = new Vector3(-1f,0,0);
     private Vector3 _rightAttackPos = new Vector3(1f,0,0);
     private Vector3 _neutralPos = Vector3.zero;
+
+    private PlayerController _playerController;
 
     public GameObject potion;
     
@@ -31,8 +38,15 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         _controls = new InputActions();
-        _player = GameObject.Find("Player Espada(Clone)");
+        _player = GameObject.Find("Player Espada State");
         _animator = _player.GetComponent<Animator>();
+        
+        _playerController = _player.GetComponent<PlayerController>();
+        _playerData = _playerController.GetPlayerData();
+        
+        _sliderPotion = GameObject.Find("SliderPotion").GetComponent<Slider>();
+        _sliderPotion.maxValue = _playerData.potionColdownTime;
+        _sliderPotionValue = _playerData.potionColdownTime;
         
         //Sets the parent to be the player
         _playerConstraintSource.sourceTransform = _player.transform;
@@ -80,11 +94,30 @@ public class PlayerCombat : MonoBehaviour
         }
     }
     
-        void Potion()
+    void Potion()
     {
+        if (!_onPotionColdown)
+        {
             Debug.Log("POTION LAUNCH");
-            
-            Instantiate( potion, new Vector2(_player.transform.position.x, _player.transform.position.y +2), Quaternion.identity);
+            Instantiate(potion, new Vector2(_player.transform.position.x, _player.transform.position.y + 2), Quaternion.identity);
+            _onPotionColdown = true;
+            _sliderPotion.value = 0;
+            Invoke(nameof(PotionCooldown), _playerData.potionColdownTime);
+            InvokeRepeating(nameof(PotionCooldownSlider), 0f, 1f);
+        }
+    }
+        
+        
+    public void PotionCooldown()
+    {
+        _onPotionColdown = false;
+        _sliderPotionValue = _playerData.potionColdownTime;
+        CancelInvoke(nameof(PotionCooldownSlider));
+    }
+
+    public void PotionCooldownSlider()
+    {
+        _sliderPotion.value += 1;
     }
         
     
