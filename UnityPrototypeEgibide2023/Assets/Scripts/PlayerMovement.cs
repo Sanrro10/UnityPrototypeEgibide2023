@@ -28,7 +28,9 @@ public class PlayerMovement : MonoBehaviour
     private GameObject _player;
 
     private Canvas _canvasPause;
-    
+    private PlayerController _playerController;
+    private PlayerData _playerData;
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -45,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
         // _controls = new InputActions();
         
         
+        
+        _playerController = _player.GetComponent<PlayerController>();
+        _playerData = _playerController.GetPlayerData();
         
         //Enable the actions
         _controls.Enable();
@@ -89,13 +94,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 facingRight = direccion.x == 1 ? true : false;
                 _spriteRenderer.flipX = !facingRight;
-                transform.position += new Vector3(playerData.movementSpeed * direccion.x, 0, 0);
+                transform.position += new Vector3(_playerData.movementSpeed * direccion.x, 0, 0);
             }
 
             if (direccion.Equals(Vector2.down) && _onAir && !_onDownAttack)
             {
                 GetComponent<Rigidbody2D>().gravityScale = 2;
-                GetComponent<Rigidbody2D>().velocity = Vector2.down * playerData.downAttack;
+                GetComponent<Rigidbody2D>().velocity = Vector2.down * _playerData.downAttack;
                 _onDownAttack = true;
             }
         }
@@ -116,14 +121,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 _animator.SetBool("OnAir", true);
                 _animator.SetTrigger("Jump");
-                GetComponent<Rigidbody2D>().velocity = Vector2.up * playerData.jumpPower;
+                GetComponent<Rigidbody2D>().velocity = Vector2.up * _playerData.jumpPower;
                 _onAir = true;
                 _onDoubleJump = false;
             }
             else if (!_onDoubleJump)
             {
                 _animator.SetTrigger("Jump");
-                GetComponent<Rigidbody2D>().velocity = Vector2.up * playerData.jumpPower;
+                GetComponent<Rigidbody2D>().velocity = Vector2.up * _playerData.jumpPower;
                 _onDoubleJump = true;
             }
         }
@@ -138,12 +143,12 @@ public class PlayerMovement : MonoBehaviour
             _onDash = true;
             _animator.SetTrigger("Dash");
             StartCoroutine(dashDuration());
-            float dashValue = (playerData.movementSpeed * 100) * playerData.dashSpeed;
-            dashValue *= (playerData.facingRight ? 1 : -1);
+            float dashValue = (_playerData.movementSpeed * 100) * _playerData.dashSpeed;
+            dashValue *= (_playerData.facingRight ? 1 : -1);
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             GetComponent<Rigidbody2D>().velocity = Vector2.right * dashValue;
             GetComponent<Rigidbody2D>().gravityScale = 0;
-            Invoke(nameof(DashStop), playerData.dashCooldown);
+            Invoke(nameof(DashStop), _playerData.dashCooldown);
         }
     }
 
@@ -179,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
     // -------------- COROUTINES -----------------
     private IEnumerator dashDuration()
     {
-        yield return new WaitForSeconds(playerData.dashDuration);
+        yield return new WaitForSeconds(_playerData.dashDuration);
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GetComponent<Rigidbody2D>().gravityScale = 2;
     }

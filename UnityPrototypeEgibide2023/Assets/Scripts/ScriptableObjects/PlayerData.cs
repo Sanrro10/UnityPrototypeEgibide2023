@@ -13,6 +13,7 @@ public class PlayerData : ScriptableObject
     public float dashDuration;
     public float dashCooldown;
     public float gravity;
+    public float potionColdownTime;
     public float jumpDuration;
 }
 
