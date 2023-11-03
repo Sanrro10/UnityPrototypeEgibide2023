@@ -30,7 +30,6 @@ public class EnemyMovement : EntityControler
     {
         if (followPlayer)
         {
-            Debug.Log(player.transform.position);
             _navMeshAgent.SetDestination(player.transform.position);
         }
         else
