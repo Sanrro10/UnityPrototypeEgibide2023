@@ -27,6 +27,13 @@ public class PlayerController: EntityControler
         public bool facingRight = true;
         public bool isCollidingLeft = false;
         public bool isCollidingRight = false;
+        public bool isPerformingMeleeAttack = false;
+        public bool canAttack = true;
+        public float attackDuration;
+        public float melleeAttackCooldown;
+        
+        
+        public float friction;
         public bool isStunned = false;
         
         // internal state variables
@@ -74,6 +81,8 @@ public class PlayerController: EntityControler
                 //Dash -> Add Force in the direction the player is facing
                 _controls.GeneralActionMap.Dash.performed += ctx => isDashing = true;
                 
+                //MeleeAttack
+                _controls.GeneralActionMap.Attack.performed += ctx =>  isPerformingMeleeAttack = true;
                 
                 // Initialize data
                 horizontalSpeed = playerData.movementSpeed;
@@ -232,7 +241,12 @@ public class PlayerController: EntityControler
 
 
         }
-        
+
+        public void AttackCooldown()
+        {
+                Debug.Log("Dentro de la funcion AttackCooldown");
+                canAttack = true;
+        }
         
         
         // -------------- COROUTINES -----------------

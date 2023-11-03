@@ -52,6 +52,11 @@ namespace StatePattern.PlayerStates
             // if we press the jump button, transition to the jump state
             
             // if we press the attack button, transition to the attack state
+            if (player.isPerformingMeleeAttack)
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.MeleeAttackState);
+                return;
+            }
             
             // if we press the dash button, transition to the dash state
             
