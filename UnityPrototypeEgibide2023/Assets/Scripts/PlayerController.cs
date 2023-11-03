@@ -54,10 +54,16 @@ public class PlayerController: EntityControler
         
         [SerializeField] private float floatDuration;
 
-        
+        [SerializeField] private BoxCollider2D feetBoxCollider;
+
+        [SerializeField] private PlayerData playerData;
+
+        //private AudioSource _audioSource;
         void Start()
         {
-                //Initialize components
+                // Audio
+                //_audioSource = GetComponent<AudioSource>();
+                //_force2D = GetComponent<ConstantForce2D>();
                 animator = GetComponent<Animator>();
                 _spriteRenderer = GetComponent<SpriteRenderer>();
                 _controls = new InputActions();
@@ -286,6 +292,30 @@ public class PlayerController: EntityControler
                 PmStateMachine.TransitionTo(PmStateMachine.IdleState);
         }
         
+        public void DisablePlayerControls()
+        {
+                _controls.Disable();
+        }
+
+        public void EnablePlayerControls()
+        {
+                _controls.Enable();
+        }
+        
+        public override void OnDeath()
+        {
+                DisablePlayerControls();
+                Invoke(nameof(CallSceneLoad), 1);
+                //_audioSource.clip = Resources.Load<AudioClip>("HITMARKER SOUND EFFECT");
+                //_audioSource.Play();
+                //_canvasPausa.gameObject.SetActive(true);
+        }
+        
+        public void CallSceneLoad()
+        {
+                GameObject.Find("GameControler").GetComponent<RespawnManager>().SceneLoad();
+        }
+
         
         // -------------- COROUTINES -----------------
         public IEnumerator Dash()
