@@ -17,9 +17,9 @@ namespace StatePattern.PlayerStates
             
             Debug.Log("Entering Jump State");
             player.animator.SetTrigger("Jump");
-            player.Jump();
+            player.InvokeRepeating(nameof(player.Jump), 0, 0.01f);
+            player.StartCoroutine(player.MaxJumpDuration());
             player.StartCoroutine(player.GroundedCooldown());
-            player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -32,10 +32,24 @@ namespace StatePattern.PlayerStates
             // if we press the attack button, transition to the attack state
             
             // if we press the dash button, transition to the dash state
+
+            if (!player.isJumping)
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
+                return;
+            }
+            
             if (player.isDashing)
             {
                 player.pmStateMachine.TransitionTo((player.pmStateMachine.GroundDashState));
                 return;
+            }
+            
+            
+
+            if (player.isMoving)
+            {
+                player.Move();
             }
             
             
@@ -44,7 +58,7 @@ namespace StatePattern.PlayerStates
         public void Exit()
         {
             // Debug.Log("Exiting Jump State");
-            
+            player.CancelInvoke(nameof(player.Jump));
             player.isJumping = false;
         }
     }

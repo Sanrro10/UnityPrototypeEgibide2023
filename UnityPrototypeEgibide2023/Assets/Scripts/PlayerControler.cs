@@ -19,12 +19,17 @@ public class PlayerControler : EntityControler
     private GameObject _elTodo;
 
     private CinemachineImpulseSource _impulseSource;
+
+    public CinemachineStateDrivenCamera cinemachine;
     
     private GameObject gameControler;
+
+    private Canvas _canvasPausa;
     
     // Start is called before the first frame update
     void Start()
     {
+        cinemachine = GameObject.Find("GameCameras").GetComponent<CinemachineStateDrivenCamera>();
         gameControler = GameObject.Find("GameControler");
         healthText = GameObject.Find("TextHealth").GetComponent<Text>();
         mainText = GameObject.Find("TextMain").GetComponent<Text>();
@@ -93,6 +98,7 @@ public class PlayerControler : EntityControler
     {
         GetComponent<PlayerMovement>().DisablePlayerControls();
         Invoke(nameof(CallSceneLoad), 1);
+        //_canvasPausa.gameObject.SetActive(true);
     }
     
     public void CallSceneLoad()

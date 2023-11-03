@@ -15,7 +15,7 @@ namespace StatePattern.PlayerStates
         public void Enter()
         {
             Debug.Log("Entering Idle State");
-            player.onDJump = false;
+            player.setXVelocity(0);
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -37,6 +37,12 @@ namespace StatePattern.PlayerStates
             if (player.isJumping)
             {
                 player.pmStateMachine.TransitionTo(player.pmStateMachine.JumpState);
+                return;
+            }
+
+            if (!player.IsGrounded())
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
                 return;
             }
             

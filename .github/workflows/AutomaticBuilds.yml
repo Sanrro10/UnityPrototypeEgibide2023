@@ -1,0 +1,45 @@
+name: Weekly Unity Build
+
+on:
+  schedule:
+    - cron: '0 1 * * 2,5'  # This schedule triggers every Tuesday and Friday at midnight.
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+      with:
+        ref: develop
+
+    - name: Activate Unity
+      uses: game-ci/unity-activate@v2.0.0
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+    - name: Setup Unity
+      uses: game-ci/unity-builder@v2
+      with:
+        unityVersion: '2022.3.9f1'
+        projectPath: ./UnityPrototypeEgibide2023/
+
+    - name: Build Project
+      run: |
+        unity-editor \
+          -batchmode \
+          -projectPath ${{ github.workspace }}/UnityPrototypeEgibide2023 \
+          -executeMethod UnityPrototypeEgibide2023.BuildScript.BuildWithCurrentSettings \
+          -quit
+
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: UnityBuild
+        path: ${{ github.workspace }}/UnityPrototypeEgibide2023/Builds/
+
+    # Return License
+    - name: Return License
+      uses: game-ci/unity-return-license@v2
+      if: always()

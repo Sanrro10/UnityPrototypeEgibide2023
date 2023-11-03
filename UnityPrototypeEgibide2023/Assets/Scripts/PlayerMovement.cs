@@ -24,15 +24,27 @@ public class PlayerMovement : MonoBehaviour
     private bool _touchingFloor;
     
     [SerializeField] private PlayerData playerData;
-
+    
     private GameObject _player;
+
+    private Canvas _canvasPause;
     
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _controls = new InputActions();
+    }
+
+    void Start()
+    {
+        // _animator = GetComponent<Animator>();
+        // _spriteRenderer = GetComponent<SpriteRenderer>();
+        // _controls = new InputActions();
+        
+        
         
         //Enable the actions
         _controls.Enable();
@@ -46,6 +58,9 @@ public class PlayerMovement : MonoBehaviour
 
         //Dash -> Add Force in the direction the player is facing
         _controls.GeneralActionMap.Dash.performed += ctx => Dash();
+        
+        //Pause
+        _controls.GeneralActionMap.Pause.performed += ctx => Pause();
         
         //Take the player item
         _player = GameObject.Find("Player");
@@ -172,6 +187,17 @@ public class PlayerMovement : MonoBehaviour
     public void DisablePlayerControls()
     {
         _controls.Disable();
+    }
+
+    public void EnablePlayerControls()
+    {
+        _controls.Enable();
+    }
+
+    public void Pause()
+    {
+        RespawnManager.respawnManagerInstance.Pause();
+        DisablePlayerControls();
     }
 
 }

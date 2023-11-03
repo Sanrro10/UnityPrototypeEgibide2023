@@ -23,7 +23,7 @@ public class CheckpointManager : MonoBehaviour
         //Colision con el player
         if (collision.gameObject.tag == "Player")
         {
-            RespawnManager.RespawnManagerInstance.GetComponent<RespawnManager>().SetCheckpoint(_checkpoint);
+            RespawnManager.respawnManagerInstance.GetComponent<RespawnManager>().SetCheckpoint(_checkpoint);
         }
     }
 }
