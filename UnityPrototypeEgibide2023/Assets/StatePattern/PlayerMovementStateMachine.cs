@@ -22,7 +22,6 @@ namespace StatePattern
         public GroundDashState GroundDashState;
         public JumpState JumpState;
         public DJumpState DJumpState;
-        public AirMoveState AirMoveState;
         public AirDashState AirDashState;
         public AirDashStartState AirDashStartState;
         
@@ -35,7 +34,6 @@ namespace StatePattern
             this.GroundDashState = new GroundDashState(player);
             this.JumpState = new JumpState(player);
             this.DJumpState = new DJumpState(player);
-            this.AirMoveState = new AirMoveState(player);
             this.AirDashState = new AirDashState(player);
             this.AirDashStartState = new AirDashStartState(player);
         }

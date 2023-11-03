@@ -15,14 +15,13 @@ public class PlayerController: MonoBehaviour
         public bool isDashing = false;
         public bool onDJump = false;
         public float horizontalSpeed;
-        public float horizontalAcceleration;
         public float maxVerticalSpeed;
         public bool isCollidingLeft = false;
         public bool isCollidingRight = false;
-        
-        public float friction;
+        public float dashSpeed;
+        public float dashDuration;
         public float airdashForce;
-        private float _jumpForce;
+        public float jumpForce;
         [SerializeField] private GameObject feet;
         public Animator animator;
         private SpriteRenderer _spriteRenderer;
@@ -50,7 +49,7 @@ public class PlayerController: MonoBehaviour
                 //Inputs
                 _controls.GeneralActionMap.Movement.started += ctx => isMoving = true;
                 _controls.GeneralActionMap.Movement.canceled += ctx => isMoving = false;
-
+                
                 //Jump
                 _controls.GeneralActionMap.Jump.started += ctx => isJumping = true;
                 
@@ -61,12 +60,12 @@ public class PlayerController: MonoBehaviour
                 
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
                 //Debug.Log(IsGrounded());
                 pmStateMachine.StateUpdate();
                 Vector2 clampVel = _rigidbody2D.velocity;
-                clampVel.y = Mathf.Clamp(clampVel.y, -maxVerticalSpeed, maxVerticalSpeed);
+                clampVel.y = Mathf.Clamp(clampVel.y, -maxVerticalSpeed, 9999);
 
                 _rigidbody2D.velocity = clampVel;
         }
@@ -75,17 +74,13 @@ public class PlayerController: MonoBehaviour
 
         public void Jump()
         {
-                _rigidbody2D.velocity = Vector2.up * playerData.jumpPower;
+                _rigidbody2D.velocity = Vector2.up * jumpForce;
                 
         }
 
         public void Move()
         {
-                Vector2 direccion = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
-                facingRight = direccion.x == 1 ? true : false;
-                Debug.Log("Right: " + (facingRight && isCollidingRight));
-                Debug.Log("Left: " + (!facingRight && isCollidingLeft));
-                _spriteRenderer.flipX = !facingRight;
+                FlipSprite();
                 
                 if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
                 {
@@ -106,11 +101,20 @@ public class PlayerController: MonoBehaviour
         
         public void Dash()
         {
-                float dashValue = (playerData.movementSpeed * 100) * playerData.dashSpeed;
-                dashValue *= _controls.GeneralActionMap.Movement.ReadValue<Vector2>().x;
-                _rigidbody2D.velocity = Vector2.right * dashValue;
-                _rigidbody2D.gravityScale = 0;
-        } 
+                
+                _rigidbody2D.velocity =
+                        new Vector2((facingRight ? dashSpeed : dashSpeed * -1), 0); 
+                Debug.Log("IsDashing");
+                
+        }
+
+        public void FlipSprite()
+        { 
+                Vector2 direccion = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
+                facingRight = direccion.x == 1 ? true : false;
+                _spriteRenderer.flipX = !facingRight;
+
+        }
         public void AirDash()
         {
                 Vector2 direction = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
@@ -125,23 +129,19 @@ public class PlayerController: MonoBehaviour
         // -------------- COROUTINES -----------------
         public IEnumerator DashDuration()
         {
-                yield return new WaitForSeconds(playerData.dashDuration);
-                _rigidbody2D.velocity = Vector2.zero;
-                _rigidbody2D.gravityScale = 2;
-                pmStateMachine.TransitionTo(pmStateMachine.AirState);
+                yield return new WaitForSeconds(dashDuration);
+                isDashing = false;
         }
 
         public IEnumerator AirDashDuration()
         {
                 yield return new WaitForSeconds(floatDuration);
-                _rigidbody2D.velocity = Vector2.zero;
                 pmStateMachine.TransitionTo(pmStateMachine.AirState);
         }
         public IEnumerator FloatDuration()
         {
                 _rigidbody2D.gravityScale = 0;
                 yield return new WaitForSeconds(0.5f);
-                _rigidbody2D.gravityScale = 2;
                 pmStateMachine.TransitionTo(pmStateMachine.AirDashState);
         }
 
@@ -166,4 +166,15 @@ public class PlayerController: MonoBehaviour
         
         // --------------- EVENTS ----------------------
 
+        public IEnumerator MaxJumpDuration()
+        {
+                yield return new WaitForSeconds(playerData.jumpDuration);
+                isJumping = false;
+
+        }
+
+        public void setXVelocity(float i)
+        {
+                _rigidbody2D.velocity = new Vector2(i, _rigidbody2D.velocity.y);
+        }
 }

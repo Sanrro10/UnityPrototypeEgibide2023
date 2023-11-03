@@ -16,7 +16,8 @@ namespace StatePattern.PlayerStates
         {
             player.isDashing = true;
             player.animator.SetTrigger("Dash");
-            player.Dash();
+            player.FlipSprite();
+            player.InvokeRepeating(nameof(player.Dash), 0, 0.01f);
             player.StartCoroutine(player.DashDuration());
             
             Debug.Log("Entering Dash State");
@@ -27,7 +28,11 @@ namespace StatePattern.PlayerStates
         public void Update()
         {
             // If we're no longer grounded, transition to the air state
-            
+            if (!player.isDashing)
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.IdleState);
+            }
+
             
             // if we press the jump button, transition to the jump state
             
@@ -41,7 +46,9 @@ namespace StatePattern.PlayerStates
         
         public void Exit()
         {
+            player.CancelInvoke(nameof(player.Dash));
             player.isDashing = false;
+            Debug.Log("Exit Dash State");
 
         }
     }

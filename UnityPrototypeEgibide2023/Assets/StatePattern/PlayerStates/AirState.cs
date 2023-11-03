@@ -44,7 +44,7 @@ namespace StatePattern.PlayerStates
 
             if (player.isMoving)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.AirMoveState);
+                player.Move();
                 return;
             }
 
