@@ -71,6 +71,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""c10b496e-1386-4bb1-b409-2c65952bf6af"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -183,6 +192,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Potion"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79dad50e-bdeb-459b-b325-3b8232158942"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -196,6 +216,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_GeneralActionMap_Dash = m_GeneralActionMap.FindAction("Dash", throwIfNotFound: true);
         m_GeneralActionMap_Attack = m_GeneralActionMap.FindAction("Attack", throwIfNotFound: true);
         m_GeneralActionMap_Potion = m_GeneralActionMap.FindAction("Potion", throwIfNotFound: true);
+        m_GeneralActionMap_Pause = m_GeneralActionMap.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -262,6 +283,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_GeneralActionMap_Dash;
     private readonly InputAction m_GeneralActionMap_Attack;
     private readonly InputAction m_GeneralActionMap_Potion;
+    private readonly InputAction m_GeneralActionMap_Pause;
     public struct GeneralActionMapActions
     {
         private @InputActions m_Wrapper;
@@ -271,6 +293,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_GeneralActionMap_Dash;
         public InputAction @Attack => m_Wrapper.m_GeneralActionMap_Attack;
         public InputAction @Potion => m_Wrapper.m_GeneralActionMap_Potion;
+        public InputAction @Pause => m_Wrapper.m_GeneralActionMap_Pause;
         public InputActionMap Get() { return m_Wrapper.m_GeneralActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -295,6 +318,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Potion.started += instance.OnPotion;
             @Potion.performed += instance.OnPotion;
             @Potion.canceled += instance.OnPotion;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IGeneralActionMapActions instance)
@@ -314,6 +340,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Potion.started -= instance.OnPotion;
             @Potion.performed -= instance.OnPotion;
             @Potion.canceled -= instance.OnPotion;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IGeneralActionMapActions instance)
@@ -338,5 +367,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnPotion(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

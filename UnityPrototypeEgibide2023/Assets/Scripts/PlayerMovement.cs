@@ -28,7 +28,9 @@ public class PlayerMovement : MonoBehaviour
     private GameObject _player;
 
     private Canvas _canvasPause;
-    
+    private PlayerController _playerController;
+    private PlayerData _playerData;
+
     // Start is called before the first frame update
 
     private void Awake()

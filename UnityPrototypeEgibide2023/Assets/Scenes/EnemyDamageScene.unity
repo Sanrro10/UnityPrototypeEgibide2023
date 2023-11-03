@@ -796,6 +796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6e708b8b4182f44a16f94f448577d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
   potion: {fileID: 7156365909832276178, guid: d55940eef47aaa84eac951e620399bdf, type: 3}
 --- !u!1001 &1430691550
 PrefabInstance:
@@ -918,6 +919,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2074941240022495505, guid: d2bea0ec60032b148abd635192f6e048, type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5937788470338340945, guid: d2bea0ec60032b148abd635192f6e048, type: 3}
       propertyPath: m_Name
       value: Player Espada State
