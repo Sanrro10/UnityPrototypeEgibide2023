@@ -34,7 +34,7 @@ public class RespawnManager : EntityControler
         
         if (respawnManagerInstance == null)
         {
-            RespawnManagerInstance = this;
+            respawnManagerInstance = this;
             DontDestroyOnLoad(transform.gameObject);
             DontDestroyOnLoad(canvasPausa);
         }
