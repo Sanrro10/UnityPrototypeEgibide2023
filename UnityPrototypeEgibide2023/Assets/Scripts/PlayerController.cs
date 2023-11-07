@@ -121,6 +121,17 @@ public class PlayerController: MonoBehaviour
                 _rigidbody2D.velocity =
                         new Vector2((facingRight ? horizontalSpeed : horizontalSpeed * -1), _rigidbody2D.velocity.y); 
         }
+
+        public void AirMove()
+        {
+                if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
+                {
+                        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y); 
+                        return;
+                }
+                
+                
+        }
         
         public bool IsGrounded()
         {
@@ -182,9 +193,20 @@ public class PlayerController: MonoBehaviour
         }
         public void AirDash()
         {
+                float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
+                float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
                 
+                float xForce = playerData.airdashForce * xDirection;
+                float yForce = playerData.airdashForce * yDirection;
 
-                
+
+                if (yForce == 0)
+                {
+                        yForce = playerData.airdashForce / 2;
+                }
+                _rigidbody2D.velocity = new Vector2(xForce, yForce * 2);
+
+
         }
         
         

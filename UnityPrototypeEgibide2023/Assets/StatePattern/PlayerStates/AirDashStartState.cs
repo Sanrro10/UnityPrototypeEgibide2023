@@ -22,7 +22,6 @@ namespace StatePattern.PlayerStates
             player.SetGravity(0);
             player.SetXVelocity(0);
             player.SetYVelocity(0);
-            // clamp velocity
             
 
             player.StartCoroutine(player.FloatDuration());
