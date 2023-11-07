@@ -15,5 +15,7 @@ public class PlayerData : ScriptableObject
     public float gravity;
     public float potionColdownTime;
     public float jumpDuration;
+    public float floatDuration;
+    public float airdashDuration;
 }
 

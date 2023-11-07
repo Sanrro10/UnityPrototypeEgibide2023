@@ -28,7 +28,7 @@ namespace StatePattern.PlayerStates
             // If we're no longer grounded, transition to the air state
             if (!player.CanDash())
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.IdleState);
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
             }
             
 

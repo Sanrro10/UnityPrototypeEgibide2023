@@ -15,11 +15,16 @@ namespace StatePattern.PlayerStates
         {
 
             player.isDashing = true;
-
+            
             
             player.animator.SetTrigger("Dash");
+
+            player.SetGravity(0);
+            player.SetXVelocity(0);
+            player.SetYVelocity(0);
+            // clamp velocity
             
-            //player.Dash();
+
             player.StartCoroutine(player.FloatDuration());
             
             Debug.Log("Entering AirDashStart State");
@@ -30,21 +35,21 @@ namespace StatePattern.PlayerStates
         public void Update()
         {
             // If we're no longer grounded, transition to the air state
-            
-            
+            player.FlipSprite();
+    
             // if we press the jump button, transition to the jump state
-            
+
             // if we press the attack button, transition to the attack state
-            
+
             // if we press the dash button, transition to the dash state
-            
-            
-            
+
+
+
         }
         
         public void Exit()
         {
-
+            player.RestartGravity();
         }
     }
 }

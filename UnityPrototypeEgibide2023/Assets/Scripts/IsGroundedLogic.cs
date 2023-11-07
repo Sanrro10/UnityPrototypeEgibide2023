@@ -18,7 +18,7 @@ public class IsGroundedLogic : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Floor"))
         {
-            pc.setNumberOfGrounds(pc.getNumberOfGrounds() + 1);
+            pc.SetNumberOfGrounds(pc.GetNumberOfGrounds() + 1);
         }
         
     }
@@ -28,7 +28,7 @@ public class IsGroundedLogic : MonoBehaviour
 
         if (collision.gameObject.tag.Equals("Floor"))
         {
-            pc.setNumberOfGrounds(pc.getNumberOfGrounds() - 1);
+            pc.SetNumberOfGrounds(pc.GetNumberOfGrounds() - 1);
         }
     }
 }

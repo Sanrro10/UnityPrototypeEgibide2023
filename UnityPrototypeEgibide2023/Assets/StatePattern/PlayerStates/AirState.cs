@@ -26,23 +26,21 @@ namespace StatePattern.PlayerStates
 
             if (player.IsGrounded())
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.IdleState);
-                return;
-            }
-            
-            if (player.isJumping && !player.onDJump)
-            {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.DJumpState);
-                return;
-            }
-            
-            if (player.isDashing)
-            {
-                player.pmStateMachine.TransitionTo((player.pmStateMachine.AirDashStartState));
+                if(player.isHoldingHorizontal)
+                    player.PmStateMachine.TransitionTo(player.PmStateMachine.WalkState);
+                else
+                    player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
                 return;
             }
 
-            if (player.isMoving)
+            
+            if (player.isDashing)
+            {
+                player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
+                return;
+            }
+
+            if (player.isHoldingHorizontal)
             {
                 player.Move();
                 return;

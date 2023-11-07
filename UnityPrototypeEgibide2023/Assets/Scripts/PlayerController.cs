@@ -3,22 +3,34 @@ using System.Collections;
 using StatePattern;
 using StatePattern.PlayerStates;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerController: MonoBehaviour
 {
-        public PlayerMovementStateMachine pmStateMachine { get; private set; }
-        
-        
+        // Components
+        public PlayerMovementStateMachine PmStateMachine { get; private set; }
         private InputActions _controls;
-        public bool facingRight = true;
-        public bool isMoving = false;
+        private Rigidbody2D _rigidbody2D;
+        [SerializeField] private GameObject feet;
+        [SerializeField] private BoxCollider2D feetBoxCollider; 
+        [SerializeField] private PlayerData playerData;
+        public Animator animator;
+        private SpriteRenderer _spriteRenderer;
+        
+        
+        // internal state controls
+        public bool isHoldingHorizontal = false;
+        public bool isHoldingVertical = false;
         public bool isJumping = false;
         public bool isDashing = false;
         public bool onDJump = false;
-        public float horizontalSpeed;
-        public float maxVerticalSpeed;
+        public bool facingRight = true;
         public bool isCollidingLeft = false;
         public bool isCollidingRight = false;
+        
+        // internal state variables
+        public float horizontalSpeed;
+        public float maxVerticalSpeed;
         public float dashSpeed;
         public float dashDuration;
         public float airdashForce;
@@ -30,47 +42,62 @@ public class PlayerController: MonoBehaviour
         public Animator animator;
         private SpriteRenderer _spriteRenderer;
         private int _numberOfGrounds;
-        private Rigidbody2D _rigidbody2D;
-        private ConstantForce2D _force2D;
+        
         [SerializeField] private float floatDuration;
 
-        [SerializeField] private BoxCollider2D feetBoxCollider;
-
-        [SerializeField] private PlayerData playerData;
+        
         void Start()
         {
-                //_force2D = GetComponent<ConstantForce2D>();
+                //Initialize components
                 animator = GetComponent<Animator>();
                 _spriteRenderer = GetComponent<SpriteRenderer>();
                 _controls = new InputActions();
-                _numberOfGrounds = 0;
                 _rigidbody2D = GetComponent<Rigidbody2D>();
-                horizontalSpeed = playerData.movementSpeed;
+                
                 //Enable the actions
                 _controls.Enable();
-                pmStateMachine = new PlayerMovementStateMachine(this);
-                pmStateMachine.Initialize(pmStateMachine.IdleState);
-                //Inputs
-                _controls.GeneralActionMap.Movement.started += ctx => isMoving = true;
-                _controls.GeneralActionMap.Movement.canceled += ctx => isMoving = false;
                 
+                // Initialize the state machine
+                PmStateMachine = new PlayerMovementStateMachine(this);
+                PmStateMachine.Initialize(PmStateMachine.IdleState);
+                
+                //Inputs
+                _controls.GeneralActionMap.HorizontalMovement.started += ctx => isHoldingHorizontal = true;
+                _controls.GeneralActionMap.HorizontalMovement.canceled += ctx => isHoldingHorizontal = false;
+                _controls.GeneralActionMap.VerticalMovement.started += ctx =>  isHoldingVertical = true;
+                _controls.GeneralActionMap.VerticalMovement.canceled += ctx =>  isHoldingVertical = false;
                 //Jump
                 _controls.GeneralActionMap.Jump.started += ctx => isJumping = true;
-                
                 _controls.GeneralActionMap.Jump.canceled += ctx => isJumping = false;
 
                 //Dash -> Add Force in the direction the player is facing
                 _controls.GeneralActionMap.Dash.performed += ctx => isDashing = true;
+                
+                
+                // Initialize data
+                horizontalSpeed = playerData.movementSpeed;
+                _numberOfGrounds = 0;
+                _rigidbody2D.gravityScale = playerData.gravity;
                 
         }
 
         private void FixedUpdate()
         {
                 //Debug.Log(IsGrounded());
-                pmStateMachine.StateUpdate();
+                PmStateMachine.StateUpdate();
+                
+                // Clamp gravity
                 Vector2 clampVel = _rigidbody2D.velocity;
                 clampVel.y = Mathf.Clamp(clampVel.y, -maxVerticalSpeed, 9999);
+                _rigidbody2D.velocity = clampVel;
+                
+        }
 
+        public void ClampVelocity(float x, float y)
+        {
+                Vector2 clampVel = _rigidbody2D.velocity;
+                clampVel.y = Mathf.Clamp(clampVel.y, -y, y);
+                clampVel.x = Mathf.Clamp(clampVel.x, -x, x);
                 _rigidbody2D.velocity = clampVel;
         }
 
@@ -78,8 +105,7 @@ public class PlayerController: MonoBehaviour
 
         public void Jump()
         {
-                _rigidbody2D.velocity = Vector2.up * jumpForce;
-                
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpForce);
         }
 
         public void Move()
@@ -116,7 +142,6 @@ public class PlayerController: MonoBehaviour
                 
                 _rigidbody2D.velocity =
                         new Vector2((facingRight ? dashSpeed : dashSpeed * -1), 0); 
-                Debug.Log("IsDashing");
                 
         }
         public void EndDash()
@@ -141,19 +166,25 @@ public class PlayerController: MonoBehaviour
         }
 
         public void FlipSprite()
-        { 
-                Vector2 direccion = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
-                facingRight = direccion.x == 1 ? true : false;
+        {
+                
+                float direction = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
+
+                if (direction == -1) facingRight = false;
+                else if (direction == 1) facingRight = true;
                 _spriteRenderer.flipX = !facingRight;
 
         }
+
+        public void AirDashStart()
+        {
+                
+        }
         public void AirDash()
         {
-                Vector2 direction = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
-                float hDirection = direction.x;
-                float vDirection = direction.y;
+                
 
-                _rigidbody2D.velocity = new Vector2(hDirection * airdashForce, vDirection * airdashForce);
+                
         }
         
         
@@ -169,14 +200,14 @@ public class PlayerController: MonoBehaviour
 
         public IEnumerator AirDashDuration()
         {
-                yield return new WaitForSeconds(floatDuration);
-                pmStateMachine.TransitionTo(pmStateMachine.AirState);
+                yield return new WaitForSeconds(playerData.airdashDuration);
+                PmStateMachine.TransitionTo(PmStateMachine.AirState);
         }
         public IEnumerator FloatDuration()
         {
-                _rigidbody2D.gravityScale = 0;
-                yield return new WaitForSeconds(0.5f);
-                pmStateMachine.TransitionTo(pmStateMachine.AirDashState);
+                
+                yield return new WaitForSeconds(playerData.floatDuration);
+                PmStateMachine.TransitionTo(PmStateMachine.AirDashState);
         }
 
         public IEnumerator GroundedCooldown()
@@ -202,14 +233,36 @@ public class PlayerController: MonoBehaviour
                 }
         }
 
-        public void setNumberOfGrounds(int numberOfGrounds)
+        
+        // Getters and setters
+        public void SetNumberOfGrounds(int numberOfGrounds)
         {
                 this._numberOfGrounds = numberOfGrounds;
         }
 
-        public int getNumberOfGrounds()
+        public int GetNumberOfGrounds()
         {
                 return this._numberOfGrounds;
+        }
+        
+        public void SetXVelocity(float i)
+        {
+                _rigidbody2D.velocity = new Vector2(i, _rigidbody2D.velocity.y);
+        }
+
+        public void SetYVelocity(float i)
+        {
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, i);
+        }
+
+        public void RestartGravity()
+        {
+                _rigidbody2D.gravityScale = playerData.gravity;
+        }
+        
+        public void SetGravity(float i)
+        {
+                _rigidbody2D.gravityScale = i;
         }
         
         // --------------- EVENTS ----------------------

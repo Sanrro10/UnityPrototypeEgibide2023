@@ -80,6 +80,24 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HorizontalMovement"",
+                    ""type"": ""Button"",
+                    ""id"": ""30d2f21a-11c7-4130-8c32-e51bd6fa0901"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""VerticalMovement"",
+                    ""type"": ""Button"",
+                    ""id"": ""39db62e0-cea6-4a32-8d8f-ac5db030187f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -203,6 +221,83 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""d56b6ae9-3908-405e-bb94-ce71cbdb75bb"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""1d8fa85c-00c3-41d6-8c9e-1ac4d3ae4037"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""6b7c89c6-874d-469e-93d9-6214860a1e91"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c4e30c5-d7f8-4aef-8858-b892aaadda36"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""ec391a54-2c3c-4990-aca2-94e1e6385565"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""03859f9e-3212-4d7b-ba06-f565bbdba94e"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""7853e41b-37e5-4d1c-97c1-52978df17635"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -217,6 +312,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_GeneralActionMap_Attack = m_GeneralActionMap.FindAction("Attack", throwIfNotFound: true);
         m_GeneralActionMap_Potion = m_GeneralActionMap.FindAction("Potion", throwIfNotFound: true);
         m_GeneralActionMap_Pause = m_GeneralActionMap.FindAction("Pause", throwIfNotFound: true);
+        m_GeneralActionMap_HorizontalMovement = m_GeneralActionMap.FindAction("HorizontalMovement", throwIfNotFound: true);
+        m_GeneralActionMap_VerticalMovement = m_GeneralActionMap.FindAction("VerticalMovement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -284,6 +381,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_GeneralActionMap_Attack;
     private readonly InputAction m_GeneralActionMap_Potion;
     private readonly InputAction m_GeneralActionMap_Pause;
+    private readonly InputAction m_GeneralActionMap_HorizontalMovement;
+    private readonly InputAction m_GeneralActionMap_VerticalMovement;
     public struct GeneralActionMapActions
     {
         private @InputActions m_Wrapper;
@@ -294,6 +393,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_GeneralActionMap_Attack;
         public InputAction @Potion => m_Wrapper.m_GeneralActionMap_Potion;
         public InputAction @Pause => m_Wrapper.m_GeneralActionMap_Pause;
+        public InputAction @HorizontalMovement => m_Wrapper.m_GeneralActionMap_HorizontalMovement;
+        public InputAction @VerticalMovement => m_Wrapper.m_GeneralActionMap_VerticalMovement;
         public InputActionMap Get() { return m_Wrapper.m_GeneralActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -321,6 +422,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @HorizontalMovement.started += instance.OnHorizontalMovement;
+            @HorizontalMovement.performed += instance.OnHorizontalMovement;
+            @HorizontalMovement.canceled += instance.OnHorizontalMovement;
+            @VerticalMovement.started += instance.OnVerticalMovement;
+            @VerticalMovement.performed += instance.OnVerticalMovement;
+            @VerticalMovement.canceled += instance.OnVerticalMovement;
         }
 
         private void UnregisterCallbacks(IGeneralActionMapActions instance)
@@ -343,6 +450,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @HorizontalMovement.started -= instance.OnHorizontalMovement;
+            @HorizontalMovement.performed -= instance.OnHorizontalMovement;
+            @HorizontalMovement.canceled -= instance.OnHorizontalMovement;
+            @VerticalMovement.started -= instance.OnVerticalMovement;
+            @VerticalMovement.performed -= instance.OnVerticalMovement;
+            @VerticalMovement.canceled -= instance.OnVerticalMovement;
         }
 
         public void RemoveCallbacks(IGeneralActionMapActions instance)
@@ -368,5 +481,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnPotion(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnHorizontalMovement(InputAction.CallbackContext context);
+        void OnVerticalMovement(InputAction.CallbackContext context);
     }
 }
