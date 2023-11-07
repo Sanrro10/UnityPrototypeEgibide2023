@@ -30,7 +30,8 @@ public class PlayerController: EntityControler
         public bool isPerformingMeleeAttack = false;
         public bool canAttack = true;
         public float attackDuration;
-        public float melleeAttackCooldown;
+        public float meleeAttackCooldown;
+        public float meleeAttackDuration;
         
         
         public float friction;
@@ -83,6 +84,7 @@ public class PlayerController: EntityControler
                 
                 //MeleeAttack
                 _controls.GeneralActionMap.Attack.performed += ctx =>  isPerformingMeleeAttack = true;
+                _controls.GeneralActionMap.Attack.canceled += ctx =>  isPerformingMeleeAttack = false;
                 
                 // Initialize data
                 horizontalSpeed = playerData.movementSpeed;
@@ -246,6 +248,42 @@ public class PlayerController: EntityControler
         {
                 Debug.Log("Dentro de la funcion AttackCooldown");
                 canAttack = true;
+        }
+        
+        public void AttackDuration()
+        {
+                Debug.Log("Dentro de la funcion AttackDuration");
+                isPerformingMeleeAttack = false;
+                if (isMoving)
+                {
+                        pmStateMachine.TransitionTo(pmStateMachine.WalkState);
+                        return;
+                }
+
+                if (isDashing)
+                {
+                        pmStateMachine.TransitionTo(pmStateMachine.GroundDashState);
+                        return;
+                }
+
+                if (isJumping)
+                {
+                        pmStateMachine.TransitionTo(pmStateMachine.JumpState);
+                        return;
+                }
+
+                if (!IsGrounded())
+                {
+                        pmStateMachine.TransitionTo(pmStateMachine.AirState);
+                        return;
+                }
+                if (isPerformingMeleeAttack)
+                {
+                        pmStateMachine.TransitionTo(pmStateMachine.MeleeAttackState);
+                        return;
+                }
+            
+                pmStateMachine.TransitionTo(pmStateMachine.IdleState);
         }
         
         

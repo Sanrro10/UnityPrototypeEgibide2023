@@ -44,7 +44,13 @@ namespace StatePattern.PlayerStates
                 player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
                 return;
             }
+            if (player.isPerformingMeleeAttack)
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.MeleeAttackState);
+                return;
+            }
             
+            if (player.isMoving)
             
 
             if (player.isHoldingHorizontal)
@@ -52,7 +58,6 @@ namespace StatePattern.PlayerStates
                 player.AirMove();
                 return;
             }
-            
             
         }
         

@@ -30,6 +30,12 @@ namespace StatePattern.PlayerStates
                     player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
                 return;
             }
+            
+            if (player.isPerformingMeleeAttack)
+            {
+                player.pmStateMachine.TransitionTo(player.pmStateMachine.MeleeAttackState);
+                return;
+            }
 
             
             if (player.isDashing)
