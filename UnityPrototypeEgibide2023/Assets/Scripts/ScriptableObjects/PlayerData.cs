@@ -16,6 +16,9 @@ public class PlayerData : ScriptableObject
     public float jumpDuration;
     public float floatDuration;
     public float airdashDuration;
+    public float maxAirHorizontalSpeed;
+    public float maxFallSpeed;
+    
     public AnimationCurve dashCurve;
     public float airdashForce;
 }

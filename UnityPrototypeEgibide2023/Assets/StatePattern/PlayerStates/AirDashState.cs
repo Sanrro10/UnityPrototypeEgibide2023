@@ -18,7 +18,6 @@ namespace StatePattern.PlayerStates
             //player.animator.SetTrigger("Dash");
             player.AirDash();
             player.StartCoroutine(player.AirDashDuration());
-            
             Debug.Log("Entering Air Dash State");
             // Initialize Dash
         }

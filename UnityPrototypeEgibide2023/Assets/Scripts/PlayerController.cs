@@ -30,10 +30,7 @@ public class PlayerController: MonoBehaviour
         
         // internal state variables
         public float horizontalSpeed;
-        public float maxVerticalSpeed;
         public float dashSpeed;
-        public float dashDuration;
-        public float airdashForce;
         public float jumpForce;
 
         [SerializeField] private AnimationCurve dashCurve;
@@ -42,7 +39,8 @@ public class PlayerController: MonoBehaviour
         public Animator animator;
         private SpriteRenderer _spriteRenderer;
         public bool onDashCooldown = false;
-        
+        public float maxAirHorizontalSpeed;
+        public float maxFallSpeed;
         
         private AnimationCurve _dashCurve;
         private int _numberOfGrounds;
@@ -80,9 +78,11 @@ public class PlayerController: MonoBehaviour
                 
                 // Initialize data
                 horizontalSpeed = playerData.movementSpeed;
+                maxAirHorizontalSpeed = playerData.maxAirHorizontalSpeed;
                 _numberOfGrounds = 0;
                 _rigidbody2D.gravityScale = playerData.gravity;
                 _dashCurve = playerData.dashCurve;
+                maxFallSpeed = playerData.maxFallSpeed;
                 
         }
 
@@ -93,7 +93,7 @@ public class PlayerController: MonoBehaviour
                 
                 // Clamp gravity
                 Vector2 clampVel = _rigidbody2D.velocity;
-                clampVel.y = Mathf.Clamp(clampVel.y, -maxVerticalSpeed, 9999);
+                clampVel.y = Mathf.Clamp(clampVel.y, -maxFallSpeed, 9999);
                 _rigidbody2D.velocity = clampVel;
                 
         }
@@ -129,11 +129,36 @@ public class PlayerController: MonoBehaviour
 
         public void AirMove()
         {
+                FlipSprite();
+                float airAcceleration = 1f;
                 if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
                 {
                         _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y); 
                         return;
                 }
+
+                if (facingRight)
+                {
+                        if (_rigidbody2D.velocity.x > maxAirHorizontalSpeed)
+                        {
+                                return;
+                        }
+                        _rigidbody2D.velocity =
+                                new Vector2(_rigidbody2D.velocity.x + airAcceleration, _rigidbody2D.velocity.y);
+                        
+                }
+
+                if (!facingRight)
+                {
+                        if (_rigidbody2D.velocity.x < -maxAirHorizontalSpeed)
+                        {
+                                return;
+                        }
+                        
+                        _rigidbody2D.velocity =
+                                new Vector2(_rigidbody2D.velocity.x - airAcceleration, _rigidbody2D.velocity.y);
+                }
+                
                 
                 
         }

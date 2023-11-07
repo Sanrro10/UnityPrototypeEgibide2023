@@ -49,7 +49,7 @@ namespace StatePattern.PlayerStates
 
             if (player.isHoldingHorizontal)
             {
-                player.Move();
+                player.AirMove();
                 return;
             }
             
