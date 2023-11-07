@@ -62,7 +62,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3374877688398652183, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       propertyPath: m_Size.y
-      value: 1.3
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374877688398652183, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4126366074726665246, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       propertyPath: m_Sprite
@@ -70,12 +74,20 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 84ce2f114ad12bd4ebafc77060220324, type: 3}
     - target: {fileID: 4658331257703227189, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       propertyPath: m_Size.y
-      value: 1.3
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658331257703227189, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4943660089367800990, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       propertyPath: _playerController
       value: 
       objectReference: {fileID: 2074941240022495505}
+    - target: {fileID: 5198849097197792431, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6063504122505314823, guid: 43947eddcde8e8540a67dbdf91c60fec, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.525
@@ -156,7 +168,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5937788470338340945}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -181,8 +193,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.37069696}
-  m_Size: {x: 1, y: 1.5603324}
+  m_Offset: {x: 0, y: -0.5205339}
+  m_Size: {x: 1, y: 1.433352}
   m_Direction: 0
 --- !u!50 &585542745143910898
 Rigidbody2D:
@@ -250,12 +262,13 @@ MonoBehaviour:
   isDashing: 0
   onDJump: 0
   horizontalSpeed: 0
-  horizontalAcceleration: 0
   maxVerticalSpeed: 7
   isCollidingLeft: 0
   isCollidingRight: 0
-  friction: 0
+  dashSpeed: 0
+  dashDuration: 0
   airdashForce: 0
+  jumpForce: 10
   feet: {fileID: 3689923748673784380}
   animator: {fileID: 0}
   floatDuration: 0
