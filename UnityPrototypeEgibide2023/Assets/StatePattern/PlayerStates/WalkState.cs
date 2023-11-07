@@ -42,7 +42,7 @@ namespace StatePattern.PlayerStates
                 return;
             }
             
-            if (player.isDashing)
+            if (player.CanDash())
             {
                 player.pmStateMachine.TransitionTo((player.pmStateMachine.GroundDashState));
                 return;
