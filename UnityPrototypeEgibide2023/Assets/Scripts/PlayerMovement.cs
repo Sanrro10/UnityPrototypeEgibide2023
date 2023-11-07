@@ -201,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Pause()
     {
-        RespawnManager.respawnManagerInstance.Pause();
+        GameController.Instance.Pause();
         DisablePlayerControls();
     }
 

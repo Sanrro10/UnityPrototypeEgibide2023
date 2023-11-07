@@ -103,7 +103,7 @@ public class PlayerControler : EntityControler
     
     public void CallSceneLoad()
     {
-        gameControler.GetComponent<RespawnManager>().SceneLoad();
+        gameControler.GetComponent<GameController>().SceneLoad();
     }
 
     public void DamageCooldown()

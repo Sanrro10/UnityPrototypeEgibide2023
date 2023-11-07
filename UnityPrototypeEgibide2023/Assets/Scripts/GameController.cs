@@ -4,17 +4,24 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RespawnManager : EntityControler
+public class GameController : EntityControler
 {
 
-    private static Vector3 _lastCheckpoint;
+    private static SPlayerSpawnData _lastSPlayerSpawn;
     private string _scene = "BasicMovementPrototypeScene";
 
     public GameObject playerPrefab;
 
-    public static RespawnManager respawnManagerInstance;
+    public static GameController Instance;
     [SerializeField] private Canvas canvasPausa;
     private GameObject _jugador;
+    
+    //Create Structure that holds the position and the sceneName of the checkpoint
+    public struct SPlayerSpawnData
+    {
+        public Vector3 Position;
+        public string SceneName;
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -32,11 +39,14 @@ public class RespawnManager : EntityControler
     {
         
         
-        if (respawnManagerInstance == null)
+        if (Instance == null)
         {
-            respawnManagerInstance = this;
+            Instance = this;
             DontDestroyOnLoad(transform.gameObject);
             DontDestroyOnLoad(canvasPausa);
+            //Load data from the save file
+            //LoadData();
+            
         }
         else
         {
@@ -61,28 +71,34 @@ public class RespawnManager : EntityControler
         return _jugador;
     }
     
-    public Vector3 GetCheckpoint()
+    public SPlayerSpawnData GetCheckpoint()
     {
-        return _lastCheckpoint;
+        return _lastSPlayerSpawn;
     }
 
     public void SetCheckpoint(Vector3 cordinates)
     {
-        _lastCheckpoint = cordinates;
+        _lastSPlayerSpawn.Position = cordinates;
+        _lastSPlayerSpawn.SceneName = SceneManager.GetActiveScene().name;
         _scene = SceneManager.GetActiveScene().name;
 
     }
 
     public void PlayerRespawn()
     {
-        RespawnManager.respawnManagerInstance._jugador = Instantiate(playerPrefab, transform.position = _lastCheckpoint, Quaternion.identity);
+        GameController.Instance._jugador = Instantiate(playerPrefab, transform.position = _lastSPlayerSpawn.Position, Quaternion.identity);
         Debug.Log("Jugador respawn " + _jugador); 
     }
-
-    public void SceneLoad()
+    
+    public void SpawnPlayerInPosition(Vector3 position)
     {
-        Debug.Log(_scene.ToString());
-        SceneManager.LoadScene(_scene);
+        GameController.Instance._jugador = Instantiate(playerPrefab, transform.position = position, Quaternion.identity);
+    }
+    
+    public void SceneLoad(SPlayerSpawnData spawnData)
+    {
+        SceneManager.LoadScene(spawnData.SceneName);
+        SpawnPlayerInPosition(spawnData.Position);
     }
 
 

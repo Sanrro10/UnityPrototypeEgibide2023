@@ -18,7 +18,7 @@ public class StateDrivenCamera : MonoBehaviour
         
         if (_player == null)
         {
-            _player = RespawnManager.respawnManagerInstance.get_jugador();
+            _player = GameController.Instance.get_jugador();
             //_player = GameObject.Find("Player Espada(Clone)");
             if (_player != null)
             {
