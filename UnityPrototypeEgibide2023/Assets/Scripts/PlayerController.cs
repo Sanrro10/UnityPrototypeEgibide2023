@@ -345,6 +345,7 @@ public class PlayerController: EntityControler
         {
                 DisablePlayerControls();
                 Invoke(nameof(CallSceneLoad), 1);
+                //AudioScript.audioScript.DeadPlayer();
                 //_audioSource.clip = Resources.Load<AudioClip>("HITMARKER SOUND EFFECT");
                 //_audioSource.Play();
                 //_canvasPausa.gameObject.SetActive(true);
@@ -468,6 +469,7 @@ public class PlayerController: EntityControler
                         if (!_onInvulneravility)
                         {
                                 CameraShakeManager.instance.CameraShake(_impulseSource);
+                                AudioScript.audioScript.hitPlayer();
                                 _onInvulneravility = true;
                                 _health.RemoveHealth(25);
                                 healthText.text = _health.Get().ToString();
@@ -486,6 +488,7 @@ public class PlayerController: EntityControler
                         if (!_onInvulneravility)
                         {
                                 CameraShakeManager.instance.CameraShake(_impulseSource);
+                                AudioScript.audioScript.hitPlayer();
                                 _onInvulneravility = true;
                                 _health.RemoveHealth(25);
                                 healthText.text = _health.Get().ToString();
