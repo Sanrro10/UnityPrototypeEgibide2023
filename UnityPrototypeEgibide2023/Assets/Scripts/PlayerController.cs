@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using StatePattern;
 using StatePattern.PlayerStates;
 using UnityEngine;
@@ -22,6 +23,9 @@ public class PlayerController: MonoBehaviour
         public float dashDuration;
         public float airdashForce;
         public float jumpForce;
+
+        [SerializeField] private AnimationCurve dashCurve;
+        public bool onDashCooldown = false;
         [SerializeField] private GameObject feet;
         public Animator animator;
         private SpriteRenderer _spriteRenderer;
@@ -99,6 +103,14 @@ public class PlayerController: MonoBehaviour
 
 
         
+        public void StartDash()
+        {
+                
+                _rigidbody2D.velocity =
+                        new Vector2((facingRight ? dashSpeed : (dashSpeed -4) * -1), 0); 
+                Debug.Log("IsDashing");
+                
+        }
         public void Dash()
         {
                 
@@ -106,6 +118,26 @@ public class PlayerController: MonoBehaviour
                         new Vector2((facingRight ? dashSpeed : dashSpeed * -1), 0); 
                 Debug.Log("IsDashing");
                 
+        }
+        public void EndDash()
+        {
+                
+                _rigidbody2D.velocity =
+                        new Vector2((facingRight ? dashSpeed : (dashSpeed -10) * -1), 0); 
+                Debug.Log("IsDashing");
+                
+        }
+
+        public bool CanDash()
+        {
+                if (!onDashCooldown && isDashing) 
+                {
+                        return true;
+                }
+                else
+                {
+                        return false;
+                }
         }
 
         public void FlipSprite()
@@ -129,7 +161,9 @@ public class PlayerController: MonoBehaviour
         // -------------- COROUTINES -----------------
         public IEnumerator DashDuration()
         {
+                Physics2D.IgnoreLayerCollision(6,7, true);
                 yield return new WaitForSeconds(dashDuration);
+                Physics2D.IgnoreLayerCollision(6,7, false);
                 isDashing = false;
         }
 
@@ -151,9 +185,23 @@ public class PlayerController: MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
                 feetBoxCollider.enabled = true;
         }
+        public IEnumerator GroundedDashCooldown()
+        {
+                onDashCooldown = true;
+                yield return new WaitForSeconds(playerData.dashCooldown);
+                onDashCooldown = false;
+        }
 
-        
-        
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+                if (collision.gameObject.tag == "Enemy")
+                {
+                        Debug.Log("me choco");
+                        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider);
+                }
+        }
+
         public void setNumberOfGrounds(int numberOfGrounds)
         {
                 this._numberOfGrounds = numberOfGrounds;
