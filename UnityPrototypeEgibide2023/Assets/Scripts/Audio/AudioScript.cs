@@ -54,7 +54,7 @@ public class AudioScript : MonoBehaviour
     {
         // Hay que crear una carpeta en Assets y colocar todos los objetos ahi si se quiere
         // usar Resources.Load
-         //clips.Add(Resources.Load<AudioClip>("Canciones/02. APETITAN"));
+         clips.Add(Resources.Load<AudioClip>("HITMARKER SOUND EFFECT"));
          clips.Add(Resources.Load<AudioClip>("Canciones/bakemonogatari Ost 05 Hanekawa Tsubasa no Baai"));
     }
     

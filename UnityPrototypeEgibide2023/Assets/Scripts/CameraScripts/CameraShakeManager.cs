@@ -9,7 +9,8 @@ public class CameraShakeManager : MonoBehaviour
     // [SerializeField] private Pla
     public static CameraShakeManager instance;
 
-    [SerializeField] private float globalShake = 1f;
+    [SerializeField] private float globalShake = 0.10f;
+    [SerializeField] private float impulseDuration = 0.15f;
     private void Awake()
     {
         if (instance == null)
@@ -20,6 +21,8 @@ public class CameraShakeManager : MonoBehaviour
 
     public void CameraShake(CinemachineImpulseSource impulseSource)
     {
+        impulseSource.m_ImpulseDefinition.m_ImpulseDuration = impulseDuration;
+        impulseSource.m_DefaultVelocity.y = 0.75f;
         impulseSource.GenerateImpulseWithForce(globalShake);
     }
 }

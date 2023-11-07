@@ -1,8 +1,10 @@
-﻿using System;
+using System;﻿
 using System.Collections;
+using Cinemachine;
 using StatePattern;
 using StatePattern.PlayerStates;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Serialization;
 
 public class PlayerController: EntityControler
@@ -57,6 +59,26 @@ public class PlayerController: EntityControler
         [SerializeField] private BoxCollider2D feetBoxCollider;
 
         [SerializeField] private PlayerData playerData;
+        
+       
+        
+        private Text healthText;
+        private Text mainText;
+        private bool _onInvulneravility;
+        private Rigidbody2D _rb;
+        private CapsuleCollider2D _capsule;
+        private Slider healthBar;
+    
+        public bool touchingFloor;
+        private GameObject _elTodo;
+
+        private CinemachineImpulseSource _impulseSource;
+
+        public CinemachineStateDrivenCamera cinemachine;
+    
+        private GameObject gameControler;
+
+        private Canvas _canvasPausa;
 
         //private AudioSource _audioSource;
         void Start()
@@ -101,6 +123,23 @@ public class PlayerController: EntityControler
                 maxFallSpeed = playerData.maxFallSpeed;
                 baseGravity = _rigidbody2D.gravityScale;
 
+                
+                cinemachine = GameObject.Find("GameCameras").GetComponent<CinemachineStateDrivenCamera>();
+                gameControler = GameObject.Find("GameControler");
+                healthText = GameObject.Find("TextHealth").GetComponent<Text>();
+                mainText = GameObject.Find("TextMain").GetComponent<Text>();
+                healthBar = GameObject.Find("SliderHealth").GetComponent<Slider>();
+        
+                //Set health
+                _health.Set(100);
+                healthText.text = _health.Get().ToString();
+                healthBar.value = _health.Get();
+        
+                //Set the rigidBody
+                _rb = GetComponent<Rigidbody2D>();
+        
+                _impulseSource = GetComponent<CinemachineImpulseSource>();
+                
         }
 
         private void FixedUpdate()
@@ -421,6 +460,48 @@ public class PlayerController: EntityControler
         { 
                 return playerData;
         }
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+                //Colision con el enemigo
+                if (collision.gameObject.CompareTag("Enemy"))
+                {
+                        if (!_onInvulneravility)
+                        {
+                                CameraShakeManager.instance.CameraShake(_impulseSource);
+                                _onInvulneravility = true;
+                                _health.RemoveHealth(25);
+                                healthText.text = _health.Get().ToString();
+                                healthBar.value = _health.Get();
+                
+                                Invoke(nameof(DamageCooldown), 0.5f);
+                        }
+                }
+        }
+
+        private void OnCollisionStay2D(Collision2D other)
+        {
+                //Colision con el enemigo
+                if (other.gameObject.CompareTag("Enemy"))
+                {
+                        if (!_onInvulneravility)
+                        {
+                                CameraShakeManager.instance.CameraShake(_impulseSource);
+                                _onInvulneravility = true;
+                                _health.RemoveHealth(25);
+                                healthText.text = _health.Get().ToString();
+                                healthBar.value = _health.Get();
+                
+                                Invoke(nameof(DamageCooldown), 0.5f);
+                        }
+                }
+        }
+        
+        public void DamageCooldown()
+        {
+                _onInvulneravility = false;
+                _rb.WakeUp();
+        }
+        
 
         public void ReceiveDamage(int damage) 
         {
@@ -428,22 +509,6 @@ public class PlayerController: EntityControler
                 _health.RemoveHealth(damage);
                 Debug.Log(_health.Get());
         } 
-        
-        public void DisablePlayerControls()
-        {
-                _controls.Disable();
-        }
-
-        public void EnablePlayerControls()
-        {
-                _controls.Enable();
-        }
-
-        public void Pause()
-        {
-                GameController.Instance.Pause();
-                DisablePlayerControls();
-        }
 
         public void SetCurrentGravity(float gravity)
         {

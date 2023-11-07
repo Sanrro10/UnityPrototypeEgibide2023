@@ -6,6 +6,7 @@ public class HealthComponent : MonoBehaviour
 {
     private int _healthPoints;
     private EntityControler controler;
+    
 
     private void Start()
     {
@@ -32,6 +33,7 @@ public class HealthComponent : MonoBehaviour
         if (_healthPoints > 0)
         {
             _healthPoints = _healthPoints - points;
+            
         }
         _healthPoints = _healthPoints - points;
 
