@@ -1,11 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 public class Galtzagorri : EntityControler
 {
@@ -19,7 +14,13 @@ public class Galtzagorri : EntityControler
     private NavMeshAgent _playerNavMesh;
     private bool _followPlayer = false;
 
-    private bool _isHidden = false;
+
+    private bool _waiting;
+    private bool _waitingForPlayer;
+    private Vector3 _lastAvailablePosition;
+    private bool _hiding;
+    private bool _hidden;
+    private bool _attacking;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,8 +35,8 @@ public class Galtzagorri : EntityControler
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_playerNavMesh.pathStatus);
-        if (!_isHidden)
+      
+        if (CanReachPlayer())
         {
             Debug.Log("1");
             if (_navMeshAgent.destination == player.transform.position)
@@ -57,7 +58,7 @@ public class Galtzagorri : EntityControler
                     Hide();
                 }
             }
-            else
+            else if(!_hiding)
             {
                 Debug.Log("5");
                 if (_playerNavMesh.pathStatus == NavMeshPathStatus.PathComplete)
@@ -66,11 +67,20 @@ public class Galtzagorri : EntityControler
                     FollowPlayer(false);
                 }
             }
+
+            if (!(Vector3.Distance(gameObject.transform.position, player.transform.position) < 1.5)) return;
+            if (!_attacking)
+            {
+                StartCoroutine(nameof(Attack));
+                Hide();
+            }
+            
         }
         else
         {
-            Debug.Log("7");
-            if (_playerNavMesh.pathStatus == NavMeshPathStatus.PathComplete)
+            if (_hiding || _hidden) return;
+            _navMeshAgent.SetDestination(_lastAvailablePosition);
+            if (!_waitingForPlayer)
             {
                 Debug.Log("8");
                 FollowPlayer(true);
@@ -103,12 +113,13 @@ public class Galtzagorri : EntityControler
 
     private void Hide()
     {
-        _followPlayer = false;
+        if (_hiding || _hidden) return;
+        _hiding = true;
         var placeToHide = Random.Range(0, hideouts.Length);
         if (placeToHide < 0 || placeToHide >= hideouts.Length) return;
         Vector3 whereToHide = hideouts[placeToHide].transform.position;
         _navMeshAgent.SetDestination(whereToHide);
-        _isHidden = true;
+        
     }
     
     private void Appear()
@@ -119,12 +130,19 @@ public class Galtzagorri : EntityControler
         int placeToAppear = Random.Range(0, hideouts.Length);
         if (placeToAppear < 0 || placeToAppear >= hideouts.Length) return;
         gameObject.transform.position = hideouts[placeToAppear].transform.position;
+        _hidden = false;
+        _hiding = false;
     }
 
-    IEnumerator ChangeHideout()
+    private IEnumerator Attack()
     {
-        yield return new WaitForSeconds(3f);
-        Appear();
+        _attacking = true;
+        Debug.Log("ATACOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+        yield return new WaitForSeconds(0.5f);
+        _attacking = false;
+    }
+
+    public void MakeAttack() {
         
     }
 
@@ -134,24 +152,25 @@ public class Galtzagorri : EntityControler
         yield return null;
     }
 
-    
-
-    private void OnTriggerEnter2D(Collider2D other)
+    public void ActivateEnemy()
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            _followPlayer = true;
-        }
-        
+        CancelInvoke(nameof(ChasePlayer));
+        InvokeRepeating(nameof(ChasePlayer), 0f, 0.1f);
     }
 
-    /*private void OnTriggerExit2D(Collider2D other)
+    public void DeactivateEnemy()
     {
-        if (other.gameObject.tag == "Player")
+        CancelInvoke(nameof(ChasePlayer));
+    }
+
+    public void ActivateHiding(Collider2D other)
+    {
+        if (Vector3.Distance(other.gameObject.transform.position, _navMeshAgent.destination) < 1 && _hiding)
         {
-            _followPlayer = false;
+            _hiding = false;
+            _hidden = true;
         }
-    }*/
+    }
     
     public override void OnDeath()
     {
