@@ -184,7 +184,8 @@ public class PlayerMovement : MonoBehaviour
     // -------------- COROUTINES -----------------
     private IEnumerator dashDuration()
     {
-        yield return new WaitForSeconds(_playerData.dashDuration);
+        //Wait for the dashCurve duration
+        yield return new WaitForSeconds(playerData.dashCurve.keys[playerData.dashCurve.length - 1].time);
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GetComponent<Rigidbody2D>().gravityScale = 2;
     }

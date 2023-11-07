@@ -41,6 +41,10 @@ public class PlayerController: MonoBehaviour
         [SerializeField] private GameObject feet;
         public Animator animator;
         private SpriteRenderer _spriteRenderer;
+        public bool onDashCooldown = false;
+        
+        
+        private AnimationCurve _dashCurve;
         private int _numberOfGrounds;
         
         [SerializeField] private float floatDuration;
@@ -78,6 +82,7 @@ public class PlayerController: MonoBehaviour
                 horizontalSpeed = playerData.movementSpeed;
                 _numberOfGrounds = 0;
                 _rigidbody2D.gravityScale = playerData.gravity;
+                _dashCurve = playerData.dashCurve;
                 
         }
 
@@ -137,24 +142,7 @@ public class PlayerController: MonoBehaviour
         {
                 return 0 < _numberOfGrounds;
         }
-
-
         
-        public void StartDash()
-        {
-                
-                _rigidbody2D.velocity =
-                        new Vector2((facingRight ? dashSpeed : (dashSpeed -4) * -1), 0); 
-                Debug.Log("IsDashing");
-                
-        }
-        public void Dash()
-        {
-                
-                _rigidbody2D.velocity =
-                        new Vector2((facingRight ? dashSpeed : dashSpeed * -1), 0); 
-                
-        }
         public void EndDash()
         {
                 
@@ -212,12 +200,23 @@ public class PlayerController: MonoBehaviour
         
         
         // -------------- COROUTINES -----------------
-        public IEnumerator DashDuration()
+        public IEnumerator Dash()
         {
                 Physics2D.IgnoreLayerCollision(6,7, true);
-                yield return new WaitForSeconds(dashDuration);
+                float dashTime = 0;
+                float dashSpeedCurve = 0;
+                Debug.Log("Dash Duration: " + _dashCurve.keys[_dashCurve.length - 1].time);
+                while (dashTime < _dashCurve.keys[_dashCurve.length - 1].time)
+                {
+                        dashSpeedCurve = _dashCurve.Evaluate(dashTime) * dashSpeed; 
+                        _rigidbody2D.velocity = new Vector2((facingRight ? dashSpeedCurve : dashSpeedCurve * -1), 0); 
+                        yield return new WaitForFixedUpdate(); 
+                        dashTime += Time.deltaTime;
+                }
                 Physics2D.IgnoreLayerCollision(6,7, false);
                 isDashing = false;
+                
+                
         }
 
         public IEnumerator AirDashDuration()
