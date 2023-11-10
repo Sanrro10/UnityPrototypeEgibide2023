@@ -57,11 +57,17 @@ public class AudioScript : MonoBehaviour
          clips.Add(Resources.Load<AudioClip>("HITMARKER SOUND EFFECT"));
          clips.Add(Resources.Load<AudioClip>("Canciones/bakemonogatari Ost 05 Hanekawa Tsubasa no Baai"));
          clips.Add(Resources.Load<AudioClip>("Canciones/16 - Last Dinosaur"));
+         clips.Add(Resources.Load<AudioClip>("Canciones/Heavy Day - Guilty Gear Xrd SIGN"));
     }
 
     public void hitPlayer()
     {
         _audioSource.PlayOneShot(clips[0]);
+    }
+    
+    public void RespawnPlayer()
+    {
+        _audioSource.PlayOneShot(clips[2]);
     }
 
     // public void DeadPlayer()

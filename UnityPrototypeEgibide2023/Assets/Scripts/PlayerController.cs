@@ -353,7 +353,7 @@ public class PlayerController: EntityControler
         
         public void CallSceneLoad()
         {
-                GameObject.Find("GameControler").GetComponent<RespawnManager>().SceneLoad();
+                GameObject.Find("GameControler").GetComponent<GameController>().PlayerRespawn();
         }
 
         
