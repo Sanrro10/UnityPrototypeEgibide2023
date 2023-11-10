@@ -4,17 +4,24 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RespawnManager : EntityControler
+public class GameController : EntityControler
 {
 
-    private static Vector3 _lastCheckpoint;
-    private string _scene = "BasicMovementPrototypeScene";
+    private SPlayerSpawnData _lastCheckpoint;
+    private SPlayerSpawnData _playerSpawnDataInNewScene;
 
     public GameObject playerPrefab;
 
-    public static RespawnManager respawnManagerInstance;
+    public static GameController Instance;
     [SerializeField] private Canvas canvasPausa;
     private GameObject _jugador;
+    
+    //Create Structure that holds the position and the sceneName of the checkpoint
+    public struct SPlayerSpawnData
+    {
+        public Vector3 Position;
+        public SceneObject Scene;
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -32,11 +39,16 @@ public class RespawnManager : EntityControler
     {
         
         
-        if (respawnManagerInstance == null)
+        if (Instance == null)
         {
-            respawnManagerInstance = this;
+            Instance = this;
             DontDestroyOnLoad(transform.gameObject);
             DontDestroyOnLoad(canvasPausa);
+            //Load data from the save file
+            //LoadData();
+            _lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
+            _lastCheckpoint.Position = Vector3.zero;
+            
         }
         else
         {
@@ -48,9 +60,16 @@ public class RespawnManager : EntityControler
             // canvasPausa.gameObject.SetActive(false);
             
         }
+
+        if (Instance._lastCheckpoint.Scene != SceneManager.GetActiveScene().name)
+        {
+            PlayerSpawnInNewScene();
+        }
+        else
+        {
+            PlayerRespawn();
+        }
         
-            
-        PlayerRespawn();
 
 
     }
@@ -61,28 +80,31 @@ public class RespawnManager : EntityControler
         return _jugador;
     }
     
-    public Vector3 GetCheckpoint()
+    public SPlayerSpawnData GetCheckpoint()
     {
         return _lastCheckpoint;
     }
 
     public void SetCheckpoint(Vector3 cordinates)
     {
-        _lastCheckpoint = cordinates;
-        _scene = SceneManager.GetActiveScene().name;
-
+        Instance._lastCheckpoint.Position = cordinates;
+        Instance._lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
     }
 
     public void PlayerRespawn()
     {
-        RespawnManager.respawnManagerInstance._jugador = Instantiate(playerPrefab, transform.position = _lastCheckpoint, Quaternion.identity);
-        Debug.Log("Jugador respawn " + _jugador); 
+        GameController.Instance._jugador = Instantiate(playerPrefab, transform.position = Instance._lastCheckpoint.Position, Quaternion.identity);
     }
-
-    public void SceneLoad()
+    
+    public void PlayerSpawnInNewScene()
     {
-        Debug.Log(_scene.ToString());
-        SceneManager.LoadScene(_scene);
+        GameController.Instance._jugador = Instantiate(playerPrefab, transform.position = Instance._playerSpawnDataInNewScene.Position, Quaternion.identity);
+    }
+    
+    public void SceneLoad(SPlayerSpawnData spawnData)
+    {
+        _playerSpawnDataInNewScene = spawnData;
+        SceneManager.LoadScene(spawnData.Scene);
     }
 
 

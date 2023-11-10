@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using StatePattern;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerControler : EntityControler
@@ -103,7 +104,7 @@ public class PlayerControler : EntityControler
     
     public void CallSceneLoad()
     {
-        gameControler.GetComponent<RespawnManager>().SceneLoad();
+        gameControler.GetComponent<GameController>().SceneLoad(gameControler.GetComponent<GameController>().GetCheckpoint());
     }
 
     public void DamageCooldown()
