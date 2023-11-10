@@ -6,8 +6,6 @@ namespace StatePattern.PlayerStates
     public class AirState: IState
     {
         private PlayerController player;
-        private float _gravity;
-        private float _friction;
         public AirState(PlayerController player)
         {
             this.player = player;

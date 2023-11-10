@@ -15,7 +15,7 @@ namespace StatePattern.PlayerStates
         public void Enter()
         {
             
-            Debug.Log("Entering Jump State");
+            // Debug.Log("Entering Jump State");
             player.animator.SetTrigger("Jump");
             player.InvokeRepeating(nameof(player.Jump), 0, 0.01f);
             player.StartCoroutine(player.MaxJumpDuration());

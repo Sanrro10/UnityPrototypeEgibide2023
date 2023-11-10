@@ -47,7 +47,7 @@ namespace StatePattern.PlayerStates
             player.CancelInvoke(nameof(player.Dash));
             player.StartCoroutine(player.GroundedDashCooldown());
             player.isDashing = false;
-            Debug.Log("Exit Dash State");
+            // Debug.Log("Exit Dash State");
 
         }
     }

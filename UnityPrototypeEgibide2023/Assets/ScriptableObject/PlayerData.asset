@@ -20,8 +20,10 @@ MonoBehaviour:
   dashCooldown: 1
   gravity: 10
   jumpDuration: 0.2
-  floatDuration: 0.5
+  floatDuration: 0
   airdashDuration: 0
+  maxAirHorizontalSpeed: 5
+  maxFallSpeed: 10
   dashCurve:
     serializedVersion: 2
     m_Curve:
@@ -55,3 +57,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  airdashForce: 10

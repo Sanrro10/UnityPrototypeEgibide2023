@@ -14,7 +14,7 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            Debug.Log("Entering Idle State");
+            //Debug.Log("Entering Idle State");
             player.SetXVelocity(0);
         }
 
@@ -43,6 +43,7 @@ namespace StatePattern.PlayerStates
             if (!player.IsGrounded())
             {
                 player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
+                
                 return;
             }
             

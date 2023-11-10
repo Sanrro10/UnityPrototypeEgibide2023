@@ -272,9 +272,8 @@ public class PlayerController: MonoBehaviour
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-                if (collision.gameObject.tag == "Enemy")
+                if (collision.gameObject.CompareTag("Enemy"))
                 {
-                        Debug.Log("me choco");
                         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider);
                 }
         }
