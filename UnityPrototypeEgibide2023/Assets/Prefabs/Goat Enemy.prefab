@@ -50,8 +50,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  force: 0
   jumpForce: 10
-  facingRight: 0
+  facingRight: 1
+  stunTime: 0
+  canCollide: 1
   eyes: {fileID: 6328714735705215187}
 --- !u!61 &4021914991555316336
 BoxCollider2D:
@@ -114,7 +117,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 659319e5719302f4db9cccf9eebf9f67, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -27,6 +27,7 @@ public class PlayerController: MonoBehaviour
         public bool facingRight = true;
         public bool isCollidingLeft = false;
         public bool isCollidingRight = false;
+        public bool isStunned = false;
         
         // internal state variables
         public float horizontalSpeed;
@@ -41,6 +42,7 @@ public class PlayerController: MonoBehaviour
         public bool onDashCooldown = false;
         public float maxAirHorizontalSpeed;
         public float maxFallSpeed;
+        public float timeStunned;
         
         private AnimationCurve _dashCurve;
         private int _numberOfGrounds;
@@ -176,6 +178,11 @@ public class PlayerController: MonoBehaviour
                 Debug.Log("IsDashing");
                 
         }
+        
+        public void EndStun()
+        {
+                isStunned = false;
+        }
 
         public bool CanDash()
         {
@@ -203,6 +210,12 @@ public class PlayerController: MonoBehaviour
         public void AirDashStart()
         {
                 
+        }
+
+        public void StunEntity(float time)
+        {
+                timeStunned = time;
+                PmStateMachine.TransitionTo(PmStateMachine.StunnedState);
         }
         public void AirDash()
         {

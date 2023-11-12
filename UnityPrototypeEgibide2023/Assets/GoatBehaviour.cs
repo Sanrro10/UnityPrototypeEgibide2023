@@ -6,8 +6,11 @@ using UnityEngine.Serialization;
 public class GoatBehaviour : MonoBehaviour
 {
     public float speed;
+    public float force;
     public float jumpForce;
     public bool facingRight;
+    public float stunTime;
+    public bool canCollide = true;
     // reference to player
 
     private Rigidbody2D _rb;
@@ -17,6 +20,8 @@ public class GoatBehaviour : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        stunTime = 0.5f;
+        force = 500f;
         InvokeRepeating(nameof(LookForEnemy), 0, 0.01f);
     }
 
@@ -49,9 +54,30 @@ public class GoatBehaviour : MonoBehaviour
 
     
 
-    private void TurnAround()
+    private IEnumerator TurnAround()
     {
+        
+        while(Mathf.Abs(this.transform.rotation.eulerAngles.y - (facingRight ? 180 : 0)) > 0.3f)
+        {
+            this.transform.Rotate(new Vector3(0, 1, 0), 180f * Time.deltaTime);
+            yield return Time.deltaTime;
+        }
+        
         facingRight = !facingRight;
+
+        ActivateEnemy();
+    }
+    
+    private IEnumerator HasStopped(bool wasPlayer)
+    {
+        while (_rb.velocity != new Vector2(0, 0))
+        {
+            yield return 0.1f;
+        }
+
+        canCollide = true;
+        if(!wasPlayer) StartCoroutine(TurnAround());
+        else ActivateEnemy();
     }
     
 
@@ -66,7 +92,6 @@ public class GoatBehaviour : MonoBehaviour
             
             if (hit.collider.CompareTag("Player"))
             {
-                Debug.Log("Player Detected");
                 ActivateEnemy();
             }
         }
@@ -74,12 +99,20 @@ public class GoatBehaviour : MonoBehaviour
 
     public void BounceAgainstWall()
     {
-        Debug.Log("BOUNCING");
         CancelInvoke(nameof(Move));
-        TurnAround();
+        StartCoroutine(HasStopped(false));
         
         // Add force to the goat like a jump
         _rb.velocity = new Vector2(_rb.velocity.x * -1, jumpForce);
         
+    }
+
+    public void BounceAgainstPlayer()
+    {
+        CancelInvoke(nameof(Move));
+        StartCoroutine(HasStopped(true));
+        
+        // Add force to the goat like a jump
+        _rb.velocity = new Vector2(_rb.velocity.x * -1, jumpForce);
     }
 }
