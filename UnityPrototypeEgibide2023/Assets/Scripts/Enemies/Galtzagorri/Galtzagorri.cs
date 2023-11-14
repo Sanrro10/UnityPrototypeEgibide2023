@@ -7,14 +7,8 @@ public class Galtzagorri : EntityControler
     [SerializeField] private GameObject player;
     [SerializeField] private BasicEnemyData basicEnemyData;
     [SerializeField] private GameObject[] hideouts;
-    [SerializeField] private GameObject playerDestinationChecker;
-    
-    private Vector3 _position;
+  
     private NavMeshAgent _navMeshAgent;
-    private NavMeshAgent _playerNavMesh;
-    private bool _followPlayer = false;
-
-
     private bool _waiting;
     private bool _waitingForPlayer;
     private Vector3 _lastAvailablePosition;
@@ -25,8 +19,7 @@ public class Galtzagorri : EntityControler
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _playerNavMesh = playerDestinationChecker.GetComponent<NavMeshAgent>();
-        _playerNavMesh.SetDestination(player.transform.position);
+        _navMeshAgent.acceleration = Random.Range(15, 30);
         
         //Set the Health Points
         gameObject.GetComponent<HealthComponent>().SendMessage("Set", basicEnemyData.health);
@@ -35,7 +28,6 @@ public class Galtzagorri : EntityControler
     // Update is called once per frame
     void Update()
     {
-      
         if (CanReachPlayer())
         {
             Debug.Log("1");
@@ -68,11 +60,9 @@ public class Galtzagorri : EntityControler
                 }
             }
 
-            if (!(Vector3.Distance(gameObject.transform.position, player.transform.position) < 1.5)) return;
-            if (!_attacking)
+            if ((Vector3.Distance(gameObject.transform.position, player.transform.position) < 3) && !_attacking)
             {
                 StartCoroutine(nameof(Attack));
-                Hide();
             }
             
         }
@@ -89,27 +79,11 @@ public class Galtzagorri : EntityControler
         
     }
 
-   
-
-    private void Attack()
+    public void DoDamage()
     {
-        Debug.Log("TE ATACOOOOOOO");
-    }
-
-    private void FollowPlayer(bool fromHiding)
-    {
-        if (fromHiding)
-        {
-            StartCoroutine(ChangeHideout());
-        }
-        else
-        {
-           _followPlayer = true;
-           _isHidden = false;
-           _navMeshAgent.SetDestination(player.transform.position);
-        }
         
     }
+
 
     private void Hide()
     {
@@ -137,16 +111,19 @@ public class Galtzagorri : EntityControler
     private IEnumerator Attack()
     {
         _attacking = true;
-        Debug.Log("ATACOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-        yield return new WaitForSeconds(0.5f);
+        CancelInvoke(nameof(ChasePlayer));
+        _navMeshAgent.enabled = false;
+        Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
+        rb2D.AddForce(new Vector2((player.transform.position.x - transform.position.x) * 2, 4), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.8f);
+        _navMeshAgent.enabled = true;
+        ActivateEnemy();
+        Hide();
+        yield return new WaitForSeconds(1f);
         _attacking = false;
     }
 
-    public void MakeAttack() {
-        
-    }
-
-    IEnumerator UpdatePathing()
+    private bool CanReachPlayer()
     {
         _playerNavMesh.SetDestination(player.transform.position);
         yield return null;

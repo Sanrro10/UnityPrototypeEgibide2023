@@ -5,7 +5,7 @@ using StatePattern.PlayerStates;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class PlayerController: MonoBehaviour
+public class PlayerController: EntityControler
 {
         // Components
         public PlayerMovementStateMachine PmStateMachine { get; private set; }
@@ -341,4 +341,11 @@ public class PlayerController: MonoBehaviour
         { 
                 return playerData;
         }
+
+        public void ReceiveDamage(int damage) 
+        {
+                Debug.Log(_health.Get());
+                _health.RemoveHealth(damage);
+                Debug.Log(_health.Get());
+        } 
 }

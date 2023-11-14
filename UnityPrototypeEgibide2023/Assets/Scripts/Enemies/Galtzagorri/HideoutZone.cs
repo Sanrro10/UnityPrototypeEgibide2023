@@ -8,7 +8,7 @@ public class HideoutZone : MonoBehaviour
     {
         GameObject parent = transform.parent.gameObject;
         var script = parent.GetComponent<Galtzagorri>();
-        if (other.gameObject.CompareTag("Player")) script.MakeAttack();
+        if (other.gameObject.CompareTag("Player")) {other.GetComponentInParent<PlayerController>().ReceiveDamage(1);}
         if (other.gameObject.CompareTag("EnemySpawnPoint")) script.ActivateHiding(other);
     }
 }
