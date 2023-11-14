@@ -94,6 +94,7 @@ public class GameController : EntityControler
     public void PlayerRespawn()
     {
         GameController.Instance._jugador = Instantiate(playerPrefab, transform.position = Instance._lastCheckpoint.Position, Quaternion.identity);
+        // PlayerAudioScript.audioScript.RespawnPlayer();
     }
     
     public void PlayerSpawnInNewScene()

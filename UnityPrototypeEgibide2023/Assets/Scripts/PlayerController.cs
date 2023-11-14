@@ -80,11 +80,15 @@ public class PlayerController: EntityControler
 
         private Canvas _canvasPausa;
 
+        [SerializeField] private Audios _playerAudios;
+
+        private AudioSource _audioSource;
+        
         //private AudioSource _audioSource;
         void Start()
         {
-                // Audio
-                //_audioSource = GetComponent<AudioSource>();
+                // Audio = 
+                _audioSource = GetComponent<AudioSource>();
                 //_force2D = GetComponent<ConstantForce2D>();
                 animator = GetComponent<Animator>();
                 _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -345,10 +349,11 @@ public class PlayerController: EntityControler
         {
                 DisablePlayerControls();
                 Invoke(nameof(CallSceneLoad), 1);
-                //AudioScript.audioScript.DeadPlayer();
+                
+                _audioSource.PlayOneShot(_playerAudios.audios[1]);
                 //_audioSource.clip = Resources.Load<AudioClip>("HITMARKER SOUND EFFECT");
                 //_audioSource.Play();
-                //_canvasPausa.gameObject.SetActive(true);
+                //_canvasPausa.gameObject.SetActive(true); 
         }
         
         public void CallSceneLoad()
@@ -469,7 +474,7 @@ public class PlayerController: EntityControler
                         if (!_onInvulneravility)
                         {
                                 CameraShakeManager.instance.CameraShake(_impulseSource);
-                                AudioScript.audioScript.hitPlayer();
+                                _audioSource.PlayOneShot(_playerAudios.audios[0]);
                                 _onInvulneravility = true;
                                 _health.RemoveHealth(25);
                                 healthText.text = _health.Get().ToString();
@@ -488,7 +493,6 @@ public class PlayerController: EntityControler
                         if (!_onInvulneravility)
                         {
                                 CameraShakeManager.instance.CameraShake(_impulseSource);
-                                AudioScript.audioScript.hitPlayer();
                                 _onInvulneravility = true;
                                 _health.RemoveHealth(25);
                                 healthText.text = _health.Get().ToString();
