@@ -14,35 +14,36 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            Debug.Log("Entering Idle State");
-            player.setXVelocity(0);
+            //Debug.Log("Entering Idle State");
+            player.SetXVelocity(0);
         }
 
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
             // If we're no longer grounded, transition to the air state
-            if (player.isMoving)
+            if (player.isHoldingHorizontal)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.WalkState);
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.WalkState);
                 return;
             }
 
-            if (player.isDashing)
+            if (player.CanDash())
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.GroundDashState);
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.GroundDashState);
                 return;
             }
 
             if (player.isJumping)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.JumpState);
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.JumpState);
                 return;
             }
 
             if (!player.IsGrounded())
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
+                
                 return;
             }
             

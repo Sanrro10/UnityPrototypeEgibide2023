@@ -18,7 +18,7 @@ namespace StatePattern.PlayerStates
             player.animator.SetTrigger("Jump");
             player.Jump();
             player.StartCoroutine(player.GroundedCooldown());
-            player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
+            player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
             player.onDJump = true;
         }
 

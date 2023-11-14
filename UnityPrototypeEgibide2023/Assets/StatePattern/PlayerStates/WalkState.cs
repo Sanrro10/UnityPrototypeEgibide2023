@@ -14,7 +14,7 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            Debug.Log("Entering Walk State");
+            // Debug.Log("Entering Walk State");
             player.animator.SetBool("IsMoving", true);
             player.InvokeRepeating(nameof(player.Move), 0, 0.01f);
         }
@@ -27,24 +27,24 @@ namespace StatePattern.PlayerStates
 
             if (player.isJumping)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.JumpState);
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.JumpState);
                 return;
             }
             if (!player.IsGrounded())
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
                 return;
             }
 
-            if (!player.isMoving)
+            if (!player.isHoldingHorizontal)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.IdleState);
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
                 return;
             }
             
-            if (player.isDashing)
+            if (player.CanDash())
             {
-                player.pmStateMachine.TransitionTo((player.pmStateMachine.GroundDashState));
+                player.PmStateMachine.TransitionTo((player.PmStateMachine.GroundDashState));
                 return;
             }
             
