@@ -24,19 +24,19 @@ namespace StatePattern.PlayerStates
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
-            if (player.isMoving)
+            if (player.isHoldingHorizontal)
             {
                 player.Move();
             }
             if (player.isPerformingMeleeAttack && player.canAttack)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.MeleeAttackState);
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.MeleeAttackState);
 
             }
             
             if (player.isJumping)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.JumpState);
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.JumpState);
                 return;
             }
             

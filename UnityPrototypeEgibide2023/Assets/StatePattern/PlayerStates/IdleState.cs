@@ -55,7 +55,7 @@ namespace StatePattern.PlayerStates
             // if we press the attack button, transition to the attack state
             if (player.isPerformingMeleeAttack)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.MeleeAttackState);
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.MeleeAttackState);
                 return;
             }
             

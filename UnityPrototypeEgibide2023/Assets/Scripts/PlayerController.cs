@@ -254,36 +254,36 @@ public class PlayerController: EntityControler
         {
                 //Debug.Log("Dentro de la funcion AttackDuration");
                 isPerformingMeleeAttack = false;
-                if (isMoving)
+                if (isHoldingHorizontal)
                 {
-                        pmStateMachine.TransitionTo(pmStateMachine.WalkState);
+                        PmStateMachine.TransitionTo(PmStateMachine.WalkState);
                         return;
                 }
 
                 if (isDashing)
                 {
-                        pmStateMachine.TransitionTo(pmStateMachine.GroundDashState);
+                        PmStateMachine.TransitionTo(PmStateMachine.GroundDashState);
                         return;
                 }
 
                 if (isJumping)
                 {
-                        pmStateMachine.TransitionTo(pmStateMachine.JumpState);
+                        PmStateMachine.TransitionTo(PmStateMachine.JumpState);
                         return;
                 }
 
                 if (!IsGrounded())
                 {
-                        pmStateMachine.TransitionTo(pmStateMachine.AirState);
+                        PmStateMachine.TransitionTo(PmStateMachine.AirState);
                         return;
                 }
                 if (isPerformingMeleeAttack)
                 {
-                        pmStateMachine.TransitionTo(pmStateMachine.MeleeAttackState);
+                        PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackState);
                         return;
                 }
             
-                pmStateMachine.TransitionTo(pmStateMachine.IdleState);
+                PmStateMachine.TransitionTo(PmStateMachine.IdleState);
         }
         
         

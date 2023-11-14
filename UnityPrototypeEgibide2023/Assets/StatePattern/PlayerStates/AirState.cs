@@ -33,7 +33,7 @@ namespace StatePattern.PlayerStates
             
             if (player.isPerformingMeleeAttack)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.MeleeAttackState);
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.MeleeAttackState);
                 return;
             }
 
