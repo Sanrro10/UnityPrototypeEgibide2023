@@ -16,11 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator _animator;
     private SpriteRenderer _spriteRenderer;
     
-    private bool _onAir;
-    private bool _onDoubleJump;
-    private bool _onDownAttack;
-    private bool _onDash;
-    private bool _onDashCooldown;
+
     private bool _touchingFloor;
     
     [SerializeField] private PlayerData playerData;
