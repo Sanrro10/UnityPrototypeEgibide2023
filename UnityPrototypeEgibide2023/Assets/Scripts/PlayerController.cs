@@ -33,12 +33,9 @@ public class PlayerController: EntityControler
         public float horizontalSpeed;
         public float dashSpeed;
         public float jumpForce;
-
+        public float baseGravity;
+        
         [SerializeField] private AnimationCurve dashCurve;
-        public bool onDashCooldown = false;
-        [SerializeField] private GameObject feet;
-        public Animator animator;
-        private SpriteRenderer _spriteRenderer;
         public bool onDashCooldown = false;
         public float maxAirHorizontalSpeed;
         public float maxFallSpeed;
@@ -85,7 +82,8 @@ public class PlayerController: EntityControler
                 _rigidbody2D.gravityScale = playerData.gravity;
                 _dashCurve = playerData.dashCurve;
                 maxFallSpeed = playerData.maxFallSpeed;
-                
+                baseGravity = _rigidbody2D.gravityScale;
+
         }
 
         private void FixedUpdate()
@@ -348,4 +346,30 @@ public class PlayerController: EntityControler
                 _health.RemoveHealth(damage);
                 Debug.Log(_health.Get());
         } 
+        
+        public void DisablePlayerControls()
+        {
+                _controls.Disable();
+        }
+
+        public void EnablePlayerControls()
+        {
+                _controls.Enable();
+        }
+
+        public void Pause()
+        {
+                GameController.Instance.Pause();
+                DisablePlayerControls();
+        }
+
+        public void SetCurrentGravity(float gravity)
+        {
+                _rigidbody2D.gravityScale = gravity;
+        }
+
+        public void ResetGravity()
+        {
+                _rigidbody2D.gravityScale = baseGravity;
+        }
 }

@@ -7,7 +7,9 @@ public class Galtzagorri : EntityControler
     [SerializeField] private GameObject player;
     [SerializeField] private BasicEnemyData basicEnemyData;
     [SerializeField] private GameObject[] hideouts;
-  
+
+    [SerializeField]
+    private HideoutZone scriptHideout;
     private NavMeshAgent _navMeshAgent;
     private bool _waiting;
     private bool _waitingForPlayer;
@@ -117,6 +119,7 @@ public class Galtzagorri : EntityControler
     {
         CancelInvoke(nameof(ChasePlayer));
         InvokeRepeating(nameof(ChasePlayer), 0f, 0.1f);
+        scriptHideout.ResetHit();
     }
 
     public void DeactivateEnemy()
