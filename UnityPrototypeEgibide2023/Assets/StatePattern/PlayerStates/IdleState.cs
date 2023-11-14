@@ -15,6 +15,7 @@ namespace StatePattern.PlayerStates
         public void Enter()
         {
             //Debug.Log("Entering Idle State");
+            player.setXVelocity(0);
             player.SetXVelocity(0);
         }
 
@@ -52,6 +53,11 @@ namespace StatePattern.PlayerStates
             // if we press the jump button, transition to the jump state
             
             // if we press the attack button, transition to the attack state
+            if (player.isPerformingMeleeAttack)
+            {
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.MeleeAttackState);
+                return;
+            }
             
             // if we press the dash button, transition to the dash state
             

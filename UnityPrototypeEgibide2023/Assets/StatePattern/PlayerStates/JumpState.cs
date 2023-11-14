@@ -15,6 +15,7 @@ namespace StatePattern.PlayerStates
         public void Enter()
         {
             
+            //Debug.Log("Entering Jump State");
             // Debug.Log("Entering Jump State");
             player.animator.SetTrigger("Jump");
             player.InvokeRepeating(nameof(player.Jump), 0, 0.01f);
@@ -44,15 +45,17 @@ namespace StatePattern.PlayerStates
                 player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
                 return;
             }
+            if (player.isPerformingMeleeAttack)
+            {
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.MeleeAttackState);
+                return;
+            }
             
-            
-
             if (player.isHoldingHorizontal)
             {
                 player.AirMove();
                 return;
             }
-            
             
         }
         

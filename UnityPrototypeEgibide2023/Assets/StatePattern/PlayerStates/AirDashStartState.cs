@@ -26,6 +26,7 @@ namespace StatePattern.PlayerStates
 
             player.StartCoroutine(player.FloatDuration());
             
+            //Debug.Log("Entering AirDashStart State");
             // Debug.Log("Entering AirDashStart State");
             // Initialize Dash
         }

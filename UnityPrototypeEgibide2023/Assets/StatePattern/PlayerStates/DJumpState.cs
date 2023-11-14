@@ -14,7 +14,7 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            Debug.Log("Entering DJump State");
+            //Debug.Log("Entering DJump State");
             player.animator.SetTrigger("Jump");
             player.Jump();
             player.StartCoroutine(player.GroundedCooldown());

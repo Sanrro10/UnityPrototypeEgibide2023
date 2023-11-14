@@ -13,7 +13,7 @@ namespace StatePattern.PlayerStates
         
         public void Enter()
         {
-            Debug.Log("Entering Air State");
+            //Debug.Log("Entering Air State");
 
             player.animator.SetBool("OnAir", true);
         }
@@ -28,6 +28,12 @@ namespace StatePattern.PlayerStates
                     player.PmStateMachine.TransitionTo(player.PmStateMachine.WalkState);
                 else
                     player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
+                return;
+            }
+            
+            if (player.isPerformingMeleeAttack)
+            {
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.MeleeAttackState);
                 return;
             }
 

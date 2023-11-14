@@ -27,6 +27,14 @@ public class PlayerController: EntityControler
         public bool facingRight = true;
         public bool isCollidingLeft = false;
         public bool isCollidingRight = false;
+        public bool isPerformingMeleeAttack = false;
+        public bool canAttack = true;
+        public float attackDuration;
+        public float meleeAttackCooldown;
+        public float meleeAttackDuration;
+        
+        
+        public float friction;
         public bool isStunned = false;
         
         // internal state variables
@@ -74,6 +82,9 @@ public class PlayerController: EntityControler
                 //Dash -> Add Force in the direction the player is facing
                 _controls.GeneralActionMap.Dash.performed += ctx => isDashing = true;
                 
+                //MeleeAttack
+                _controls.GeneralActionMap.Attack.performed += ctx =>  isPerformingMeleeAttack = true;
+                _controls.GeneralActionMap.Attack.canceled += ctx =>  isPerformingMeleeAttack = false;
                 
                 // Initialize data
                 horizontalSpeed = playerData.movementSpeed;
@@ -115,7 +126,7 @@ public class PlayerController: EntityControler
 
         public void Move()
         {
-                FlipSprite();
+               FlipSprite();
                 
                 if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
                 {
@@ -232,7 +243,48 @@ public class PlayerController: EntityControler
 
 
         }
+
+        public void AttackCooldown()
+        {
+                //Debug.Log("Dentro de la funcion AttackCooldown");
+                canAttack = true;
+        }
         
+        public void AttackDuration()
+        {
+                //Debug.Log("Dentro de la funcion AttackDuration");
+                isPerformingMeleeAttack = false;
+                if (isHoldingHorizontal)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.WalkState);
+                        return;
+                }
+
+                if (isDashing)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.GroundDashState);
+                        return;
+                }
+
+                if (isJumping)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.JumpState);
+                        return;
+                }
+
+                if (!IsGrounded())
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.AirState);
+                        return;
+                }
+                if (isPerformingMeleeAttack)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackState);
+                        return;
+                }
+            
+                PmStateMachine.TransitionTo(PmStateMachine.IdleState);
+        }
         
         
         // -------------- COROUTINES -----------------
