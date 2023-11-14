@@ -17,6 +17,10 @@ namespace StatePattern.PlayerStates
             player.isDashing = true;
             player.animator.SetTrigger("Dash");
             player.FlipSprite();
+            player.InvokeRepeating(nameof(player.Dash), 0, 0.01f);
+            player.StartCoroutine(player.DashDuration());
+            
+            //Debug.Log("Entering Dash State");
             player.StartCoroutine(player.Dash());
             // Initialize Dash
         }

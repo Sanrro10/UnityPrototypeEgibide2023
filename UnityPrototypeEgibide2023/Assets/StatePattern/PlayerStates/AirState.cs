@@ -13,7 +13,7 @@ namespace StatePattern.PlayerStates
         
         public void Enter()
         {
-            Debug.Log("Entering Air State");
+            //Debug.Log("Entering Air State");
 
             player.animator.SetBool("OnAir", true);
         }

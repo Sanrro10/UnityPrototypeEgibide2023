@@ -9,13 +9,12 @@ namespace StatePattern.PlayerStates
         public MeleeAttackState(PlayerController player)
         {
             this.player = player;
-           
         }
 
         public void Enter()
         {
+            //Debug.Log("Entering Attack State");
             player.animator.SetTrigger("MeleeAttack");
-            Debug.Log("Entering Attack State");
             player.canAttack = false;
             player.Invoke(nameof(player.AttackCooldown), player.meleeAttackCooldown );
             player.Invoke(nameof(player.AttackDuration), player.meleeAttackDuration );
@@ -32,6 +31,7 @@ namespace StatePattern.PlayerStates
             if (player.isPerformingMeleeAttack && player.canAttack)
             {
                 player.pmStateMachine.TransitionTo(player.pmStateMachine.MeleeAttackState);
+
             }
             
             if (player.isJumping)
@@ -44,12 +44,6 @@ namespace StatePattern.PlayerStates
         
         public void Exit()
         {
-            
-            // Debug.Log("Exiting Idle State");
-           // player.CancelInvoke(nameof(player.AttackDuration));
-            
-            // If we're no longer grounded, transition to the air state
-            
  
         }
     }

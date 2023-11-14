@@ -15,6 +15,7 @@ namespace StatePattern.PlayerStates
         public void Enter()
         {
             //Debug.Log("Entering Idle State");
+            player.setXVelocity(0);
             player.SetXVelocity(0);
         }
 

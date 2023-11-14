@@ -126,7 +126,7 @@ public class PlayerController: EntityControler
 
         public void Move()
         {
-                FlipSprite();
+               FlipSprite();
                 
                 if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
                 {
@@ -246,13 +246,13 @@ public class PlayerController: EntityControler
 
         public void AttackCooldown()
         {
-                Debug.Log("Dentro de la funcion AttackCooldown");
+                //Debug.Log("Dentro de la funcion AttackCooldown");
                 canAttack = true;
         }
         
         public void AttackDuration()
         {
-                Debug.Log("Dentro de la funcion AttackDuration");
+                //Debug.Log("Dentro de la funcion AttackDuration");
                 isPerformingMeleeAttack = false;
                 if (isMoving)
                 {
