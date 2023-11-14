@@ -126,7 +126,7 @@ public class GameController : EntityControler
         Time.timeScale = 1;
         StartCoroutine(Wait());
         canvasPausa.gameObject.SetActive(false);
-        _jugador.GetComponent<PlayerMovement>().EnablePlayerControls();
+        _jugador.GetComponent<PlayerController>().EnablePlayerControls();
     }
     
     public IEnumerator Wait()

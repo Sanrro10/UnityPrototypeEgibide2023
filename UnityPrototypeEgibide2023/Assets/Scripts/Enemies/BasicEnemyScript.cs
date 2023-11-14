@@ -14,7 +14,7 @@ public class EnemyMovement : EntityControler
     
     
     private Vector3 origin;
-    private bool followPlayer = false;
+    private bool _hidding = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,28 +23,58 @@ public class EnemyMovement : EntityControler
         
         //Set the Health Points
         gameObject.GetComponent<HealthComponent>().SendMessage("Set", basicEnemyData.health);
+        
+        InvokeRepeating(nameof(ChasePlayer), 0f, 0.25f);
     }
 
-    // Update is called once per frame
-    void Update()
+    void ChasePlayer()
     {
-        if (followPlayer)
+        if (CanReachPlayer())
         {
-            Debug.Log(player.transform.position);
+            Debug.Log("Puedo alcanzar al jugador");
+            _hidding = false;
             _navMeshAgent.SetDestination(player.transform.position);
         }
         else
         {
-            _navMeshAgent.SetDestination(origin);
+            Debug.Log("No puedo alcanzar al jugador");
+            if(_hidding) return;
+            _hidding = true;
+            Hide();
         }
-        
     }
+    
+    void Hide()
+    {
+        //Change this to get a random hide location
+        _navMeshAgent.SetDestination(origin);
+    }
+        
+        
+
+    
+    bool CanReachPlayer()
+    {
+        NavMeshPath path = new NavMeshPath();
+        if (_navMeshAgent.CalculatePath(player.transform.position, path))
+        {
+            if (path.status == NavMeshPathStatus.PathComplete)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            followPlayer = true;
+            CancelInvoke(nameof(ChasePlayer));
+            InvokeRepeating(nameof(ChasePlayer), 0f, 0.25f);
         }
         
     }
@@ -53,7 +83,7 @@ public class EnemyMovement : EntityControler
     {
         if (other.gameObject.tag == "Player")
         {
-            followPlayer = false;
+            CancelInvoke(nameof(ChasePlayer));
         }
     }
     
