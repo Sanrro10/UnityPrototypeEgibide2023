@@ -6,5 +6,4 @@ using UnityEngine;
 public class Audios : ScriptableObject
 {
     public List<AudioClip> audios = new List<AudioClip>();
-    
 }
