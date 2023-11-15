@@ -33,6 +33,8 @@ public class HealthComponent : MonoBehaviour
         {
             _healthPoints = _healthPoints - points;
         }
+        _healthPoints = _healthPoints - points;
+
         
         if (_healthPoints <= 0)
         {

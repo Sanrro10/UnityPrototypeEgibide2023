@@ -1,72 +1,119 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using StatePattern;
 using StatePattern.PlayerStates;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class PlayerController: MonoBehaviour
+public class PlayerController: EntityControler
 {
-        public PlayerMovementStateMachine pmStateMachine { get; private set; }
-        
-        
+        // Components
+        public PlayerMovementStateMachine PmStateMachine { get; private set; }
         private InputActions _controls;
-        public bool facingRight = true;
-        public bool isMoving = false;
+        private Rigidbody2D _rigidbody2D;
+        [SerializeField] private GameObject feet;
+        [SerializeField] private BoxCollider2D feetBoxCollider; 
+        [SerializeField] private PlayerData playerData;
+        public Animator animator;
+        private SpriteRenderer _spriteRenderer;
+        
+        
+        // internal state controls
+        public bool isHoldingHorizontal = false;
+        public bool isHoldingVertical = false;
         public bool isJumping = false;
         public bool isDashing = false;
         public bool onDJump = false;
-        public float horizontalSpeed;
-        public float maxVerticalSpeed;
+        public bool facingRight = true;
         public bool isCollidingLeft = false;
         public bool isCollidingRight = false;
+        public bool isPerformingMeleeAttack = false;
+        public bool canAttack = true;
+        public float attackDuration;
+        public float meleeAttackCooldown;
+        public float meleeAttackDuration;
+        
+        
+        public float friction;
+        public bool isStunned = false;
+        
+        // internal state variables
+        public float horizontalSpeed;
         public float dashSpeed;
-        public float dashDuration;
-        public float airdashForce;
         public float jumpForce;
-        [SerializeField] private GameObject feet;
-        public Animator animator;
-        private SpriteRenderer _spriteRenderer;
+        public float baseGravity;
+        
+        [SerializeField] private AnimationCurve dashCurve;
+        public bool onDashCooldown = false;
+        public float maxAirHorizontalSpeed;
+        public float maxFallSpeed;
+        public float timeStunned;
+        
+        private AnimationCurve _dashCurve;
         private int _numberOfGrounds;
-        private Rigidbody2D _rigidbody2D;
-        private ConstantForce2D _force2D;
+        
         [SerializeField] private float floatDuration;
 
-        [SerializeField] private BoxCollider2D feetBoxCollider;
-
-        [SerializeField] private PlayerData playerData;
+        
         void Start()
         {
-                //_force2D = GetComponent<ConstantForce2D>();
+                //Initialize components
                 animator = GetComponent<Animator>();
                 _spriteRenderer = GetComponent<SpriteRenderer>();
                 _controls = new InputActions();
-                _numberOfGrounds = 0;
                 _rigidbody2D = GetComponent<Rigidbody2D>();
-                horizontalSpeed = playerData.movementSpeed;
+                
                 //Enable the actions
                 _controls.Enable();
-                pmStateMachine = new PlayerMovementStateMachine(this);
-                pmStateMachine.Initialize(pmStateMachine.IdleState);
-                //Inputs
-                _controls.GeneralActionMap.Movement.started += ctx => isMoving = true;
-                _controls.GeneralActionMap.Movement.canceled += ctx => isMoving = false;
                 
+                // Initialize the state machine
+                PmStateMachine = new PlayerMovementStateMachine(this);
+                PmStateMachine.Initialize(PmStateMachine.IdleState);
+                
+                //Inputs
+                _controls.GeneralActionMap.HorizontalMovement.started += ctx => isHoldingHorizontal = true;
+                _controls.GeneralActionMap.HorizontalMovement.canceled += ctx => isHoldingHorizontal = false;
+                _controls.GeneralActionMap.VerticalMovement.started += ctx =>  isHoldingVertical = true;
+                _controls.GeneralActionMap.VerticalMovement.canceled += ctx =>  isHoldingVertical = false;
                 //Jump
                 _controls.GeneralActionMap.Jump.started += ctx => isJumping = true;
-                
                 _controls.GeneralActionMap.Jump.canceled += ctx => isJumping = false;
 
                 //Dash -> Add Force in the direction the player is facing
                 _controls.GeneralActionMap.Dash.performed += ctx => isDashing = true;
                 
+                //MeleeAttack
+                _controls.GeneralActionMap.Attack.performed += ctx =>  isPerformingMeleeAttack = true;
+                _controls.GeneralActionMap.Attack.canceled += ctx =>  isPerformingMeleeAttack = false;
+                
+                // Initialize data
+                horizontalSpeed = playerData.movementSpeed;
+                maxAirHorizontalSpeed = playerData.maxAirHorizontalSpeed;
+                _numberOfGrounds = 0;
+                _rigidbody2D.gravityScale = playerData.gravity;
+                _dashCurve = playerData.dashCurve;
+                maxFallSpeed = playerData.maxFallSpeed;
+                baseGravity = _rigidbody2D.gravityScale;
+
         }
 
         private void FixedUpdate()
         {
                 //Debug.Log(IsGrounded());
-                pmStateMachine.StateUpdate();
+                PmStateMachine.StateUpdate();
+                
+                // Clamp gravity
                 Vector2 clampVel = _rigidbody2D.velocity;
-                clampVel.y = Mathf.Clamp(clampVel.y, -maxVerticalSpeed, 9999);
+                clampVel.y = Mathf.Clamp(clampVel.y, -maxFallSpeed, 9999);
+                _rigidbody2D.velocity = clampVel;
+                
+        }
 
+        public void ClampVelocity(float x, float y)
+        {
+                Vector2 clampVel = _rigidbody2D.velocity;
+                clampVel.y = Mathf.Clamp(clampVel.y, -y, y);
+                clampVel.x = Mathf.Clamp(clampVel.x, -x, x);
                 _rigidbody2D.velocity = clampVel;
         }
 
@@ -74,13 +121,12 @@ public class PlayerController: MonoBehaviour
 
         public void Jump()
         {
-                _rigidbody2D.velocity = Vector2.up * jumpForce;
-                
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpForce);
         }
 
         public void Move()
         {
-                FlipSprite();
+               FlipSprite();
                 
                 if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
                 {
@@ -91,58 +137,186 @@ public class PlayerController: MonoBehaviour
                 _rigidbody2D.velocity =
                         new Vector2((facingRight ? horizontalSpeed : horizontalSpeed * -1), _rigidbody2D.velocity.y); 
         }
+
+        public void AirMove()
+        {
+                FlipSprite();
+                float airAcceleration = 1f;
+                if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
+                {
+                        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y); 
+                        return;
+                }
+
+                if (facingRight)
+                {
+                        if (_rigidbody2D.velocity.x > maxAirHorizontalSpeed)
+                        {
+                                return;
+                        }
+                        _rigidbody2D.velocity =
+                                new Vector2(_rigidbody2D.velocity.x + airAcceleration, _rigidbody2D.velocity.y);
+                        
+                }
+
+                if (!facingRight)
+                {
+                        if (_rigidbody2D.velocity.x < -maxAirHorizontalSpeed)
+                        {
+                                return;
+                        }
+                        
+                        _rigidbody2D.velocity =
+                                new Vector2(_rigidbody2D.velocity.x - airAcceleration, _rigidbody2D.velocity.y);
+                }
+                
+                
+                
+        }
         
         public bool IsGrounded()
         {
                 return 0 < _numberOfGrounds;
         }
-
-
         
-        public void Dash()
+        public void EndDash()
         {
                 
                 _rigidbody2D.velocity =
-                        new Vector2((facingRight ? dashSpeed : dashSpeed * -1), 0); 
+                        new Vector2((facingRight ? dashSpeed : (dashSpeed -10) * -1), 0); 
                 Debug.Log("IsDashing");
                 
         }
+        
+        public void EndStun()
+        {
+                isStunned = false;
+        }
+
+        public bool CanDash()
+        {
+                if (!onDashCooldown && isDashing) 
+                {
+                        return true;
+                }
+                else
+                {
+                        return false;
+                }
+        }
 
         public void FlipSprite()
-        { 
-                Vector2 direccion = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
-                facingRight = direccion.x == 1 ? true : false;
+        {
+                
+                float direction = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
+
+                if (direction == -1) facingRight = false;
+                else if (direction == 1) facingRight = true;
                 _spriteRenderer.flipX = !facingRight;
 
         }
+
+        public void AirDashStart()
+        {
+                
+        }
+
+        public void StunEntity(float time)
+        {
+                timeStunned = time;
+                PmStateMachine.TransitionTo(PmStateMachine.StunnedState);
+        }
         public void AirDash()
         {
-                Vector2 direction = _controls.GeneralActionMap.Movement.ReadValue<Vector2>();
-                float hDirection = direction.x;
-                float vDirection = direction.y;
+                float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
+                float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
+                
+                float xForce = playerData.airdashForce * xDirection;
+                float yForce = playerData.airdashForce * yDirection;
 
-                _rigidbody2D.velocity = new Vector2(hDirection * airdashForce, vDirection * airdashForce);
+
+                if (yForce == 0)
+                {
+                        yForce = playerData.airdashForce / 2;
+                }
+                _rigidbody2D.velocity = new Vector2(xForce, yForce * 2);
+
+
+        }
+
+        public void AttackCooldown()
+        {
+                //Debug.Log("Dentro de la funcion AttackCooldown");
+                canAttack = true;
+        }
+        
+        public void AttackDuration()
+        {
+                //Debug.Log("Dentro de la funcion AttackDuration");
+                isPerformingMeleeAttack = false;
+                if (isHoldingHorizontal)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.WalkState);
+                        return;
+                }
+
+                if (isDashing)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.GroundDashState);
+                        return;
+                }
+
+                if (isJumping)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.JumpState);
+                        return;
+                }
+
+                if (!IsGrounded())
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.AirState);
+                        return;
+                }
+                if (isPerformingMeleeAttack)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackState);
+                        return;
+                }
+            
+                PmStateMachine.TransitionTo(PmStateMachine.IdleState);
         }
         
         
-        
         // -------------- COROUTINES -----------------
-        public IEnumerator DashDuration()
+        public IEnumerator Dash()
         {
-                yield return new WaitForSeconds(dashDuration);
+                Physics2D.IgnoreLayerCollision(6,7, true);
+                float dashTime = 0;
+                float dashSpeedCurve = 0;
+                Debug.Log("Dash Duration: " + _dashCurve.keys[_dashCurve.length - 1].time);
+                while (dashTime < _dashCurve.keys[_dashCurve.length - 1].time)
+                {
+                        dashSpeedCurve = _dashCurve.Evaluate(dashTime) * dashSpeed; 
+                        _rigidbody2D.velocity = new Vector2((facingRight ? dashSpeedCurve : dashSpeedCurve * -1), 0); 
+                        yield return new WaitForFixedUpdate(); 
+                        dashTime += Time.deltaTime;
+                }
+                Physics2D.IgnoreLayerCollision(6,7, false);
                 isDashing = false;
+                
+                
         }
 
         public IEnumerator AirDashDuration()
         {
-                yield return new WaitForSeconds(floatDuration);
-                pmStateMachine.TransitionTo(pmStateMachine.AirState);
+                yield return new WaitForSeconds(playerData.airdashDuration);
+                PmStateMachine.TransitionTo(PmStateMachine.AirState);
         }
         public IEnumerator FloatDuration()
         {
-                _rigidbody2D.gravityScale = 0;
-                yield return new WaitForSeconds(0.5f);
-                pmStateMachine.TransitionTo(pmStateMachine.AirDashState);
+                
+                yield return new WaitForSeconds(playerData.floatDuration);
+                PmStateMachine.TransitionTo(PmStateMachine.AirDashState);
         }
 
         public IEnumerator GroundedCooldown()
@@ -151,17 +325,52 @@ public class PlayerController: MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
                 feetBoxCollider.enabled = true;
         }
+        public IEnumerator GroundedDashCooldown()
+        {
+                onDashCooldown = true;
+                yield return new WaitForSeconds(playerData.dashCooldown);
+                onDashCooldown = false;
+        }
+
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+                if (collision.gameObject.CompareTag("Enemy"))
+                {
+                        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider);
+                }
+        }
 
         
-        
-        public void setNumberOfGrounds(int numberOfGrounds)
+        // Getters and setters
+        public void SetNumberOfGrounds(int numberOfGrounds)
         {
                 this._numberOfGrounds = numberOfGrounds;
         }
 
-        public int getNumberOfGrounds()
+        public int GetNumberOfGrounds()
         {
                 return this._numberOfGrounds;
+        }
+        
+        public void SetXVelocity(float i)
+        {
+                _rigidbody2D.velocity = new Vector2(i, _rigidbody2D.velocity.y);
+        }
+
+        public void SetYVelocity(float i)
+        {
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, i);
+        }
+
+        public void RestartGravity()
+        {
+                _rigidbody2D.gravityScale = playerData.gravity;
+        }
+        
+        public void SetGravity(float i)
+        {
+                _rigidbody2D.gravityScale = i;
         }
         
         // --------------- EVENTS ----------------------
@@ -181,5 +390,38 @@ public class PlayerController: MonoBehaviour
         public PlayerData GetPlayerData()
         { 
                 return playerData;
+        }
+
+        public void ReceiveDamage(int damage) 
+        {
+                Debug.Log(_health.Get());
+                _health.RemoveHealth(damage);
+                Debug.Log(_health.Get());
+        } 
+        
+        public void DisablePlayerControls()
+        {
+                _controls.Disable();
+        }
+
+        public void EnablePlayerControls()
+        {
+                _controls.Enable();
+        }
+
+        public void Pause()
+        {
+                GameController.Instance.Pause();
+                DisablePlayerControls();
+        }
+
+        public void SetCurrentGravity(float gravity)
+        {
+                _rigidbody2D.gravityScale = gravity;
+        }
+
+        public void ResetGravity()
+        {
+                _rigidbody2D.gravityScale = baseGravity;
         }
 }

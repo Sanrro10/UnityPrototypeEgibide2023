@@ -13,7 +13,6 @@ public class EntityControler : MonoBehaviour
     
     public virtual void OnDeath()
     {
-      
-        
+  
     }
 }

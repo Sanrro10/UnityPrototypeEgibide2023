@@ -14,11 +14,11 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            Debug.Log("Entering DJump State");
+            //Debug.Log("Entering DJump State");
             player.animator.SetTrigger("Jump");
             player.Jump();
             player.StartCoroutine(player.GroundedCooldown());
-            player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
+            player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
             player.onDJump = true;
         }
 

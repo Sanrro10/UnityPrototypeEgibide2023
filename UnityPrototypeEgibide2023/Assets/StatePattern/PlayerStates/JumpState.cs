@@ -15,7 +15,8 @@ namespace StatePattern.PlayerStates
         public void Enter()
         {
             
-            Debug.Log("Entering Jump State");
+            //Debug.Log("Entering Jump State");
+            // Debug.Log("Entering Jump State");
             player.animator.SetTrigger("Jump");
             player.InvokeRepeating(nameof(player.Jump), 0, 0.01f);
             player.StartCoroutine(player.MaxJumpDuration());
@@ -35,23 +36,26 @@ namespace StatePattern.PlayerStates
 
             if (!player.isJumping)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.AirState);
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
                 return;
             }
             
             if (player.isDashing)
             {
-                player.pmStateMachine.TransitionTo((player.pmStateMachine.GroundDashState));
+                player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
+                return;
+            }
+            if (player.isPerformingMeleeAttack)
+            {
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.MeleeAttackState);
                 return;
             }
             
-            
-
-            if (player.isMoving)
+            if (player.isHoldingHorizontal)
             {
-                player.Move();
+                player.AirMove();
+                return;
             }
-            
             
         }
         

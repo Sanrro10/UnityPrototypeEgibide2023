@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7961466419290096690}
   - component: {fileID: 8866935328774275308}
+  - component: {fileID: 5131502872887999307}
   - component: {fileID: 6772047335306606578}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ActiveZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 37.5906, y: 76.91763, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5444717034806940976}
@@ -85,6 +86,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5131502872887999307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5922143558010685711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f070c0fc4be1d5741bae16e9ab2c478d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!70 &6772047335306606578
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -117,8 +130,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: 8.10733, y: 0}
+  m_Size: {x: 85.39453, y: 170.78906}
   m_Direction: 0
 --- !u!1 &7135554547026302137
 GameObject:
@@ -132,11 +145,10 @@ GameObject:
   - component: {fileID: 7878706278698340433}
   - component: {fileID: 3487519119986044160}
   - component: {fileID: 3307753614163098454}
-  - component: {fileID: 653863114409709446}
   - component: {fileID: 6587194223641560078}
-  - component: {fileID: 7515757257680491735}
-  m_Layer: 0
-  m_Name: BasicEnemy
+  - component: {fileID: 3833609532071679448}
+  m_Layer: 6
+  m_Name: BasicEnemyy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +164,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.98, y: -4.544, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.47573397, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7961466419290096690}
@@ -225,7 +237,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -272,7 +284,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &653863114409709446
+--- !u!195 &6587194223641560078
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7135554547026302137}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 10
+  m_Acceleration: 100
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 0
+--- !u!114 &3833609532071679448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -286,37 +320,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5937788470338340945, guid: deb8ce8d1163d7446935e7a69378f760, type: 3}
   basicEnemyData: {fileID: 11400000, guid: 5144410f825c2e846a5f8e903fe19d89, type: 2}
---- !u!195 &6587194223641560078
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7135554547026302137}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3
-  m_Acceleration: 10
-  avoidancePriority: 50
-  m_AngularSpeed: 0
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &7515757257680491735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7135554547026302137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a49fa74e7ad4af42a71e3eaed187917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

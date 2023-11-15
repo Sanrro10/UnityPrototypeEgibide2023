@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
+
 namespace StatePattern.PlayerStates
 {
-    public class DashState: IState
+    public class DashState : IState
     {
         private PlayerController player;
         
@@ -14,24 +14,33 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            Debug.Log("Entering Dash State");
-            
-            player.StartCoroutine(player.DashDuration());
-            player.InvokeRepeating(nameof(player.Dash), 0, 0.01f);
+            player.isDashing = true;
+            player.onDashCooldown = true;
+            player.animator.SetTrigger("Dash");
+            player.SetCurrentGravity(0f);
+            // Initialize Dash
         }
 
+        // per-frame logic, include condition to transition to a new state
         public void Update()
         {
-            if (!player.isDashing)
-            {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.IdleState);
-            }
+            // If we're no longer grounded, transition to the air state
+            
+            
+            // if we press the jump button, transition to the jump state
+            
+            // if we press the attack button, transition to the attack state
+            
+            // if we press the dash button, transition to the dash state
+            
+            
             
         }
-
+        
         public void Exit()
         {
-            player.CancelInvoke(nameof(player.Dash));
+            player.isDashing = false;
+            player.ResetGravity();
         }
     }
 }

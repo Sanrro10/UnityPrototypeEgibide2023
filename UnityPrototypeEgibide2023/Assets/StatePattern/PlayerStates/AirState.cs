@@ -6,8 +6,6 @@ namespace StatePattern.PlayerStates
     public class AirState: IState
     {
         private PlayerController player;
-        private float _gravity;
-        private float _friction;
         public AirState(PlayerController player)
         {
             this.player = player;
@@ -15,7 +13,7 @@ namespace StatePattern.PlayerStates
         
         public void Enter()
         {
-            Debug.Log("Entering Air State");
+            //Debug.Log("Entering Air State");
 
             player.animator.SetBool("OnAir", true);
         }
@@ -26,25 +24,29 @@ namespace StatePattern.PlayerStates
 
             if (player.IsGrounded())
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.IdleState);
+                if(player.isHoldingHorizontal)
+                    player.PmStateMachine.TransitionTo(player.PmStateMachine.WalkState);
+                else
+                    player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
                 return;
             }
             
-            if (player.isJumping && !player.onDJump)
+            if (player.isPerformingMeleeAttack)
             {
-                player.pmStateMachine.TransitionTo(player.pmStateMachine.DJumpState);
-                return;
-            }
-            
-            if (player.isDashing)
-            {
-                player.pmStateMachine.TransitionTo((player.pmStateMachine.AirDashStartState));
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.MeleeAttackState);
                 return;
             }
 
-            if (player.isMoving)
+            
+            if (player.isDashing)
             {
-                player.Move();
+                player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
+                return;
+            }
+
+            if (player.isHoldingHorizontal)
+            {
+                player.AirMove();
                 return;
             }
 

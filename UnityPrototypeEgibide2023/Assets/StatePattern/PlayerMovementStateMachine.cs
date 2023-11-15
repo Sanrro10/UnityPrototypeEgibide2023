@@ -24,6 +24,8 @@ namespace StatePattern
         public DJumpState DJumpState;
         public AirDashState AirDashState;
         public AirDashStartState AirDashStartState;
+        public MeleeAttackState MeleeAttackState;
+        public StunnedState StunnedState;
         
         // Constructor
         public PlayerMovementStateMachine(PlayerController player)
@@ -36,6 +38,8 @@ namespace StatePattern
             this.DJumpState = new DJumpState(player);
             this.AirDashState = new AirDashState(player);
             this.AirDashStartState = new AirDashStartState(player);
+            this.MeleeAttackState = new MeleeAttackState(player);
+            this.StunnedState = new StunnedState(player);
         }
         
         public void Initialize(IState startingState)
