@@ -37,8 +37,8 @@ public class GameController : EntityControler
     
     void Awake()
     {
-        
-        
+
+        Time.timeScale = 1;
         if (Instance == null)
         {
             Instance = this;
@@ -94,6 +94,7 @@ public class GameController : EntityControler
     public void PlayerRespawn()
     {
         GameController.Instance._jugador = Instantiate(playerPrefab, transform.position = Instance._lastCheckpoint.Position, Quaternion.identity);
+        // PlayerAudioScript.audioScript.RespawnPlayer();
     }
     
     public void PlayerSpawnInNewScene()
@@ -108,7 +109,13 @@ public class GameController : EntityControler
     }
 
 
-    public void ChangeScene(string escena)
+    public void ChangeSceneMenu(string escena)
+    {
+        canvasPausa.gameObject.SetActive(false);
+        SceneManager.LoadScene(escena);
+
+
+    }public void ChangeScene(string escena)
     {
         SceneManager.LoadScene(escena);
     }

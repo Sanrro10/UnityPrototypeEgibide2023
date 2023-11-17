@@ -1,8 +1,10 @@
-﻿using System;
+using System;﻿
 using System.Collections;
+using Cinemachine;
 using StatePattern;
 using StatePattern.PlayerStates;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Serialization;
 
 public class PlayerController: EntityControler
@@ -53,11 +55,35 @@ public class PlayerController: EntityControler
         private int _numberOfGrounds;
         
         [SerializeField] private float floatDuration;
-
         
+        private Text healthText;
+        private Text mainText;
+        private bool _onInvulneravility;
+        private Rigidbody2D _rb;
+        private CapsuleCollider2D _capsule;
+        private Slider healthBar;
+    
+        public bool touchingFloor;
+        private GameObject _elTodo;
+
+        private CinemachineImpulseSource _impulseSource;
+
+        public CinemachineStateDrivenCamera cinemachine;
+    
+        private GameObject gameControler;
+
+        private Canvas _canvasPausa;
+
+        [SerializeField] private Audios _playerAudios;
+
+        private AudioSource _audioSource;
+        
+        //private AudioSource _audioSource;
         void Start()
         {
-                //Initialize components
+                // Audio = 
+                _audioSource = GetComponent<AudioSource>();
+                //_force2D = GetComponent<ConstantForce2D>();
                 animator = GetComponent<Animator>();
                 _spriteRenderer = GetComponent<SpriteRenderer>();
                 _controls = new InputActions();
@@ -95,6 +121,25 @@ public class PlayerController: EntityControler
                 maxFallSpeed = playerData.maxFallSpeed;
                 baseGravity = _rigidbody2D.gravityScale;
 
+                // Pause
+                _controls.GeneralActionMap.Pause.performed += ctx => GameController.Instance.Pause();
+                
+                cinemachine = GameObject.Find("GameCameras").GetComponent<CinemachineStateDrivenCamera>();
+                gameControler = GameObject.Find("GameControler");
+                healthText = GameObject.Find("TextHealth").GetComponent<Text>();
+                mainText = GameObject.Find("TextMain").GetComponent<Text>();
+                healthBar = GameObject.Find("SliderHealth").GetComponent<Slider>();
+        
+                //Set health
+                _health.Set(100);
+                healthText.text = _health.Get().ToString();
+                healthBar.value = _health.Get();
+        
+                //Set the rigidBody
+                _rb = GetComponent<Rigidbody2D>();
+        
+                _impulseSource = GetComponent<CinemachineImpulseSource>();
+                
         }
 
         private void FixedUpdate()
@@ -286,6 +331,32 @@ public class PlayerController: EntityControler
                 PmStateMachine.TransitionTo(PmStateMachine.IdleState);
         }
         
+        public void DisablePlayerControls()
+        {
+                _controls.Disable();
+        }
+
+        public void EnablePlayerControls()
+        {
+                _controls.Enable();
+        }
+        
+        public override void OnDeath()
+        {
+                DisablePlayerControls();
+                Invoke(nameof(CallSceneLoad), 1);
+                
+                _audioSource.PlayOneShot(_playerAudios.audios[1]);
+                //_audioSource.clip = Resources.Load<AudioClip>("HITMARKER SOUND EFFECT");
+                //_audioSource.Play();
+                //_canvasPausa.gameObject.SetActive(true); 
+        }
+        
+        public void CallSceneLoad()
+        {
+                GameObject.Find("GameControler").GetComponent<GameController>().PlayerRespawn();
+        }
+
         
         // -------------- COROUTINES -----------------
         public IEnumerator Dash()
@@ -330,15 +401,6 @@ public class PlayerController: EntityControler
                 onDashCooldown = true;
                 yield return new WaitForSeconds(playerData.dashCooldown);
                 onDashCooldown = false;
-        }
-
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-                if (collision.gameObject.CompareTag("Enemy"))
-                {
-                        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider);
-                }
         }
 
         
@@ -391,6 +453,49 @@ public class PlayerController: EntityControler
         { 
                 return playerData;
         }
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+                //Colision con el enemigo
+                if (collision.gameObject.CompareTag("Enemy"))
+                {
+                        if (!_onInvulneravility)
+                        {
+                                CameraShakeManager.instance.CameraShake(_impulseSource);
+                                _audioSource.PlayOneShot(_playerAudios.audios[0]);
+                                _onInvulneravility = true;
+                                _health.RemoveHealth(25);
+                                healthText.text = _health.Get().ToString();
+                                healthBar.value = _health.Get();
+                
+                                Invoke(nameof(DamageCooldown), 0.5f);
+                        }
+                }
+        }
+
+        private void OnCollisionStay2D(Collision2D other)
+        {
+                //Colision con el enemigo
+                if (other.gameObject.CompareTag("Enemy"))
+                {
+                        if (!_onInvulneravility)
+                        {
+                                CameraShakeManager.instance.CameraShake(_impulseSource);
+                                _onInvulneravility = true;
+                                _health.RemoveHealth(25);
+                                healthText.text = _health.Get().ToString();
+                                healthBar.value = _health.Get();
+                
+                                Invoke(nameof(DamageCooldown), 0.5f);
+                        }
+                }
+        }
+        
+        public void DamageCooldown()
+        {
+                _onInvulneravility = false;
+                _rb.WakeUp();
+        }
+        
 
         public void ReceiveDamage(int damage) 
         {
@@ -398,22 +503,6 @@ public class PlayerController: EntityControler
                 _health.RemoveHealth(damage);
                 Debug.Log(_health.Get());
         } 
-        
-        public void DisablePlayerControls()
-        {
-                _controls.Disable();
-        }
-
-        public void EnablePlayerControls()
-        {
-                _controls.Enable();
-        }
-
-        public void Pause()
-        {
-                GameController.Instance.Pause();
-                DisablePlayerControls();
-        }
 
         public void SetCurrentGravity(float gravity)
         {
