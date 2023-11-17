@@ -127,6 +127,8 @@ public class PlayerController: EntityControler
                 maxFallSpeed = playerData.maxFallSpeed;
                 baseGravity = _rigidbody2D.gravityScale;
 
+                // Pause
+                _controls.GeneralActionMap.Pause.performed += ctx => Pause();
                 
                 cinemachine = GameObject.Find("GameCameras").GetComponent<CinemachineStateDrivenCamera>();
                 gameControler = GameObject.Find("GameControler");
