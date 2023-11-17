@@ -55,12 +55,6 @@ public class PlayerController: EntityControler
         private int _numberOfGrounds;
         
         [SerializeField] private float floatDuration;
-
-        [SerializeField] private BoxCollider2D feetBoxCollider;
-
-        [SerializeField] private PlayerData playerData;
-        
-       
         
         private Text healthText;
         private Text mainText;
@@ -128,7 +122,7 @@ public class PlayerController: EntityControler
                 baseGravity = _rigidbody2D.gravityScale;
 
                 // Pause
-                _controls.GeneralActionMap.Pause.performed += ctx => Pause();
+                _controls.GeneralActionMap.Pause.performed += ctx => GameController.Instance.Pause();
                 
                 cinemachine = GameObject.Find("GameCameras").GetComponent<CinemachineStateDrivenCamera>();
                 gameControler = GameObject.Find("GameControler");
@@ -407,15 +401,6 @@ public class PlayerController: EntityControler
                 onDashCooldown = true;
                 yield return new WaitForSeconds(playerData.dashCooldown);
                 onDashCooldown = false;
-        }
-
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-                if (collision.gameObject.CompareTag("Enemy"))
-                {
-                        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.collider);
-                }
         }
 
         
