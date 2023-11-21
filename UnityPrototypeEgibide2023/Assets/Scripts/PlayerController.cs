@@ -69,8 +69,6 @@ public class PlayerController: EntityControler
         private CinemachineImpulseSource _impulseSource;
 
         public CinemachineStateDrivenCamera cinemachine;
-    
-        private GameObject gameControler;
 
         private Canvas _canvasPausa;
 
@@ -125,7 +123,6 @@ public class PlayerController: EntityControler
                 _controls.GeneralActionMap.Pause.performed += ctx => GameController.Instance.Pause();
                 
                 cinemachine = GameObject.Find("GameCameras").GetComponent<CinemachineStateDrivenCamera>();
-                gameControler = GameObject.Find("GameControler");
                 healthText = GameObject.Find("TextHealth").GetComponent<Text>();
                 mainText = GameObject.Find("TextMain").GetComponent<Text>();
                 healthBar = GameObject.Find("SliderHealth").GetComponent<Slider>();
@@ -343,6 +340,7 @@ public class PlayerController: EntityControler
         
         public override void OnDeath()
         {
+                Debug.Log("muerte");
                 DisablePlayerControls();
                 Invoke(nameof(CallSceneLoad), 1);
                 
@@ -354,9 +352,9 @@ public class PlayerController: EntityControler
         
         public void CallSceneLoad()
         {
-                GameObject.Find("GameControler").GetComponent<GameController>().PlayerRespawn();
+                GameController.Instance.SceneLoad(GameController.Instance.GetCheckpoint());
+                //gameControler.GetComponent<GameController>().SceneLoad(gameControler.GetComponent<GameController>().GetCheckpoint());
         }
-
         
         // -------------- COROUTINES -----------------
         public IEnumerator Dash()
