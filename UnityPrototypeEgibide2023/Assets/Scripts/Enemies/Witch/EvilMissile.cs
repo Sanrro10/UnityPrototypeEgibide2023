@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EvilPotionBehavior : MonoBehaviour
+public class EvilMissile : MonoBehaviour
 {
     
     private GameObject _originWitch;
@@ -76,7 +76,7 @@ public class EvilPotionBehavior : MonoBehaviour
 
     private void ApplyForce()
     {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(_playerRef.gameObject.transform.position.x, _playerRef.gameObject.transform.position.y);
+            
     }
 
     
