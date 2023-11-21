@@ -56,12 +56,16 @@ public class PlayerController: EntityControler
         
         [SerializeField] private float floatDuration;
         
+        //UI
+        private Slider healthBar;
         private Text healthText;
         private Text mainText;
+        
+        
         private bool _onInvulneravility;
         private Rigidbody2D _rb;
         private CapsuleCollider2D _capsule;
-        private Slider healthBar;
+      
     
         public bool touchingFloor;
         private GameObject _elTodo;
@@ -75,6 +79,12 @@ public class PlayerController: EntityControler
         [SerializeField] private Audios _playerAudios;
 
         private AudioSource _audioSource;
+        
+        //Potion UI
+        private bool _onPotionColdown;
+        private Slider _sliderPotion;
+        //Potion Prefab
+        public GameObject potion;
         
         //private AudioSource _audioSource;
         void Start()
@@ -110,6 +120,9 @@ public class PlayerController: EntityControler
                 _controls.GeneralActionMap.Attack.performed += ctx =>  isPerformingMeleeAttack = true;
                 _controls.GeneralActionMap.Attack.canceled += ctx =>  isPerformingMeleeAttack = false;
                 
+                //Potion launch
+                _controls.GeneralActionMap.Potion.performed += ctx => Potion();
+                
                 // Initialize data
                 horizontalSpeed = playerData.movementSpeed;
                 maxAirHorizontalSpeed = playerData.maxAirHorizontalSpeed;
@@ -134,6 +147,12 @@ public class PlayerController: EntityControler
         
                 //Set the rigidBody
                 _rb = GetComponent<Rigidbody2D>();
+                
+                //set Potion Slider
+                _sliderPotion = GameObject.Find("SliderPotion").GetComponent<Slider>();
+                _sliderPotion.maxValue = playerData.potionColdownTime;
+                _sliderPotion.value = playerData.potionColdownTime;
+                
         
                 _impulseSource = GetComponent<CinemachineImpulseSource>();
                 
@@ -338,6 +357,17 @@ public class PlayerController: EntityControler
                 _controls.Enable();
         }
         
+        void Potion()
+        {
+                if (!_onPotionColdown)
+                {
+                        Debug.Log("POTION LAUNCH");
+                        Instantiate(potion, new Vector2(transform.position.x, transform.position.y + 2), Quaternion.identity);
+                        _sliderPotion.value = 0;
+                        StartCoroutine(PotionCooldownSlider());
+                }
+        }
+        
         public override void OnDeath()
         {
                 Debug.Log("muerte");
@@ -357,6 +387,18 @@ public class PlayerController: EntityControler
         }
         
         // -------------- COROUTINES -----------------
+
+        public IEnumerator PotionCooldownSlider()
+        {
+                _onPotionColdown = true;
+                while (_sliderPotion.value < playerData.potionColdownTime)
+                {
+                        _sliderPotion.value += 0.01f;   
+                        yield return new WaitForSeconds(0.01f);
+                }
+                _onPotionColdown = false;
+        }
+        
         public IEnumerator Dash()
         {
                 Physics2D.IgnoreLayerCollision(6,7, true);
