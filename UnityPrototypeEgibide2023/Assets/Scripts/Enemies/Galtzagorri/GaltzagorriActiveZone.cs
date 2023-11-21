@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ActiveZone : MonoBehaviour
+public class GaltzagorriActiveZone : MonoBehaviour
 {
     private GameObject _parent;
 
