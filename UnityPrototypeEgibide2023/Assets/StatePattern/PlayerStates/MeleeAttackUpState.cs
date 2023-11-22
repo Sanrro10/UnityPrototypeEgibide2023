@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
-
 namespace StatePattern.PlayerStates
 {
-    public class MeleeAttackState : IState
+    public class MeleeAttackUpState : IState
     {
         private PlayerController player;
         
-        public MeleeAttackState(PlayerController player)
+        public MeleeAttackUpState(PlayerController player)
         {
             this.player = player;
         }
@@ -24,21 +23,11 @@ namespace StatePattern.PlayerStates
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
-            if (player.isHoldingHorizontal)
-            {
-                player.Move();
-            }
-            if (player.isPerformingMeleeAttack && player.canAttack)
-            {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.MeleeAttackState);
-
-            }
-            
-            if (player.isJumping)
-            {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.JumpState);
-                return;
-            }
+        /*if (player.isJumping)
+           {
+               player.PmStateMachine.TransitionTo(player.PmStateMachine.JumpState);
+               return;
+           }*/
             
         }
         

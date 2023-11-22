@@ -322,9 +322,9 @@ public class PlayerController: EntityControler
                         PmStateMachine.TransitionTo(PmStateMachine.AirState);
                         return;
                 }
-                if (isPerformingMeleeAttack)
+                if (isPerformingMeleeAttack && isHoldingHorizontal)
                 {
-                        PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackState);
+                        //PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackState);
                         return;
                 }
             

@@ -24,7 +24,10 @@ namespace StatePattern
         public DJumpState DJumpState;
         public AirDashState AirDashState;
         public AirDashStartState AirDashStartState;
-        public MeleeAttackState MeleeAttackState;
+        public MeleeAttackRightState MeleeAttackRightState;
+        public MeleeAttackLeftState MeleeAttackLeftState;
+        public MeleeAttackDownState MeleeAttackDownState;
+        public MeleeAttackUpState MeleeAttackUpState;
         public StunnedState StunnedState;
         
         // Constructor
@@ -38,7 +41,10 @@ namespace StatePattern
             this.DJumpState = new DJumpState(player);
             this.AirDashState = new AirDashState(player);
             this.AirDashStartState = new AirDashStartState(player);
-            this.MeleeAttackState = new MeleeAttackState(player);
+            this.MeleeAttackRightState = new MeleeAttackRightState(player);
+            this.MeleeAttackLeftState = new MeleeAttackLeftState(player);
+            this.MeleeAttackUpState = new MeleeAttackUpState(player);
+            this.MeleeAttackDownState = new MeleeAttackDownState(player);
             this.StunnedState = new StunnedState(player);
         }
         
