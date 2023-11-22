@@ -11,4 +11,6 @@ public class LandWitchData : ScriptableObject
     public float magicCircleCooldown;
     public float magicCircleChargeDuration;
     public float magicCircleEffectDuration;
+    public float normalTeleportationCooldown;
+    public float fastTeleportationCooldown;
 }

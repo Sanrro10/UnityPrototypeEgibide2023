@@ -23,7 +23,7 @@ public class LWActivation : MonoBehaviour
         if (other.CompareTag("Player") && other.gameObject.GetComponent<PlayerController>() != null)
         {
             Debug.Log("Cuidado, es el heroe");
-            gameObject.GetComponentInParent<LandWitch>().SendMessage("setActiveState" , true);
+            gameObject.GetComponentInParent<LandWitch>().SendMessage("setActiveState" , true, SendMessageOptions.RequireReceiver);
         }
     }
 
@@ -33,7 +33,7 @@ public class LWActivation : MonoBehaviour
         {
             //End the timer that throws potions, but the tp one, once activated, will follow the player periodically
             Debug.Log("Sale el heroe");
-            gameObject.GetComponentInParent<LandWitch>().SendMessage("setActiveState" , false);
+            gameObject.GetComponentInParent<LandWitch>().SendMessage("setActiveState" , false , SendMessageOptions.RequireReceiver);
             
         }
     }
