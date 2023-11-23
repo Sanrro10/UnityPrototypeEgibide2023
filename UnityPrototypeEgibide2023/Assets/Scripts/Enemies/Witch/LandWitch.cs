@@ -57,11 +57,13 @@ public class LandWitch : EntityControler
         {
             InvokeRepeating("TurnToPlayer" , 1 , 1);
             InvokeRepeating("WitchAttack",0,0.5f);
+            StartCoroutine("WitchMainTeleport", landWitchData.normalTeleportationCooldown);
         }
         else
         {
             CancelInvoke("TurnToPlayer");
             CancelInvoke("WitchAttack");
+            StopCoroutine("WitchMainTeleport");
         }
     }
     /*Tells the LandWitch that she can perform her missile attack(or not)*/
@@ -70,7 +72,7 @@ public class LandWitch : EntityControler
         _canLaunchMissile = state;
     }
     /*Tells the LandWitch that she can perform her magic circle attack(or not)*/
-    public void setMagicCirlePossible(bool state)
+    public void setMagicCirclePossible(bool state)
     {
         _canMagicCircle = state;
     }
@@ -127,29 +129,36 @@ public class LandWitch : EntityControler
 
     private void AccionateMissileLogic()
     {
+        _isLaunchingMissiles = true;
+        _isLaunchingMagicCircles = false;
         CancelInvoke("LaunchMagicCirle");
-        CancelInvoke("WitchFastTeleport");
+        StopCoroutine("WitchFastTeleport");
         InvokeRepeating("LaunchEvilMissile",0, landWitchData.missileCooldown);
     }
 
     private void AccionateMagicCircleLogic()
     {
+        _isLaunchingMagicCircles = true;
+        _isLaunchingMissiles = false;
         CancelInvoke("LaunchEvilMissile");
-        CancelInvoke("WitchFastTeleport");
+        StopCoroutine("WitchFastTeleport");
         InvokeRepeating("LaunchMagicCirle" , 0, landWitchData.magicCircleCooldown);
             
     }
 
     private void AccionateFastTeleportLogic()
     {
-        CancelInvoke("WitchFastTeleport");
-        Invoke("WitchFastTeleport",0);
+        _isLaunchingMissiles = false;
+        _isLaunchingMagicCircles = false;
+        StopCoroutine("WitchFastTeleport");
+        StartCoroutine("WitchFastTeleport",0);
     }
 
     /*LandWitch Main Teleport, continously working*/
     private IEnumerator WitchMainTeleport()
     {
-        throw new NotImplementedException();
+        //TODO:
+        //throw new NotImplementedException();
 
         yield return new WaitForSeconds(landWitchData.normalTeleportationCooldown);
     }
@@ -157,7 +166,8 @@ public class LandWitch : EntityControler
     /*LandWitch Fast Teleport, cancels temporarily main teleport*/
     private IEnumerator WitchFastTeleport()
     {
-        throw new NotImplementedException();
+        //TODO:
+        //throw new NotImplementedException();
 
         yield return new WaitForSeconds(landWitchData.fastTeleportationCooldown);
     }
@@ -175,7 +185,8 @@ public class LandWitch : EntityControler
 
     private void LaunchMagicCirle()
     {
-        throw new NotImplementedException();
+        //TODO:
+        //throw new NotImplementedException();
     }
 
     

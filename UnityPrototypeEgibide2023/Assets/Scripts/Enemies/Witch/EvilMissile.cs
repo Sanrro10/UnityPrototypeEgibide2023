@@ -1,21 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EvilMissile : MonoBehaviour
 {
     
     private GameObject _originWitch;
-
-
-
-    [SerializeField] private float _speed;
+    [FormerlySerializedAs("_speed")] public float speed;
 
  //   [SerializeField] private int health;
-    
-    [SerializeField] private GameObject owner;
+ 
     [SerializeField] private GameObject explosion;
 
+    private Rigidbody2D _missileBody;
     private GameObject _playerRef;
 
     private float _angle;
@@ -24,9 +22,22 @@ public class EvilMissile : MonoBehaviour
         //_player = GameObject.Find("Player Espada State");
         //_playerController = _player.GetComponent<PlayerController>();
         
+        _playerRef = GameObject.Find("Player Espada State");
         
-        ApplyForce();
+        _missileBody = gameObject.GetComponent<Rigidbody2D>();
         
+        Rotacion();
+        StartCoroutine("ApplyForce",0f);
+        Invoke("MaximumAliveTime",15f);
+        
+        
+    }
+
+    /*Rotates the proyectile so that its X rotation var points to the player*/
+    private void Rotacion()
+    {
+        var neededRotation = Quaternion.LookRotation(_playerRef.transform.position - transform.position);
+        transform.rotation = neededRotation;
     }
 
     private void getAngle()
@@ -70,24 +81,22 @@ public class EvilMissile : MonoBehaviour
             Bounce(1);
         }*/
 
-        Explode();
+        Destroy(gameObject);
 
     }
 
-    private void ApplyForce()
+    /*Launches the Missile Towards the player*/
+    private IEnumerator ApplyForce()
     {
-            
+        Debug.Log("UOOOOOOOOOOOOOOO NEVADOOOOOOOOOOOOOOOOOOOO");
+        yield return new WaitForSeconds(0.5f);
+        
+        Vector2 whereToGoPlease = _playerRef.transform.position - transform.position;
+        whereToGoPlease.Normalize();
+        Vector2 speedwagon = whereToGoPlease * speed;
+        _missileBody.velocity = speedwagon;
+        //gameObject.GetComponent<Rigidbody2D>().AddForce(transform.forward * _speed * 2f);
     }
-
-    
-    /*private void Bounce(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            Explode();
-        }
-    }*/
     
 
     private void Explode()
@@ -95,14 +104,10 @@ public class EvilMissile : MonoBehaviour
         Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
-    
-    public void SetOwner(GameObject owner)
+
+    private void MaximumAliveTime()
     {
-        owner = owner;
+        Destroy(gameObject);
     }
-    
-    public GameObject GetOwner()
-    {
-        return owner;
-    }
+
 }

@@ -19,7 +19,7 @@ public class LWActivation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Ha entrado algo en mi radio de accion JIJIJI");
+       
         if (other.CompareTag("Player") && other.gameObject.GetComponent<PlayerController>() != null)
         {
             Debug.Log("Cuidado, es el heroe");
