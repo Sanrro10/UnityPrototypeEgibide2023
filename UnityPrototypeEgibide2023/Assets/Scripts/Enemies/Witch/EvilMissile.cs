@@ -40,7 +40,7 @@ public class EvilMissile : MonoBehaviour
         /*Temporary Damage Logic*/
         if (collision.collider.CompareTag("Player"))
         {   
-            collision.collider.gameObject.SendMessage("RemoveHealth", _witchData.missileDamage, SendMessageOptions.RequireReceiver);
+            collision.collider.gameObject.GetComponent<HealthComponent>().SendMessage("RemoveHealth", _witchData.missileDamage, SendMessageOptions.RequireReceiver);
         }
         //Explode();
         Destroy(gameObject);

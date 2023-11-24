@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LandWitch : EntityControler
 {
@@ -29,7 +30,7 @@ public class LandWitch : EntityControler
     {
         //Set the Health Points
         gameObject.GetComponent<HealthComponent>().SendMessage("Set", landWitchData.health, SendMessageOptions.RequireReceiver);
-        _playerRef = GameObject.Find("Player Espada State");
+        _playerRef = GameController.Instance.GetPlayerGameObject();
         _spriteWitch = gameObject.GetComponent<SpriteRenderer>();
     }
 
@@ -189,15 +190,43 @@ public class LandWitch : EntityControler
         //throw new NotImplementedException();
     }
 
-    
+
+    private void CheckForTeleportPlaces()
+    {
+        var plusMinus = RandomSign();
+        var startingPositionX = gameObject.transform.position.x +(20 * plusMinus);
+        var startingPositionY = gameObject.transform.position.y + 10;
+        var checkingPosition = new Vector2(startingPositionX, startingPositionY);
+        bool placeFound = false;
+        while (!placeFound)
+        {
+            RaycastHit2D possiblePos = Physics2D.Raycast(checkingPosition, Vector2.down);
+            if (possiblePos.collider != null && !possiblePos.collider.gameObject.CompareTag("Player"))
+            {
+                
+            }
+            else
+            {
+                
+            }
+        }
+        
+        
+    }
+
+    public int RandomSign()
+    {
+        return (Random.value > 0.5f ? 1 : -1);
+    }
+
     /*Example timer
-     
+
              public IEnumerator GroundedCooldown()
         {
                 feetBoxCollider.enabled = false;
                 yield return new WaitForSeconds(0.2f);
                 feetBoxCollider.enabled = true;
         }
-        
+
     */
 }

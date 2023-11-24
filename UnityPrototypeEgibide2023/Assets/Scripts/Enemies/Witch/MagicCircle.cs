@@ -62,7 +62,7 @@ public class MagicCircle : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PlayerController>() != null)
         {
-            other.gameObject.SendMessage("RemoveHealth", _witchData.missileDamage, SendMessageOptions.RequireReceiver);
+            other.gameObject.GetComponent<HealthComponent>().SendMessage("RemoveHealth", _witchData.magicCircleDamage, SendMessageOptions.RequireReceiver);
         }
     }
 }
