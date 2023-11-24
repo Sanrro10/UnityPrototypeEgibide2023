@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6478797493101206028}
   - component: {fileID: 4338879186090479559}
-  - component: {fileID: 2260291783804982905}
   - component: {fileID: -4677395849343488883}
   m_Layer: 0
   m_Name: 0.5 X 1 Ruler
@@ -33,6 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4073679238035980558}
+  - {fileID: 5438132300250478301}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4338879186090479559
@@ -87,51 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2260291783804982905
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1231963826520727945}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &-4677395849343488883
 Rigidbody2D:
   serializedVersion: 4
@@ -330,3 +285,65 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 207046573498123562}
   m_maskType: 0
+--- !u!1001 &9050431739529296227
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6478797493101206028}
+    m_Modifications:
+    - target: {fileID: 3954643386011586494, guid: 253d7a34ec6eeea48940f939c8f2ef50, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954643386011586494, guid: 253d7a34ec6eeea48940f939c8f2ef50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00056946
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954643386011586494, guid: 253d7a34ec6eeea48940f939c8f2ef50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954643386011586494, guid: 253d7a34ec6eeea48940f939c8f2ef50, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954643386011586494, guid: 253d7a34ec6eeea48940f939c8f2ef50, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954643386011586494, guid: 253d7a34ec6eeea48940f939c8f2ef50, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954643386011586494, guid: 253d7a34ec6eeea48940f939c8f2ef50, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954643386011586494, guid: 253d7a34ec6eeea48940f939c8f2ef50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954643386011586494, guid: 253d7a34ec6eeea48940f939c8f2ef50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954643386011586494, guid: 253d7a34ec6eeea48940f939c8f2ef50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8507596905255674491, guid: 253d7a34ec6eeea48940f939c8f2ef50, type: 3}
+      propertyPath: m_Name
+      value: BasicTerrainColider
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 253d7a34ec6eeea48940f939c8f2ef50, type: 3}
+--- !u!4 &5438132300250478301 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3954643386011586494, guid: 253d7a34ec6eeea48940f939c8f2ef50, type: 3}
+  m_PrefabInstance: {fileID: 9050431739529296227}
+  m_PrefabAsset: {fileID: 0}
