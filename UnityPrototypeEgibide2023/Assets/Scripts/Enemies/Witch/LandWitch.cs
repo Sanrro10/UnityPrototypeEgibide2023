@@ -7,21 +7,19 @@ public class LandWitch : EntityControler
 {
     [SerializeField] private GameObject player;
 
-    [SerializeField] private LandWitchData landWitchData;
+    public LandWitchData landWitchData;
 
     private bool _isActive = false;
     private bool _canLaunchMissile = false;
     private bool _isLaunchingMissiles = false;
     private bool _canMagicCircle = false;
     private bool _isLaunchingMagicCircles = false;
+    
     private GameObject _playerRef;
     private SpriteRenderer _spriteWitch;
     
-    //consider deleting this var
-    private bool _throwingPotions = false;
-    
-    
     public GameObject witchMissile;
+    public GameObject witchMagicCircle;
 
     
     /*Ideas Witch, make so that if the player stays longer than x time near the witch, she TPs*/
@@ -47,32 +45,31 @@ public class LandWitch : EntityControler
     }
     /*Activation/Deactivation of the LandWitch, it starts the function needed to attack
      and starts tracking the player which means, turning towards it*/
-    public void setActiveState(bool state)
+    public void SetActiveState(bool state)
     {
         //Invoke or Uninvoke attack patterns
         //Turn towards player
         _isActive = state;
-        Debug.Log("Se ha entrado aqui");
         if (_isActive)
         {
-            InvokeRepeating("TurnToPlayer" , 1 , 1);
-            InvokeRepeating("WitchAttack",0,0.5f);
-            StartCoroutine("WitchMainTeleport", landWitchData.normalTeleportationCooldown);
+            InvokeRepeating(nameof(TurnToPlayer) , 1 , 1);
+            InvokeRepeating(nameof(WitchAttack),0,0.5f);
+            StartCoroutine(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);
         }
         else
         {
-            CancelInvoke("TurnToPlayer");
-            CancelInvoke("WitchAttack");
-            StopCoroutine("WitchMainTeleport");
+            CancelInvoke(nameof(TurnToPlayer));
+            CancelInvoke(nameof(WitchAttack));
+            StopCoroutine(nameof(WitchMainTeleport));
         }
     }
     /*Tells the LandWitch that she can perform her missile attack(or not)*/
-    public void setMissilePossible(bool state)
+    public void SetMissilePossible(bool state)
     {
         _canLaunchMissile = state;
     }
     /*Tells the LandWitch that she can perform her magic circle attack(or not)*/
-    public void setMagicCirclePossible(bool state)
+    public void SetMagicCirclePossible(bool state)
     {
         _canMagicCircle = state;
     }
@@ -116,12 +113,12 @@ public class LandWitch : EntityControler
 
         if (!_canLaunchMissile && !_isLaunchingMissiles)
         {
-            CancelInvoke("LaunchEvilMissile");
+            CancelInvoke(nameof(LaunchEvilMissile));
         }
 
         if (!_canMagicCircle && !_isLaunchingMagicCircles)
         {
-            CancelInvoke("LaunchMagicCirle");
+            CancelInvoke(nameof(LaunchMagicCircle));
         }
 
 
@@ -131,18 +128,18 @@ public class LandWitch : EntityControler
     {
         _isLaunchingMissiles = true;
         _isLaunchingMagicCircles = false;
-        CancelInvoke("LaunchMagicCirle");
-        StopCoroutine("WitchFastTeleport");
-        InvokeRepeating("LaunchEvilMissile",0, landWitchData.missileCooldown);
+        CancelInvoke(nameof(LaunchMagicCircle));
+        StopCoroutine(nameof(WitchFastTeleport));
+        InvokeRepeating(nameof(LaunchEvilMissile),0, landWitchData.missileCooldown);
     }
 
     private void AccionateMagicCircleLogic()
     {
         _isLaunchingMagicCircles = true;
         _isLaunchingMissiles = false;
-        CancelInvoke("LaunchEvilMissile");
-        StopCoroutine("WitchFastTeleport");
-        InvokeRepeating("LaunchMagicCirle" , 0, landWitchData.magicCircleCooldown);
+        CancelInvoke(nameof(LaunchEvilMissile));
+        StopCoroutine(nameof(WitchFastTeleport));
+        InvokeRepeating(nameof(LaunchMagicCircle) , 0, landWitchData.magicCircleCooldown);
             
     }
 
@@ -150,8 +147,8 @@ public class LandWitch : EntityControler
     {
         _isLaunchingMissiles = false;
         _isLaunchingMagicCircles = false;
-        StopCoroutine("WitchFastTeleport");
-        StartCoroutine("WitchFastTeleport",0);
+        StopCoroutine(nameof(WitchFastTeleport));
+        StartCoroutine(nameof(WitchFastTeleport),0);
     }
 
     /*LandWitch Main Teleport, continously working*/
@@ -175,7 +172,7 @@ public class LandWitch : EntityControler
     private void LaunchEvilMissile()
     {
 
-            Debug.Log("Missile Lanuch");
+            Debug.Log("Missile Launch");
             
             Instantiate(witchMissile, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 2), Quaternion.identity);
             //Invoke(nameof(PotionCooldown),1);
@@ -183,9 +180,12 @@ public class LandWitch : EntityControler
        
     }
 
-    private void LaunchMagicCirle()
+    private void LaunchMagicCircle()
     {
         //TODO:
+        Debug.Log("Magic Circle Launch");
+
+        Instantiate(witchMagicCircle, new Vector2(_playerRef.transform.position.x, _playerRef.transform.position.y), Quaternion.identity);
         //throw new NotImplementedException();
     }
 

@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   missileSpeed: 15
+  missileDamage: 0
   missileCooldown: 3
   magicCircleCooldown: 1
-  magicCircleChargeDuration: 0.5
+  magicCircleDamage: 20
+  magicCircleChargeDuration: 1
+  magicCircleActivationDelay: 0.5
   magicCircleEffectDuration: 0.5
   normalTeleportationCooldown: 6
   fastTeleportationCooldown: 2

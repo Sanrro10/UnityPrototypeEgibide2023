@@ -19,17 +19,17 @@ public class LWMissileActivation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && other.gameObject.GetComponent<PlayerController>() != null)
+        if (other.CompareTag("Player"))
         {
-            gameObject.GetComponentInParent<LandWitch>().SendMessage("setMissilePossible", true, SendMessageOptions.RequireReceiver);
+            gameObject.GetComponentInParent<LandWitch>().SendMessage("SetMissilePossible", true, SendMessageOptions.RequireReceiver);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && other.gameObject.GetComponent<PlayerController>() != null)
+        if (other.CompareTag("Player"))
         {
-            gameObject.GetComponentInParent<LandWitch>().SendMessage("setMissilePossible", false, SendMessageOptions.RequireReceiver);
+            gameObject.GetComponentInParent<LandWitch>().SendMessage("SetMissilePossible", false, SendMessageOptions.RequireReceiver);
         }
     }
 }
