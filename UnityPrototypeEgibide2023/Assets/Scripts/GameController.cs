@@ -74,7 +74,7 @@ public class GameController : EntityControler
 
     }
 
-    public GameObject get_jugador()
+    public GameObject GetPlayerGameObject()
     {
         Debug.Log("Jugador " + _jugador);
         return _jugador;

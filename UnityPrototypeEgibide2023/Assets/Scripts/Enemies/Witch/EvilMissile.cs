@@ -22,8 +22,8 @@ public class EvilMissile : MonoBehaviour
         //_player = GameObject.Find("Player Espada State");
         //_playerController = _player.GetComponent<PlayerController>();
         
-        _playerRef = GameObject.Find("Player Espada State");
-        
+        //_playerRef = GameObject.Find("Player Espada State");
+        _playerRef = GameController.Instance.GetPlayerGameObject();
         _missileBody = gameObject.GetComponent<Rigidbody2D>();
         
         Rotacion();
