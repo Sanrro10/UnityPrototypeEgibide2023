@@ -382,7 +382,7 @@ public class PlayerController: EntityControler
         
         public void CallSceneLoad()
         {
-                GameController.Instance.SceneLoad(GameController.Instance.GetCheckpoint());
+                GameController.Instance.SceneLoad(GameController.Instance.GetCheckpoint(),true);
                 //gameControler.GetComponent<GameController>().SceneLoad(gameControler.GetComponent<GameController>().GetCheckpoint());
         }
         
