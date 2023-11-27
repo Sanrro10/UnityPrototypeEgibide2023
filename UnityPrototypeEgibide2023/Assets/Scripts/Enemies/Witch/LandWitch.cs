@@ -55,13 +55,13 @@ public class LandWitch : EntityControler
         {
             InvokeRepeating(nameof(TurnToPlayer) , 1 , 1);
             InvokeRepeating(nameof(WitchAttack),0,0.5f);
-            StartCoroutine(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);
+            Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);
         }
         else
         {
             CancelInvoke(nameof(TurnToPlayer));
             CancelInvoke(nameof(WitchAttack));
-            StopCoroutine(nameof(WitchMainTeleport));
+            CancelInvoke(nameof(WitchMainTeleport));
         }
     }
     /*Tells the LandWitch that she can perform her missile attack(or not)*/
@@ -153,16 +153,14 @@ public class LandWitch : EntityControler
     }
 
     /*LandWitch Main Teleport, continously working*/
-    private IEnumerator WitchMainTeleport()
+    private void WitchMainTeleport()
     {
-        //TODO:
-        //throw new NotImplementedException();
-
-        yield return new WaitForSeconds(landWitchData.normalTeleportationCooldown);
+        CheckForTeleportPlaces();
+        Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);
     }
     
     /*LandWitch Fast Teleport, cancels temporarily main teleport*/
-    private IEnumerator WitchFastTeleport()
+    private void WitchFastTeleport()
     {
         //TODO:
         //throw new NotImplementedException();
@@ -194,29 +192,72 @@ public class LandWitch : EntityControler
     private void CheckForTeleportPlaces()
     {
         var plusMinus = RandomSign();
-        var startingPositionX = gameObject.transform.position.x +(20 * plusMinus);
-        var startingPositionY = gameObject.transform.position.y + 10;
-        var checkingPosition = new Vector2(startingPositionX, startingPositionY);
+        var checkingPosition = GetCheckingPositionPositionCoords(plusMinus);
+        
+        var leftLimit = gameObject.transform.position.x - 5;
+        var rightLimit = gameObject.transform.position.y + 5;
+
+        byte limitsChecked = 0;
+        
         bool placeFound = false;
+        RaycastHit2D possiblePos;
+        
         while (!placeFound)
         {
-            RaycastHit2D possiblePos = Physics2D.Raycast(checkingPosition, Vector2.down);
-            if (possiblePos.collider != null && !possiblePos.collider.gameObject.CompareTag("Player"))
+            /*If no position is returned after checking both sides, it will teleport to itself*/
+            if (limitsChecked == 2)
             {
-                
+                placeFound = true;
+                possiblePos = Physics2D.Raycast(gameObject.transform.position, Vector2.down);
             }
             else
             {
-                
+                /*A ray is thrown downwards to strike all of the wrongdoers of the fantasy world of Akulapakua*/
+                possiblePos = Physics2D.Raycast(checkingPosition, Vector2.down);
+                if (possiblePos.collider != null && !possiblePos.collider.gameObject.CompareTag("Player"))
+                {
+                    placeFound = true;
+                }
+                else
+                {
+                    if (checkingPosition.x == leftLimit || checkingPosition.x == rightLimit)
+                    {
+                        limitsChecked++;
+                        plusMinus *= -1;
+                        checkingPosition = GetCheckingPositionPositionCoords((plusMinus));
+                    }
+                    else
+                    {
+                        checkingPosition.x = checkingPosition.x + (3 * plusMinus);
+                    }
+                }
             }
         }
-        
-        
-    }
 
+        Vector2 posToTeleport = new Vector2(possiblePos.point.x, possiblePos.point.y);
+        
+        Teleport(posToTeleport);
+
+    }
+    /*Returns 1 or -1*/
     public int RandomSign()
     {
         return (Random.value > 0.5f ? 1 : -1);
+    }
+    
+    /*Returns the position to check in order to teleport*/
+    private Vector2 GetCheckingPositionPositionCoords(int sign)
+    {
+        var startingPositionX = gameObject.transform.position.x +(20 * sign);
+        var startingPositionY = gameObject.transform.position.y + 10;
+
+        return new Vector2(startingPositionX, startingPositionY);
+    }
+
+    /*Teleports the witch*/
+    private void Teleport(Vector2 posToTeleport)
+    {
+        gameObject.transform.position = posToTeleport;
     }
 
     /*Example timer
