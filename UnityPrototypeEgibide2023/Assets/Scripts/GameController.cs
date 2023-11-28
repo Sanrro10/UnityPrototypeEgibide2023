@@ -15,6 +15,7 @@ public class GameController : EntityControler
     public static GameController Instance;
     [SerializeField] private Canvas canvasPausa;
     private GameObject _jugador;
+    private bool _useCheckpoint;
     
     //Create Structure that holds the position and the sceneName of the checkpoint
     public struct SPlayerSpawnData
@@ -61,7 +62,7 @@ public class GameController : EntityControler
             
         }
 
-        if (Instance._lastCheckpoint.Scene != SceneManager.GetActiveScene().name)
+        if (!_useCheckpoint)
         {
             PlayerSpawnInNewScene();
         }
@@ -74,7 +75,7 @@ public class GameController : EntityControler
 
     }
 
-    public GameObject get_jugador()
+    public GameObject GetPlayerGameObject()
     {
         Debug.Log("Jugador " + _jugador);
         return _jugador;
@@ -101,9 +102,10 @@ public class GameController : EntityControler
     {
         GameController.Instance._jugador = Instantiate(playerPrefab, transform.position = Instance._playerSpawnDataInNewScene.Position, Quaternion.identity);
     }
-    
-    public void SceneLoad(SPlayerSpawnData spawnData)
+
+    public void SceneLoad(SPlayerSpawnData spawnData, bool useCheckpoint)
     {
+        _useCheckpoint = useCheckpoint;
         _playerSpawnDataInNewScene = spawnData;
         SceneManager.LoadScene(spawnData.Scene);
     }

@@ -30,13 +30,11 @@ public class Gizotso : EntityControler
         
         InvokeRepeating(nameof(PassiveBehavior), 0f, 0.1f);
     }
-
-   
-
-    void PassiveBehavior()
+    
+    private void PassiveBehavior()
     {
+        if (attacking) return;
         _navMeshAgent.SetDestination(_goingRight ? _rightLimitPosition : _leftLimitPosition);
-        Debug.Log(_navMeshAgent.destination);
         if (Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
         {
             _goingRight = true;
@@ -50,22 +48,25 @@ public class Gizotso : EntityControler
 
     public void Attack()
     {
-        
-    
-        
-        
+        StartCoroutine(nameof(Cooldown));
     }
 
-    IEnumerator Cooldown()
+    private IEnumerator Cooldown()
     {
         _navMeshAgent.enabled = false;
+        attacking = true;
+        
         /* todo:
             Aqui iría el inicio de una animación en la que el gizotso te pega.
          */
-        Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
-        rb2D.AddForce(new Vector2((transform.position.x) * 2, 2), ForceMode2D.Impulse);
+        
         yield return new WaitForSeconds(2.5f);
+        if (transform.gameObject.GetComponentInChildren<GizotsoActiveZone>().inside)
+        {
+            transform.gameObject.GetComponentInChildren<GizotsoActiveZone>().Hit();
+        }
         _navMeshAgent.enabled = true;
+        attacking = false;
     }
     
     public override void OnDeath()
