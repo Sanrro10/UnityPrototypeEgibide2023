@@ -47,8 +47,7 @@ namespace StatePattern.PlayerStates
             }
             if (player.isPerformingMeleeAttack)
             {
-                //player.PmStateMachine.TransitionTo(player.PmStateMachine.MeleeAttackState);
-                return;
+                player.AirAttack();
             }
             
             if (player.isHoldingHorizontal)

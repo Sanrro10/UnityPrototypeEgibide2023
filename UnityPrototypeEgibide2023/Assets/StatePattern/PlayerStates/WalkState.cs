@@ -48,10 +48,13 @@ namespace StatePattern.PlayerStates
                 player.PmStateMachine.TransitionTo((player.PmStateMachine.GroundDashState));
                 return;
             }
-            
-            
-            
-            
+
+            if (player.isPerformingMeleeAttack)
+            {
+                player.GroundAttack();
+                return;
+            }
+
         }
         
         public void Exit()

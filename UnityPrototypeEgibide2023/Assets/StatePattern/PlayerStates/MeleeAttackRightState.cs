@@ -13,28 +13,26 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            //Debug.Log("Entering Attack State");
-            player.animator.SetTrigger("MeleeAttack");
             player.canAttack = false;
-            player.Invoke(nameof(player.AttackCooldown), player.meleeAttackCooldown );
+            player.isPerformingMeleeAttack = false;
+            Debug.Log("Entering Right Attack State");
+            player.animator.SetTrigger("MeleeAttack");
             player.Invoke(nameof(player.AttackDuration), player.meleeAttackDuration );
-            
+            player.Invoke(nameof(player.AttackCooldown), player.meleeAttackCooldown );
+            player.Invoke(nameof(player.SpawnAttackHitbox), player.meleeAttackStart);
         }
 
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {            
-            /*if (player.isJumping)
-            {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.JumpState);
-                return;
-            }*/
-            
+            if (player.canAttack && player.isPerformingMeleeAttack) player.GroundAttack();
         }
         
         public void Exit()
         {
- 
+            player.canAttack = true;
+            player.isPerformingMeleeAttack = false;
+
         }
     }
 }

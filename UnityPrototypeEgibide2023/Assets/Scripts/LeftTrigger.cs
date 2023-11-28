@@ -16,7 +16,7 @@ public class LeftTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Floor") || other.CompareTag("Enemy"))
+        if (other.CompareTag("Floor") || other.CompareTag("Wall") || other.CompareTag("Enemy"))
         {
             _numberOfGrounds++;
             _playerController.isCollidingLeft = true;
@@ -25,7 +25,7 @@ public class LeftTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Floor") || other.CompareTag("Enemy"))
+        if (other.CompareTag("Floor") || other.CompareTag("Wall") || other.CompareTag("Enemy"))
         {
             _numberOfGrounds--;
             if (_numberOfGrounds == 0)  _playerController.isCollidingLeft = false;

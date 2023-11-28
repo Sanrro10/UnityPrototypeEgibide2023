@@ -16,6 +16,7 @@ public class PlayerController: EntityControler
         [SerializeField] private GameObject feet;
         [SerializeField] private BoxCollider2D feetBoxCollider; 
         [SerializeField] private PlayerData playerData;
+        [SerializeField] private GameObject meleeAttack;
         public Animator animator;
         private SpriteRenderer _spriteRenderer;
         
@@ -34,6 +35,7 @@ public class PlayerController: EntityControler
         public float attackDuration;
         public float meleeAttackCooldown;
         public float meleeAttackDuration;
+        public float meleeAttackStart;
         
         
         public float friction;
@@ -68,7 +70,6 @@ public class PlayerController: EntityControler
       
     
         public bool touchingFloor;
-        private GameObject _elTodo;
 
         private CinemachineImpulseSource _impulseSource;
 
@@ -119,6 +120,7 @@ public class PlayerController: EntityControler
                 //MeleeAttack
                 _controls.GeneralActionMap.Attack.performed += ctx =>  isPerformingMeleeAttack = true;
                 _controls.GeneralActionMap.Attack.canceled += ctx =>  isPerformingMeleeAttack = false;
+                
                 
                 //Potion launch
                 _controls.GeneralActionMap.Potion.performed += ctx => Potion();
@@ -260,20 +262,19 @@ public class PlayerController: EntityControler
                 {
                         return true;
                 }
-                else
-                {
-                        return false;
-                }
+
+                return false;
         }
 
         public void FlipSprite()
         {
-                
+                Debug.Log("Flip");
                 float direction = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
-
+                Debug.Log(direction);
                 if (direction == -1) facingRight = false;
                 else if (direction == 1) facingRight = true;
                 _spriteRenderer.flipX = !facingRight;
+                Debug.Log(_spriteRenderer.flipX);
 
         }
 
@@ -307,44 +308,78 @@ public class PlayerController: EntityControler
 
         public void AttackCooldown()
         {
-                //Debug.Log("Dentro de la funcion AttackCooldown");
                 canAttack = true;
         }
         
         public void AttackDuration()
         {
-                //Debug.Log("Dentro de la funcion AttackDuration");
-                isPerformingMeleeAttack = false;
-                if (isHoldingHorizontal)
+                if (IsGrounded())
                 {
-                        PmStateMachine.TransitionTo(PmStateMachine.WalkState);
+                        PmStateMachine.TransitionTo(PmStateMachine.IdleState);
+                        return;
+                }
+                PmStateMachine.TransitionTo(PmStateMachine.AirState);
+        }
+
+        public void GroundAttack()
+        {
+                //aadafloat xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
+                float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
+                
+                if (yDirection == 1)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackUpState);
+                        return;
+                }
+                if (facingRight)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackRightState);
+                        return;
+                }
+                if (!facingRight)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackLeftState);
+                        return;
+                }
+                
+
+
+                
+        }
+        public void AirAttack()
+        {
+                //float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
+                float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
+                
+                if (yDirection == 1)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackUpState);
+                        return;
+                }
+                if (yDirection == -1)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackDownState);
+                        return;
+                }
+                if (facingRight)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackRightState);
+                        return;
+                }
+                if (!facingRight)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackLeftState);
                         return;
                 }
 
-                if (isDashing)
-                {
-                        PmStateMachine.TransitionTo(PmStateMachine.GroundDashState);
-                        return;
-                }
 
-                if (isJumping)
-                {
-                        PmStateMachine.TransitionTo(PmStateMachine.JumpState);
-                        return;
-                }
-
-                if (!IsGrounded())
-                {
-                        PmStateMachine.TransitionTo(PmStateMachine.AirState);
-                        return;
-                }
-                if (isPerformingMeleeAttack && isHoldingHorizontal)
-                {
-                        //PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackState);
-                        return;
-                }
-            
-                PmStateMachine.TransitionTo(PmStateMachine.IdleState);
+                
+        }
+        
+        public void SpawnAttackHitbox()
+        {
+                //throw new NotImplementedException();
+               
         }
         
         public void DisablePlayerControls()

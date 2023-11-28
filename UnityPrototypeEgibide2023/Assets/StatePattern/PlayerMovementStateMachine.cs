@@ -26,8 +26,11 @@ namespace StatePattern
         public AirDashStartState AirDashStartState;
         public MeleeAttackRightState MeleeAttackRightState;
         public MeleeAttackLeftState MeleeAttackLeftState;
-        public MeleeAttackDownState MeleeAttackDownState;
         public MeleeAttackUpState MeleeAttackUpState;
+        public AirMeleeAttackRightState AirMeleeAttackRightState;
+        public AirMeleeAttackLeftState AirMeleeAttackLeftState;
+        public AirMeleeAttackUpState AirMeleeAttackUpState;
+        public AirMeleeAttackDownState AirMeleeAttackDownState;
         public StunnedState StunnedState;
         
         // Constructor
@@ -44,7 +47,10 @@ namespace StatePattern
             this.MeleeAttackRightState = new MeleeAttackRightState(player);
             this.MeleeAttackLeftState = new MeleeAttackLeftState(player);
             this.MeleeAttackUpState = new MeleeAttackUpState(player);
-            this.MeleeAttackDownState = new MeleeAttackDownState(player);
+            this.AirMeleeAttackRightState = new AirMeleeAttackRightState(player);
+            this.AirMeleeAttackLeftState = new AirMeleeAttackLeftState(player);
+            this.AirMeleeAttackUpState = new AirMeleeAttackUpState(player);
+            this.AirMeleeAttackDownState = new AirMeleeAttackDownState(player);
             this.StunnedState = new StunnedState(player);
         }
         
