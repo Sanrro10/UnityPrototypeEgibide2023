@@ -33,6 +33,7 @@ public class Galtzagorri : EntityControler
     {
         if (CanReachPlayer())
         {
+            // TODO: Animacion Run
             Debug.Log(_waiting);
             CancelInvoke(nameof(Hide));
             _waitingForPlayer = false;
@@ -43,7 +44,8 @@ public class Galtzagorri : EntityControler
             }
             else if(!_hiding)
             {
-                _navMeshAgent.SetDestination(_playerGameObject.transform.position);
+                
+                _navMeshAgent.SetDestination(player.transform.position);
             }
 
             if ((Vector3.Distance(gameObject.transform.position, _playerGameObject.transform.position) < 3) && !_attacking)
@@ -84,6 +86,9 @@ public class Galtzagorri : EntityControler
         int placeToAppear = Random.Range(0, hideouts.Length);
         if (placeToAppear < 0 || placeToAppear >= hideouts.Length) yield break;
         gameObject.transform.position = hideouts[placeToAppear].transform.position;
+        
+        // TODO: Animacion Salir del Escondite
+        
         _hidden = false;
         _hiding = false;
     }
@@ -94,7 +99,10 @@ public class Galtzagorri : EntityControler
         CancelInvoke(nameof(ChasePlayer));
         _navMeshAgent.enabled = false;
         Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
-        rb2D.AddForce(new Vector2((_playerGameObject.transform.position.x - transform.position.x) * 2, 4), ForceMode2D.Impulse);
+        
+        // TODO: Animacion Ataque
+        
+        rb2D.AddForce(new Vector2((player.transform.position.x - transform.position.x) * 2, 4), ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.8f);
         _navMeshAgent.enabled = true;
         ActivateEnemy();
@@ -119,6 +127,7 @@ public class Galtzagorri : EntityControler
 
     public void ActivateEnemy()
     {
+        // TODO: Animacion Salir del Escondite
         CancelInvoke(nameof(ChasePlayer));
         InvokeRepeating(nameof(ChasePlayer), 0f, 0.1f);
         scriptHideout.ResetHit();
@@ -133,6 +142,7 @@ public class Galtzagorri : EntityControler
     {
         if (Vector3.Distance(other.gameObject.transform.position, _navMeshAgent.destination) < 1 && _hiding)
         {
+            // TODO: Animacion Idle
             _hiding = false;
             _hidden = true;
         }
@@ -140,7 +150,7 @@ public class Galtzagorri : EntityControler
     
     public override void OnDeath()
     {
-        //TO-DO Activar animacion de muerte y logica relacionada
+        // TODO Activar animacion de muerte y logica relacionada
         
         Invoke(nameof(DestroyThis),2f);
         

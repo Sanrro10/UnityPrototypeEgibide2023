@@ -33,6 +33,9 @@ public class Gizotso : EntityControler
     
     private void PassiveBehavior()
     {
+        
+        // TODO: Animacion Walk
+        
         if (attacking) return;
         _navMeshAgent.SetDestination(_goingRight ? _rightLimitPosition : _leftLimitPosition);
         if (Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
@@ -48,30 +51,42 @@ public class Gizotso : EntityControler
 
     public void Attack()
     {
-        StartCoroutine(nameof(Cooldown));
+        if (!attacking)
+        {
+            StartCoroutine(nameof(Cooldown));
+        }
     }
 
     private IEnumerator Cooldown()
     {
-        _navMeshAgent.enabled = false;
+        Debug.Log("ENTRA EN RANGO");
+        _navMeshAgent.isStopped = true;
         attacking = true;
+
+        Debug.Log("PRE ATAQUE");
+        // TODO: Animacion Pre-Ataque
         
-        /* todo:
-            Aqui iría el inicio de una animación en la que el gizotso te pega.
-         */
+        yield return new WaitForSeconds(1f);
         
-        yield return new WaitForSeconds(2.5f);
-        if (transform.gameObject.GetComponentInChildren<GizotsoActiveZone>().inside)
-        {
-            transform.gameObject.GetComponentInChildren<GizotsoActiveZone>().Hit();
-        }
-        _navMeshAgent.enabled = true;
+        Debug.Log("ATAQUE");
+        // TODO: Animacion Ataque
+
+        GameObject attackZone = gameObject.transform.Find("AttackZone").gameObject;
+        attackZone.SetActive(true);
+        GetComponentInChildren<GizotsoAttackZone>().Attack();
+        yield return new WaitForSeconds(1.5f);
+        attackZone.SetActive(true);
+        GetComponentInChildren<GizotsoAttackZone>().Attack();
+        yield return new WaitForSeconds(0.5f);
+        _navMeshAgent.isStopped = false;
+        
+        yield return new WaitForSeconds(3f);
         attacking = false;
     }
     
     public override void OnDeath()
     {
-        //TO-DO Activar animacion de muerte y logica relacionada
+        // TODO Animacion Muerte
         
         Invoke(nameof(DestroyThis),2f);
         
