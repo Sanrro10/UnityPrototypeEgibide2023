@@ -60,9 +60,9 @@ public class MagicCircle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && other.gameObject.GetComponent<PlayerController>() != null)
+        if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<HealthComponent>().SendMessage("RemoveHealth", _witchData.magicCircleDamage, SendMessageOptions.RequireReceiver);
+            _playerRef.gameObject.GetComponent<HealthComponent>().SendMessage("RemoveHealth", _witchData.magicCircleDamage, SendMessageOptions.RequireReceiver);
         }
     }
 }

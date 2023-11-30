@@ -35,12 +35,13 @@ public class EvilMissile : MonoBehaviour
         transform.rotation = neededRotation;
     }
     
+    /*The missile hits something, if it is the player, damage them, else destroy de missile*/
     void OnCollisionEnter2D(Collision2D collision)
     {
         /*Temporary Damage Logic*/
-        if (collision.collider.CompareTag("Player"))
+        if (collision.collider.gameObject.CompareTag("Player"))
         {   
-            collision.collider.gameObject.GetComponent<HealthComponent>().SendMessage("RemoveHealth", _witchData.missileDamage, SendMessageOptions.RequireReceiver);
+            _playerRef.gameObject.GetComponent<HealthComponent>().SendMessage("RemoveHealth", _witchData.missileDamage, SendMessageOptions.RequireReceiver);
         }
         //Explode();
         Destroy(gameObject);

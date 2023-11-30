@@ -19,10 +19,8 @@ public class LWActivation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Detecto Cosas");
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Cuidado, es el heroe");
             gameObject.GetComponentInParent<LandWitch>().SendMessage("SetActiveState" , true, SendMessageOptions.RequireReceiver);
         }
     }
@@ -32,7 +30,6 @@ public class LWActivation : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //End the timer that throws potions, but the tp one, once activated, will follow the player periodically
-            Debug.Log("Sale el heroe");
             gameObject.GetComponentInParent<LandWitch>().SendMessage("SetActiveState" , false , SendMessageOptions.RequireReceiver);
             
         }

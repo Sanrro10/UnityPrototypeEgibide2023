@@ -15,6 +15,7 @@ public class LandWitch : EntityControler
     private bool _isLaunchingMissiles = false;
     private bool _canMagicCircle = false;
     private bool _isLaunchingMagicCircles = false;
+    private bool _hasBeenActivated = false;
     
     private GameObject _playerRef;
     private SpriteRenderer _spriteWitch;
@@ -55,13 +56,17 @@ public class LandWitch : EntityControler
         {
             InvokeRepeating(nameof(TurnToPlayer) , 1 , 1);
             InvokeRepeating(nameof(WitchAttack),0,0.5f);
-            Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);
+            if (!_hasBeenActivated)
+            {
+                _hasBeenActivated = true;
+                Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);    
+            }
         }
         else
         {
             CancelInvoke(nameof(TurnToPlayer));
             CancelInvoke(nameof(WitchAttack));
-            CancelInvoke(nameof(WitchMainTeleport));
+            //CancelInvoke(nameof(WitchMainTeleport));
         }
     }
     /*Tells the LandWitch that she can perform her missile attack(or not)*/
@@ -130,7 +135,7 @@ public class LandWitch : EntityControler
         _isLaunchingMissiles = true;
         _isLaunchingMagicCircles = false;
         CancelInvoke(nameof(LaunchMagicCircle));
-        StopCoroutine(nameof(WitchFastTeleport));
+        //CancelInvoke(nameof(WitchFastTeleport));
         InvokeRepeating(nameof(LaunchEvilMissile),0, landWitchData.missileCooldown);
     }
 
@@ -139,7 +144,7 @@ public class LandWitch : EntityControler
         _isLaunchingMagicCircles = true;
         _isLaunchingMissiles = false;
         CancelInvoke(nameof(LaunchEvilMissile));
-        StopCoroutine(nameof(WitchFastTeleport));
+        //CancelInvoke(nameof(WitchFastTeleport));
         InvokeRepeating(nameof(LaunchMagicCircle) , 0, landWitchData.magicCircleCooldown);
             
     }
@@ -148,25 +153,28 @@ public class LandWitch : EntityControler
     {
         _isLaunchingMissiles = false;
         _isLaunchingMagicCircles = false;
-        StopCoroutine(nameof(WitchFastTeleport));
-        StartCoroutine(nameof(WitchFastTeleport),0);
+        //CancelInvoke(nameof(WitchFastTeleport));
+        //Invoke(nameof(WitchFastTeleport),landWitchData.fastTeleportationCooldown);
     }
 
     /*LandWitch Main Teleport, continously working*/
     private void WitchMainTeleport()
     {
+        Debug.Log("Me voy a hacer tp jijijii");
+        CancelInvoke(nameof(LaunchEvilMissile));
+        CancelInvoke(nameof(LaunchMagicCircle));
         CheckForTeleportPlaces();
         Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);
+        Debug.Log("Me he tpado jijijijiji");
     }
     
     /*LandWitch Fast Teleport, cancels temporarily main teleport*/
-    private void WitchFastTeleport()
+    /*private void WitchFastTeleport()
     {
-        //TODO:
-        //throw new NotImplementedException();
-
-        yield return new WaitForSeconds(landWitchData.fastTeleportationCooldown);
-    }
+        CancelInvoke(nameof(WitchMainTeleport));
+        CheckForTeleportPlaces(false);
+        Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);
+    }*/
 
     private void LaunchEvilMissile()
     {
@@ -191,8 +199,10 @@ public class LandWitch : EntityControler
 
     private void CheckForTeleportPlaces()
     {
+        
+
         var plusMinus = RandomSign();
-        var checkingPosition = GetCheckingPositionPositionCoords(plusMinus);
+        var checkingPosition = GetCheckingPositionCoords(plusMinus);
         
         var leftLimit = gameObject.transform.position.x - 5;
         var rightLimit = gameObject.transform.position.y + 5;
@@ -200,7 +210,7 @@ public class LandWitch : EntityControler
         byte limitsChecked = 0;
         
         bool placeFound = false;
-        RaycastHit2D possiblePos;
+        RaycastHit2D possiblePos  = Physics2D.Raycast(checkingPosition, Vector2.down);
         
         while (!placeFound)
         {
@@ -212,28 +222,35 @@ public class LandWitch : EntityControler
             }
             else
             {
-                /*A ray is thrown downwards to strike all of the wrongdoers of the fantasy world of Akulapakua*/
+                /*A ray is thrown downwards to strike all of the wrongdoers of the fantasy world of Akulapakua
+                 Or to check if a teleport is possible*/
                 possiblePos = Physics2D.Raycast(checkingPosition, Vector2.down);
-                if (possiblePos.collider != null && !possiblePos.collider.gameObject.CompareTag("Player"))
+                var checkForRoom = Physics2D.Raycast(possiblePos.point, Vector2.up);
+                var spaceToTP = checkForRoom.point.y - possiblePos.point.y;
+                if (possiblePos.collider != null && !possiblePos.collider.gameObject.CompareTag("Player")
+                                                 && possiblePos.collider.gameObject.CompareTag("Floor")
+                                                 && spaceToTP >= 3)
                 {
                     placeFound = true;
                 }
                 else
                 {
-                    if (checkingPosition.x == leftLimit || checkingPosition.x == rightLimit)
+                    if ((plusMinus == -1 && checkingPosition.x > leftLimit) || 
+                        (plusMinus == 1 && checkingPosition.x < rightLimit))
                     {
                         limitsChecked++;
                         plusMinus *= -1;
-                        checkingPosition = GetCheckingPositionPositionCoords((plusMinus));
+                        checkingPosition = GetCheckingPositionCoords((plusMinus));
                     }
                     else
                     {
-                        checkingPosition.x = checkingPosition.x + (3 * plusMinus);
+                        Debug.DrawLine(checkingPosition, possiblePos.point, Color.magenta, 0.5f);
+                        checkingPosition.x += (3 * -plusMinus);
                     }
                 }
             }
         }
-
+        
         Vector2 posToTeleport = new Vector2(possiblePos.point.x, possiblePos.point.y);
         
         Teleport(posToTeleport);
@@ -246,7 +263,7 @@ public class LandWitch : EntityControler
     }
     
     /*Returns the position to check in order to teleport*/
-    private Vector2 GetCheckingPositionPositionCoords(int sign)
+    private Vector2 GetCheckingPositionCoords(int sign)
     {
         var startingPositionX = gameObject.transform.position.x +(20 * sign);
         var startingPositionY = gameObject.transform.position.y + 10;
