@@ -16,15 +16,15 @@ public class LandWitch : EntityControler
     private bool _canMagicCircle = false;
     private bool _isLaunchingMagicCircles = false;
     private bool _hasBeenActivated = false;
+
+    private GameObject[] _puntosTeleport;
+    private int _lastTeleportPoint;
     
     private GameObject _playerRef;
     private SpriteRenderer _spriteWitch;
     
     public GameObject witchMissile;
     public GameObject witchMagicCircle;
-
-    
-    /*Ideas Witch, make so that if the player stays longer than x time near the witch, she TPs*/
     
     // Start is called before the first frame update
     void Start()
@@ -33,23 +33,14 @@ public class LandWitch : EntityControler
         gameObject.GetComponent<HealthComponent>().SendMessage("Set", landWitchData.health, SendMessageOptions.RequireReceiver);
         _playerRef = GameController.Instance.GetPlayerGameObject();
         _spriteWitch = gameObject.GetComponent<SpriteRenderer>();
+        _puntosTeleport = GameObject.FindGameObjectsWithTag("WitchTeleport");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void FixedUpdate()
-    {
-        
-    }
+    
     /*Activation/Deactivation of the LandWitch, it starts the function needed to attack
-     and starts tracking the player which means, turning towards it*/
+     and starts tracking the player which means, turning towards it[Called Externally]*/
     public void SetActiveState(bool state)
     {
-        //Invoke or Uninvoke attack patterns
+        //Invoke or Cancel attack patterns
         //Turn towards player
         _isActive = state;
         if (_isActive)
@@ -66,15 +57,14 @@ public class LandWitch : EntityControler
         {
             CancelInvoke(nameof(TurnToPlayer));
             CancelInvoke(nameof(WitchAttack));
-            //CancelInvoke(nameof(WitchMainTeleport));
         }
     }
-    /*Tells the LandWitch that she can perform her missile attack(or not)*/
+    /*Tells the LandWitch that she can perform her missile attack(or not)[Called Externally]*/
     public void SetMissilePossible(bool state)
     {
         _canLaunchMissile = state;
     }
-    /*Tells the LandWitch that she can perform her magic circle attack(or not)*/
+    /*Tells the LandWitch that she can perform her magic circle attack(or not)[Called Externally]*/
     public void SetMagicCirclePossible(bool state)
     {
         _canMagicCircle = state;
@@ -97,8 +87,6 @@ public class LandWitch : EntityControler
     /*Handler of the logic of the LandWitch's attack patterns*/
     private void WitchAttack()
     {
-        //JIJIJIJIJI-audio laugh
-        
         //Launch Missiles
         if (_canLaunchMissile && !_isLaunchingMissiles && (!_canMagicCircle))
         {
@@ -112,16 +100,16 @@ public class LandWitch : EntityControler
         }
         
         //Activate Fast teleport
-        if (_isActive && !_canLaunchMissile && !_canMagicCircle)
+        if (!_canLaunchMissile && !_canMagicCircle)
         {
             AccionateFastTeleportLogic();
         }
-
+        //Cancel activation of missile if can't launch it
         if (!_canLaunchMissile && !_isLaunchingMissiles)
         {
             CancelInvoke(nameof(LaunchEvilMissile));
         }
-
+        //Cancel activation of MagicCircle if can't launch it
         if (!_canMagicCircle && !_isLaunchingMagicCircles)
         {
             CancelInvoke(nameof(LaunchMagicCircle));
@@ -130,15 +118,16 @@ public class LandWitch : EntityControler
 
     }
 
+    /*Manages the logic and variables needed to launch missiles and cancels other attacks*/
     private void AccionateMissileLogic()
     {
         _isLaunchingMissiles = true;
         _isLaunchingMagicCircles = false;
         CancelInvoke(nameof(LaunchMagicCircle));
-        //CancelInvoke(nameof(WitchFastTeleport));
         InvokeRepeating(nameof(LaunchEvilMissile),0, landWitchData.missileCooldown);
     }
 
+    /*Manages the logic and variables needed to launch MagicCircles and cancels other attacks*/
     private void AccionateMagicCircleLogic()
     {
         _isLaunchingMagicCircles = true;
@@ -149,55 +138,68 @@ public class LandWitch : EntityControler
             
     }
 
+    /*Invokes the witch's fast teleport*/
     private void AccionateFastTeleportLogic()
     {
-        _isLaunchingMissiles = false;
-        _isLaunchingMagicCircles = false;
-        //CancelInvoke(nameof(WitchFastTeleport));
-        //Invoke(nameof(WitchFastTeleport),landWitchData.fastTeleportationCooldown);
+        CancelInvoke(nameof(WitchFastTeleport));
+        Invoke(nameof(WitchFastTeleport),landWitchData.fastTeleportationCooldown);
     }
 
-    /*LandWitch Main Teleport, continously working*/
+    /*Executes the Witch's Main Teleport, continuously working*/
     private void WitchMainTeleport()
     {
-        Debug.Log("Me voy a hacer tp jijijii");
         CancelInvoke(nameof(LaunchEvilMissile));
         CancelInvoke(nameof(LaunchMagicCircle));
-        CheckForTeleportPlaces();
+        CheckForTeleportPoints();
         Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);
-        Debug.Log("Me he tpado jijijijiji");
     }
     
-    /*LandWitch Fast Teleport, cancels temporarily main teleport*/
-    /*private void WitchFastTeleport()
+    /*Executes Fast Teleport, cancels temporarily main teleport*/
+    private void WitchFastTeleport()
     {
         CancelInvoke(nameof(WitchMainTeleport));
-        CheckForTeleportPlaces(false);
+        CheckForTeleportPoints();
         Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);
-    }*/
-
+    }
+    
+    /*Instantiates a new Missile*/
     private void LaunchEvilMissile()
     {
-
-            Debug.Log("Missile Launch");
-            
             Instantiate(witchMissile, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 2), Quaternion.identity);
-            //Invoke(nameof(PotionCooldown),1);
-            
-       
     }
 
+    /*Instantiates a new MagicCircle*/
     private void LaunchMagicCircle()
     {
-        //TODO:
-        Debug.Log("Magic Circle Launch");
-
         Instantiate(witchMagicCircle, new Vector2(_playerRef.transform.position.x, _playerRef.transform.position.y), Quaternion.identity);
-        //throw new NotImplementedException();
     }
 
+    /*Checks for prepositioned teleport points, and moves the witch to one of them at random,
+     avoiding the last one that was moved to*/
+    private void CheckForTeleportPoints()
+    {
 
-    private void CheckForTeleportPlaces()
+        var numberOfTeleportPoint = _puntosTeleport.Length;
+        GameObject newTeleportPoint = new GameObject();
+        bool puntoEncontrado = false;
+        
+        while (!puntoEncontrado)
+        {
+            var newRandom = (int)(Random.Range(0f, numberOfTeleportPoint));
+            newTeleportPoint = _puntosTeleport[newRandom];
+            if (newRandom != _lastTeleportPoint)
+            {
+                puntoEncontrado = true;
+            }
+        }
+
+
+        gameObject.transform.position = newTeleportPoint.transform.position;
+
+    }
+    
+    /*NOT IN USE*/
+    /*private void CheckForTeleportPlaces()
     {
         
 
@@ -214,7 +216,7 @@ public class LandWitch : EntityControler
         
         while (!placeFound)
         {
-            /*If no position is returned after checking both sides, it will teleport to itself*/
+            /*If no position is returned after checking both sides, it will teleport to itself#1#
             if (limitsChecked == 2)
             {
                 placeFound = true;
@@ -223,7 +225,7 @@ public class LandWitch : EntityControler
             else
             {
                 /*A ray is thrown downwards to strike all of the wrongdoers of the fantasy world of Akulapakua
-                 Or to check if a teleport is possible*/
+                 Or to check if a teleport is possible#1#
                 possiblePos = Physics2D.Raycast(checkingPosition, Vector2.down);
                 var checkForRoom = Physics2D.Raycast(possiblePos.point, Vector2.up);
                 var spaceToTP = checkForRoom.point.y - possiblePos.point.y;
@@ -256,13 +258,13 @@ public class LandWitch : EntityControler
         Teleport(posToTeleport);
 
     }
-    /*Returns 1 or -1*/
+    /*Returns 1 or -1#1#
     public int RandomSign()
     {
         return (Random.value > 0.5f ? 1 : -1);
     }
     
-    /*Returns the position to check in order to teleport*/
+    /*Returns the position to check in order to teleport#1#
     private Vector2 GetCheckingPositionCoords(int sign)
     {
         var startingPositionX = gameObject.transform.position.x +(20 * sign);
@@ -271,20 +273,10 @@ public class LandWitch : EntityControler
         return new Vector2(startingPositionX, startingPositionY);
     }
 
-    /*Teleports the witch*/
+    /*Teleports the witch#1#
     private void Teleport(Vector2 posToTeleport)
     {
         gameObject.transform.position = posToTeleport;
-    }
-
-    /*Example timer
-
-             public IEnumerator GroundedCooldown()
-        {
-                feetBoxCollider.enabled = false;
-                yield return new WaitForSeconds(0.2f);
-                feetBoxCollider.enabled = true;
-        }
-
-    */
+    }*/
+    
 }
