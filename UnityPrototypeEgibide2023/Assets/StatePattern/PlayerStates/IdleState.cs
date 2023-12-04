@@ -35,7 +35,7 @@ namespace StatePattern.PlayerStates
                 return;
             }
 
-            if (player.isJumping)
+            if (player.isPerformingJump)
             {
                 player.PmStateMachine.TransitionTo(player.PmStateMachine.JumpState);
                 return;

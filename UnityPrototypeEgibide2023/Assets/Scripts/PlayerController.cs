@@ -24,19 +24,20 @@ public class PlayerController: EntityControler
         // internal state controls
         public bool isHoldingHorizontal = false;
         public bool isHoldingVertical = false;
-        public bool isJumping = false;
+        public bool isPerformingJump = false;
         public bool isDashing = false;
         public bool onDJump = false;
         public bool facingRight = true;
         public bool isCollidingLeft = false;
         public bool isCollidingRight = false;
         public bool isPerformingMeleeAttack = false;
+        public bool isPerformingDash;
         public bool canAttack = true;
         public float attackDuration;
         public float meleeAttackCooldown;
         public float meleeAttackDuration;
         public float meleeAttackStart;
-        
+        public float jumpDuration;
         
         public float friction;
         public bool isStunned = false;
@@ -111,12 +112,12 @@ public class PlayerController: EntityControler
                 _controls.GeneralActionMap.VerticalMovement.started += ctx =>  isHoldingVertical = true;
                 _controls.GeneralActionMap.VerticalMovement.canceled += ctx =>  isHoldingVertical = false;
                 //Jump
-                _controls.GeneralActionMap.Jump.started += ctx => isJumping = true;
-                _controls.GeneralActionMap.Jump.canceled += ctx => isJumping = false;
+                _controls.GeneralActionMap.Jump.started += ctx => isPerformingJump = true;
+                _controls.GeneralActionMap.Jump.canceled += ctx => isPerformingJump = false;
 
                 //Dash -> Add Force in the direction the player is facing
-                _controls.GeneralActionMap.Dash.performed += ctx => isDashing = true;
-                
+                _controls.GeneralActionMap.Dash.performed += ctx => isPerformingDash = true;
+                _controls.GeneralActionMap.Dash.canceled += ctx => isPerformingDash = false;
                 //MeleeAttack
                 _controls.GeneralActionMap.Attack.performed += ctx =>  isPerformingMeleeAttack = true;
                 _controls.GeneralActionMap.Attack.canceled += ctx =>  isPerformingMeleeAttack = false;
@@ -133,7 +134,8 @@ public class PlayerController: EntityControler
                 _dashCurve = playerData.dashCurve;
                 maxFallSpeed = playerData.maxFallSpeed;
                 baseGravity = _rigidbody2D.gravityScale;
-
+                jumpForce = playerData.jumpPower;
+                dashSpeed = playerData.dashSpeed;
                 // Pause
                 _controls.GeneralActionMap.Pause.performed += ctx => GameController.Instance.Pause();
                 
@@ -258,7 +260,7 @@ public class PlayerController: EntityControler
 
         public bool CanDash()
         {
-                if (!onDashCooldown && isDashing) 
+                if (!onDashCooldown && isPerformingDash) 
                 {
                         return true;
                 }
@@ -515,7 +517,7 @@ public class PlayerController: EntityControler
         public IEnumerator MaxJumpDuration()
         {
                 yield return new WaitForSeconds(playerData.jumpDuration);
-                isJumping = false;
+                isPerformingJump = false;
 
         }
 

@@ -34,13 +34,13 @@ namespace StatePattern.PlayerStates
             
             // if we press the dash button, transition to the dash state
 
-            if (!player.isJumping)
+            if (!player.isPerformingJump)
             {
                 player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
                 return;
             }
             
-            if (player.isDashing)
+            if (player.isPerformingDash)
             {
                 player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
                 return;
@@ -62,7 +62,7 @@ namespace StatePattern.PlayerStates
         {
             // Debug.Log("Exiting Jump State");
             player.CancelInvoke(nameof(player.Jump));
-            player.isJumping = false;
+            player.isPerformingJump = false;
         }
     }
 }

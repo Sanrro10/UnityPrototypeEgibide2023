@@ -65,7 +65,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.75}
+  m_Offset: {x: -1.4086342, y: -5.9697247}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -76,7 +76,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75, y: 0.1}
+  m_Size: {x: 5.004987, y: 0.35627317}
   m_EdgeRadius: 0
 --- !u!114 &2695071535495535820
 MonoBehaviour:
@@ -208,8 +208,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1.5}
+  m_Offset: {x: -2.067692, y: -0.7186846}
+  m_Size: {x: 5.6289263, y: 20.47708}
   m_Direction: 0
 --- !u!1 &4722350895417263543
 GameObject:
@@ -276,7 +276,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.15}
+  m_Offset: {x: -3.161268, y: -0.48718596}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -287,7 +287,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 1}
+  m_Size: {x: 0.32450914, y: 15.7030325}
   m_EdgeRadius: 0
 --- !u!114 &2803667331601823779
 MonoBehaviour:
@@ -334,8 +334,8 @@ Transform:
   m_GameObject: {fileID: 5937788470338340945}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -9.0097, y: -9.0097, z: 0}
+  m_LocalScale: {x: 0.12016376, y: 0.12016376, z: 0.12016376}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 348339756065992962}
@@ -386,7 +386,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 84ce2f114ad12bd4ebafc77060220324, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d8733541fb7ee140b588ffd077acd8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -511,10 +511,11 @@ MonoBehaviour:
   meleeAttackCooldown: 0
   meleeAttackDuration: 0
   meleeAttackStart: 0
+  jumpDuration: 0
   friction: 0
   isStunned: 0
   horizontalSpeed: 0
-  dashSpeed: 10
+  dashSpeed: 30
   jumpForce: 8
   baseGravity: 0
   dashCurve:
@@ -746,7 +747,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.15}
+  m_Offset: {x: 0.50013757, y: -0.48813915}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -757,7 +758,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 1}
+  m_Size: {x: 0.29019165, y: 15.696573}
   m_EdgeRadius: 0
 --- !u!114 &3712546547639152366
 MonoBehaviour:
