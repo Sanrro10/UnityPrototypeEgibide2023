@@ -9,6 +9,7 @@ public class Arrano : EntityControler
 {
     // Variable para controlar la velocidad
     [SerializeField] private float flyingSpeed;
+    private float _originalFS;
     
     // Referencia al jugador
     [SerializeField] private GameObject player;
@@ -21,6 +22,9 @@ public class Arrano : EntityControler
     
     // Cooldown del ataque
     [SerializeField] private float attackCooldown;
+    
+    // Variable que controla la rotación
+    private bool _rotated;
     
     // Posiciones entre las que vuela
     private Vector3 _leftLimitPosition;
@@ -50,6 +54,8 @@ public class Arrano : EntityControler
        
         _direction = _rightLimitPosition;
         _yPos = transform.position.y;
+
+        _originalFS = flyingSpeed;
         
         //Set the Health Points
         gameObject.GetComponent<HealthComponent>().SendMessage("Set",flyingEnemyData.health, SendMessageOptions.RequireReceiver);
@@ -69,16 +75,14 @@ public class Arrano : EntityControler
         {
             _facingRight = true;
             _direction = _rightLimitPosition;
-            //StartCoroutine(nameof(TurnAround));
-            TurnAround();
+            StartCoroutine(nameof(Rotate));
         }
         
         if (Math.Abs(transform.position.x - _rightLimitPosition.x) < 0.5)
         {
-            _direction = _leftLimitPosition;
             _facingRight = false;
-            //StartCoroutine(nameof(TurnAround));
-            TurnAround();
+            _direction = _leftLimitPosition;
+            StartCoroutine(nameof(Rotate));
         }
         
         transform.position = Vector2.MoveTowards(transform.position, new Vector2(_direction.x, _yPos), flyingSpeed);
@@ -106,7 +110,7 @@ public class Arrano : EntityControler
         if (hitData.collider == null) return;
         if (hitData.collider.CompareTag("Player"))
         {
-            Attack();
+            //Attack();
         }
 
     }
@@ -145,7 +149,15 @@ public class Arrano : EntityControler
     // Metodo que se mueva hacia abajo
     private void StartMovingDown()
     {
-        Move(transform.position, new Vector2(_posX, _endPosition.y), flyingSpeed * 1.2f);
+        if (_facingRight)
+        {
+            Move(transform.position, new Vector2(transform.position.x + 3, _endPosition.y), flyingSpeed * 1.2f);
+        }
+        else
+        {
+            Move(transform.position, new Vector2(transform.position.x - 3, _endPosition.y), flyingSpeed * 1.2f);
+        }
+        
     }
     
     // Corutina para ir en linea recta hasta atravesar al jugador
@@ -157,11 +169,11 @@ public class Arrano : EntityControler
         InvokeRepeating(nameof(StartMovingTowards), 0, 0.01f);
         if (_facingRight)
         {
-            yield return new WaitUntil(() => Math.Abs((transform.position.x - 10) - _endPosition.x) <= 0.5f);
+            yield return new WaitUntil(() => Math.Abs((transform.position.x - 8) - _endPosition.x) <= 0.5f);
         }
         else
         {
-            yield return new WaitUntil(() => Math.Abs(_endPosition.x - (transform.position.x + 10)) <= 0.5f);
+            yield return new WaitUntil(() => Math.Abs(_endPosition.x - (transform.position.x + 8)) <= 0.5f);
         }
         
         CancelInvoke(nameof(StartMovingTowards));
@@ -173,11 +185,11 @@ public class Arrano : EntityControler
     {
         if (_facingRight)
         {
-            Move(transform.position, new Vector2(_endPosition.x * 1.5f, transform.position.y), flyingSpeed);
+            Move(transform.position, new Vector2(_endPosition.x * 1.5f, transform.position.y), flyingSpeed * 0.8f);
         }
         else
         {
-            Move(transform.position, new Vector2(_endPosition.x * -1.5f, transform.position.y), flyingSpeed);
+            Move(transform.position, new Vector2(_endPosition.x * -1.5f, transform.position.y), flyingSpeed * 0.8f);
         }
         
     }
@@ -199,7 +211,19 @@ public class Arrano : EntityControler
     // Metodo para que se vuelva hacia arriba
     private void StartMovingUp()
     {
-        Move(transform.position, new Vector2(transform.position.x, _startPosition.y), flyingSpeed * 1.2f);
+        float newEndPosition;
+        
+        if (_facingRight)
+        {
+            newEndPosition = _endPosition.x + (_endPosition.x - _startPosition.x);
+        }
+        else
+        {
+            newEndPosition = _endPosition.x - (_startPosition.x - _endPosition.x);
+        }
+        
+        Move(transform.position, new Vector2(newEndPosition, transform.position.y + 3), flyingSpeed * 0.6f);
+        
     }
     
     // Corutina que espera X segundos hasta que vuelve a checkear si ataca al jugador
@@ -211,29 +235,35 @@ public class Arrano : EntityControler
     }
         
     
-    // Corutina para darse la vuelta
-    // TODO: HACERLA NO FUNCIONA
-    /*private IEnumerator TurnAround()
+    // Corutina para girar
+    private IEnumerator Rotate()
     {
-
-        /*while(Mathf.Abs(this.transform.rotation.eulerAngles.y - (_facingRight ? 180 : 0)) > 0.3f)
-        {
-            this.transform.Rotate(new Vector3(0, 1, 0), 180f * Time.deltaTime);
-            yield return Time.deltaTime;
-        }#1#
-        
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
-        yield return new WaitForSeconds(0.1f);
-    }*/
+        flyingSpeed *= 0.6f;
+        _rotated = false;
+        CancelInvoke(nameof(TurnAround));
+        InvokeRepeating(nameof(TurnAround),0f, 0.1f);
+        yield return new WaitUntil(() => _rotated);
+        CancelInvoke(nameof(TurnAround));
+        flyingSpeed = _originalFS;
+    }
 
     // Metodo temporal que hace que se de la vuelta (bruscamente)
     private void TurnAround()
     {
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        if (_facingRight)
+        {
+            transform.eulerAngles = new Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y + 15, transform.rotation.eulerAngles.z);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y - 15, transform.rotation.eulerAngles.z);
+        }
+        
+        
+        if (transform.rotation.eulerAngles.y % 180 == 0 || transform.rotation.eulerAngles.y == 0)
+        {
+            _rotated = true;
+        } 
     }
 
     public override void OnDeath()
