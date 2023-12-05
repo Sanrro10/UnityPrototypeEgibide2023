@@ -7,14 +7,22 @@ using UnityEngine.AI;
 
 public class Gizotso : EntityControler
 {
-
+    // Datos del enemigo
     [SerializeField] private PassiveEnemyData passiveEnemyData;
+    
+    // Variable para que no ande ni entre en bucle de ataques mientras está atacando
     public bool attacking;
+    
+    // Posiciones de los límites entre los que andas
     private Vector3 _leftLimitPosition;
     private Vector3 _rightLimitPosition;
+    
+    // Variable para controlar la direccion
     private bool _goingRight = true;
+    
+    // Variable para acceder al Navmesh desde todos lados
     private NavMeshAgent _navMeshAgent;
-    // Start is called before the first frame update
+    
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -41,6 +49,7 @@ public class Gizotso : EntityControler
         if (Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
         {
             _goingRight = true;
+            return;
         }
         
         if (Math.Abs(transform.position.x - _rightLimitPosition.x) < 0.5)
@@ -59,29 +68,55 @@ public class Gizotso : EntityControler
 
     private IEnumerator Cooldown()
     {
-        Debug.Log("ENTRA EN RANGO");
         _navMeshAgent.isStopped = true;
         attacking = true;
-
-        Debug.Log("PRE ATAQUE");
-        // TODO: Animacion Pre-Ataque
         
+        // TODO: Animacion Pre-Ataque
         yield return new WaitForSeconds(1f);
         
-        Debug.Log("ATAQUE");
         // TODO: Animacion Ataque
-
         GameObject attackZone = gameObject.transform.Find("AttackZone").gameObject;
+        
+        // TODO --------------------------------------------------------------------------
+        // CUADRAR TIEMPOS CON LA ANIMACION
+        
+        // Primer golpe 
         attackZone.SetActive(true);
-        GetComponentInChildren<GizotsoAttackZone>().Attack();
-        yield return new WaitForSeconds(1.5f);
-        attackZone.SetActive(true);
+        InvokeRepeating(nameof(Dash),0f,0.05f);
         GetComponentInChildren<GizotsoAttackZone>().Attack();
         yield return new WaitForSeconds(0.5f);
+        CancelInvoke(nameof(Dash));
+        
+        // Segundo golpe
+        attackZone.SetActive(true);
+        InvokeRepeating(nameof(Dash),0f,0.05f);
+        GetComponentInChildren<GizotsoAttackZone>().Attack();
+        yield return new WaitForSeconds(0.5f);
+        CancelInvoke(nameof(Dash));
+        
+        // TODO: Animacion de stun
+        // TODO: Tiempo que va a estar stuneado
+        yield return new WaitForSeconds(2f);
+        
+        // TODO: Animacion idle
+        
         _navMeshAgent.isStopped = false;
         
+        // Tiempo hasta que puede hacer otro ataque para que no se quede en bucle atacando
         yield return new WaitForSeconds(3f);
         attacking = false;
+    }
+
+    private void Dash()
+    {
+        if (_goingRight)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + 0.1f, transform.position.y), 0.1f);
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x - 0.1f, transform.position.y), 0.1f);
+        }
     }
     
     public override void OnDeath()

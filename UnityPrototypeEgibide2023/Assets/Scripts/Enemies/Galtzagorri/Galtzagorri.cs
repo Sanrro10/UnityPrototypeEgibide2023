@@ -4,23 +4,44 @@ using UnityEngine.AI;
 
 public class Galtzagorri : EntityControler
 {
+    // Referencia del jugador
     private GameObject _playerGameObject;
+    
+    // Datos del Galtzagorri
     [SerializeField] private BasicEnemyData basicEnemyData;
+    
+    // Array de escondites
     [SerializeField] private GameObject[] hideouts;
 
-    [SerializeField]
-    private HideoutZone scriptHideout;
+    // Referencia del script para los escondites
+    [SerializeField] private HideoutZone scriptHideout;
+    
+    // Referencia para que el Navmesh sea accesible desde todos lados
     private NavMeshAgent _navMeshAgent;
+    
+    // Variable para que espere X segundos al aparecer
     private bool _waiting;
+    
+    // Variable para que espere X segundos hasta irse a un escondite (por si el Player está saltando, etc)
     private bool _waitingForPlayer;
+    
+    // Variable para que vaya a la última posición conocida del jugador
     private Vector3 _lastAvailablePosition;
+    
+    // Variable que controla si está en proceso de esconderse
     private bool _hiding;
+    
+    // Variable que controla si está escondido
     private bool _hidden;
+    
+    // Variable que controla si setá atacando
     private bool _attacking;
-    // Start is called before the first frame update
+
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        
+        // Añadir una aceleración random para que no haya problemas de que se stackeen
         _navMeshAgent.acceleration = Random.Range(15, 30);
 
         _playerGameObject = GameController.Instance.GetPlayerGameObject();
@@ -29,12 +50,12 @@ public class Galtzagorri : EntityControler
         gameObject.GetComponent<HealthComponent>().SendMessage("Set", basicEnemyData.health);
     }
 
+    // Metodo para perseguir al Player
     private void ChasePlayer()
     {
         if (CanReachPlayer())
         {
             // TODO: Animacion Run
-            Debug.Log(_waiting);
             CancelInvoke(nameof(Hide));
             _waitingForPlayer = false;
             if (_waiting) return;
@@ -45,7 +66,7 @@ public class Galtzagorri : EntityControler
             else if(!_hiding)
             {
                 
-                _navMeshAgent.SetDestination(player.transform.position);
+                _navMeshAgent.SetDestination(_playerGameObject.transform.position);
             }
 
             if ((Vector3.Distance(gameObject.transform.position, _playerGameObject.transform.position) < 3) && !_attacking)
@@ -67,6 +88,7 @@ public class Galtzagorri : EntityControler
         }
     }
     
+    // Metodo que elige un escondite random y va hacia el
     private void Hide()
     {
         if (_hiding || _hidden) return;
@@ -78,6 +100,7 @@ public class Galtzagorri : EntityControler
         
     }
 
+    // Metodo que elige un escondite random para aparecer
     private IEnumerator Appear()
     {
         _waiting = true;
@@ -93,6 +116,7 @@ public class Galtzagorri : EntityControler
         _hiding = false;
     }
 
+    // Metodo para atacar
     private IEnumerator Attack()
     {
         _attacking = true;
@@ -102,7 +126,7 @@ public class Galtzagorri : EntityControler
         
         // TODO: Animacion Ataque
         
-        rb2D.AddForce(new Vector2((player.transform.position.x - transform.position.x) * 2, 4), ForceMode2D.Impulse);
+        rb2D.AddForce(new Vector2((_playerGameObject.transform.position.x - transform.position.x) * 2, 4), ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.8f);
         _navMeshAgent.enabled = true;
         ActivateEnemy();
@@ -111,6 +135,7 @@ public class Galtzagorri : EntityControler
         _attacking = false;
     }
 
+    // Metodo que comprueba si el Player es accesible
     private bool CanReachPlayer()
     {
         NavMeshPath path = new NavMeshPath();
@@ -124,20 +149,8 @@ public class Galtzagorri : EntityControler
         }
         return false;
     }
-
-    public void ActivateEnemy()
-    {
-        // TODO: Animacion Salir del Escondite
-        CancelInvoke(nameof(ChasePlayer));
-        InvokeRepeating(nameof(ChasePlayer), 0f, 0.1f);
-        scriptHideout.ResetHit();
-    }
-
-    public void DeactivateEnemy()
-    {
-        CancelInvoke(nameof(ChasePlayer));
-    }
-
+    
+    // Metodo que activa el meterse al escondite
     public void ActivateHiding(Collider2D other)
     {
         if (Vector3.Distance(other.gameObject.transform.position, _navMeshAgent.destination) < 1 && _hiding)
@@ -146,6 +159,21 @@ public class Galtzagorri : EntityControler
             _hiding = false;
             _hidden = true;
         }
+    }
+
+    // Metodo que activa el enemigo
+    public void ActivateEnemy()
+    {
+        // TODO: Animacion Salir del Escondite
+        CancelInvoke(nameof(ChasePlayer));
+        InvokeRepeating(nameof(ChasePlayer), 0f, 0.1f);
+        scriptHideout.ResetHit();
+    }
+
+    // Metodo que desactiva el enemigo
+    public void DeactivateEnemy()
+    {
+        CancelInvoke(nameof(ChasePlayer));
     }
     
     public override void OnDeath()
