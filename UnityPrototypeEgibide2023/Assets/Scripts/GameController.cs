@@ -14,6 +14,7 @@ public class GameController : EntityControler
 
     public static GameController Instance;
     [SerializeField] private Canvas canvasPausa;
+    [SerializeField] private PlayerData playerData;
     private GameObject _jugador;
     private bool _useCheckpoint;
     
@@ -27,7 +28,8 @@ public class GameController : EntityControler
     // Start is called before the first frame update
     void Start()
     {
-        
+        //reset unlocks (esto se deberia cambiar cuando metamos saves)
+        playerData.airDashUnlocked = false;
     }
 
     // Update is called once per frame

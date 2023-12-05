@@ -36,7 +36,7 @@ namespace StatePattern.PlayerStates
                 player.PmStateMachine.TransitionTo(player.PmStateMachine.DJumpState);
                 return;
             }
-            if (player.isPerformingDash)
+            if (player.isPerformingDash && player.isAirDashUnlocked)
             {
                 player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
                 return;

@@ -22,6 +22,7 @@ public class PlayerController: EntityControler
         
         
         // internal state controls
+        public bool isAirDashUnlocked = false;
         public bool isHoldingHorizontal = false;
         public bool isHoldingVertical = false;
         public bool isPerformingJump = false;
@@ -160,6 +161,10 @@ public class PlayerController: EntityControler
         
                 _impulseSource = GetComponent<CinemachineImpulseSource>();
                 
+                
+                //Check unlocks
+                isAirDashUnlocked = playerData.airDashUnlocked;
+
         }
 
         private void FixedUpdate()
@@ -205,6 +210,7 @@ public class PlayerController: EntityControler
 
         public void AirMove()
         {
+                
                 FlipSprite();
                 float airAcceleration = 1f;
                 if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
@@ -546,6 +552,14 @@ public class PlayerController: EntityControler
                 
                                 Invoke(nameof(DamageCooldown), 0.5f);
                         }
+                }
+                
+                //Colision con el enemigo
+                if (collision.gameObject.CompareTag("AirDashUnlock"))
+                {
+                        isAirDashUnlocked = true;
+                        playerData.airDashUnlocked = true;
+                        Debug.Log("AAirdash");
                 }
         }
 
