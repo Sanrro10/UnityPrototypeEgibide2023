@@ -35,7 +35,7 @@ namespace StatePattern.PlayerStates
                 return;
             }
 
-            if (player.isJumping)
+            if (player.isPerformingJump)
             {
                 player.PmStateMachine.TransitionTo(player.PmStateMachine.JumpState);
                 return;
@@ -55,7 +55,7 @@ namespace StatePattern.PlayerStates
             // if we press the attack button, transition to the attack state
             if (player.isPerformingMeleeAttack)
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.MeleeAttackState);
+                player.GroundAttack();
                 return;
             }
             

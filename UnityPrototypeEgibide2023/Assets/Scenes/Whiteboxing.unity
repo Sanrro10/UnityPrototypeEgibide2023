@@ -991,9 +991,7 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 0}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras:
-  - {fileID: 435547195}
-  - {fileID: 2023761179}
+  m_ChildCameras: []
   m_Instructions:
   - m_FullHash: 1432961145
     m_VirtualCamera: {fileID: 2023761179}
@@ -1599,7 +1597,7 @@ GameObject:
   - component: {fileID: 776184184}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Floor
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2393,6 +2391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalShake: 1
+  impulseDuration: 0.15
 --- !u!1 &1111756431
 GameObject:
   m_ObjectHideFlags: 0

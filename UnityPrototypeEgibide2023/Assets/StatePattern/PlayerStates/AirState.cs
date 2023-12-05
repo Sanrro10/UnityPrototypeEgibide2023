@@ -33,12 +33,12 @@ namespace StatePattern.PlayerStates
             
             if (player.isPerformingMeleeAttack)
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.MeleeAttackState);
+                player.AirAttack();
                 return;
             }
 
             
-            if (player.isDashing)
+            if (player.isPerformingDash)
             {
                 player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
                 return;

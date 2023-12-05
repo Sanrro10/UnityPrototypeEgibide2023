@@ -21,7 +21,7 @@ public class SceneChangeTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameController.Instance.SceneLoad(_spawnData);
+            GameController.Instance.SceneLoad(_spawnData,false);
         }
     }
 }

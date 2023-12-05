@@ -17,7 +17,7 @@ namespace StatePattern.PlayerStates
             player.isDashing = true;
             player.animator.SetTrigger("Dash");
             player.FlipSprite();
-            player.InvokeRepeating(nameof(player.Dash), 0, 0.01f);
+            player.StartCoroutine((player.GroundedDashCooldown()));
             
             //Debug.Log("Entering Dash State");
             player.StartCoroutine(player.Dash());
@@ -28,7 +28,13 @@ namespace StatePattern.PlayerStates
         public void Update()
         {
             // If we're no longer grounded, transition to the air state
-            if (!player.CanDash())
+            if (!player.IsGrounded())
+            {
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
+                return;
+            }
+
+            if (!player.isDashing)
             {
                 player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
             }

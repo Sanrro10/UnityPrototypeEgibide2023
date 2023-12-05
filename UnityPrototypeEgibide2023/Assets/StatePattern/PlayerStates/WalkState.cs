@@ -26,7 +26,7 @@ namespace StatePattern.PlayerStates
             // If we're no longer grounded, transition to the air state
             
 
-            if (player.isJumping)
+            if (player.isPerformingJump)
             {
                 player.PmStateMachine.TransitionTo(player.PmStateMachine.JumpState);
                 return;
@@ -48,10 +48,13 @@ namespace StatePattern.PlayerStates
                 player.PmStateMachine.TransitionTo((player.PmStateMachine.GroundDashState));
                 return;
             }
-            
-            
-            
-            
+
+            if (player.isPerformingMeleeAttack)
+            {
+                player.GroundAttack();
+                return;
+            }
+
         }
         
         public void Exit()

@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class Galtzagorri : EntityControler
 {
-    [SerializeField] private GameObject player;
+    private GameObject _playerGameObject;
     [SerializeField] private BasicEnemyData basicEnemyData;
     [SerializeField] private GameObject[] hideouts;
 
@@ -22,6 +22,8 @@ public class Galtzagorri : EntityControler
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _navMeshAgent.acceleration = Random.Range(15, 30);
+
+        _playerGameObject = GameController.Instance.GetPlayerGameObject();
         
         //Set the Health Points
         gameObject.GetComponent<HealthComponent>().SendMessage("Set", basicEnemyData.health);
@@ -41,10 +43,10 @@ public class Galtzagorri : EntityControler
             }
             else if(!_hiding)
             {
-                _navMeshAgent.SetDestination(player.transform.position);
+                _navMeshAgent.SetDestination(_playerGameObject.transform.position);
             }
 
-            if ((Vector3.Distance(gameObject.transform.position, player.transform.position) < 3) && !_attacking)
+            if ((Vector3.Distance(gameObject.transform.position, _playerGameObject.transform.position) < 3) && !_attacking)
             {
                 StartCoroutine(nameof(Attack));
             }
@@ -92,7 +94,7 @@ public class Galtzagorri : EntityControler
         CancelInvoke(nameof(ChasePlayer));
         _navMeshAgent.enabled = false;
         Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
-        rb2D.AddForce(new Vector2((player.transform.position.x - transform.position.x) * 2, 4), ForceMode2D.Impulse);
+        rb2D.AddForce(new Vector2((_playerGameObject.transform.position.x - transform.position.x) * 2, 4), ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.8f);
         _navMeshAgent.enabled = true;
         ActivateEnemy();
@@ -104,11 +106,11 @@ public class Galtzagorri : EntityControler
     private bool CanReachPlayer()
     {
         NavMeshPath path = new NavMeshPath();
-        if (_navMeshAgent.CalculatePath(player.transform.position, path))
+        if (_navMeshAgent.CalculatePath(_playerGameObject.transform.position, path))
         {
             if (path.status == NavMeshPathStatus.PathComplete)
             {
-                _lastAvailablePosition = player.transform.position;
+                _lastAvailablePosition = _playerGameObject.transform.position;
                 return true;
             }
         }
