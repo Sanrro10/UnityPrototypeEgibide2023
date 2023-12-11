@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using Random = UnityEngine.Random;
@@ -56,6 +57,8 @@ public class Arrano : EntityControler
         _yPos = transform.position.y;
 
         _originalFS = flyingSpeed;
+
+        _facingRight = true;
         
         //Set the Health Points
         gameObject.GetComponent<HealthComponent>().SendMessage("Set",flyingEnemyData.health, SendMessageOptions.RequireReceiver);
@@ -71,14 +74,14 @@ public class Arrano : EntityControler
         
         // TODO: Animacion Idle
         
-        if (Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
+        if (!_facingRight && Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
         {
             _facingRight = true;
             _direction = _rightLimitPosition;
             StartCoroutine(nameof(Rotate));
         }
         
-        if (Math.Abs(transform.position.x - _rightLimitPosition.x) < 0.5)
+        if (_facingRight && Math.Abs(transform.position.x - _rightLimitPosition.x) < 0.5)
         {
             _facingRight = false;
             _direction = _leftLimitPosition;
@@ -100,17 +103,19 @@ public class Arrano : EntityControler
         RaycastHit2D hitData;
         if (_facingRight)
         {
-            hitData = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector3(0.5f, -0.5f)), 50, playerLayer);
+            //hitData = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector3(0.5f, -0.5f)), 50, playerLayer);
+            hitData = Physics2D.Raycast(transform.position, Vector2.down + Vector2.right, 50, playerLayer);
         }
         else
         {
-            hitData = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector3(-0.5f, -0.5f)), 50, playerLayer);
+            //hitData = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector3(0.5f, -0.5f)), 50, playerLayer);
+            hitData = Physics2D.Raycast(transform.position, Vector2.down + Vector2.left, 50, playerLayer);
         }
 
         if (hitData.collider == null) return;
         if (hitData.collider.CompareTag("Player"))
         {
-            //Attack();
+            Attack();
         }
 
     }
@@ -203,9 +208,26 @@ public class Arrano : EntityControler
         InvokeRepeating(nameof(StartMovingUp),0,0.01f);
         yield return new WaitUntil(() => Math.Abs(transform.position.y - _startPosition.y) < 0.5f);
         CancelInvoke(nameof(StartMovingUp));
+        ChangeDirection();
         InvokeRepeating(nameof(PassiveBehaviour),0,0.01f);
         InvokeRepeating(nameof(ChangeVertical),2f,1f);
         StartCoroutine(nameof(AttackCooldown));
+    }
+
+    private void ChangeDirection()
+    {
+        if (_facingRight)
+        {
+            _facingRight = false;
+            _direction = _leftLimitPosition;
+        }
+        else
+        {
+            _facingRight = true;
+            _direction = _rightLimitPosition;
+
+        }
+        StartCoroutine(nameof(Rotate));
     }
     
     // Metodo para que se vuelva hacia arriba
@@ -238,7 +260,7 @@ public class Arrano : EntityControler
     // Corutina para girar
     private IEnumerator Rotate()
     {
-        flyingSpeed *= 0.6f;
+        flyingSpeed *= 0.3f;
         _rotated = false;
         CancelInvoke(nameof(TurnAround));
         InvokeRepeating(nameof(TurnAround),0f, 0.1f);
@@ -250,17 +272,20 @@ public class Arrano : EntityControler
     // Metodo temporal que hace que se de la vuelta (bruscamente)
     private void TurnAround()
     {
+
+        int newEulerY;
         if (_facingRight)
         {
-            transform.eulerAngles = new Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y + 15, transform.rotation.eulerAngles.z);
+            transform.eulerAngles = new Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y - 30, transform.rotation.eulerAngles.z);
+            newEulerY = (int)transform.rotation.eulerAngles.y;
         }
         else
         {
-            transform.eulerAngles = new Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y - 15, transform.rotation.eulerAngles.z);
+            transform.eulerAngles = new Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y + 30, transform.rotation.eulerAngles.z);
+            newEulerY = (int)transform.rotation.eulerAngles.y;
         }
         
-        
-        if (transform.rotation.eulerAngles.y % 180 == 0 || transform.rotation.eulerAngles.y == 0)
+        if (newEulerY % 180 == 0 || newEulerY == 0)
         {
             _rotated = true;
         } 
