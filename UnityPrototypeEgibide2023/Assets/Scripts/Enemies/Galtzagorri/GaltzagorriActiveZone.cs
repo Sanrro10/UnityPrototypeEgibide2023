@@ -13,6 +13,7 @@ public class GaltzagorriActiveZone : MonoBehaviour
         _parent = transform.parent.gameObject;
     }
 
+    // Evento que activa el enemigo cuando entra en el rango
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
@@ -20,6 +21,7 @@ public class GaltzagorriActiveZone : MonoBehaviour
         script.ActivateEnemy();
     }
     
+    // Evento que desactiva el enemigo cuando sale del rango
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("Player")) return;
