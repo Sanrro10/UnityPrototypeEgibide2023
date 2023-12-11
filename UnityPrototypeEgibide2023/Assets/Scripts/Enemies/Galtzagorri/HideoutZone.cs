@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class HideoutZone : MonoBehaviour
 {
+    // Variable que controla si el enemigo te puede hacer daño
     private bool _enemyHit;
     
+    // Evento para controlar si el enemigo se choca con el Player o si se choca con un escondite
     private void OnTriggerEnter2D(Collider2D other)
     {
         GameObject parent = transform.parent.gameObject;
@@ -17,6 +19,7 @@ public class HideoutZone : MonoBehaviour
         if (other.gameObject.CompareTag("EnemySpawnPoint")) script.ActivateHiding(other);
     }
 
+    // Metodo para resetear que el enemigo te pueda hacer daño
     public void ResetHit()
     {
         _enemyHit = false;
