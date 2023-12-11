@@ -11,6 +11,9 @@ public class GoatBehaviour : MonoBehaviour
     public bool facingRight;
     public float stunTime;
     public bool canCollide = true;
+    public float startup;
+
+    private Animator _animator;
     // reference to player
 
     private Rigidbody2D _rb;
@@ -19,6 +22,8 @@ public class GoatBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _animator = GetComponent<Animator>();
+        facingRight = false;
         _rb = GetComponent<Rigidbody2D>();
         stunTime = 0.5f;
         force = 500f;
@@ -29,7 +34,12 @@ public class GoatBehaviour : MonoBehaviour
     public void ActivateEnemy()
     {
         InvokeRepeating(nameof(Move), 0, 0.01f);
+    }
+
+    public void PrepareCharge()
+    {
         CancelInvoke(nameof(LookForEnemy));
+        Invoke(nameof(ActivateEnemy), startup);
     }
     
 
@@ -59,7 +69,7 @@ public class GoatBehaviour : MonoBehaviour
         
         while(Mathf.Abs(this.transform.rotation.eulerAngles.y - (facingRight ? 180 : 0)) > 0.3f)
         {
-            this.transform.Rotate(new Vector3(0, 1, 0), 180f * Time.deltaTime);
+            transform.Rotate(new Vector3(0, 1, 0), 180f * Time.deltaTime);
             yield return Time.deltaTime;
         }
         

@@ -276,7 +276,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3.161268, y: -0.48718596}
+  m_Offset: {x: -3.161268, y: -0.9080157}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -287,7 +287,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32450914, y: 15.7030325}
+  m_Size: {x: 0.32450914, y: 12.757199}
   m_EdgeRadius: 0
 --- !u!114 &2803667331601823779
 MonoBehaviour:
@@ -497,6 +497,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 250688029bc5ce249ad115649f524455, type: 2}
   meleeAttack: {fileID: 3499778230461313965, guid: 269758a7a047a4048b0f19f57c501f61, type: 3}
   animator: {fileID: 0}
+  isAirDashUnlocked: 0
   isHoldingHorizontal: 0
   isHoldingVertical: 0
   isPerformingJump: 0
@@ -748,7 +749,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.50013757, y: -0.48813915}
+  m_Offset: {x: 0.50013757, y: -0.80376196}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -759,7 +760,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.29019165, y: 15.696573}
+  m_Size: {x: 0.29019165, y: 12.540328}
   m_EdgeRadius: 0
 --- !u!114 &3712546547639152366
 MonoBehaviour:
