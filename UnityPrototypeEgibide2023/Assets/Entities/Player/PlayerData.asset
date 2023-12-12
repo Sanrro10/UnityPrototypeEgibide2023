@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9103126d918beb943b2b72435e5882a6, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: 
+  movementSpeed: 5
+  jumpPower: 20
+  facingRight: 0
+  downAttack: 1
+  dashSpeed: 30
+  dashCooldown: 1
+  gravity: 4
+  potionColdownTime: 1
+  jumpDuration: 0.25
+  floatDuration: 0
+  airdashDuration: 0
+  maxAirHorizontalSpeed: 5
+  maxFallSpeed: 25
+  airDashUnlocked: 0
+  dashCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0023345947
+      value: 0.49991965
+      inSlope: 0.035534427
+      outSlope: 0.035534427
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.77154213
+    - serializedVersion: 3
+      time: 0.0973403
+      value: 1.0028522
+      inSlope: -0.054916967
+      outSlope: -0.054916967
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.9498034
+      outWeight: 0.13228595
+    - serializedVersion: 3
+      time: 0.37010106
+      value: 1.0007405
+      inSlope: -0.011073021
+      outSlope: -0.011073021
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.34168226
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.50539064
+      value: 0.007278396
+      inSlope: -5.052656
+      outSlope: -5.052656
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.022256443
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  airdashForce: 20
