@@ -15,12 +15,11 @@ namespace StatePattern.PlayerStates
         public void Enter()
         {
             player.canAttack = false;
-            player.isPerformingMeleeAttack = false;
-            //Debug.Log("Entering Attack State");
-            player.animator.SetTrigger("MeleeAttack");
+            player.isPerformingMeleeAttack = true;
+            Debug.Log("Entering Air Right Attack State");
+            player.animator.SetTrigger("AirMeleeRightAttack");
             player.Invoke(nameof(player.AttackDuration), player.meleeAttackDuration );
             player.Invoke(nameof(player.AttackCooldown), player.meleeAttackCooldown );
-            player.Invoke(nameof(player.SpawnAttackHitbox), player.meleeAttackStart );
             
             
         }
@@ -28,7 +27,6 @@ namespace StatePattern.PlayerStates
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {            
-            if (player.canAttack && player.isPerformingMeleeAttack) player.GroundAttack();
         }
         
         public void Exit()

@@ -17,7 +17,6 @@ namespace StatePattern.PlayerStates
             player.isPerformingMeleeAttack = true;
             Debug.Log("Entering Left Attack State");
             player.animator.SetTrigger("MeleeLeftAttack");
-            player.Invoke(nameof(player.SpawnAttackHitbox), player.meleeAttackStart);
             player.Invoke(nameof(player.AttackDuration), player.meleeAttackDuration);
             player.Invoke(nameof(player.AttackCooldown), player.meleeAttackCooldown );
         }

@@ -16,8 +16,7 @@ namespace StatePattern.PlayerStates
             player.canAttack = false;
             player.isPerformingMeleeAttack = true;
             Debug.Log("Entering Up Attack State");
-            player.animator.SetTrigger("MeleeAttack");
-            player.Invoke(nameof(player.SpawnAttackHitbox), player.meleeAttackStart);
+            player.animator.SetTrigger("MeleeUpAttack");
             player.Invoke(nameof(player.AttackDuration), player.meleeAttackDuration );
             player.Invoke(nameof(player.AttackCooldown), player.meleeAttackCooldown );
         }

@@ -383,13 +383,35 @@ namespace Entities.Player.Scripts
 
                 
                 }
-        
-                public void SpawnAttackHitbox()
+
+                public void FinishedAttack()
                 {
-                        //throw new NotImplementedException();
-               
+                        if (isHoldingHorizontal)
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.WalkState);
+                                return;
+                        }
+
+                        if (CanDash())
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.GroundDashState);
+                                return;
+                        }
+
+                        if (isPerformingJump)
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.JumpState);
+                                return;
+                        }
+
+                        if (!IsGrounded())
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.AirState);
+                
+                                return;
+                        }
                 }
-        
+                
                 public void DisablePlayerControls()
                 {
                         _controls.Disable();

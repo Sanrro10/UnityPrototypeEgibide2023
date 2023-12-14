@@ -20,7 +20,6 @@ namespace StatePattern.PlayerStates
             player.animator.SetTrigger("MeleeAttack");
             player.Invoke(nameof(player.AttackDuration), player.meleeAttackDuration );
             player.Invoke(nameof(player.AttackCooldown), player.meleeAttackCooldown );
-            player.Invoke(nameof(player.SpawnAttackHitbox), player.meleeAttackStart);
         }
 
         // per-frame logic, include condition to transition to a new state
