@@ -309,23 +309,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   m_CustomBlends: {fileID: 0}
-  m_ParentHash:
-  - m_Hash: -200386538
-    m_ParentHash: 756556552
-  - m_Hash: 1432961145
-    m_ParentHash: 756556552
-  - m_Hash: 1130333774
-    m_ParentHash: 756556552
-  - m_Hash: 788460410
-    m_ParentHash: 756556552
-  - m_Hash: -1546996312
-    m_ParentHash: 756556552
-  - m_Hash: 81563449
-    m_ParentHash: 756556552
-  - m_Hash: 304293996
-    m_ParentHash: 756556552
-  - m_Hash: 962121790
-    m_ParentHash: 756556552
+  m_ParentHash: []
 --- !u!114 &5121953242080940459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,7 +319,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2529410845305625579}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37ff9e80bd46d104f9263c1dd353b7bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 15ca717a22171514d88ece2cbf211d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1145176053995408176
@@ -635,10 +619,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5825451949151339713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cce7e365e9a7654eb3d7e0e98c8a0d5, type: 3}
+  m_Script: {fileID: 11500000, guid: de8056b4ce4c125478fd29e2749ee068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalShake: 1
+  globalShake: 0.1
+  impulseDuration: 0.15
 --- !u!1 &6187388340067687099
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,7 +807,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6363554318465567727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e10df21e82928b488505d90db877d00, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f227c99f1585b44eab4896202c15029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7429586728371195166
