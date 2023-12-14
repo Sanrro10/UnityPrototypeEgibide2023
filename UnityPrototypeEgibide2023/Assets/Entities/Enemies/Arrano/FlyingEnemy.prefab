@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 139597257927589616}
   - component: {fileID: 2573870513053836193}
   - component: {fileID: 4821972640391586754}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FlyingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
   flyingEnemyData: {fileID: 11400000, guid: e1311cc8f9ca98a418bb5bdeb92bef63, type: 2}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4294967295
   attackCooldown: 3
 --- !u!50 &2573870513053836193
 Rigidbody2D:
@@ -164,7 +164,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -180,7 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1505240439631308721}
   - component: {fileID: 348122112584744967}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightLimit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2687026382389403482}
   - component: {fileID: 8057712558376009092}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftLimit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
