@@ -34,7 +34,6 @@ namespace Entities.Player.Scripts
                 public bool isPerformingMeleeAttack = false;
                 public bool isPerformingDash;
                 public bool canAttack = true;
-                public float attackDuration;
                 public float meleeAttackCooldown;
                 public float meleeAttackDuration;
                 public float meleeAttackStart;
@@ -134,6 +133,7 @@ namespace Entities.Player.Scripts
                         _rigidbody2D.gravityScale = playerData.gravity;
                         _dashCurve = playerData.dashCurve;
                         maxFallSpeed = playerData.maxFallSpeed;
+                        _rigidbody2D.gravityScale = playerData.gravity;
                         baseGravity = _rigidbody2D.gravityScale;
                         jumpForce = playerData.jumpPower;
                         dashSpeed = playerData.dashSpeed;

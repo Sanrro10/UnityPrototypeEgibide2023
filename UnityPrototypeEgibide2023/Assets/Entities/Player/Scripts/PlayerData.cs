@@ -19,7 +19,8 @@ namespace Entities.Player.Scripts
         public float maxAirHorizontalSpeed;
         public float maxFallSpeed;
         public bool airDashUnlocked = false;
-    
+        public float groundDashDuration;
+        
         public AnimationCurve dashCurve;
         public float airdashForce;
     }

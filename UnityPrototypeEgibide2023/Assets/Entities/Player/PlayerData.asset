@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   movementSpeed: 5
-  jumpPower: 20
+  jumpPower: 15
   facingRight: 0
   downAttack: 1
-  dashSpeed: 30
+  dashSpeed: 40
   dashCooldown: 1
-  gravity: 4
+  gravity: 6
   potionColdownTime: 1
   jumpDuration: 0.25
   floatDuration: 0
@@ -26,12 +26,13 @@ MonoBehaviour:
   maxAirHorizontalSpeed: 5
   maxFallSpeed: 25
   airDashUnlocked: 0
+  groundDashDuration: 0
   dashCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: -0.0023345947
-      value: 0.49991965
+      value: -0.0013926029
       inSlope: 0.035534427
       outSlope: 0.035534427
       tangentMode: 0
@@ -39,8 +40,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.77154213
     - serializedVersion: 3
-      time: 0.0973403
-      value: 1.0028522
+      time: 0.026081756
+      value: 0.1791408
       inSlope: -0.054916967
       outSlope: -0.054916967
       tangentMode: 0
@@ -48,8 +49,8 @@ MonoBehaviour:
       inWeight: 0.9498034
       outWeight: 0.13228595
     - serializedVersion: 3
-      time: 0.37010106
-      value: 1.0007405
+      time: 0.028727066
+      value: 1.0011213
       inSlope: -0.011073021
       outSlope: -0.011073021
       tangentMode: 0
@@ -57,13 +58,22 @@ MonoBehaviour:
       inWeight: 0.34168226
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.50539064
-      value: 0.007278396
-      inSlope: -5.052656
-      outSlope: -5.052656
+      time: 0.07125738
+      value: 1.0003091
+      inSlope: 0.036918085
+      outSlope: -7.0894027
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.2583088
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.17007875
+      value: 0.009170486
+      inSlope: -1.3123682
+      outSlope: -1.3123682
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.022256443
+      inWeight: 0.14362593
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
