@@ -19,7 +19,9 @@ namespace General.Scripts
         [SerializeField] private PlayerData playerData;
         private GameObject _jugador;
         private bool _useCheckpoint;
-    
+
+        private SaveLoadManager _saveLoadManager;
+        
         //Create Structure that holds the position and the sceneName of the checkpoint
         public struct SPlayerSpawnData
         {
@@ -32,6 +34,12 @@ namespace General.Scripts
         {
             //reset unlocks (esto se deberia cambiar cuando metamos saves)
             playerData.airDashUnlocked = false;
+            
+            //For save and load -- Revisar porque no funciona
+            GameObject go = new GameObject();
+            go.AddComponent<SaveLoadManager>();
+            _saveLoadManager = go.GetComponent<SaveLoadManager>();
+            
         }
 
         // Update is called once per frame
@@ -42,7 +50,7 @@ namespace General.Scripts
     
         void Awake()
         {
-
+        
             Time.timeScale = 1;
             if (Instance == null)
             {
@@ -145,6 +153,11 @@ namespace General.Scripts
             StartCoroutine(Wait());
             canvasPausa.gameObject.SetActive(false);
             _jugador.GetComponent<PlayerController>().EnablePlayerControls();
+        }
+
+        public void SaveGame()
+        {
+            
         }
     
         public IEnumerator Wait()
