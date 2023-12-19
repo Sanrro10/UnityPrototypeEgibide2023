@@ -8,6 +8,12 @@ namespace Entities.Enemies.Arrano.Scripts
 {
     public class Arrano : EntityControler
     {
+        // Referencia a Animator
+        private Animator _animator;
+        
+        // Referencia al sistema de particulas
+        [SerializeField] private ParticleSystem plumasMuerte;
+        
         // Variable para controlar la velocidad
         [SerializeField] private float flyingSpeed;
         private float _originalFS;
@@ -73,7 +79,8 @@ namespace Entities.Enemies.Arrano.Scripts
         {
         
             // TODO: Animacion Idle
-        
+            
+            
             if (!_facingRight && Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
             {
                 _facingRight = true;
@@ -115,6 +122,8 @@ namespace Entities.Enemies.Arrano.Scripts
             if (hitData.collider == null) return;
             if (hitData.collider.CompareTag("Player"))
             {
+                _animator.SetBool("IsPreAttack", true);
+                
                 Attack();
             }
 
@@ -123,12 +132,16 @@ namespace Entities.Enemies.Arrano.Scripts
         // Metodo con la logica del ataque
         public void Attack()
         {
+            
+            
             CancelInvoke(nameof(PassiveBehaviour));
             CancelInvoke(nameof(ChangeVertical));
             CancelInvoke(nameof(LookForPlayer));
             _startPosition = transform.position;
             _endPosition = player.transform.position;
-
+            
+            _animator.SetBool("IsPreAttack", false);
+            
             StartCoroutine(nameof(GoDown));
         }
     
@@ -143,7 +156,8 @@ namespace Entities.Enemies.Arrano.Scripts
         {
         
             // TODO: Animacion Picado
-        
+            _animator.SetBool("IsAttack", true);
+            
             _posX = transform.position.x;
             InvokeRepeating(nameof(StartMovingDown),0,0.01f);
             yield return new WaitUntil(() => Math.Abs(transform.position.y - _endPosition.y) < 0.5f);
@@ -182,6 +196,9 @@ namespace Entities.Enemies.Arrano.Scripts
             }
         
             CancelInvoke(nameof(StartMovingTowards));
+            
+            _animator.SetBool("IsAttack", false);
+            
             StartCoroutine(nameof(GoUp));
         }
 
@@ -202,8 +219,9 @@ namespace Entities.Enemies.Arrano.Scripts
         // Corutina que vuelve al Y inicial
         private IEnumerator GoUp()
         {
-        
+            
             // TODO: Animacion subida
+            _animator.SetBool("IsUp", true);
         
             InvokeRepeating(nameof(StartMovingUp),0,0.01f);
             yield return new WaitUntil(() => Math.Abs(transform.position.y - _startPosition.y) < 0.5f);
@@ -212,6 +230,8 @@ namespace Entities.Enemies.Arrano.Scripts
             InvokeRepeating(nameof(PassiveBehaviour),0,0.01f);
             InvokeRepeating(nameof(ChangeVertical),2f,1f);
             StartCoroutine(nameof(AttackCooldown));
+            
+            _animator.SetBool("IsUp", false);
         }
 
         private void ChangeDirection()
@@ -294,7 +314,8 @@ namespace Entities.Enemies.Arrano.Scripts
         public override void OnDeath()
         {
             //TODO Animacion Muerte
-        
+            _animator.SetBool("IsDead", true );
+            Instantiate(plumasMuerte, transform.position, transform.rotation);
             Invoke(nameof(DestroyThis),2f);
         
         }
