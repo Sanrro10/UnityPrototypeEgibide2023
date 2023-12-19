@@ -67,7 +67,7 @@ namespace Entities.Player.Scripts
                 private Text mainText;
         
         
-                private bool _onInvulneravility;
+                private bool Invulnerable;
                 private Rigidbody2D _rb;
                 private CapsuleCollider2D _capsule;
       
@@ -147,9 +147,9 @@ namespace Entities.Player.Scripts
                         healthBar = GameObject.Find("SliderHealth").GetComponent<Slider>();
         
                         //Set health
-                        _health.Set(100);
-                        healthText.text = _health.Get().ToString();
-                        healthBar.value = _health.Get();
+                        Health.Set(100);
+                        healthText.text = Health.Get().ToString();
+                        healthBar.value = Health.Get();
         
                         //Set the rigidBody
                         _rb = GetComponent<Rigidbody2D>();
@@ -640,16 +640,12 @@ namespace Entities.Player.Scripts
                         //Colision con el enemigo
                         if (collision.gameObject.CompareTag("Enemy"))
                         {
-                                if (!_onInvulneravility)
+                                if (!Invulnerable)
                                 {
                                         CameraShakeManager.instance.CameraShake(_impulseSource);
                                         _audioSource.PlayOneShot(_playerAudios.audios[0]);
-                                        _onInvulneravility = true;
-                                        _health.RemoveHealth(25);
-                                        healthText.text = _health.Get().ToString();
-                                        healthBar.value = _health.Get();
-                
-                                        Invoke(nameof(DamageCooldown), 0.5f);
+                                        Invulnerable = true;
+                                        OnReceiveDamage(25);
                                 }
                         }
                 
@@ -667,31 +663,25 @@ namespace Entities.Player.Scripts
                         //Colision con el enemigo
                         if (other.gameObject.CompareTag("Enemy"))
                         {
-                                if (!_onInvulneravility)
+                                if (!Invulnerable)
                                 {
                                         CameraShakeManager.instance.CameraShake(_impulseSource);
-                                        _onInvulneravility = true;
-                                        _health.RemoveHealth(25);
-                                        healthText.text = _health.Get().ToString();
-                                        healthBar.value = _health.Get();
-                
-                                        Invoke(nameof(DamageCooldown), 0.5f);
+                                        Invulnerable = true;
+                                        OnReceiveDamage(25);
                                 }
                         }
                 }
         
-                public void DamageCooldown()
-                {
-                        _onInvulneravility = false;
-                        _rb.WakeUp();
-                }
-        
 
-                public void ReceiveDamage(int damage) 
+        
+                
+                public override void OnReceiveDamage(int damage) 
                 {
-                        Debug.Log(_health.Get());
-                        _health.RemoveHealth(damage);
-                        Debug.Log(_health.Get());
+                        Debug.Log(Health.Get());
+                        base.OnReceiveDamage(damage);
+                        healthText.text = Health.Get().ToString();
+                        healthBar.value = Health.Get();
+                        Debug.Log(Health.Get());
                 } 
 
                 public void SetCurrentGravity(float gravity)

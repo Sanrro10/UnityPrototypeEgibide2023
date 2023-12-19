@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ab9945f512d7d64c8689314d6589019, type: 3}
+  m_Script: {fileID: 11500000, guid: 17905ab3be6d9e645a75911901ae1e4e, type: 3}
   m_Name: LandWitchData
   m_EditorClassIdentifier: 
   health: 3
-  missileSpeed: 15
+  missileSpeed: 10
   missileDamage: 10
   missileCooldown: 3
-  magicCircleCooldown: 2
-  magicCircleDamage: 20
-  magicCircleChargeDuration: 1
+  magicCircleCooldown: 3
+  magicCircleDamage: 10
+  magicCircleChargeDuration: 2
   magicCircleActivationDelay: 0.5
-  magicCircleEffectDuration: 0.5
-  normalTeleportationCooldown: 6
+  magicCircleEffectDuration: 1
+  normalTeleportationCooldown: 8
   fastTeleportationCooldown: 2

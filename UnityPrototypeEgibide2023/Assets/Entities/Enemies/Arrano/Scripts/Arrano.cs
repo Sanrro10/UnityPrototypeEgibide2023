@@ -310,7 +310,7 @@ namespace Entities.Enemies.Arrano.Scripts
         {
             if (other.CompareTag("Player") && !_hit)
             {
-                player.GetComponent<PlayerController>().ReceiveDamage(1);
+                player.GetComponent<PlayerController>().OnReceiveDamage(1);
                 _hit = true;
             }
         }
