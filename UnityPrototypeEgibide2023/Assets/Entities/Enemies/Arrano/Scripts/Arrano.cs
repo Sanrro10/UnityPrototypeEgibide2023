@@ -104,16 +104,16 @@ namespace Entities.Enemies.Arrano.Scripts
             if (_facingRight)
             {
                 hitData = Physics2D.Raycast(transform.position, Vector2.down + Vector2.right, 50, playerLayer);
-                Debug.DrawRay(transform.position, Vector2.down + Vector2.right, Color.red, 3f);
+                //Debug.DrawRay(transform.position, Vector2.down + Vector2.right, Color.red, 3f);
             }
             else
             {
                 hitData = Physics2D.Raycast(transform.position, Vector2.down + Vector2.left, 50, playerLayer);
-                Debug.DrawRay(transform.position, Vector2.down + Vector2.left, Color.blue, 3f);
+                //Debug.DrawRay(transform.position, Vector2.down + Vector2.left, Color.blue, 3f);
             }
 
             if (hitData.collider == null) return;
-            Debug.Log(hitData.collider.tag);
+            //Debug.Log(hitData.collider.tag);
             if (hitData.collider.CompareTag("Player"))
             {
                 Attack();
@@ -129,7 +129,7 @@ namespace Entities.Enemies.Arrano.Scripts
             CancelInvoke(nameof(LookForPlayer));
             _startPosition = transform.position;
             _endPosition = player.transform.position;
-
+            //Debug.Log(_endPosition);
             StartCoroutine(nameof(GoDown));
         }
     

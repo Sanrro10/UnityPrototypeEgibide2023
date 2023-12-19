@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Entities.Enemies.Galtzagorri.Scripts
@@ -11,6 +12,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             _parent = transform.parent.gameObject;
         }
 
+        
         // Evento que activa el enemigo cuando entra en el rango
         private void OnTriggerEnter2D(Collider2D other)
         {

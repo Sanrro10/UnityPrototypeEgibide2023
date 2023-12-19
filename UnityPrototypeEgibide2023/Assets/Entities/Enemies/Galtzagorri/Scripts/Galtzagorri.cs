@@ -100,7 +100,6 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             if (placeToHide < 0 || placeToHide >= hideouts.Length) return;
             Vector3 whereToHide = hideouts[placeToHide].transform.position;
             _navMeshAgent.SetDestination(whereToHide);
-        
         }
 
         // Metodo que elige un escondite random para aparecer
@@ -108,6 +107,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         {
             _waiting = true;
             yield return new WaitForSeconds(2f);
+            _navMeshAgent.isStopped = false;
             _waiting = false;
             int placeToAppear = Random.Range(0, hideouts.Length);
             if (placeToAppear < 0 || placeToAppear >= hideouts.Length) yield break;
@@ -122,20 +122,25 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         // Metodo para atacar
         private IEnumerator Attack()
         {
+            if (_hiding || _hidden) yield break;
+            Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
             _attacking = true;
             CancelInvoke(nameof(ChasePlayer));
             _navMeshAgent.enabled = false;
-            Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
-        
+            
             // TODO: Animacion Ataque
-        
-            rb2D.AddForce(new Vector2((_playerGameObject.transform.position.x - transform.position.x) * 2, 4), ForceMode2D.Impulse);
-            yield return new WaitForSeconds(0.8f);
+            
+            
+            rb2D.velocity = new Vector2(0, 0);
+            rb2D.AddForce(new Vector2((_playerGameObject.transform.position.x - transform.position.x) * 2, 5), ForceMode2D.Impulse);
+            yield return new WaitForSeconds(1f);
+            rb2D.velocity = new Vector2(0, 0);
             _navMeshAgent.enabled = true;
             ActivateEnemy();
             Hide();
             yield return new WaitForSeconds(1f);
             _attacking = false;
+
         }
 
         // Metodo que comprueba si el Player es accesible
@@ -159,6 +164,9 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             if (Vector3.Distance(other.gameObject.transform.position, _navMeshAgent.destination) < 1 && _hiding)
             {
                 // TODO: Animacion Idle
+                _navMeshAgent.isStopped = true;
+                Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
+                rb2D.velocity = new Vector2(0, 0);
                 _hiding = false;
                 _hidden = true;
             }
@@ -177,6 +185,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         public void DeactivateEnemy()
         {
             CancelInvoke(nameof(ChasePlayer));
+            //Hide();
         }
     
         public override void OnDeath()
