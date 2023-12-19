@@ -15,20 +15,18 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
+            Debug.Log("Entering Ground Dash State");
+            
             player.isDashing = true;
-            player.animator.SetTrigger("Dash");
+            player.animator.SetBool("IsDash", true);
             player.FlipSprite();
             player.StartCoroutine((player.GroundedDashCooldown()));
-            
-            //Debug.Log("Entering Dash State");
             player.StartCoroutine(player.Dash());
-            // Initialize Dash
         }
 
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
-            // If we're no longer grounded, transition to the air state
             if (!player.IsGrounded())
             {
                 player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
@@ -40,25 +38,18 @@ namespace StatePattern.PlayerStates
                 player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
             }
             
-
-            
-            // if we press the jump button, transition to the jump state
-            
-            // if we press the attack button, transition to the attack state
-            
-            // if we press the dash button, transition to the dash state
-            
             
             
         }
         
         public void Exit()
         {
+            player.animator.SetBool("IsDash", false);
             player.CancelInvoke(nameof(player.Dash));
             player.StartCoroutine(player.GroundedDashCooldown());
             player.isDashing = false;
-            // Debug.Log("Exit Dash State");
-
+            
+            Debug.Log("Exiting Dash State");
         }
     }
 }

@@ -1,5 +1,6 @@
 using Entities.Player.Scripts;
 using UnityEngine;
+using UnityEngine.WSA;
 
 namespace Entities.Potions.BasePotion.Scripts
 {
@@ -31,18 +32,18 @@ namespace Entities.Potions.BasePotion.Scripts
         void OnCollisionEnter2D(Collision2D collision)
         {
             // if collision is against floor 
-            if (collision.gameObject.CompareTag("Enemy"))
+            if (collision.gameObject.CompareTag("EnemyHurtbox"))
             {
                 Explode();
+                return;
             }
-            else if (collision.gameObject.CompareTag("Player"))
+
+            if (collision.gameObject.CompareTag("PlayerAttack"))
             {
-                Explode();
-            } 
-            else
-            {
-                Bounce(1);
+                
             }
+            Bounce(1);
+            
         
         
         
@@ -80,9 +81,9 @@ namespace Entities.Potions.BasePotion.Scripts
             Destroy(gameObject);
         }
     
-        public void SetOwner(GameObject owner)
+        public void SetOwner(GameObject newOwner)
         {
-            owner = owner;
+            this.owner = newOwner;
         }
     
         public GameObject GetOwner()

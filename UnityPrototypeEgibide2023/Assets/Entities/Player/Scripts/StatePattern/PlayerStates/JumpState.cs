@@ -16,24 +16,17 @@ namespace StatePattern.PlayerStates
         public void Enter()
         {
             
-            //Debug.Log("Entering Jump State");
-            // Debug.Log("Entering Jump State");
-            player.animator.SetTrigger("Jump");
+            Debug.Log("Entering Jump State");
+            player.animator.SetBool("IsJump", true);
             player.InvokeRepeating(nameof(player.Jump), 0, 0.01f);
             player.StartCoroutine(player.MaxJumpDuration());
             player.StartCoroutine(player.GroundedCooldown());
+            player.InvokeRepeating(nameof(player.AirMove), 0, 0.01f);
         }
 
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
-            // If we're no longer grounded, transition to the air state
-            
-            // if we press the jump button, transition to the jump state
-            
-            // if we press the attack button, transition to the attack state
-            
-            // if we press the dash button, transition to the dash state
 
             if (!player.isPerformingJump)
             {
@@ -61,9 +54,12 @@ namespace StatePattern.PlayerStates
         
         public void Exit()
         {
-            // Debug.Log("Exiting Jump State");
+            player.animator.SetBool("IsJump", false);
+            player.CancelInvoke(nameof(player.AirMove));
             player.CancelInvoke(nameof(player.Jump));
             player.isPerformingJump = false;
+            
+            Debug.Log("Exiting Jump State");
         }
     }
 }

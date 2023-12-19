@@ -15,9 +15,10 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            //Debug.Log("Entering Idle State");
+            Debug.Log("Entering Idle State");
             player.setXVelocity(0);
             player.SetXVelocity(0);
+            player.animator.SetBool("IsIdle", true);
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -68,7 +69,8 @@ namespace StatePattern.PlayerStates
         
         public void Exit()
         {
-            // Debug.Log("Exiting Idle State");
+            player.animator.SetBool("IsIdle", false);
+            Debug.Log("Exiting Idle State");
         }
     }
 }

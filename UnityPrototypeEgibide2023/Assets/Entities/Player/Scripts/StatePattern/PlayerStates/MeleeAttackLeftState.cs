@@ -13,27 +13,33 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            player.canAttack = false;
-            player.isPerformingMeleeAttack = true;
             Debug.Log("Entering Left Attack State");
-            player.animator.SetTrigger("MeleeLeftAttack");
-            player.Invoke(nameof(player.AttackDuration), player.meleeAttackDuration);
-            player.Invoke(nameof(player.AttackCooldown), player.meleeAttackCooldown );
+            
+            
+            player.isInMiddleOfAttack = true;
+            player.animator.SetBool("IsALeft", true);
+            player.Invoke(nameof(player.EndAttack), 0.8f);
         }
 
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
-            if (player.canAttack && player.isPerformingMeleeAttack) player.GroundAttack();
-            
+            if (!player.isInMiddleOfAttack)
+            {
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
+                return;
+            }
         }
         
         public void Exit()
         {
-            
+            player.CancelInvoke(nameof(player.EndAttack));
             player.canAttack = true;
-            player.isPerformingMeleeAttack = false;
+            player.isInMiddleOfAttack = false;
 
+            player.animator.SetBool("IsALeft", false);
+            
+            Debug.Log("Exit Left Attack State");
         }
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6495408939162842929}
   - component: {fileID: 247002988172625619}
   - component: {fileID: 2695071535495535820}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Feet
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 2538641633103216759}
   - component: {fileID: 4351536339321135645}
   - component: {fileID: 2501317620403452669}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 348339756065992962}
   - component: {fileID: 4015876454567288133}
   - component: {fileID: 2803667331601823779}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftTrigger
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: -799121377639158489}
   - component: {fileID: 8232189156672774451}
   - component: {fileID: 7118525876310190608}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerPrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -343,6 +343,7 @@ Transform:
   - {fileID: 6495408939162842929}
   - {fileID: 2538641633103216759}
   - {fileID: 4739613998690953504}
+  - {fileID: 6079609707914866683}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5646733107473616494
@@ -469,7 +470,7 @@ Animator:
   m_GameObject: {fileID: 5937788470338340945}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d3cad2fb35c385a4cb7075f2bf76b78c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 95dfcc3db47c60744965e3232d102e07, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -650,19 +651,20 @@ MonoBehaviour:
   isHoldingHorizontal: 0
   isHoldingVertical: 0
   isPerformingJump: 0
+  isPerformingMeleeAttack: 0
+  isPerformingDash: 0
+  isPerformingPotionThrow: 0
   isDashing: 0
   onDJump: 0
   facingRight: 1
   isCollidingLeft: 0
   isCollidingRight: 0
-  isPerformingMeleeAttack: 0
-  isPerformingDash: 0
   canAttack: 1
-  attackDuration: 0
   meleeAttackCooldown: 0
   meleeAttackDuration: 0
   meleeAttackStart: 0
   jumpDuration: 0
+  isInMiddleOfAirAttack: 0
   friction: 0
   isStunned: 0
   horizontalSpeed: 0
@@ -684,6 +686,37 @@ MonoBehaviour:
   cinemachine: {fileID: 0}
   _playerAudios: {fileID: 0}
   potion: {fileID: 0}
+--- !u!1 &6033346189198568744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6079609707914866683}
+  m_Layer: 6
+  m_Name: PotionSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6079609707914866683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6033346189198568744}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.87, y: 7.37, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7731164896381682722}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6734975002612106737
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +728,7 @@ GameObject:
   - component: {fileID: 1544061359826283677}
   - component: {fileID: 6470279182328652135}
   - component: {fileID: 3712546547639152366}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightTrigger
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -786,9 +819,9 @@ GameObject:
   - component: {fileID: 4739613998690953504}
   - component: {fileID: 2408566496683021549}
   - component: {fileID: 5109368273114715851}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Excalibur
-  m_TagString: Player
+  m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

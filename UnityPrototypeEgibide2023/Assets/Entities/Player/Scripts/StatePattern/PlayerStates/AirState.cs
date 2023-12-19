@@ -14,9 +14,10 @@ namespace StatePattern.PlayerStates
         
         public void Enter()
         {
-            //Debug.Log("Entering Air State");
+            Debug.Log("Entering Air State");
 
-            player.animator.SetBool("OnAir", true);
+            player.animator.SetBool("IsAir", true);
+            player.InvokeRepeating(nameof(player.AirMove), 0, 0.01f);
         }
         
         // per-frame logic, include condition to transition to a new state
@@ -45,19 +46,13 @@ namespace StatePattern.PlayerStates
                 return;
             }
 
-            if (player.isHoldingHorizontal)
-            {
-                player.AirMove();
-                return;
-            }
-
         }
         
         public void Exit()
         {
-            // Debug.Log("Exiting Air State");
-            
-            player.animator.SetBool("OnAir", false);
+            Debug.Log("Exiting Air State");
+            player.CancelInvoke(nameof(player.AirMove));
+            player.animator.SetBool("IsAir", false);
         }
     }
 }

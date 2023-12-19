@@ -17,7 +17,7 @@ namespace StatePattern.PlayerStates
         {
             //Debug.Log("Entering Walk State");
             // Debug.Log("Entering Walk State");
-            player.animator.SetBool("IsMoving", true);
+            player.animator.SetBool("IsWalk", true);
             player.InvokeRepeating(nameof(player.Move), 0, 0.01f);
         }
 
@@ -61,8 +61,9 @@ namespace StatePattern.PlayerStates
         public void Exit()
         {
             // Debug.Log("Exiting Walk State");
+
             player.CancelInvoke(nameof(player.Move));
-            player.animator.SetBool("IsMoving", false);
+            player.animator.SetBool("IsWalk", false);
         }
     }
 }

@@ -26,19 +26,21 @@ namespace Entities.Player.Scripts
                 public bool isHoldingHorizontal = false;
                 public bool isHoldingVertical = false;
                 public bool isPerformingJump = false;
+                public bool isPerformingMeleeAttack = false;
+                public bool isPerformingDash = false;
+                public bool isPerformingPotionThrow = false;
                 public bool isDashing = false;
                 public bool onDJump = false;
                 public bool facingRight = true;
                 public bool isCollidingLeft = false;
                 public bool isCollidingRight = false;
-                public bool isPerformingMeleeAttack = false;
-                public bool isPerformingDash;
                 public bool canAttack = true;
                 public float meleeAttackCooldown;
                 public float meleeAttackDuration;
                 public float meleeAttackStart;
                 public float jumpDuration;
-        
+                public bool isInMiddleOfAirAttack = false;
+                public bool isInMiddleOfAttack = false;
                 public float friction;
                 public bool isStunned = false;
         
@@ -121,11 +123,10 @@ namespace Entities.Player.Scripts
                         //MeleeAttack
                         _controls.GeneralActionMap.Attack.performed += ctx =>  isPerformingMeleeAttack = true;
                         _controls.GeneralActionMap.Attack.canceled += ctx =>  isPerformingMeleeAttack = false;
-                
-                
                         //Potion launch
-                        _controls.GeneralActionMap.Potion.performed += ctx => Potion();
-                
+                        _controls.GeneralActionMap.Potion.performed += ctx => isPerformingPotionThrow = true;
+                        _controls.GeneralActionMap.Potion.canceled += ctx => isPerformingPotionThrow = false;
+                        
                         // Initialize data
                         horizontalSpeed = playerData.movementSpeed;
                         maxAirHorizontalSpeed = playerData.maxAirHorizontalSpeed;
@@ -196,6 +197,7 @@ namespace Entities.Player.Scripts
 
                 public void Move()
                 {
+                        Debug.Log("I AM MOVING IN THE GROUND");
                         FlipSprite();
                 
                         if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
@@ -210,16 +212,16 @@ namespace Entities.Player.Scripts
 
                 public void AirMove()
                 {
-                
-                        FlipSprite();
+                        Debug.Log("I AM MOVING IN THE AIR");
                         float airAcceleration = 1f;
-                        if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
+                        float movementDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
+                        if((movementDirection == 1 && isCollidingRight) || (movementDirection == -1 && isCollidingLeft))
                         {
                                 _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y); 
                                 return;
                         }
 
-                        if (facingRight)
+                        if (movementDirection == 1)
                         {
                                 if (_rigidbody2D.velocity.x > maxAirHorizontalSpeed)
                                 {
@@ -230,7 +232,7 @@ namespace Entities.Player.Scripts
                         
                         }
 
-                        if (!facingRight)
+                        if (movementDirection == -1)
                         {
                                 if (_rigidbody2D.velocity.x < -maxAirHorizontalSpeed)
                                 {
@@ -247,6 +249,7 @@ namespace Entities.Player.Scripts
         
                 public bool IsGrounded()
                 {
+                        if (_rigidbody2D.velocity.y > 0) return false;
                         return 0 < _numberOfGrounds;
                 }
         
@@ -258,133 +261,8 @@ namespace Entities.Player.Scripts
                         Debug.Log("IsDashing");
                 
                 }
-        
-                public void EndStun()
-                {
-                        isStunned = false;
-                }
 
-                public bool CanDash()
-                {
-                        if (!onDashCooldown && isPerformingDash) 
-                        {
-                                return true;
-                        }
-
-                        return false;
-                }
-
-                public void FlipSprite()
-                {
-                        Debug.Log("Flip");
-                        float direction = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
-                        Debug.Log(direction);
-                        if (direction == -1) facingRight = false;
-                        else if (direction == 1) facingRight = true;
-                        _spriteRenderer.flipX = !facingRight;
-                        Debug.Log(_spriteRenderer.flipX);
-
-                }
-
-                public void AirDashStart()
-                {
-                
-                }
-
-                public void StunEntity(float time)
-                {
-                        timeStunned = time;
-                        PmStateMachine.TransitionTo(PmStateMachine.StunnedState);
-                }
-                public void AirDash()
-                {
-                        float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
-                        float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
-                
-                        float xForce = playerData.airdashForce * xDirection;
-                        float yForce = playerData.airdashForce * yDirection;
-
-
-                        if (yForce == 0)
-                        {
-                                yForce = playerData.airdashForce / 2;
-                        }
-                        _rigidbody2D.velocity = new Vector2(xForce, yForce * 2);
-
-
-                }
-
-                public void AttackCooldown()
-                {
-                        canAttack = true;
-                }
-        
-                public void AttackDuration()
-                {
-                        if (IsGrounded())
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.IdleState);
-                                return;
-                        }
-                        PmStateMachine.TransitionTo(PmStateMachine.AirState);
-                }
-
-                public void GroundAttack()
-                {
-                        //aadafloat xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
-                        float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
-                
-                        if (yDirection == 1)
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackUpState);
-                                return;
-                        }
-                        if (facingRight)
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackRightState);
-                                return;
-                        }
-                        if (!facingRight)
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackLeftState);
-                                return;
-                        }
-                
-
-
-                
-                }
-                public void AirAttack()
-                {
-                        //float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
-                        float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
-                
-                        if (yDirection == 1)
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackUpState);
-                                return;
-                        }
-                        if (yDirection == -1)
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackDownState);
-                                return;
-                        }
-                        if (facingRight)
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackRightState);
-                                return;
-                        }
-                        if (!facingRight)
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackLeftState);
-                                return;
-                        }
-
-
-                
-                }
-
-                public void FinishedAttack()
+                public void EndThrowPotion()
                 {
                         if (isHoldingHorizontal)
                         {
@@ -410,6 +288,189 @@ namespace Entities.Player.Scripts
                 
                                 return;
                         }
+                        
+                        PmStateMachine.TransitionTo(PmStateMachine.IdleState);
+                }
+                
+        
+                public void EndStun()
+                {
+                        isStunned = false;
+                }
+
+                public bool CanDash()
+                {
+                        if (!onDashCooldown && isPerformingDash) 
+                        {
+                                return true;
+                        }
+
+                        return false;
+                }
+
+                public void FlipSprite()
+                {
+                        float direction = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
+                        if (direction == -1)
+                        {
+                                facingRight = false;
+                                animator.SetBool("IsFlipped", false);
+                        }
+                        else if (direction == 1)
+                        {
+                                facingRight = true;
+                                animator.SetBool("IsFlipped", true);
+                        }
+                        _spriteRenderer.flipX = !facingRight;
+
+                }
+                
+                
+                
+
+                public void StunEntity(float time)
+                {
+                        timeStunned = time;
+                        PmStateMachine.TransitionTo(PmStateMachine.StunnedState);
+                }
+                
+                
+                public void AirDash()
+                {
+                        float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
+                        float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
+                
+                        float xForce = playerData.airdashForce * xDirection;
+                        float yForce = playerData.airdashForce * yDirection;
+
+
+                        if (yForce == 0)
+                        {
+                                yForce = playerData.airdashForce / 2;
+                        }
+                        _rigidbody2D.velocity = new Vector2(xForce, yForce * 2);
+
+
+                }
+
+                public void GroundAttack()
+                {
+                        //aadafloat xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
+                        float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
+                
+                        float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
+                        
+                        if (yDirection == 1)
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackUpState);
+                                return;
+                        }
+                        if (xDirection == 1)
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackRightState);
+                                return;
+                        }
+                        if (xDirection == -1)
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackLeftState);
+                                return;
+                        }
+                        
+                        if (facingRight)
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackRightState);
+                                return;
+                        }
+                        PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackLeftState);
+
+                        
+                
+
+
+                
+                }
+                public void AirAttack()
+                {
+                        //float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
+                        float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
+                        float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
+                        if (yDirection == 1)
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackUpState);
+                                return;
+                        }
+                        if (yDirection == -1)
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackDownState);
+                                return;
+                        }
+                        if (xDirection == 1)
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackRightState);
+                                return;
+                        }
+                        if (xDirection == -1)
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackLeftState);
+                                return;
+                        }
+
+                        if (facingRight)
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackRightState);
+                                return;
+                        }
+                        
+                        PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackLeftState);
+
+
+                
+                }
+
+                public void EndAttack()
+                {
+                        /* if (!IsGrounded())
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.AirState);
+                
+                                return;
+                        }
+                        
+                        if (isHoldingHorizontal)
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.WalkState);
+                                return;
+                        }
+
+                        if (CanDash())
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.GroundDashState);
+                                return;
+                        }
+
+                        if (isPerformingJump)
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.JumpState);
+                                return;
+                        }
+                        
+                        PmStateMachine.TransitionTo(PmStateMachine.IdleState); */
+                        isInMiddleOfAttack = false;
+                }
+
+                public void EndAirAttack()
+                {
+                        /* 
+                        if (!IsGrounded())
+                        {
+                                PmStateMachine.TransitionTo(PmStateMachine.AirState);
+                                return;
+                        }
+                        
+                        PmStateMachine.TransitionTo(PmStateMachine.IdleState);
+                        */
+                        isInMiddleOfAirAttack = false;
+                        
                 }
                 
                 public void DisablePlayerControls()
@@ -422,15 +483,9 @@ namespace Entities.Player.Scripts
                         _controls.Enable();
                 }
         
-                void Potion()
+                void SpawnPotion()
                 {
-                        if (!_onPotionColdown)
-                        {
-                                Debug.Log("POTION LAUNCH");
-                                Instantiate(potion, new Vector2(transform.position.x, transform.position.y + 2), Quaternion.identity);
-                                _sliderPotion.value = 0;
-                                StartCoroutine(PotionCooldownSlider());
-                        }
+                        
                 }
         
                 public override void OnDeath()
@@ -625,6 +680,11 @@ namespace Entities.Player.Scripts
                 public void ResetGravity()
                 {
                         _rigidbody2D.gravityScale = baseGravity;
+                }
+                
+                public void SetIsOnMiddleOfAirAttack()
+                {
+                        isInMiddleOfAirAttack = true;
                 }
         }
 }

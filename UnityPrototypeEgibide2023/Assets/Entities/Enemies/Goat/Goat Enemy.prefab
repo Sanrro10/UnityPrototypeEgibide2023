@@ -55,7 +55,10 @@ MonoBehaviour:
   jumpForce: 10
   facingRight: 0
   stunTime: 0
-  canCollide: 1
+  canCollide: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
   eyes: {fileID: 6328714735705215187}
 --- !u!61 &4021914991555316336
 BoxCollider2D:
@@ -139,7 +142,7 @@ Animator:
   m_GameObject: {fileID: 235341801465288344}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fc8d26dbc2d253f4f8cbd5e17cc8a43c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6a12f7781c4336c41874acda7b620a7b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -191,7 +194,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9a2c98fc6b66e0c4d91ce53c24a101a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ad5bceb238eb8b46af14a5cd614ff14, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

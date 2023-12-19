@@ -11,6 +11,8 @@ namespace Entities.Enemies.Goat
         public bool facingRight;
         public float stunTime;
         public bool canCollide = true;
+
+        [SerializeField] private LayerMask playerLayer;
         // reference to player
 
         private Rigidbody2D _rb;
@@ -28,6 +30,7 @@ namespace Entities.Enemies.Goat
         // Update is called once per frame
         public void ActivateEnemy()
         {
+            canCollide = true;
             InvokeRepeating(nameof(Move), 0, 0.01f);
             CancelInvoke(nameof(LookForEnemy));
         }
@@ -84,12 +87,12 @@ namespace Entities.Enemies.Goat
         private void LookForEnemy()
         {
             Debug.DrawRay(eyes.transform.position, (facingRight ? Vector2.right : Vector2.left) * 3f, Color.red);
-            RaycastHit2D hit = Physics2D.Raycast(eyes.transform.position, (facingRight ? Vector2.right : Vector2.left), 3f);
+            RaycastHit2D hit = Physics2D.Raycast(eyes.transform.position, (facingRight ? Vector2.right : Vector2.left), 3f, playerLayer);
         
             if (hit.collider != null)
             {
 
-            
+                Debug.Log(hit.collider.gameObject.name);
                 if (hit.collider.CompareTag("Player"))
                 {
                     ActivateEnemy();
