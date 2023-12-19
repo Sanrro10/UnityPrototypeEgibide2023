@@ -15,7 +15,6 @@ namespace StatePattern.PlayerStates
 
         public void Enter()
         {
-            
             Debug.Log("Entering Jump State");
             player.animator.SetBool("IsJump", true);
             player.InvokeRepeating(nameof(player.Jump), 0, 0.01f);

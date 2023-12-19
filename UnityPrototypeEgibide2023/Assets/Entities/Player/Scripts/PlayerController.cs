@@ -197,7 +197,6 @@ namespace Entities.Player.Scripts
 
                 public void Move()
                 {
-                        Debug.Log("I AM MOVING IN THE GROUND");
                         FlipSprite();
                 
                         if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
@@ -212,8 +211,8 @@ namespace Entities.Player.Scripts
 
                 public void AirMove()
                 {
-                        Debug.Log("I AM MOVING IN THE AIR");
-                        float airAcceleration = 1f;
+                        float airAcceleration = 0.5f;
+                        float airDrag = 0.1f;
                         float movementDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
                         if((movementDirection == 1 && isCollidingRight) || (movementDirection == -1 && isCollidingLeft))
                         {
@@ -229,7 +228,8 @@ namespace Entities.Player.Scripts
                                 }
                                 _rigidbody2D.velocity =
                                         new Vector2(_rigidbody2D.velocity.x + airAcceleration, _rigidbody2D.velocity.y);
-                        
+                                return;
+
                         }
 
                         if (movementDirection == -1)
@@ -238,13 +238,35 @@ namespace Entities.Player.Scripts
                                 {
                                         return;
                                 }
-                        
+
                                 _rigidbody2D.velocity =
                                         new Vector2(_rigidbody2D.velocity.x - airAcceleration, _rigidbody2D.velocity.y);
+                                return;
                         }
-                
-                
-                
+
+                        if (_rigidbody2D.velocity.x > 0)
+                        {
+                                float velocityX = _rigidbody2D.velocity.x - airDrag;
+
+                                if (velocityX < 0)
+                                        velocityX = 0;
+                                _rigidbody2D.velocity =
+                                        new Vector2(velocityX, _rigidbody2D.velocity.y);
+                                return;
+                        }
+                        
+                        if (_rigidbody2D.velocity.x < 0)
+                        {
+                                float velocityX = _rigidbody2D.velocity.x + airDrag;
+
+                                if (velocityX > 0)
+                                        velocityX = 0;
+                                _rigidbody2D.velocity =
+                                        new Vector2(velocityX, _rigidbody2D.velocity.y);
+                                return;
+                        }
+
+
                 }
         
                 public bool IsGrounded()

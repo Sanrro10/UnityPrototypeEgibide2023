@@ -17,7 +17,12 @@ namespace Entities.Enemies.Galtzagorri.Scripts
                 other.GetComponentInParent<PlayerController>().ReceiveDamage(1);
                 _enemyHit = true;
             }
-            if (other.gameObject.CompareTag("EnemySpawnPoint")) script.ActivateHiding(other);
+
+            if (other.gameObject.CompareTag("EnemySpawnPoint"))
+            {
+                script.ActivateHiding(other);
+            }
+                
         }
 
         // Metodo para resetear que el enemigo te pueda hacer daño
