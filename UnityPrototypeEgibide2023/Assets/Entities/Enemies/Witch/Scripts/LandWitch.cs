@@ -1,27 +1,32 @@
+using System;
 using General.Scripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Entities.Enemies.Witch.Scripts
 {
     public class LandWitch : EntityControler
     {
-        [SerializeField] private GameObject player;
+        private GameObject _player;
 
         public LandWitchData landWitchData;
 
+        [SerializeField] private Animator witchAnimator;
+        
         private bool _isActive = false;
         private bool _canLaunchMissile = false;
         private bool _isLaunchingMissiles = false;
         private bool _canMagicCircle = false;
         private bool _isLaunchingMagicCircles = false;
         private bool _hasBeenActivated = false;
-
+        private int _lastCheckedHealth;
+        
         private GameObject[] _puntosTeleport;
         private int _lastTeleportPoint;
     
         private GameObject _playerRef;
-        private SpriteRenderer _spriteWitch;
+        [SerializeField] private SpriteRenderer spriteWitch;
     
         public GameObject witchMissile;
         public GameObject witchMagicCircle;
@@ -29,13 +34,14 @@ namespace Entities.Enemies.Witch.Scripts
         // Start is called before the first frame update
         void Start()
         {
+            
             //Set the Health Points
             gameObject.GetComponent<HealthComponent>().SendMessage("Set", landWitchData.health, SendMessageOptions.RequireReceiver);
+            _lastCheckedHealth = landWitchData.health;
             _playerRef = GameController.Instance.GetPlayerGameObject();
-            _spriteWitch = gameObject.GetComponent<SpriteRenderer>();
             _puntosTeleport = GameObject.FindGameObjectsWithTag("WitchTeleport");
         }
-    
+
         /*Activation/Deactivation of the LandWitch, it starts the function needed to attack
      and starts tracking the player which means, turning towards it[Called Externally]*/
         public void SetActiveState(bool state)
@@ -74,12 +80,17 @@ namespace Entities.Enemies.Witch.Scripts
         /*The LandWitch tries to face the players position*/
         private void TurnToPlayer()
         {
-            if (gameObject.transform.InverseTransformPoint(_playerRef.transform.position).x > 0)
+
+            var playerRelativePos = gameObject.transform.InverseTransformPoint(_playerRef.transform.position).x;
+            
+            if (playerRelativePos > 0)
             {
-                _spriteWitch.flipX = true;
-            }else if (gameObject.transform.InverseTransformPoint(_playerRef.transform.position).x < 0)
+                Debug.Log("Derecha");
+                spriteWitch.flipX = true;
+            }else if (playerRelativePos < 0)
             {
-                _spriteWitch.flipX = false;
+                Debug.Log("Izquierda");
+                spriteWitch.flipX = false;
             }
 
         }
@@ -108,11 +119,13 @@ namespace Entities.Enemies.Witch.Scripts
             if (!_canLaunchMissile && !_isLaunchingMissiles)
             {
                 CancelInvoke(nameof(LaunchEvilMissile));
+                CancelInvoke(nameof(ActivateAnimMissile));
             }
             //Cancel activation of MagicCircle if can't launch it
             if (!_canMagicCircle && !_isLaunchingMagicCircles)
             {
                 CancelInvoke(nameof(LaunchMagicCircle));
+                CancelInvoke(nameof(ActivateAnimMagicCircle));
             }
 
 
@@ -124,7 +137,9 @@ namespace Entities.Enemies.Witch.Scripts
             _isLaunchingMissiles = true;
             _isLaunchingMagicCircles = false;
             CancelInvoke(nameof(LaunchMagicCircle));
-            InvokeRepeating(nameof(LaunchEvilMissile),0, landWitchData.missileCooldown);
+            CancelInvoke(nameof(ActivateAnimMagicCircle));
+            InvokeRepeating(nameof(ActivateAnimMissile), 0, landWitchData.missileCooldown);
+            InvokeRepeating(nameof(LaunchEvilMissile),0.5f, landWitchData.missileCooldown);
         }
 
         /*Manages the logic and variables needed to launch MagicCircles and cancels other attacks*/
@@ -133,15 +148,27 @@ namespace Entities.Enemies.Witch.Scripts
             _isLaunchingMagicCircles = true;
             _isLaunchingMissiles = false;
             CancelInvoke(nameof(LaunchEvilMissile));
-            //CancelInvoke(nameof(WitchFastTeleport));
-            InvokeRepeating(nameof(LaunchMagicCircle) , 0, landWitchData.magicCircleCooldown);
+            CancelInvoke(nameof(ActivateAnimMissile));
+            InvokeRepeating(nameof(ActivateAnimMagicCircle),0,landWitchData.magicCircleCooldown);
+            InvokeRepeating(nameof(LaunchMagicCircle) , 0.2f, landWitchData.magicCircleCooldown);
             
+        }
+
+        /*Teleports the witch on receiveing damage*/
+        private void AccionateDamageLogic()
+        {
+            CancelInvoke(nameof(WitchFastTeleport));
+            CancelInvoke(nameof(ActivateWitchDeathDamageFast));
+            Invoke(nameof(ActivateWitchDeathDamageFast), 0);
+            Invoke(nameof(WitchFastTeleport),0.5f);
         }
 
         /*Invokes the witch's fast teleport*/
         private void AccionateFastTeleportLogic()
         {
             CancelInvoke(nameof(WitchFastTeleport));
+            CancelInvoke(nameof(ActivateWitchDeathDamageFast));
+            Invoke(nameof(ActivateWitchDeathDamageFast), landWitchData.fastTeleportationCooldown - 0.5f);
             Invoke(nameof(WitchFastTeleport),landWitchData.fastTeleportationCooldown);
         }
 
@@ -149,8 +176,11 @@ namespace Entities.Enemies.Witch.Scripts
         private void WitchMainTeleport()
         {
             CancelInvoke(nameof(LaunchEvilMissile));
+            CancelInvoke(nameof(ActivateAnimMissile));
             CancelInvoke(nameof(LaunchMagicCircle));
+            CancelInvoke(nameof(ActivateAnimMagicCircle));
             CheckForTeleportPoints();
+            Invoke(nameof(ActivateAnimTeleport), landWitchData.normalTeleportationCooldown - 0.5f);
             Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);
         }
     
@@ -158,27 +188,28 @@ namespace Entities.Enemies.Witch.Scripts
         private void WitchFastTeleport()
         {
             CancelInvoke(nameof(WitchMainTeleport));
+            CancelInvoke(nameof(ActivateAnimTeleport));
             CheckForTeleportPoints();
+            Invoke(nameof(ActivateAnimTeleport), landWitchData.normalTeleportationCooldown - 0.5f);
             Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);
         }
     
-        /*Instantiates a new Missile*/
+        /*Instantiates a new Missile and Activates Animation of Missile attack*/
         private void LaunchEvilMissile()
         {
             Instantiate(witchMissile, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 2), Quaternion.identity);
         }
 
-        /*Instantiates a new MagicCircle*/
+        /*Instantiates a new MagicCircle and Activates Animation of Magic Circle*/
         private void LaunchMagicCircle()
         {
             Instantiate(witchMagicCircle, new Vector2(_playerRef.transform.position.x, _playerRef.transform.position.y), Quaternion.identity);
         }
 
         /*Checks for prepositioned teleport points, and moves the witch to one of them at random,
-     avoiding the last one that was moved to*/
+     avoiding the last one that was moved to, and activates teleport animation*/
         private void CheckForTeleportPoints()
         {
-
             var numberOfTeleportPoint = _puntosTeleport.Length;
             GameObject newTeleportPoint = new GameObject();
             bool puntoEncontrado = false;
@@ -189,16 +220,58 @@ namespace Entities.Enemies.Witch.Scripts
                 newTeleportPoint = _puntosTeleport[newRandom];
                 if (newRandom != _lastTeleportPoint)
                 {
+                    _lastTeleportPoint = newRandom;
                     puntoEncontrado = true;
+                    gameObject.transform.position = newTeleportPoint.transform.position;
                 }
             }
 
 
-            gameObject.transform.position = newTeleportPoint.transform.position;
+           
 
         }
-    
-        /*NOT IN USE*/
+
+        /*ANIMATION TRIGGER ACTIVATORS*/
+
+        private void ActivateAnimMissile()
+        {
+            witchAnimator.SetTrigger("WitchAttackTrigger");
+        }
+
+        private void ActivateAnimMagicCircle()
+        {
+            witchAnimator.SetTrigger("WitchCircleTrigger");
+        }
+
+        private void ActivateAnimTeleport()
+        {
+            witchAnimator.SetTrigger("WitchTeleport");
+        }
+
+        private void ActivateWitchDeathDamageFast()
+        {
+            witchAnimator.SetTrigger("WitchDeathDamage");
+        }
+
+        /*Launches the teleport animation, then Destroys thw witch*/
+        public override void OnDeath()
+        {
+            Invoke(nameof(ActivateAnimTeleport),0);
+            Invoke(nameof(Delete),0.5f);
+        }
+
+        public override void OnReceiveDamage(int damage)
+        {
+            base.OnReceiveDamage(damage);
+            Invoke(nameof(AccionateDamageLogic),0);
+        }
+
+        /*Calls the delete function on this gameObject*/
+        private void Delete()
+        {
+            Destroy(gameObject);
+        }
+        /*NOT IN USE //  POSSIBLE CASE OF USE SO NO DELETE*/
         /*private void CheckForTeleportPlaces()
     {
         

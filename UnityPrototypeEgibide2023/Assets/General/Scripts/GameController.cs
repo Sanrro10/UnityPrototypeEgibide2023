@@ -84,6 +84,11 @@ namespace General.Scripts
             Debug.Log("Jugador " + _jugador);
             return _jugador;
         }
+
+        public PlayerController GetPlayerController()
+        {
+            return _jugador.GetComponent<PlayerController>();
+        }
     
         public SPlayerSpawnData GetCheckpoint()
         {
