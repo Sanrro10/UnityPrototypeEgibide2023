@@ -141,7 +141,7 @@ namespace Entities.Player.Scripts
                         // Pause
                         _controls.GeneralActionMap.Pause.performed += ctx => GameController.Instance.Pause();
                 
-                        cinemachine = GameObject.Find("GameCameras").GetComponent<CinemachineStateDrivenCamera>();
+                        cinemachine = GameObject.Find("Main Camera").GetComponent<CinemachineStateDrivenCamera>();
                         healthText = GameObject.Find("TextHealth").GetComponent<Text>();
                         mainText = GameObject.Find("TextMain").GetComponent<Text>();
                         healthBar = GameObject.Find("SliderHealth").GetComponent<Slider>();
