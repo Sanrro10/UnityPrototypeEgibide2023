@@ -20,12 +20,12 @@ MonoBehaviour:
   dashCooldown: 1
   gravity: 6
   potionColdownTime: 1
-  jumpDuration: 0.25
+  jumpDuration: 0.2
   floatDuration: 0
   airdashDuration: 0
   maxAirHorizontalSpeed: 5
   maxFallSpeed: 25
-  airDashUnlocked: 0
+  airDashUnlocked: 1
   groundDashDuration: 0
   dashCurve:
     serializedVersion: 2
@@ -78,4 +78,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  airdashForce: 20
+  airdashForce: 15
