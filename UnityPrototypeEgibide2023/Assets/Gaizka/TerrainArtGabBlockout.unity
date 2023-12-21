@@ -6805,6 +6805,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6649239419997837651, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
   m_PrefabInstance: {fileID: 1387294236}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1387698905 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+  m_PrefabInstance: {fileID: 1763439181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1387698909
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387698905}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.022
+  m_Height: 0.27
+  m_Direction: 0
+  m_Center: {x: 0.33029303, y: -0.000041579424, z: -0.003718489}
 --- !u!1001 &1388785735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7398,11 +7426,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 160013988021940176, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_ChildCameras.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1509413639970668840, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_Name
       value: GameCameras
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546376931371760289, guid: b79f68355f896a04586835700a90f915, type: 3}
+      propertyPath: m_LookaheadSmoothing
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 3103111677959427866, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9396,10 +9428,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1387698909}
   m_SourcePrefab: {fileID: 100100000, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
 --- !u!1001 &1788526599
 PrefabInstance:
