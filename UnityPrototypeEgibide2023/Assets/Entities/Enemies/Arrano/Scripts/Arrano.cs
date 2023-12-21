@@ -111,14 +111,17 @@ namespace Entities.Enemies.Arrano.Scripts
             if (_facingRight)
             {
                 //hitData = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector3(0.5f, -0.5f)), 50, playerLayer);
-                hitData = Physics2D.Raycast(transform.position, Vector2.down + Vector2.right, 50, playerLayer);
+                hitData = Physics2D.Raycast(transform.position, Vector2.down + Vector2.right, 100, playerLayer);
+                Debug.DrawRay(transform.position, Vector2.down, Color.red);
             }
             else
             {
                 //hitData = Physics2D.Raycast(transform.position, transform.TransformDirection(new Vector3(0.5f, -0.5f)), 50, playerLayer);
-                hitData = Physics2D.Raycast(transform.position, Vector2.down + Vector2.left, 50, playerLayer);
+                hitData = Physics2D.Raycast(transform.position, Vector2.down + Vector2.left, 100, playerLayer);
+                Debug.DrawRay(transform.position, Vector2.down, Color.red);
+    
             }
-
+            
             if (hitData.collider == null) return;
             if (hitData.collider.CompareTag("Player"))
             {
@@ -157,6 +160,7 @@ namespace Entities.Enemies.Arrano.Scripts
         
             // TODO: Animacion Picado
             _animator.SetBool("IsAttack", true);
+            _animator.SetBool("IsPreAttack", false);
             
             _posX = transform.position.x;
             InvokeRepeating(nameof(StartMovingDown),0,0.01f);
@@ -222,6 +226,7 @@ namespace Entities.Enemies.Arrano.Scripts
             
             // TODO: Animacion subida
             _animator.SetBool("IsUp", true);
+            _animator.SetBool("IsAttack", false);
         
             InvokeRepeating(nameof(StartMovingUp),0,0.01f);
             yield return new WaitUntil(() => Math.Abs(transform.position.y - _startPosition.y) < 0.5f);
