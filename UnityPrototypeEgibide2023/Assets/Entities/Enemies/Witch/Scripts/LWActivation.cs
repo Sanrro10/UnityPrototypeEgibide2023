@@ -4,13 +4,14 @@ namespace Entities.Enemies.Witch.Scripts
 {
     public class LWActivation : MonoBehaviour
     {
-    
+        [SerializeField] private LandWitch parentScript;
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             /*Checks if the player has entered the witch's action zone*/
             if (other.CompareTag("Player"))
             {
-                gameObject.GetComponentInParent<LandWitch>().SendMessage("SetActiveState" , true, SendMessageOptions.RequireReceiver);
+                parentScript.SendMessage("SetActiveState" , true, SendMessageOptions.RequireReceiver);
             }
         }
 
@@ -19,7 +20,7 @@ namespace Entities.Enemies.Witch.Scripts
             /*Checks if the player has left the witch's action zone*/
             if (other.CompareTag("Player"))
             {
-                gameObject.GetComponentInParent<LandWitch>().SendMessage("SetActiveState" , false , SendMessageOptions.RequireReceiver);
+                parentScript.SendMessage("SetActiveState" , false , SendMessageOptions.RequireReceiver);
             
             }
         }

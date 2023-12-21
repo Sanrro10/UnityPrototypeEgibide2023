@@ -63,7 +63,7 @@ namespace Entities.Enemies.Witch.Scripts
                 if (!_hasBeenActivated)
                 {
                     _hasBeenActivated = true;
-                    Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);    
+                    Invoke(nameof(ActivateAnimTeleport), landWitchData.normalTeleportationCooldown);    
                 }
             }
             else
@@ -326,7 +326,8 @@ namespace Entities.Enemies.Witch.Scripts
         public override void OnDeath()
         {
             Invoke(nameof(ActivateAnimTeleport),0);
-            Invoke(nameof(Delete),0.5f);
+            /*Audio Risa*/
+            Invoke(nameof(Delete),_tpTime);
         }
         
         /*Teleports the witch on receiveing damage*/
