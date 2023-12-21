@@ -118,7 +118,7 @@ namespace Entities.Enemies.Arrano.Scripts
                 hitData = Physics2D.Raycast(transform.position, Vector2.down + Vector2.left, 50, playerLayer);
                 //Debug.DrawRay(transform.position, Vector2.down + Vector2.left, Color.blue, 3f);
             }
-
+            
             if (hitData.collider == null) return;
             //Debug.Log(hitData.collider.tag);
             if (hitData.collider.CompareTag("Player"))
@@ -159,6 +159,7 @@ namespace Entities.Enemies.Arrano.Scripts
         
             // TODO: Animacion Picado
             _animator.SetBool("IsAttack", true);
+            _animator.SetBool("IsPreAttack", false);
             
             _posX = transform.position.x;
             InvokeRepeating(nameof(StartMovingDown),0,0.01f);
@@ -224,6 +225,7 @@ namespace Entities.Enemies.Arrano.Scripts
             
             // TODO: Animacion subida
             _animator.SetBool("IsUp", true);
+            _animator.SetBool("IsAttack", false);
         
             InvokeRepeating(nameof(StartMovingUp),0,0.01f);
             yield return new WaitUntil(() => Math.Abs(transform.position.y - _startPosition.y) < 0.5f);
