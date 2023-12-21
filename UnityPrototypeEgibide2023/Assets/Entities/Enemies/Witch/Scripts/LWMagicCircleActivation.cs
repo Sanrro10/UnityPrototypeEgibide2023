@@ -4,12 +4,14 @@ namespace Entities.Enemies.Witch.Scripts
 {
     public class LWMagicCircleActivation : MonoBehaviour
     {
+        [SerializeField] private LandWitch parentScript;
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             //Checks if the player has entered the MagicCircle range
             if (other.CompareTag("Player"))
             {
-                gameObject.GetComponentInParent<LandWitch>().SendMessage("SetMagicCirclePossible", true, SendMessageOptions.RequireReceiver);
+                parentScript.SendMessage("SetMagicCirclePossible", true, SendMessageOptions.RequireReceiver);
             }
         }
  
@@ -18,7 +20,7 @@ namespace Entities.Enemies.Witch.Scripts
             //Checks if the player has left the MagicCircle range
             if (other.CompareTag("Player"))
             {
-                gameObject.GetComponentInParent<LandWitch>().SendMessage("SetMagicCirclePossible", false, SendMessageOptions.RequireReceiver);
+                parentScript.SendMessage("SetMagicCirclePossible", false, SendMessageOptions.RequireReceiver);
             }
         }
     }

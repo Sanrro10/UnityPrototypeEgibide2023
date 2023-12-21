@@ -13,6 +13,12 @@ namespace Entities.Enemies.Witch.Scripts
         public LandWitchData landWitchData;
 
         [SerializeField] private Animator witchAnimator;
+        private AnimationClip _clip;
+
+        private float _missileTime;
+        private float _circleTime;
+        private float _laughtTime;
+        private float _tpTime;
         
         private bool _isActive = false;
         private bool _canLaunchMissile = false;
@@ -40,6 +46,7 @@ namespace Entities.Enemies.Witch.Scripts
             _lastCheckedHealth = landWitchData.health;
             _playerRef = GameController.Instance.GetPlayerGameObject();
             _puntosTeleport = GameObject.FindGameObjectsWithTag("WitchTeleport");
+            animationLength();
         }
 
         /*Activation/Deactivation of the LandWitch, it starts the function needed to attack
@@ -56,7 +63,7 @@ namespace Entities.Enemies.Witch.Scripts
                 if (!_hasBeenActivated)
                 {
                     _hasBeenActivated = true;
-                    Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);    
+                    Invoke(nameof(ActivateAnimTeleport), landWitchData.normalTeleportationCooldown);    
                 }
             }
             else
@@ -113,7 +120,8 @@ namespace Entities.Enemies.Witch.Scripts
             //Activate Fast teleport
             if (!_canLaunchMissile && !_canMagicCircle)
             {
-                AccionateFastTeleportLogic();
+                //AccionateFastTeleportLogic();
+                AccionateMissileLogic();
             }
             //Cancel activation of missile if can't launch it
             if (!_canLaunchMissile && !_isLaunchingMissiles)
@@ -157,19 +165,15 @@ namespace Entities.Enemies.Witch.Scripts
         /*Teleports the witch on receiveing damage*/
         private void AccionateDamageLogic()
         {
-            CancelInvoke(nameof(WitchFastTeleport));
-            CancelInvoke(nameof(ActivateWitchDeathDamageFast));
-            Invoke(nameof(ActivateWitchDeathDamageFast), 0);
-            Invoke(nameof(WitchFastTeleport),0.5f);
+            cancelAllInvokes();
+            Invoke(nameof(ActivateAnimTeleport),0);
         }
 
         /*Invokes the witch's fast teleport*/
         private void AccionateFastTeleportLogic()
         {
             CancelInvoke(nameof(WitchFastTeleport));
-            CancelInvoke(nameof(ActivateWitchDeathDamageFast));
-            Invoke(nameof(ActivateWitchDeathDamageFast), landWitchData.fastTeleportationCooldown - 0.5f);
-            Invoke(nameof(WitchFastTeleport),landWitchData.fastTeleportationCooldown);
+            Invoke(nameof(ActivateAnimTeleport), landWitchData.fastTeleportationCooldown);
         }
 
         /*Executes the Witch's Main Teleport, continuously working*/
@@ -180,8 +184,7 @@ namespace Entities.Enemies.Witch.Scripts
             CancelInvoke(nameof(LaunchMagicCircle));
             CancelInvoke(nameof(ActivateAnimMagicCircle));
             CheckForTeleportPoints();
-            Invoke(nameof(ActivateAnimTeleport), landWitchData.normalTeleportationCooldown - 0.5f);
-            Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);
+            Invoke(nameof(ActivateAnimTeleport), landWitchData.normalTeleportationCooldown);
         }
     
         /*Executes Fast Teleport, cancels temporarily main teleport*/
@@ -190,8 +193,7 @@ namespace Entities.Enemies.Witch.Scripts
             CancelInvoke(nameof(WitchMainTeleport));
             CancelInvoke(nameof(ActivateAnimTeleport));
             CheckForTeleportPoints();
-            Invoke(nameof(ActivateAnimTeleport), landWitchData.normalTeleportationCooldown - 0.5f);
-            Invoke(nameof(WitchMainTeleport), landWitchData.normalTeleportationCooldown);
+            Invoke(nameof(ActivateAnimTeleport), landWitchData.normalTeleportationCooldown);
         }
     
         /*Instantiates a new Missile and Activates Animation of Missile attack*/
@@ -231,35 +233,105 @@ namespace Entities.Enemies.Witch.Scripts
 
         }
 
-        /*ANIMATION TRIGGER ACTIVATORS*/
-
+        /*ANIMATION BOOLEAN ACTIVATION AND DEACTIVATION*/
+        
+        /*Activates the Missile Animation*/
         private void ActivateAnimMissile()
         {
-            witchAnimator.SetTrigger("WitchAttackTrigger");
+            witchAnimator.SetBool("WitchMissile", true);
+            Invoke(nameof(DeactivateAnimMissile), _missileTime);
         }
 
+        /*Deactivates the Missile Animation*/
+        private void DeactivateAnimMissile()
+        {
+            witchAnimator.SetBool("WitchMissile", false);
+        }
+
+        
+        /*Activates the Magic Circle Animation*/
         private void ActivateAnimMagicCircle()
         {
-            witchAnimator.SetTrigger("WitchCircleTrigger");
+            witchAnimator.SetBool("WitchCircle", true);
+            Invoke(nameof(DeactivateAnimMagicCircle), _circleTime);
         }
 
+        
+        /*Deactivates the Magic Circle Animation*/
+        private void DeactivateAnimMagicCircle()
+        {
+            witchAnimator.SetBool("WitchCircle", false);
+        }
+
+        
+        /*Deactivates ALL other animations and Activates the Teleport Animation*/
         private void ActivateAnimTeleport()
         {
-            witchAnimator.SetTrigger("WitchTeleport");
+            DeactivateAnimMissile();
+            DeactivateAnimMagicCircle();
+            witchAnimator.SetBool("WitchTeleport", true);
+            Invoke(nameof(DeactivateAnimTeleport) , _tpTime);
         }
 
+        /*Deactivates the teleport animation and teleports the witch*/
+        private void DeactivateAnimTeleport()
+        {
+            witchAnimator.SetBool("WitchTeleport", false);
+            Invoke(nameof(WitchMainTeleport), 0);
+        }
+
+        /*Activates the Death teleport animation*/
         private void ActivateWitchDeathDamageFast()
         {
-            witchAnimator.SetTrigger("WitchDeathDamage");
+            witchAnimator.SetBool("WitchDeathDmg", true);
+        }
+
+
+        private void animationLength()
+        {
+            AnimationClip[] clips = witchAnimator.runtimeAnimatorController.animationClips;
+            foreach (AnimationClip clip in clips)
+            {
+                switch (clip.name)
+                {
+                    case "WitchTeleport":
+                        _tpTime = clip.length;
+                        break;
+                    case "WitchMissileAttack":
+                        _missileTime = clip.length;
+                        break;
+                    case "WitchMagicCircle":
+                        _circleTime = clip.length;
+                        break;
+                    case "WitchLaught":
+                        _laughtTime = clip.length;
+                        break;
+                }
+            }
+        }
+
+        /*Convenience function to cancel all invokes, usefull in case of receiveing damage or death*/
+        private void cancelAllInvokes()
+        {
+            CancelInvoke(nameof(LaunchEvilMissile));
+            CancelInvoke(nameof(ActivateAnimMissile));
+            CancelInvoke(nameof(LaunchMagicCircle));
+            CancelInvoke(nameof(ActivateAnimMagicCircle));
+            CancelInvoke(nameof(WitchMainTeleport));
+            CancelInvoke(nameof(ActivateAnimTeleport));
+            CancelInvoke(nameof(WitchFastTeleport));
+            
         }
 
         /*Launches the teleport animation, then Destroys thw witch*/
         public override void OnDeath()
         {
             Invoke(nameof(ActivateAnimTeleport),0);
-            Invoke(nameof(Delete),0.5f);
+            /*Audio Risa*/
+            Invoke(nameof(Delete),_tpTime);
         }
-
+        
+        /*Teleports the witch on receiveing damage*/
         public override void OnReceiveDamage(int damage)
         {
             base.OnReceiveDamage(damage);
