@@ -120,7 +120,8 @@ namespace Entities.Enemies.Witch.Scripts
             //Activate Fast teleport
             if (!_canLaunchMissile && !_canMagicCircle)
             {
-                AccionateFastTeleportLogic();
+                //AccionateFastTeleportLogic();
+                AccionateMissileLogic();
             }
             //Cancel activation of missile if can't launch it
             if (!_canLaunchMissile && !_isLaunchingMissiles)
