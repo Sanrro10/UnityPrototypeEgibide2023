@@ -16,7 +16,8 @@ namespace Entities.Enemies.Gizotso.Scripts
         // Posiciones de los límites entre los que andas
         private Vector3 _leftLimitPosition;
         private Vector3 _rightLimitPosition;
-    
+
+        [SerializeField] private Animator gizotsoAnimator;
         // Variable para controlar la direccion
         private bool _goingRight = true;
     
@@ -41,9 +42,9 @@ namespace Entities.Enemies.Gizotso.Scripts
     
         private void PassiveBehavior()
         {
-        
+
             // TODO: Animacion Walk
-        
+            gizotsoAnimator.SetBool("andando", true);
             if (attacking) return;
             _navMeshAgent.SetDestination(_goingRight ? _rightLimitPosition : _leftLimitPosition);
             if (Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
@@ -73,8 +74,9 @@ namespace Entities.Enemies.Gizotso.Scripts
         
             // TODO: Animacion Pre-Ataque
             yield return new WaitForSeconds(1f);
-        
+
             // TODO: Animacion Ataque
+            gizotsoAnimator.SetBool("atacando", true);
             GameObject attackZone = gameObject.transform.Find("AttackZone").gameObject;
         
             // TODO --------------------------------------------------------------------------
@@ -122,7 +124,7 @@ namespace Entities.Enemies.Gizotso.Scripts
         public override void OnDeath()
         {
             // TODO Animacion Muerte
-        
+            gizotsoAnimator.SetTrigger("muerto");
             Invoke(nameof(DestroyThis),2f);
         
         }
