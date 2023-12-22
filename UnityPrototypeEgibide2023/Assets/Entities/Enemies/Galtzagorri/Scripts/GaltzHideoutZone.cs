@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Entities.Enemies.Galtzagorri.Scripts
 {
-    public class HideoutZone : MonoBehaviour
+    public class galtzHideoutZone : MonoBehaviour
     {
         // Variable que controla si el enemigo te puede hacer daño
         private bool _enemyHit;
@@ -12,7 +12,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         private void OnTriggerEnter2D(Collider2D other)
         {
             GameObject parent = transform.parent.gameObject;
-            var script = parent.GetComponent<Galtzagorri>();
+            var script = parent.GetComponent<GaltzScript>();
             if (other.gameObject.CompareTag("Player") && !_enemyHit) {
                 other.GetComponentInParent<PlayerController>().OnReceiveDamage(1);
                 _enemyHit = true;

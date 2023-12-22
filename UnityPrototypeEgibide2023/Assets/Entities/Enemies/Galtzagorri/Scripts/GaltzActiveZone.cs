@@ -3,30 +3,32 @@ using UnityEngine;
 
 namespace Entities.Enemies.Galtzagorri.Scripts
 {
-    public class GaltzagorriActiveZone : MonoBehaviour
+    public class GaltzActiveZone : MonoBehaviour
     {
-        private GameObject _parent;
-
-        void Start()
-        {
-            _parent = transform.parent.gameObject;
-        }
-
+        [SerializeField] private GameObject[] galtzagorris;
         
         // Evento que activa el enemigo cuando entra en el rango
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.gameObject.CompareTag("Player")) return;
-            var script = _parent.GetComponent<Galtzagorri>();
-            script.ActivateEnemy();
+            foreach (var galtzagorri in galtzagorris)
+            {
+                var script = galtzagorri.GetComponent<GaltzScript>();
+                script.ActivateEnemy();
+            }
+            
         }
     
         // Evento que desactiva el enemigo cuando sale del rango
         private void OnTriggerExit2D(Collider2D other)
         {
             if (!other.gameObject.CompareTag("Player")) return;
-            var script = _parent.GetComponent<Galtzagorri>();
-            script.DeactivateEnemy();
+            foreach (var galtzagorri in galtzagorris)
+            {
+                var script = galtzagorri.GetComponent<GaltzScript>();
+                script.DeactivateEnemy();
+            }
+            
         }
     }
 }
