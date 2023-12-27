@@ -19,7 +19,7 @@ namespace Entities.Enemies.Gizotso.Scripts
             gameObject.SetActive(false);
         }
     
-        // Evento del Collider para que el jugador reciva daño
+        // Evento del Collider para que el jugador reciba daño
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.gameObject.CompareTag("Player")) return;

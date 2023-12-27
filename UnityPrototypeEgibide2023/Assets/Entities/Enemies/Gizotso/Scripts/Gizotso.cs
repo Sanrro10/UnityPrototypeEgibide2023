@@ -20,7 +20,9 @@ namespace Entities.Enemies.Gizotso.Scripts
         [SerializeField] private Animator gizotsoAnimator;
         // Variable para controlar la direccion
         private bool _goingRight = true;
-    
+        //AttackZone cacheado
+        [SerializeField] private GizotsoAttackZone scriptaAttackZone;
+        [SerializeField] private GameObject attackZone;
         // Variable para acceder al Navmesh desde todos lados
         private NavMeshAgent _navMeshAgent;
     
@@ -46,6 +48,7 @@ namespace Entities.Enemies.Gizotso.Scripts
             // TODO: Animacion Walk
             gizotsoAnimator.SetBool("andando", true);
             if (attacking) return;
+          
             _navMeshAgent.SetDestination(_goingRight ? _rightLimitPosition : _leftLimitPosition);
             if (Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
             {
@@ -61,6 +64,7 @@ namespace Entities.Enemies.Gizotso.Scripts
 
         public void Attack()
         {
+
             if (!attacking)
             {
                 StartCoroutine(nameof(Cooldown));
@@ -70,6 +74,8 @@ namespace Entities.Enemies.Gizotso.Scripts
         private IEnumerator Cooldown()
         {
             _navMeshAgent.isStopped = true;
+            gizotsoAnimator.SetBool("andando", false);
+
             attacking = true;
         
             // TODO: Animacion Pre-Ataque
@@ -77,7 +83,6 @@ namespace Entities.Enemies.Gizotso.Scripts
 
             // TODO: Animacion Ataque
             gizotsoAnimator.SetBool("atacando", true);
-            GameObject attackZone = gameObject.transform.Find("AttackZone").gameObject;
         
             // TODO --------------------------------------------------------------------------
             // CUADRAR TIEMPOS CON LA ANIMACION
@@ -85,14 +90,14 @@ namespace Entities.Enemies.Gizotso.Scripts
             // Primer golpe 
             attackZone.SetActive(true);
             InvokeRepeating(nameof(Dash),0f,0.05f);
-            GetComponentInChildren<GizotsoAttackZone>().Attack();
+            scriptaAttackZone.Attack();
             yield return new WaitForSeconds(0.5f);
             CancelInvoke(nameof(Dash));
         
             // Segundo golpe
             attackZone.SetActive(true);
             InvokeRepeating(nameof(Dash),0f,0.05f);
-            GetComponentInChildren<GizotsoAttackZone>().Attack();
+            scriptaAttackZone.Attack();
             yield return new WaitForSeconds(0.5f);
             CancelInvoke(nameof(Dash));
         
@@ -103,7 +108,8 @@ namespace Entities.Enemies.Gizotso.Scripts
             // TODO: Animacion idle
         
             _navMeshAgent.isStopped = false;
-        
+            gizotsoAnimator.SetBool("idle", true);
+            gizotsoAnimator.SetBool("atacando", false);
             // Tiempo hasta que puede hacer otro ataque para que no se quede en bucle atacando
             yield return new WaitForSeconds(3f);
             attacking = false;
