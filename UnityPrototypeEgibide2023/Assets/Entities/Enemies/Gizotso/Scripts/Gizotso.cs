@@ -21,11 +21,14 @@ namespace Entities.Enemies.Gizotso.Scripts
         // Variable para controlar la direccion
         private bool _goingRight = true;
         //AttackZone cacheado
+        [SerializeField] private float fuerzaSalto;
+        [SerializeField] private Rigidbody2D gizoRigidBody;
         [SerializeField] private GizotsoAttackZone scriptaAttackZone;
         [SerializeField] private GameObject attackZone;
         // Variable para acceder al Navmesh desde todos lados
         private NavMeshAgent _navMeshAgent;
-    
+        //duracion animaciones
+        [SerializeField] private float duracionClipActual;
         void Start()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -77,29 +80,54 @@ namespace Entities.Enemies.Gizotso.Scripts
             gizotsoAnimator.SetBool("andando", false);
 
             attacking = true;
-        
+            gizotsoAnimator.SetBool("atacando", true);
             // TODO: Animacion Pre-Ataque
             yield return new WaitForSeconds(1f);
 
             // TODO: Animacion Ataque
-            gizotsoAnimator.SetBool("atacando", true);
+            
         
             // TODO --------------------------------------------------------------------------
             // CUADRAR TIEMPOS CON LA ANIMACION
         
             // Primer golpe 
             attackZone.SetActive(true);
-            InvokeRepeating(nameof(Dash),0f,0.05f);
+            gizotsoAnimator.SetTrigger("primerGolpe");
+            if (gizotsoAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            {
+                // Obtener el clip de animación actual
+                AnimationClip clip = gizotsoAnimator.GetCurrentAnimatorClipInfo(0)[0].clip;
+
+                // Obtener la duración del clip de animación
+                 duracionClipActual = clip.length;
+
+                // Hacer algo con la duración (por ejemplo, imprimir en la consola)
+                Debug.Log("Duración de la animación actual: " + duracionClipActual);
+            }
+            InvokeRepeating(nameof(Dash), duracionClipActual, 0.05f);
             scriptaAttackZone.Attack();
             yield return new WaitForSeconds(0.5f);
             CancelInvoke(nameof(Dash));
         
             // Segundo golpe
             attackZone.SetActive(true);
-            InvokeRepeating(nameof(Dash),0f,0.05f);
+            gizotsoAnimator.SetTrigger("segundoGolpe");
+            if (gizotsoAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            {
+                // Obtener el clip de animación actual
+                AnimationClip clip = gizotsoAnimator.GetCurrentAnimatorClipInfo(0)[0].clip;
+
+                // Obtener la duración del clip de animación
+                 duracionClipActual = clip.length;
+
+                // Hacer algo con la duración (por ejemplo, imprimir en la consola)
+                Debug.LogError("Duración de la animación actual: " + duracionClipActual);
+            }
+            InvokeRepeating(nameof(Dash), duracionClipActual, 0.05f);
             scriptaAttackZone.Attack();
             yield return new WaitForSeconds(0.5f);
             CancelInvoke(nameof(Dash));
+            _navMeshAgent.enabled = true;
         
             // TODO: Animacion de stun
             // TODO: Tiempo que va a estar stuneado
@@ -112,18 +140,27 @@ namespace Entities.Enemies.Gizotso.Scripts
             gizotsoAnimator.SetBool("atacando", false);
             // Tiempo hasta que puede hacer otro ataque para que no se quede en bucle atacando
             yield return new WaitForSeconds(3f);
+            _navMeshAgent.enabled = true;
             attacking = false;
         }
 
         private void Dash()
         {
+            Debug.Log("Dash llamado");
+            gizotsoAnimator.SetTrigger("dash");
+            _navMeshAgent.enabled = false;
             if (_goingRight)
             {
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + 0.1f, transform.position.y), 0.1f);
+               // gizoRigidBody.AddForce(new Vector2(transform.position.x*fuerzaSalto,transform.position.y* fuerzaSalto), ForceMode2D.Impulse);
+                //gizoRigidBody.AddForce(Vector2.up* fuerzaSalto, ForceMode2D.Impulse);
+                
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + 2f, transform.position.y+2f), fuerzaSalto);
             }
             else
             {
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x - 0.1f, transform.position.y), 0.1f);
+                //gizoRigidBody.AddForce(new Vector2(transform.position.x * -fuerzaSalto, transform.position.y * fuerzaSalto), ForceMode2D.Force);
+
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x - 2f, transform.position.y+2f), fuerzaSalto);
             }
         }
     
