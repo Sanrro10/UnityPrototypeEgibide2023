@@ -12,6 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - CHANGECOLOR2_ON
   - FADE_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -124,9 +125,9 @@ Material:
     - _ClipUvLeft: 0
     - _ClipUvRight: 0
     - _ClipUvUp: 0
-    - _ColorChangeLuminosity: 0
-    - _ColorChangeTolerance: 0.25
-    - _ColorChangeTolerance2: 0.25
+    - _ColorChangeLuminosity: 0.346
+    - _ColorChangeTolerance: 0.899
+    - _ColorChangeTolerance2: 0.729
     - _ColorChangeTolerance3: 0.25
     - _ColorRampBlend: 1
     - _ColorRampLuminosity: 0
@@ -135,7 +136,7 @@ Material:
     - _ColorSwapBlueLuminosity: 0.5
     - _ColorSwapGreenLuminosity: 0.5
     - _ColorSwapRedLuminosity: 0.5
-    - _Contrast: 1
+    - _Contrast: 6
     - _CullingOption: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -145,9 +146,9 @@ Material:
     - _DstBlend: 0
     - _EditorDrawers: 6
     - _FadeAmount: -0.1
-    - _FadeBurnGlow: 2
-    - _FadeBurnTransition: 0.075
-    - _FadeBurnWidth: 0.025
+    - _FadeBurnGlow: 10
+    - _FadeBurnTransition: 0.045
+    - _FadeBurnWidth: 0.084
     - _FishEyeUvAmount: 0.35
     - _FlickerAlpha: 0
     - _FlickerFreq: 0.2
@@ -160,7 +161,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Glow: 10
+    - _Glow: 0.2
     - _GlowGlobal: 1
     - _GradBlend: 1
     - _GradBoostX: 1.2
@@ -233,9 +234,9 @@ Material:
     - _RotateUvAmount: 0
     - _RoundWaveSpeed: 2
     - _RoundWaveStrength: 0.7
-    - _ShadowAlpha: 0.5
-    - _ShadowX: 0.1
-    - _ShadowY: -0.05
+    - _ShadowAlpha: 0.167
+    - _ShadowX: 0.02
+    - _ShadowY: -0.012
     - _ShakeUvSpeed: 2.5
     - _ShakeUvX: 1.5
     - _ShakeUvY: 1
@@ -267,11 +268,11 @@ Material:
     m_Colors:
     - _AlphaOutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorChangeNewCol: {r: 1, g: 1, b: 0, a: 1}
-    - _ColorChangeNewCol2: {r: 1, g: 1, b: 0, a: 1}
+    - _ColorChangeNewCol: {r: 1, g: 0.35504457, b: 0, a: 1}
+    - _ColorChangeNewCol2: {r: 0.85800004, g: 0.30618826, b: 0, a: 1}
     - _ColorChangeNewCol3: {r: 1, g: 1, b: 0, a: 1}
-    - _ColorChangeTarget: {r: 1, g: 0, b: 0, a: 1}
-    - _ColorChangeTarget2: {r: 1, g: 0, b: 0, a: 1}
+    - _ColorChangeTarget: {r: 0.5686275, g: 0.45882356, b: 0.45882356, a: 1}
+    - _ColorChangeTarget2: {r: 0.5764706, g: 0.30588236, b: 0.3137255, a: 1}
     - _ColorChangeTarget3: {r: 1, g: 0, b: 0, a: 1}
     - _ColorSwapBlue: {r: 1, g: 1, b: 1, a: 1}
     - _ColorSwapGreen: {r: 1, g: 1, b: 1, a: 1}

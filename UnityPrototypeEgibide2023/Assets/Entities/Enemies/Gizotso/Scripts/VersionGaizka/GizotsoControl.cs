@@ -12,11 +12,14 @@ public class GizotsoControl : MonoBehaviour
         Death,
         Hurt,
         Stunned,
-        Chase
+        Chase,
+        Dash
     }
-
-     EstadoEnemigo estadoActual ;
-
+    // Datos del enemigo
+    [Header("Datos del enemigo")]
+    [SerializeField] private Entities.PassiveEnemyData passiveEnemyData;
+    public EstadoEnemigo estadoActual ;
+    [Header("Valores de Movimiento")]
     public float velocidadCaminata = 2.0f;
     public float rangoDeteccion = 5.0f;
     public float rangoAtaque = 5.0f;
@@ -30,22 +33,28 @@ public class GizotsoControl : MonoBehaviour
     public Transform limiteDerecho;
     [SerializeField]float posIzquiMax;
     [SerializeField] float posDereMax;
-    [SerializeField] bool vistoPlayer;
+    [Header("Relativo al player")]
+    [SerializeField] private RaycastHit2D hit;
+    [SerializeField] bool vistoPlayer = false;
     [SerializeField] Transform playerTransform;
     [SerializeField] float distanciaAPlayer;
     public Animator gizotsoAnimator;
-    [SerializeField] Transform attackColliderTransform;
-    private bool mirandoDerecha = true;
+    [SerializeField] public Transform origenRayo;
+    public bool mirandoDerecha = true;
     [SerializeField] float duracionClipActual;
-
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] float fuerzaSalto;
     private delegate void EstadoMetodo();
     private EstadoMetodo metodoEstadoActual;
 
+    [Header("Dash")]
+    public float velocidadRodar = 2.0f;
+    public float distanciaLateralDash = 5.0f;
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Vector2 direccionRaycast = mirandoDerecha ? Vector2.left : Vector2.right;
-        Gizmos.DrawRay(attackColliderTransform.position, direccionRaycast * longitudRaycast);
+        Gizmos.DrawRay(origenRayo.position, direccionRaycast * longitudRaycast);
     }
 
     private void Start()
@@ -70,16 +79,18 @@ public class GizotsoControl : MonoBehaviour
         //    InvokeRepeating("AlternarEstadoIdleWalk", 0.0f, tiempoCambioEstado);
 
         //}
-        CambiarEstado(EstadoEnemigo.Walk, Caminar);
+        StopAllCoroutines();
+
+        CambiarEstado(EstadoEnemigo.Idle, Idle);
         StartCoroutine("AlternarEstadoIdleWalk");
     }
     private IEnumerator AlternarEstadoIdleWalk()
     {
         while (estadoActual != EstadoEnemigo.Attack || estadoActual != EstadoEnemigo.Chase)
         {
-            if (estadoActual != EstadoEnemigo.Attack || estadoActual != EstadoEnemigo.Chase)
+            if (estadoActual != EstadoEnemigo.Attack || estadoActual != EstadoEnemigo.Chase|| estadoActual!= EstadoEnemigo.Dash)
             {
-                Debug.LogError("El estado en alternar es " + estadoActual);
+                Debug.LogError("El estado actual en alternar es " + estadoActual);
                 if (estadoActual == EstadoEnemigo.Idle)
                 {
                     CambiarEstado(EstadoEnemigo.Walk, Caminar);
@@ -100,17 +111,21 @@ public class GizotsoControl : MonoBehaviour
     private void Perseguir()
     {
         StopAllCoroutines();
+       
         StartCoroutine("Persiguiendo");
     }
     private IEnumerator Persiguiendo()
     {
+        yield return new WaitForSeconds(0.3f);
+        ActivarTrigger("Walk");
         while (estadoActual == EstadoEnemigo.Chase)
         {
-            if (distanciaAPlayer < rangoDeteccion)
+            if (playerTransform != null)
             {
                 //Debug.Log("Player transform - transform= " + Math.Abs(playerTransform.position.x - transform.position.x));
                 // Mueve al enemigo hacia el jugador
                 //CambiarEstado(EstadoEnemigo.Walk, Caminar);
+                
                 float direccion = playerTransform.position.x > transform.position.x ? 1.0f : -1.0f;
                 transform.Translate(Vector2.right * direccion * velocidadCaminata * Time.deltaTime);
 
@@ -129,8 +144,16 @@ public class GizotsoControl : MonoBehaviour
     }
     private void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(attackColliderTransform.position, mirandoDerecha ? Vector2.left : Vector2.right, longitudRaycast);
-        if (hit.collider != null) { Debug.LogError("Detectado con rayo " + hit.collider.tag); }
+        //Debug.LogError("Estado actual es + " + estadoActual);
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            CambiarEstado(EstadoEnemigo.Dash, RodarDash);
+        } if (Input.GetKeyDown(KeyCode.O))
+        {
+            CambiarEstado(EstadoEnemigo.Death, Morir);
+        }
+             hit = Physics2D.Raycast(origenRayo.position, mirandoDerecha ? Vector2.left : Vector2.right, longitudRaycast);
+        //if (hit.collider != null) { Debug.LogError("Detectado con rayo " + hit.collider.tag); }
         if (playerTransform != null)
         {
             distanciaAPlayer = Math.Abs(playerTransform.position.x - transform.position.x);
@@ -160,42 +183,70 @@ public class GizotsoControl : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.LogError("Triger enter es " + other.tag);
+        if (!other.gameObject.CompareTag("Player")) return;
         if (other.gameObject.layer == 6)
         {
-            StopAllCoroutines();
-            CambiarEstado(EstadoEnemigo.Attack, Atacar);
+            if (estadoActual != EstadoEnemigo.Dash)
+            {
+                StopAllCoroutines();
+                CambiarEstado(EstadoEnemigo.Attack, Atacar);
+                Debug.LogError("Triger enter llama a atacar ");
+
+            }
+            
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.LogError("Triger exit es " + other.gameObject.layer);
+        Debug.LogError("Triger exit es " + other.tag);
+        if (!other.gameObject.CompareTag("Player")) return;
         if (other.gameObject.layer == 6)
         {
-            Patrullar();
-            vistoPlayer = false;
+            if (estadoActual != EstadoEnemigo.Dash)
+            {
+                if (distanciaAPlayer <= rangoDeteccion)
+                {
+                    if (distanciaAPlayer >= rangoAtaque)
+                    {
+                        CambiarEstado(EstadoEnemigo.Chase, Perseguir);
+                    }
+                    else
+                    {
+                        CambiarEstado(EstadoEnemigo.Attack, Atacar);
+                    }
+
+                }
+                else
+                {
+                    Patrullar();
+                    vistoPlayer = false;
+                }
+            }
         }
         
     }
 
     private void Idle()
     {
-        Debug.LogError("LLamado Idle");
+        // Debug.LogError("LLamado Idle");
+       // StopAllCoroutines();
         ActivarTrigger("Idle");
     }
     private void Caminar()
     {
-        Debug.LogError("LLamado Caminar");
+        //Debug.LogError("LLamado Caminar");
+        //StopAllCoroutines();
         ActivarTrigger("Walk");
         StartCoroutine("Caminando");
     }
     private IEnumerator Caminando()
     {
-        Debug.LogError("LLamado Corutina Caminar");
+        //Debug.LogError("LLamado Corutina Caminar");
        // CambiarDireccion();
         while (estadoActual == EstadoEnemigo.Walk)
         {
             float direccion = mirandoDerecha ? -1.0f : 1.0f;
-            Debug.LogError("La direccion es = " + mirandoDerecha);
+            //Debug.LogError("La direccion es = " + mirandoDerecha);
             velocidadCaminata = 2f;
             transform.Translate(Vector2.right * direccion * velocidadCaminata * Time.deltaTime);
             //Debug.Log("Pos deremax = " + posDereMax);
@@ -231,9 +282,9 @@ public class GizotsoControl : MonoBehaviour
         ActivarTrigger("Attack");
         while (estadoActual == EstadoEnemigo.Attack)
         {
-            if(distanciaAPlayer <= rangoAtaque)
+            if (distanciaAPlayer <= rangoAtaque)
             {
-                
+                // Debug.LogError("distanciaAPlayer es " + distanciaAPlayer + " rangoAtaque es " + rangoAtaque); ;
                 if (gizotsoAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
                 {
                     // Obtener el clip de animación actual
@@ -245,29 +296,110 @@ public class GizotsoControl : MonoBehaviour
                     // Hacer algo con la duración (por ejemplo, imprimir en la consola)
                     Debug.LogError("Duración de la animación actual: " + duracionClipActual);
                 }
+                if (hit.collider != null && hit.collider.CompareTag("Player"))
+                {
+                    CambiarEstado(EstadoEnemigo.Chase, Perseguir);
+                    Debug.LogError("Hit collider es !=player de attack debería cambiar a Perseguir");
+
+
+                }
+                /*float direccion = playerTransform.position.x > transform.position.x ? 1.0f : -1.0f;
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), gameObject.layer,true);
+                rb.AddForce(Vector2.left*direccion * fuerzaSalto, ForceMode2D.Impulse);
+                //rb.AddForce(new Vector2(transform.position.x*direccion * fuerzaSalto, transform.position.y * fuerzaSalto), ForceMode2D.Impulse);
                 //yield return new WaitForSeconds(duracionClipActual);
                 //ActivarTrigger("Attack1");
                 //ActivarTrigger("Attack2");
-                yield return null;
+                */
+
+                //yield return new WaitForSeconds(2f);
+                //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), gameObject.layer, false);
+
             }
             else
             {
-                Perseguir();
+                Debug.LogError("Distancia a player = " + (distanciaAPlayer <= rangoDeteccion));
+                if (distanciaAPlayer <= rangoDeteccion)
+                {
+                    CambiarEstado(EstadoEnemigo.Chase, Perseguir);
+                    Debug.LogError("Entrado en distanciaAPlayer <= rangoDeteccion de attack debería cambiar a Perseguir");
+                }
+                else
+                {
+                    Patrullar();
+                    Debug.LogError("Entrado en patrullar de attack debería cambiar a patrullar");
+
+                }
+                //Debug.LogError("Entrado en patrullar de attack debería cambiar a patrullar");
             }
+            //CambiarEstado(EstadoEnemigo.Chase, Perseguir);
+            yield return null;
         }
-        
+      
     }
     private void Morir()
     {
+        StopAllCoroutines();
         ActivarTrigger("Death");
+        Invoke(nameof(DestroyThis), 3f);
+
     }
 
+    private void DestroyThis()
+    {
+        Destroy(gameObject);
+    }
     private void Herir()
     {
-        Invoke("CambiarEstadoStunned", tiempoHurt);
-        ActivarTrigger("Hurt");
+        //Invoke("CambiarEstadoStunned", tiempoHurt);
+        //ActivarTrigger("Hurt");
+        CambiarEstado(EstadoEnemigo.Dash, RodarDash);
     }
+    private void RodarDash()
+    {
+        StopAllCoroutines();
+        StartCoroutine(RodarDashCoroutine());
+    }
+    private IEnumerator RodarDashCoroutine()
+    {
+        // Activar el trigger para la animación de rodar
+        ActivarTrigger("Rodar");
 
+        // Desactivar temporalmente las colisiones con el jugador
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), gameObject.layer, true);
+        float direccion = mirandoDerecha ? -1.0f : 1.0f;
+        // Calcular la nueva posición después de rodar
+        Vector3 nuevaPosicion = transform.position +  new Vector3(distanciaLateralDash* direccion, 0f, 0f);
+        Debug.LogError("Nueva posicion para dash = " + nuevaPosicion);
+        // Moverse mientras rueda (puedes ajustar la lógica según tus necesidades)
+        while ((direccion > 0 && transform.position.x < nuevaPosicion.x) ||
+               (direccion < 0 && transform.position.x > nuevaPosicion.x))
+        {
+            float distanciaPorFrame = velocidadRodar * Time.deltaTime;
+            transform.Translate(Vector3.right*direccion * distanciaPorFrame);
+            yield return null;
+        }
+
+        // Posicionar al enemigo al otro lado del jugador
+        transform.position = nuevaPosicion;
+
+        // Activar las colisiones con el jugador nuevamente
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), gameObject.layer, false);
+
+        // Cambiar a otro estado (si es necesario) después del dash
+        if (playerTransform != null)
+        {
+            if(distanciaAPlayer <= rangoDeteccion)
+            {
+                CambiarEstado(EstadoEnemigo.Chase, Perseguir);
+            }
+        }
+        else
+        {
+            Patrullar();
+        }
+        
+    }
     private void Stun()
     {
         Invoke("CambiarEstadoIdle", tiempoStunned);
@@ -329,6 +461,9 @@ public class GizotsoControl : MonoBehaviour
                 break;
             case EstadoEnemigo.Chase:
                 metodoEstadoActual = Perseguir;
+                break;
+            case EstadoEnemigo.Dash:
+                metodoEstadoActual = RodarDash;
                 break;
         }
         metodoEstadoActual?.Invoke();

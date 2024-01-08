@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 755058875}
-  m_IndirectSpecularColor: {r: 0.34602174, g: 0.6320802, b: 0.8686343, a: 1}
+  m_IndirectSpecularColor: {r: 0.34617233, g: 0.63207424, b: 0.8686007, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6579,11 +6579,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5478570237695421230, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
   m_PrefabInstance: {fileID: 4795605619891557725}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1287727723 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7957321215473550393, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
-  m_PrefabInstance: {fileID: 1801840553}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1303340382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9888,21 +9883,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 207766425859292850, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 895738189947936011, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
-      propertyPath: m_Offset.x
-      value: -1.28
-      objectReference: {fileID: 0}
     - target: {fileID: 1995740712987270996, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.7
+      value: 17.93
       objectReference: {fileID: 0}
     - target: {fileID: 1995740712987270996, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 1995740712987270996, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9936,49 +9923,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2371592693913228716, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
-      propertyPath: rangoDeteccion
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2371592693913228716, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
-      propertyPath: longitudRaycast
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2371592693913228716, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
-      propertyPath: tiempoCambioEstado
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2371592693913228716, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
-      propertyPath: attackColliderTransform
-      value: 
-      objectReference: {fileID: 1287727723}
-    - target: {fileID: 4141916840027194018, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231831684053990169, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4574948532688236967, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
       propertyPath: m_Name
       value: OtsobeltzEnemyGaB
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425289128253216129, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 5702428252875769023, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 7957321215473550393, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 7957321215473550393, guid: 8f64f98ff645af74ca4a19342941a8ce, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.53
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12010,6 +11957,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1 X 1 Ruler (Ramp)
       objectReference: {fileID: 0}
+    - target: {fileID: 5917197859030433360, guid: 5642c1b7aca974542ac6769cfabd0680, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7047250094911077496, guid: 5642c1b7aca974542ac6769cfabd0680, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -12390,6 +12341,10 @@ PrefabInstance:
       propertyPath: _gate
       value: 
       objectReference: {fileID: 1674398283}
+    - target: {fileID: 4191227567770512799, guid: cf2f9aa22fe2c8148aa8ece1fe4ce1a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5079705266212847688, guid: cf2f9aa22fe2c8148aa8ece1fe4ce1a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.64
@@ -12433,6 +12388,10 @@ PrefabInstance:
     - target: {fileID: 5674753599788014356, guid: cf2f9aa22fe2c8148aa8ece1fe4ce1a7, type: 3}
       propertyPath: m_Name
       value: GateBotton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5674753599788014356, guid: cf2f9aa22fe2c8148aa8ece1fe4ce1a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
