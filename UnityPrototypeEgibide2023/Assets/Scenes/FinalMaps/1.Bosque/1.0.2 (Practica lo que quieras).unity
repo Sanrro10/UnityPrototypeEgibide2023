@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 8dd2f17b6e3f8174390967bc55ead836, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.49081343, g: 0.6818032, b: 0.78593224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -179,6 +179,10 @@ PrefabInstance:
     - target: {fileID: 1956478557065398016, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263321978739387193, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1402,6 +1406,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2015443411}
     m_Modifications:
+    - target: {fileID: 3303647722639586241, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3656255115228512901, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
       propertyPath: m_Name
       value: 1 X 4 Ruler Variant Variant
@@ -2266,6 +2274,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ccbc8da4077f94241bc141aee9ed1b94, type: 2}
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1
@@ -2814,6 +2826,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2263321978739387193, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3172,6 +3188,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1610340940}
     m_Modifications:
+    - target: {fileID: 5211752537634284699, guid: 9c29d8da9d411d34887e4ae1ebfbb172, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8583287932420699773, guid: 9c29d8da9d411d34887e4ae1ebfbb172, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.555199
@@ -3897,6 +3917,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1956478557065398016, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263321978739387193, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6289945456153813396, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
@@ -4681,6 +4705,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -30
       objectReference: {fileID: 0}
+    - target: {fileID: 8577832927150811316, guid: fc09b5e524fac6242a0fc369ca813e80, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9205316948840406660, guid: fc09b5e524fac6242a0fc369ca813e80, type: 3}
       propertyPath: m_Name
       value: 5 Cube Variant
@@ -5101,7 +5129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8285205736366998151, guid: e4193518acfbca6478c03760deb5e239, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1035.3574
+      value: -1035.41
       objectReference: {fileID: 0}
     - target: {fileID: 8285205736366998151, guid: e4193518acfbca6478c03760deb5e239, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5497,6 +5525,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2263321978739387193, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5582,6 +5614,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2015443411}
     m_Modifications:
+    - target: {fileID: 3303647722639586241, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3656255115228512901, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
       propertyPath: m_Name
       value: 1 X 4 Ruler Variant Variant (1)
@@ -5927,6 +5963,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 10 X 1 Ruler Variant (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8285205736366998151, guid: e4193518acfbca6478c03760deb5e239, type: 3}
       propertyPath: m_LocalPosition.x
       value: -124.61328
@@ -6188,6 +6228,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
       propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8285205736366998151, guid: e4193518acfbca6478c03760deb5e239, type: 3}
@@ -6535,6 +6579,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1956478557065398016, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263321978739387193, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
