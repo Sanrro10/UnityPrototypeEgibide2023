@@ -40,7 +40,7 @@ namespace StatePattern.PlayerStates
             }
 
             
-            if (player.isPerformingDash && player.isAirDashUnlocked)
+            if (player.CanAirDash())
             {
                 player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
                 return;

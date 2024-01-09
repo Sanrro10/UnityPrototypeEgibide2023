@@ -52,6 +52,7 @@ namespace Entities.Player.Scripts
         
                 [SerializeField] private AnimationCurve dashCurve;
                 public bool onDashCooldown = false;
+                public bool onAirDashCooldown = false;
                 public float maxAirHorizontalSpeed;
                 public float maxFallSpeed;
                 public float timeStunned;
@@ -329,6 +330,16 @@ namespace Entities.Player.Scripts
 
                         return false;
                 }
+                
+                public bool CanAirDash()
+                {
+                        if (!onAirDashCooldown && isPerformingDash && isAirDashUnlocked) 
+                        {
+                                return true;
+                        }
+
+                        return false;
+                }
 
                 public void FlipSprite()
                 {
@@ -578,13 +589,31 @@ namespace Entities.Player.Scripts
                         yield return new WaitForSeconds(0.2f);
                         feetBoxCollider.enabled = true;
                 }
-                public IEnumerator GroundedDashCooldown()
+                public IEnumerator DashCooldown()
                 {
                         onDashCooldown = true;
                         yield return new WaitForSeconds(playerData.dashCooldown);
+                        //Wait until the player is grounded
+                        while (!IsGrounded())
+                        { 
+                                yield return new WaitForFixedUpdate();
+                        }
                         onDashCooldown = false;
                 }
-
+                
+                public IEnumerator AirDashCooldown()
+                {
+                        onDashCooldown = true;
+                        onAirDashCooldown = true;
+                        yield return new WaitForSeconds(playerData.dashCooldown);
+                        //Wait until the player is grounded
+                        while (!IsGrounded())
+                        { 
+                                yield return new WaitForFixedUpdate();
+                        }
+                        onDashCooldown = false;
+                        onAirDashCooldown = false;
+                }
         
                 // Getters and setters
                 public void SetNumberOfGrounds(int numberOfGrounds)
