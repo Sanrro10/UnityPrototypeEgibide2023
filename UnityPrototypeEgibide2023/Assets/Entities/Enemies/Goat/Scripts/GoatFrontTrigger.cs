@@ -30,10 +30,8 @@ namespace Entities.Enemies.Goat
             if (other.CompareTag("Player"))
             {
             
-                other.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2((goatBehaviour.facingRight ? 1 : -1)* 1000f , 1000f));
-                goatBehaviour.BounceAgainstPlayer();
-                other.GetComponentInParent<PlayerController>().StunEntity(goatBehaviour.stunTime);
-                goatBehaviour.canCollide = false;
+               goatBehaviour.BounceAgainstPlayer(other.gameObject);
+               goatBehaviour.canCollide = false;
             }
         
         }

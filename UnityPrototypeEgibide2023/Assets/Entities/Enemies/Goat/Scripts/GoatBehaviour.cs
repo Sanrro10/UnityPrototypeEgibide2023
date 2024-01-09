@@ -1,4 +1,5 @@
 using System.Collections;
+using Entities.Player.Scripts;
 using UnityEngine;
 
 namespace Entities.Enemies.Goat
@@ -22,8 +23,6 @@ namespace Entities.Enemies.Goat
         void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
-            stunTime = 0.5f;
-            force = 500f;
             InvokeRepeating(nameof(LookForEnemy), 0, 0.01f);
         }
 
@@ -110,11 +109,14 @@ namespace Entities.Enemies.Goat
         
         }
 
-        public void BounceAgainstPlayer()
+        public void BounceAgainstPlayer(GameObject player)
         {
             CancelInvoke(nameof(Move));
             StartCoroutine(HasStopped(true));
-        
+            player.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2((facingRight ? 1 : -1) * force, 1000f));
+     
+            player.GetComponentInParent<PlayerController>().StunEntity(stunTime);
+
             // Add force to the goat like a jump
             _rb.velocity = new Vector2(_rb.velocity.x * -1, jumpForce);
         }
