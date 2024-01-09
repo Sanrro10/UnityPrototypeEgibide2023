@@ -23,6 +23,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         private void OnTriggerExit2D(Collider2D other)
         {
             if (!other.gameObject.CompareTag("Player")) return;
+            if (other.gameObject.name != "Square") return;
             foreach (var galtzagorri in galtzagorris)
             {
                 var script = galtzagorri.GetComponent<GaltzScript>();

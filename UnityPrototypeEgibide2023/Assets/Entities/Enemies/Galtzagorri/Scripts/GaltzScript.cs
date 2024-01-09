@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using General.Scripts;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Entities.Enemies.Galtzagorri.Scripts
 {
@@ -64,6 +67,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         {
             if (CanReachPlayer())
             {
+                Debug.LogError("Llego al jugador");
                 // TODO: Animacion Run
                 CancelInvoke(nameof(Hide));
                 _waitingForPlayer = false;
@@ -85,7 +89,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             }
             else
             {
-                if (!_hiding && !_hidden && !_attacking)
+                if (!_hiding && !_hidden)
                 {
                     _navMeshAgent.SetDestination(_lastAvailablePosition);
                     if (_waitingForPlayer) return;
@@ -132,34 +136,36 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             {
                 _attacking = true;
                 CancelInvoke(nameof(ChasePlayer));
+                _navMeshAgent.isStopped = true;
                 _navMeshAgent.enabled = false;
             
                 // TODO: Animacion Ataque
             
                 _rb2D.velocity = new Vector2(0, 0);
                 _rb2D.AddForce(new Vector2((_playerGameObject.transform.position.x - transform.position.x) * 2, 5), ForceMode2D.Impulse);
-                yield return new WaitForSeconds(1f);
+                yield return new WaitUntil(() => !_attacking);
                 _rb2D.velocity = new Vector2(0, 0);
-                _navMeshAgent.enabled = true;
                 ActivateEnemy();
                 Hide();
                 yield return new WaitForSeconds(1f);
-                _attacking = false;
             }
         }
 
         // Metodo que comprueba si el Player es accesible
         private bool CanReachPlayer()
         {
-            NavMeshPath path = new NavMeshPath();
-            if (_navMeshAgent.CalculatePath(_playerGameObject.transform.position, path))
+            if (_navMeshAgent.enabled)
             {
-                Debug.Log(path.status);
-                if (path.status == NavMeshPathStatus.PathComplete)
+                NavMeshPath path = new NavMeshPath();
+                if (_navMeshAgent.CalculatePath(_playerGameObject.transform.position, path))
                 {
-                    _lastAvailablePosition = _playerGameObject.transform.position;
-                    return true;
+                    if (path.status == NavMeshPathStatus.PathComplete)
+                    {
+                        _lastAvailablePosition = _playerGameObject.transform.position;
+                        return true;
+                    }
                 }
+                return false;
             }
             return false;
         }
@@ -204,6 +210,18 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         private void DestroyThis()
         {
             Destroy(gameObject);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!other.CompareTag("Floor")) return;
+            if (_attacking)
+            {
+                _navMeshAgent.enabled = true;
+                _navMeshAgent.isStopped = false;
+                _attacking = false;
+            }
+
         }
     }
 }
