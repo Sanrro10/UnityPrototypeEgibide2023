@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using General.Scripts;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Entities.Enemies.Galtzagorri.Scripts
 {
-    public class Galtzagorri : EntityControler
+    public class GaltzScript : EntityControler
     {
         // Referencia del jugador
         private GameObject _playerGameObject;
@@ -17,33 +21,38 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         [SerializeField] private GameObject[] hideouts;
 
         // Referencia del script para los escondites
-        [SerializeField] private HideoutZone scriptHideout;
+        [SerializeField] private galtzHideoutZone scriptGaltzHideout;
     
         // Referencia para que el Navmesh sea accesible desde todos lados
         private NavMeshAgent _navMeshAgent;
+        
+        // Referencia al RigidBody
+        private Rigidbody2D _rb2D;
     
         // Variable para que espere X segundos al aparecer
-        private bool _waiting;
+        [SerializeField] private bool _waiting;
     
         // Variable para que espere X segundos hasta irse a un escondite (por si el Player está saltando, etc)
-        private bool _waitingForPlayer;
+        [SerializeField] private bool _waitingForPlayer;
     
         // Variable para que vaya a la última posición conocida del jugador
-        private Vector3 _lastAvailablePosition;
+        [SerializeField] private Vector3 _lastAvailablePosition;
     
         // Variable que controla si está en proceso de esconderse
-        private bool _hiding;
+        [SerializeField] private bool _hiding;
     
         // Variable que controla si está escondido
-        private bool _hidden;
+        [SerializeField] private bool _hidden;
     
         // Variable que controla si setá atacando
-        private bool _attacking;
+        [SerializeField] private bool _attacking;
+        
+        
 
         void Start()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
-        
+            _rb2D = GetComponent<Rigidbody2D>();
             // Añadir una aceleración random para que no haya problemas de que se stackeen
             _navMeshAgent.acceleration = Random.Range(15, 30);
 
@@ -58,6 +67,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         {
             if (CanReachPlayer())
             {
+                Debug.LogError("Llego al jugador");
                 // TODO: Animacion Run
                 CancelInvoke(nameof(Hide));
                 _waitingForPlayer = false;
@@ -68,7 +78,6 @@ namespace Entities.Enemies.Galtzagorri.Scripts
                 }
                 else if(!_hiding)
                 {
-                
                     _navMeshAgent.SetDestination(_playerGameObject.transform.position);
                 }
 
@@ -80,10 +89,10 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             }
             else
             {
-                if (_hiding || _hidden) return;
-                _navMeshAgent.SetDestination(_lastAvailablePosition);
-                if (!_waitingForPlayer)
+                if (!_hiding && !_hidden)
                 {
+                    _navMeshAgent.SetDestination(_lastAvailablePosition);
+                    if (_waitingForPlayer) return;
                     _waitingForPlayer = true;
                     CancelInvoke(nameof(Hide));
                     Invoke(nameof(Hide), 2f);
@@ -99,6 +108,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             var placeToHide = Random.Range(0, hideouts.Length);
             if (placeToHide < 0 || placeToHide >= hideouts.Length) return;
             Vector3 whereToHide = hideouts[placeToHide].transform.position;
+            Debug.Log(whereToHide);
             _navMeshAgent.SetDestination(whereToHide);
         }
 
@@ -122,38 +132,40 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         // Metodo para atacar
         private IEnumerator Attack()
         {
-            if (_hiding || _hidden) yield break;
-            Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
-            _attacking = true;
-            CancelInvoke(nameof(ChasePlayer));
-            _navMeshAgent.enabled = false;
+            if (!_hidden && !_hiding)
+            {
+                _attacking = true;
+                CancelInvoke(nameof(ChasePlayer));
+                _navMeshAgent.isStopped = true;
+                _navMeshAgent.enabled = false;
             
-            // TODO: Animacion Ataque
+                // TODO: Animacion Ataque
             
-            
-            rb2D.velocity = new Vector2(0, 0);
-            rb2D.AddForce(new Vector2((_playerGameObject.transform.position.x - transform.position.x) * 2, 5), ForceMode2D.Impulse);
-            yield return new WaitForSeconds(1f);
-            rb2D.velocity = new Vector2(0, 0);
-            _navMeshAgent.enabled = true;
-            ActivateEnemy();
-            Hide();
-            yield return new WaitForSeconds(1f);
-            _attacking = false;
-
+                _rb2D.velocity = new Vector2(0, 0);
+                _rb2D.AddForce(new Vector2((_playerGameObject.transform.position.x - transform.position.x) * 2, 5), ForceMode2D.Impulse);
+                yield return new WaitUntil(() => !_attacking);
+                _rb2D.velocity = new Vector2(0, 0);
+                ActivateEnemy();
+                Hide();
+                yield return new WaitForSeconds(1f);
+            }
         }
 
         // Metodo que comprueba si el Player es accesible
         private bool CanReachPlayer()
         {
-            NavMeshPath path = new NavMeshPath();
-            if (_navMeshAgent.CalculatePath(_playerGameObject.transform.position, path))
+            if (_navMeshAgent.enabled)
             {
-                if (path.status == NavMeshPathStatus.PathComplete)
+                NavMeshPath path = new NavMeshPath();
+                if (_navMeshAgent.CalculatePath(_playerGameObject.transform.position, path))
                 {
-                    _lastAvailablePosition = _playerGameObject.transform.position;
-                    return true;
+                    if (path.status == NavMeshPathStatus.PathComplete)
+                    {
+                        _lastAvailablePosition = _playerGameObject.transform.position;
+                        return true;
+                    }
                 }
+                return false;
             }
             return false;
         }
@@ -165,8 +177,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             {
                 // TODO: Animacion Idle
                 _navMeshAgent.isStopped = true;
-                Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
-                rb2D.velocity = new Vector2(0, 0);
+                _rb2D.velocity = new Vector2(0, 0);
                 _hiding = false;
                 _hidden = true;
             }
@@ -178,14 +189,14 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             // TODO: Animacion Salir del Escondite
             CancelInvoke(nameof(ChasePlayer));
             InvokeRepeating(nameof(ChasePlayer), 0f, 0.1f);
-            scriptHideout.ResetHit();
+            scriptGaltzHideout.ResetHit();
         }
 
         // Metodo que desactiva el enemigo
         public void DeactivateEnemy()
         {
             CancelInvoke(nameof(ChasePlayer));
-            //Hide();
+            Hide();
         }
     
         public override void OnDeath()
@@ -199,6 +210,18 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         private void DestroyThis()
         {
             Destroy(gameObject);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!other.CompareTag("Floor")) return;
+            if (_attacking)
+            {
+                _navMeshAgent.enabled = true;
+                _navMeshAgent.isStopped = false;
+                _attacking = false;
+            }
+
         }
     }
 }
