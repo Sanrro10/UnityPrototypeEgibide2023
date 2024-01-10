@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Entities.Enemies.Goat
 {
-    public class GoatBehaviour : MonoBehaviour
+    public class GoatBehaviour : EntityControler
     {
         public float speed;
         public float force;
