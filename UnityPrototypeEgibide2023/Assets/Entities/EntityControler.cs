@@ -34,6 +34,16 @@ namespace Entities
            Invoke(nameof(DamageCooldown), InvulnerableTime);
         }
         
+        public virtual void Invulneravility()
+        {
+            Invulnerable = true;
+        }
+        
+        public virtual void EndInvulneravility()
+        {
+            Invulnerable = false;
+        }
+        
         public void DamageCooldown()
         {
             Invulnerable = false;

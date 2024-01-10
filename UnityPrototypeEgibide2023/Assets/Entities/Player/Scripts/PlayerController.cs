@@ -558,6 +558,7 @@ namespace Entities.Player.Scripts
                         float dashTime = 0;
                         float dashSpeedCurve = 0;
                         Debug.Log("Dash Duration: " + _dashCurve.keys[_dashCurve.length - 1].time);
+                        base.Invulneravility();
                         while (dashTime < _dashCurve.keys[_dashCurve.length - 1].time)
                         {
                                 dashSpeedCurve = _dashCurve.Evaluate(dashTime) * dashSpeed; 
@@ -567,6 +568,7 @@ namespace Entities.Player.Scripts
                         }
                         Physics2D.IgnoreLayerCollision(6,7, false);
                         isDashing = false;
+                        base.EndInvulneravility();
                 
                 
                 }
@@ -599,6 +601,8 @@ namespace Entities.Player.Scripts
                                 yield return new WaitForFixedUpdate();
                         }
                         onDashCooldown = false;
+                        base.EndInvulneravility();
+
                 }
                 
                 public IEnumerator AirDashCooldown()
@@ -613,6 +617,8 @@ namespace Entities.Player.Scripts
                         }
                         onDashCooldown = false;
                         onAirDashCooldown = false;
+                        base.EndInvulneravility();
+
                 }
         
                 // Getters and setters
@@ -669,14 +675,9 @@ namespace Entities.Player.Scripts
                         //Colision con el enemigo
                         if (collision.gameObject.CompareTag("Enemy"))
                         {
-                                Debug.Log("Enemy impact!");
-                                
-                                if (!Invulnerable)
-                                {
-                                        CameraShakeManager.instance.CameraShake(_impulseSource);
-                                        _audioSource.PlayOneShot(_playerAudios.audios[0]);
-                                        OnReceiveDamage(25);
-                                }
+                                CameraShakeManager.instance.CameraShake(_impulseSource);
+                                _audioSource.PlayOneShot(_playerAudios.audios[0]);
+                                OnReceiveDamage(25);
                         }
                 
                         //Colision con el enemigo
@@ -693,11 +694,8 @@ namespace Entities.Player.Scripts
                         //Colision con el enemigo
                         if (other.gameObject.CompareTag("Enemy"))
                         {
-                                if (!Invulnerable)
-                                {
-                                        CameraShakeManager.instance.CameraShake(_impulseSource);
-                                        OnReceiveDamage(25);
-                                }
+                        CameraShakeManager.instance.CameraShake(_impulseSource);
+                        OnReceiveDamage(25);
                         }
                 }
         
