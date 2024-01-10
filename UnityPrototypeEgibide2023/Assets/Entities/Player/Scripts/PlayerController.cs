@@ -669,11 +669,12 @@ namespace Entities.Player.Scripts
                         //Colision con el enemigo
                         if (collision.gameObject.CompareTag("Enemy"))
                         {
+                                Debug.Log("Enemy impact!");
+                                
                                 if (!Invulnerable)
                                 {
                                         CameraShakeManager.instance.CameraShake(_impulseSource);
                                         _audioSource.PlayOneShot(_playerAudios.audios[0]);
-                                        Invulnerable = true;
                                         OnReceiveDamage(25);
                                 }
                         }
@@ -683,7 +684,7 @@ namespace Entities.Player.Scripts
                         {
                                 isAirDashUnlocked = true;
                                 playerData.airDashUnlocked = true;
-                                Debug.Log("AAirdash");
+                                
                         }
                 }
 
@@ -695,7 +696,6 @@ namespace Entities.Player.Scripts
                                 if (!Invulnerable)
                                 {
                                         CameraShakeManager.instance.CameraShake(_impulseSource);
-                                        Invulnerable = true;
                                         OnReceiveDamage(25);
                                 }
                         }
