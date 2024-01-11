@@ -74,12 +74,13 @@ namespace Entities.Enemies.Witch.Scripts
 
         private void Delete()
         {
+            Instantiate(explosion, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
             Destroy(gameObject);
         }
 
         private void MaximumAliveTime()
         {
-            Destroy(gameObject);
+            Invoke(nameof(Delete), 0.1f);
         }
 
     }
