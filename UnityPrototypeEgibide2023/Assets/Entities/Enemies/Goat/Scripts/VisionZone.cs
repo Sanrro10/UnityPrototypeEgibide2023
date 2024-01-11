@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Entities.Enemies.Goat
+namespace Entities.Enemies.Goat.Scripts
 {
     public class VisionZone : MonoBehaviour
     {
@@ -10,7 +10,8 @@ namespace Entities.Enemies.Goat
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.gameObject.CompareTag("Player")) return;
-            consumer.GetComponent<GoatBehaviour>().ActivateEnemy();
+            GoatBehaviour goatBehaviour = consumer.GetComponent<GoatBehaviour>();
+            goatBehaviour.stateMachine.TransitionTo(goatBehaviour.stateMachine.GoatChargeState);
         }
     }
 }

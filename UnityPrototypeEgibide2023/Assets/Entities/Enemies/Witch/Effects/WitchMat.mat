@@ -11,8 +11,11 @@ Material:
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_ValidKeywords:
+  - CHANGECOLOR2_ON
+  - MANUALWIND_ON
+  m_InvalidKeywords:
+  - _GRASSMANUALTOGGLE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -124,9 +127,9 @@ Material:
     - _ClipUvRight: 0
     - _ClipUvUp: 0
     - _ColorChangeLuminosity: 0.179
-    - _ColorChangeTolerance: 0.84
-    - _ColorChangeTolerance2: 0.25
-    - _ColorChangeTolerance3: 0.25
+    - _ColorChangeTolerance: 0.872
+    - _ColorChangeTolerance2: 0.892
+    - _ColorChangeTolerance3: 0.95
     - _ColorRampBlend: 1
     - _ColorRampLuminosity: -0.31
     - _ColorRampOutline: 0
@@ -165,18 +168,18 @@ Material:
     - _GradBoostX: 1.2
     - _GradBoostY: 1.2
     - _GradIsRadial: 0
-    - _GrassManualAnim: 1
-    - _GrassManualToggle: 0
-    - _GrassRadialBend: 0.1
-    - _GrassSpeed: 2
-    - _GrassWind: 20
+    - _GrassManualAnim: -0
+    - _GrassManualToggle: 1
+    - _GrassRadialBend: 5
+    - _GrassSpeed: 0
+    - _GrassWind: 50
     - _GreyscaleBlend: 1
     - _GreyscaleLuminosity: 0
     - _GreyscaleOutline: 0
     - _HandDrawnAmount: 2.9
     - _HandDrawnSpeed: 4.8
-    - _HitEffectBlend: 0.015
-    - _HitEffectGlow: 44.6
+    - _HitEffectBlend: 0.2
+    - _HitEffectGlow: 5
     - _HologramBlend: 1
     - _HologramMaxAlpha: 0.75
     - _HologramMinAlpha: 0.1
@@ -184,8 +187,8 @@ Material:
     - _HologramStripesSpeed: 4.5
     - _HologramUnmodAmount: 0
     - _HsvBright: 1
-    - _HsvSaturation: 1
-    - _HsvShift: 180
+    - _HsvSaturation: 0.74
+    - _HsvShift: 231
     - _InnerOutlineAlpha: 1
     - _InnerOutlineGlow: 4
     - _InnerOutlineThickness: 1
@@ -220,7 +223,7 @@ Material:
     - _OverlayTextureScrollYSpeed: 0.25
     - _Parallax: 0.02
     - _PinchUvAmount: 0
-    - _PixelateSize: 263
+    - _PixelateSize: 247
     - _PosterizeGamma: 0.75
     - _PosterizeNumColors: 8
     - _PosterizeOutline: 0
@@ -245,17 +248,17 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TextureScrollXSpeed: 1
+    - _TextureScrollXSpeed: 0.02
     - _TextureScrollYSpeed: 0
-    - _TwistUvAmount: 1
-    - _TwistUvPosX: 0.5
-    - _TwistUvPosY: 0.5
-    - _TwistUvRadius: 0.75
+    - _TwistUvAmount: 3.14
+    - _TwistUvPosX: 1
+    - _TwistUvPosY: 1
+    - _TwistUvRadius: 3
     - _UVSec: 0
     - _WarpScale: 0.5
     - _WarpSpeed: 8
     - _WarpStrength: 0.025
-    - _WaveAmount: 7
+    - _WaveAmount: 25
     - _WaveSpeed: 10
     - _WaveStrength: 7.5
     - _WaveX: 0
@@ -266,15 +269,15 @@ Material:
     m_Colors:
     - _AlphaOutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorChangeNewCol: {r: 1, g: 1, b: 0, a: 1}
-    - _ColorChangeNewCol2: {r: 1, g: 1, b: 0, a: 1}
-    - _ColorChangeNewCol3: {r: 1, g: 1, b: 0, a: 1}
+    - _ColorChangeNewCol: {r: 0.27902108, g: 0.6320754, b: 0.25442025, a: 1}
+    - _ColorChangeNewCol2: {r: 0.6037736, g: 0.18606855, b: 0.29363483, a: 1}
+    - _ColorChangeNewCol3: {r: 0.21698111, g: 0.15992585, b: 0.079150334, a: 1}
     - _ColorChangeTarget: {r: 0.4784314, g: 0.25490198, b: 0.34509805, a: 1}
-    - _ColorChangeTarget2: {r: 1, g: 0, b: 0, a: 1}
-    - _ColorChangeTarget3: {r: 1, g: 0, b: 0, a: 1}
-    - _ColorSwapBlue: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorSwapGreen: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorSwapRed: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorChangeTarget2: {r: 0.7176471, g: 0.6, b: 0.4156863, a: 1}
+    - _ColorChangeTarget3: {r: 0.8313726, g: 0.6313726, b: 0.54901963, a: 1}
+    - _ColorSwapBlue: {r: 1, g: 0, b: 0.7134657, a: 1}
+    - _ColorSwapGreen: {r: 1, g: 0.8903707, b: 0, a: 1}
+    - _ColorSwapRed: {r: 0.47353154, g: 0.31854683, b: 0.1441285, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FadeBurnColor: {r: 1, g: 1, b: 0, a: 1}
     - _GlowColor: {r: 1, g: 1, b: 1, a: 1}

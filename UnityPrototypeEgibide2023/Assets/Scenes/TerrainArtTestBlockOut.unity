@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 755058875}
-  m_IndirectSpecularColor: {r: 0.4495054, g: 0.4995777, b: 0.57568115, a: 1}
+  m_IndirectSpecularColor: {r: 0.44950515, g: 0.49957728, b: 0.5756804, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6572,6 +6572,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1956478557065398016, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
   m_PrefabInstance: {fileID: 1352451056}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1370337420
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 235341801465288344, guid: 4f9ee101d509da242b1638314877dc7b, type: 3}
+      propertyPath: m_Name
+      value: Goat Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397995868354028916, guid: 4f9ee101d509da242b1638314877dc7b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.5683
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397995868354028916, guid: 4f9ee101d509da242b1638314877dc7b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397995868354028916, guid: 4f9ee101d509da242b1638314877dc7b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397995868354028916, guid: 4f9ee101d509da242b1638314877dc7b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397995868354028916, guid: 4f9ee101d509da242b1638314877dc7b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397995868354028916, guid: 4f9ee101d509da242b1638314877dc7b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397995868354028916, guid: 4f9ee101d509da242b1638314877dc7b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397995868354028916, guid: 4f9ee101d509da242b1638314877dc7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397995868354028916, guid: 4f9ee101d509da242b1638314877dc7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397995868354028916, guid: 4f9ee101d509da242b1638314877dc7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252942493118146068, guid: 4f9ee101d509da242b1638314877dc7b, type: 3}
+      propertyPath: facingRight
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4f9ee101d509da242b1638314877dc7b, type: 3}
 --- !u!4 &1375856823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8285205736366998151, guid: e4193518acfbca6478c03760deb5e239, type: 3}
@@ -11237,6 +11298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 10 Cube
       objectReference: {fileID: 0}
+    - target: {fileID: 1719706823875009801, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 1956478557065398016, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -188
@@ -12047,3 +12112,4 @@ SceneRoots:
   - {fileID: 636908619371426490}
   - {fileID: 1480647549}
   - {fileID: 437857410}
+  - {fileID: 1370337420}

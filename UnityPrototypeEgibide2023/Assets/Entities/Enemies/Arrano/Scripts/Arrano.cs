@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using Entities.Player.Scripts;
+using General.Scripts;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 namespace Entities.Enemies.Arrano.Scripts
@@ -9,7 +11,7 @@ namespace Entities.Enemies.Arrano.Scripts
     public class Arrano : EntityControler
     {
         // Referencia a Animator
-        private Animator _animator;
+        [SerializeField] private Animator _animator;
         
         // Referencia al sistema de particulas
         [SerializeField] private ParticleSystem plumasMuerte;
@@ -19,7 +21,7 @@ namespace Entities.Enemies.Arrano.Scripts
         private float _originalFS;
     
         // Referencia al jugador
-        [SerializeField] private GameObject player;
+        private GameObject _player;
     
         // Datos del enemigo
         [SerializeField] private FlyingEnemyData flyingEnemyData;
@@ -65,6 +67,8 @@ namespace Entities.Enemies.Arrano.Scripts
             _originalFS = flyingSpeed;
 
             _facingRight = true;
+            
+            _player = GameController.Instance.GetPlayerGameObject();
         
             //Set the Health Points
             gameObject.GetComponent<HealthComponent>().SendMessage("Set",flyingEnemyData.health, SendMessageOptions.RequireReceiver);
@@ -120,7 +124,7 @@ namespace Entities.Enemies.Arrano.Scripts
             }
             
             if (hitData.collider == null) return;
-            //Debug.Log(hitData.collider.tag);
+            Debug.Log(hitData.collider.tag);
             if (hitData.collider.CompareTag("Player"))
             {
                 _animator.SetBool("IsPreAttack", true);
@@ -139,7 +143,7 @@ namespace Entities.Enemies.Arrano.Scripts
             CancelInvoke(nameof(ChangeVertical));
             CancelInvoke(nameof(LookForPlayer));
             _startPosition = transform.position;
-            _endPosition = player.transform.position;
+            _endPosition = _player.transform.position;
             
             _animator.SetBool("IsPreAttack", false);
             
@@ -160,10 +164,11 @@ namespace Entities.Enemies.Arrano.Scripts
             // TODO: Animacion Picado
             _animator.SetBool("IsAttack", true);
             _animator.SetBool("IsPreAttack", false);
-            
+
             _posX = transform.position.x;
             InvokeRepeating(nameof(StartMovingDown),0,0.01f);
-            yield return new WaitUntil(() => Math.Abs(transform.position.y - _endPosition.y) < 0.5f);
+            yield return new WaitUntil(() => Math.Abs(transform.position.y - _endPosition.y) < 0.1f);
+            //yield return new WaitUntil(() => transform.position.y < _endPosition.y);
             CancelInvoke(nameof(StartMovingDown));
             StartCoroutine(nameof(GoTowards));
         }
@@ -171,6 +176,7 @@ namespace Entities.Enemies.Arrano.Scripts
         // Metodo que se mueva hacia abajo
         private void StartMovingDown()
         {
+            Debug.Log(transform.position.y + " --- " + _endPosition.y);
             if (_facingRight)
             {
                 Move(transform.position, new Vector2(transform.position.x + 3, _endPosition.y), flyingSpeed * 1.2f);
@@ -208,13 +214,14 @@ namespace Entities.Enemies.Arrano.Scripts
         // Metodo que se mueva en linea recta hacia el jugador
         private void StartMovingTowards()
         {
+            Debug.Log(_endPosition.x - (transform.position.x + 8));
             if (_facingRight)
             {
-                Move(transform.position, new Vector2(_endPosition.x * 1.5f, transform.position.y), flyingSpeed * 0.8f);
+                Move(transform.position, new Vector2(_endPosition.x + 50, transform.position.y), flyingSpeed * 0.8f);
             }
             else
             {
-                Move(transform.position, new Vector2(_endPosition.x * -1.5f, transform.position.y), flyingSpeed * 0.8f);
+                Move(transform.position, new Vector2(_endPosition.x - 50, transform.position.y), flyingSpeed * 0.8f);
             }
         
         }
@@ -334,7 +341,7 @@ namespace Entities.Enemies.Arrano.Scripts
         {
             if (other.CompareTag("Player") && !_hit)
             {
-                player.GetComponent<PlayerController>().OnReceiveDamage(1);
+                _player.GetComponent<PlayerController>().OnReceiveDamage(1);
                 _hit = true;
             }
         }

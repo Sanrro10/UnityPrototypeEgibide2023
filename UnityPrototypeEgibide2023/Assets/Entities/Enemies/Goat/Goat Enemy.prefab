@@ -51,15 +51,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5577af004f3bd4fae024c3cc927bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  force: 0
-  jumpForce: 10
   facingRight: 0
-  stunTime: 0
   canCollide: 0
+  collidedWithPlayer: 0
+  data: {fileID: 11400000, guid: 2281c6db7bcee5643a02e6bae71950fa, type: 2}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  animator: {fileID: 0}
   eyes: {fileID: 6328714735705215187}
 --- !u!61 &4021914991555316336
 BoxCollider2D:
@@ -195,7 +194,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8ad5bceb238eb8b46af14a5cd614ff14, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f683d13c7eb05a4aab2c3174ed4f7ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

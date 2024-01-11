@@ -27,6 +27,8 @@ namespace Entities.Enemies.Witch.Scripts
         private bool _isLaunchingMagicCircles = false;
         private bool _hasBeenActivated = false;
         private int _lastCheckedHealth;
+
+        private Material materialBruja;
         
         [SerializeField] private GameObject[] puntosTeleport;
         private int _lastTeleportPoint;
@@ -41,7 +43,10 @@ namespace Entities.Enemies.Witch.Scripts
         // Start is called before the first frame update
         void Start()
         {
-            
+
+            materialBruja = gameObject.GetComponentInChildren<SpriteRenderer>().material;
+            materialBruja.SetFloat("_HitEffectGlow", 5f);
+            materialBruja.SetFloat("_HitEffectBlend", 0.2f);
             //Set the Health Points
             gameObject.GetComponent<HealthComponent>().SendMessage("Set", landWitchData.health, SendMessageOptions.RequireReceiver);
             _lastCheckedHealth = landWitchData.health;
@@ -298,7 +303,7 @@ namespace Entities.Enemies.Witch.Scripts
         }
 
         /*Activates the Death teleport animation*/
-        private void ActivateWitchDeathDamageFast()
+        private void ActivateWitchDeathFast()
         {
             witchAnimator.SetBool("WitchDeathDmg", true);
         }
@@ -343,16 +348,19 @@ namespace Entities.Enemies.Witch.Scripts
         /*Launches the teleport animation, then Destroys thw witch*/
         public override void OnDeath()
         {
+            ActivateWitchDeathFast();
             Invoke(nameof(ActivateAnimTeleport),0);
             /*Audio Risa*/
-            Invoke(nameof(Delete),_tpTime);
+            Invoke(nameof(Delete),_tpTime + 0.5f);
         }
         
         /*Teleports the witch on receiveing damage*/
         public override void OnReceiveDamage(int damage)
         {
             base.OnReceiveDamage(damage);
+            StartHitColor();
             Invoke(nameof(AccionateDamageLogic),0);
+            Invoke(nameof(EndHitColor), 0.5f);
         }
 
         /*Calls the delete function on this gameObject*/
@@ -360,6 +368,17 @@ namespace Entities.Enemies.Witch.Scripts
         {
             Destroy(gameObject);
         }
+
+        private void StartHitColor()
+        {
+            materialBruja.EnableKeyword("HITEFFECT_ON");
+        }
+
+        private void EndHitColor()
+        {
+            materialBruja.DisableKeyword("HITEFFECT_ON");   
+        }
+
         /*NOT IN USE //  POSSIBLE CASE OF USE SO NO DELETE*/
         /*private void CheckForTeleportPlaces()
     {

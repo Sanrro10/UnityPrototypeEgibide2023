@@ -1,7 +1,7 @@
 using Entities.Player.Scripts;
 using UnityEngine;
 
-namespace Entities.Enemies.Goat
+namespace Entities.Enemies.Goat.Scripts
 {
     public class GoatFrontTrigger : MonoBehaviour
     {
@@ -21,7 +21,6 @@ namespace Entities.Enemies.Goat
             if (other.CompareTag("Wall"))
             {
                 goatBehaviour.BounceAgainstWall();
-                goatBehaviour.canCollide = false;
                 return;
             }
         
@@ -30,10 +29,9 @@ namespace Entities.Enemies.Goat
             if (other.CompareTag("Player"))
             {
             
-                other.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2((goatBehaviour.facingRight ? 1 : -1)* 1000f , 1000f));
+                other.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2((goatBehaviour.facingRight ? 1 : -1)* goatBehaviour.data.force , goatBehaviour.data.force));
                 goatBehaviour.BounceAgainstPlayer();
-                other.GetComponentInParent<PlayerController>().StunEntity(goatBehaviour.stunTime);
-                goatBehaviour.canCollide = false;
+                other.GetComponentInParent<PlayerController>().StunEntity(goatBehaviour.data.stunTime);
             }
         
         }

@@ -35,7 +35,9 @@ public class WitchAnimEventHandler : MonoBehaviour
     {
         if (_animator.GetBool("WitchDeathDmg") == true)
         {
-            witchAudio.clip = landWitchAudios.audios[2];
+            witchAudio.clip = landWitchAudios.audios[7];
+            witchAudio.Play();
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
             return;
         }
 
