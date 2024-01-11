@@ -69,7 +69,7 @@ namespace Entities.Enemies.Witch.Scripts
             //Instantiate(explosion, transform.position, Quaternion.identity);
             missileAnimator.SetTrigger("MissileExplode");
             _missileBody.constraints = RigidbodyConstraints2D.FreezeAll;
-            Invoke(nameof(Delete), 0.1f);
+            Invoke(nameof(Delete), 0.05f);
         }
 
         private void Delete()

@@ -49,7 +49,7 @@ namespace Entities.Enemies.Witch.Scripts
         private void Activate()
         {
             //ChangeColor();
-            magicCircleAnimator.SetTrigger("MagicCircleActivate");
+            //magicCircleAnimator.SetTrigger("MagicCircleActivate");
             gameObject.GetComponent<BoxCollider2D>().enabled = true;
             Invoke(nameof(EndOfLife), _witchData.magicCircleEffectDuration);
         }
