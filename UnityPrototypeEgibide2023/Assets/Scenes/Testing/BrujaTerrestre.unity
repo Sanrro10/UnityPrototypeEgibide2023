@@ -294,6 +294,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 619225126057415411, guid: 6e4a0d3708600dd49b73e36b1768d390, type: 3}
   m_PrefabInstance: {fileID: 116316695}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &116316697 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2893163692412349122, guid: 6e4a0d3708600dd49b73e36b1768d390, type: 3}
+  m_PrefabInstance: {fileID: 116316695}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &151528053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -362,6 +367,11 @@ PrefabInstance:
 --- !u!4 &151528054 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 619225126057415411, guid: 6e4a0d3708600dd49b73e36b1768d390, type: 3}
+  m_PrefabInstance: {fileID: 151528053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &151528055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2893163692412349122, guid: 6e4a0d3708600dd49b73e36b1768d390, type: 3}
   m_PrefabInstance: {fileID: 151528053}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &157229024
@@ -497,6 +507,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 3900692402230699379, guid: da5e9db3aab6b2f4f94d4e2977a1ebec, type: 3}
+      propertyPath: puntosTeleport.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3900692402230699379, guid: da5e9db3aab6b2f4f94d4e2977a1ebec, type: 3}
+      propertyPath: puntosTeleport.Array.data[0]
+      value: 
+      objectReference: {fileID: 1987246756411788662}
+    - target: {fileID: 3900692402230699379, guid: da5e9db3aab6b2f4f94d4e2977a1ebec, type: 3}
+      propertyPath: puntosTeleport.Array.data[1]
+      value: 
+      objectReference: {fileID: 116316697}
+    - target: {fileID: 3900692402230699379, guid: da5e9db3aab6b2f4f94d4e2977a1ebec, type: 3}
+      propertyPath: puntosTeleport.Array.data[2]
+      value: 
+      objectReference: {fileID: 522031528}
+    - target: {fileID: 3900692402230699379, guid: da5e9db3aab6b2f4f94d4e2977a1ebec, type: 3}
+      propertyPath: puntosTeleport.Array.data[3]
+      value: 
+      objectReference: {fileID: 151528055}
     - target: {fileID: 4708648864848957242, guid: da5e9db3aab6b2f4f94d4e2977a1ebec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.31
@@ -783,6 +813,11 @@ PrefabInstance:
 --- !u!4 &522031527 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 619225126057415411, guid: 6e4a0d3708600dd49b73e36b1768d390, type: 3}
+  m_PrefabInstance: {fileID: 522031526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &522031528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2893163692412349122, guid: 6e4a0d3708600dd49b73e36b1768d390, type: 3}
   m_PrefabInstance: {fileID: 522031526}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &565992439
@@ -1454,6 +1489,11 @@ PrefabInstance:
 --- !u!4 &1987246756411788661 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 619225126057415411, guid: 6e4a0d3708600dd49b73e36b1768d390, type: 3}
+  m_PrefabInstance: {fileID: 1987246756411788660}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1987246756411788662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2893163692412349122, guid: 6e4a0d3708600dd49b73e36b1768d390, type: 3}
   m_PrefabInstance: {fileID: 1987246756411788660}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
