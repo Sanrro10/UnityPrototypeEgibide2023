@@ -9,7 +9,7 @@ namespace Entities.Enemies.Arrano.Scripts
     public class Arrano : EntityControler
     {
         // Referencia a Animator
-        private Animator _animator;
+        [SerializeField] private Animator _animator;
         
         // Referencia al sistema de particulas
         [SerializeField] private ParticleSystem plumasMuerte;
@@ -79,7 +79,11 @@ namespace Entities.Enemies.Arrano.Scripts
         {
         
             // TODO: Animacion Idle
-            
+            _animator.SetBool("IsPreAttack", false);
+            _animator.SetBool("IsAttack", false);
+            _animator.SetBool("IsUp", false);
+            _animator.SetBool("IsDead", false);
+            _animator.SetBool("IsHit", false);
             
             if (!_facingRight && Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
             {
@@ -105,13 +109,21 @@ namespace Entities.Enemies.Arrano.Scripts
         }
     
         // Metodo que lanza Raycast en un angulo de 45º hasta que ve al jugador y lo ataca
+        
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, (new Vector2(50f, -50f)));
+        }
+        
         private void LookForPlayer()
         {
             RaycastHit2D hitData;
             if (_facingRight)
             {
-                hitData = Physics2D.Raycast(transform.position, Vector2.down + Vector2.right, 50, playerLayer);
+                hitData = Physics2D.Raycast(transform.position, Vector2.down + Vector2.right, 50, playerLayer); 
                 //Debug.DrawRay(transform.position, Vector2.down + Vector2.right, Color.red, 3f);
+               
             }
             else
             {
@@ -141,7 +153,8 @@ namespace Entities.Enemies.Arrano.Scripts
             _startPosition = transform.position;
             _endPosition = player.transform.position;
             
-            _animator.SetBool("IsPreAttack", false);
+            //_animator.SetBool("IsPreAttack", false);
+            //_animator.SetBool("IsAttack", true);
             
             //Debug.Log(_endPosition);
             StartCoroutine(nameof(GoDown));
@@ -158,8 +171,8 @@ namespace Entities.Enemies.Arrano.Scripts
         {
         
             // TODO: Animacion Picado
-            _animator.SetBool("IsAttack", true);
-            _animator.SetBool("IsPreAttack", false);
+            //_animator.SetBool("IsAttack", false);
+            
             
             _posX = transform.position.x;
             InvokeRepeating(nameof(StartMovingDown),0,0.01f);
@@ -187,6 +200,9 @@ namespace Entities.Enemies.Arrano.Scripts
         {
         
             // TODO: Animacion Idle
+            _animator.SetBool("IsAttack", true);
+            _animator.SetBool("IsPreAttack", false);
+            
         
             InvokeRepeating(nameof(StartMovingTowards), 0, 0.01f);
             if (_facingRight)

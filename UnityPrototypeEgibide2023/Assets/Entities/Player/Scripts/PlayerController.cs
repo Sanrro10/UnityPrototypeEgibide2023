@@ -677,7 +677,7 @@ namespace Entities.Player.Scripts
                 
                 public override void OnReceiveDamage(int damage) 
                 {
-                        Debug.Log(Health.Get());
+                          Debug.Log(Health.Get());
                         base.OnReceiveDamage(damage);
                         healthText.text = Health.Get().ToString();
                         healthBar.value = Health.Get();
