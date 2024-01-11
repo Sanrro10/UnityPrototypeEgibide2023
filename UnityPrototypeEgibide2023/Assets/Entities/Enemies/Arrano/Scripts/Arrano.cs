@@ -8,11 +8,17 @@ namespace Entities.Enemies.Arrano.Scripts
 {
     public class Arrano : EntityControler
     {
+        //Referencia a Audio source
+        [SerializeField] private AudioSource _audiosource;
+        
         // Referencia a Animator
         [SerializeField] private Animator _animator;
         
         // Referencia al sistema de particulas
         [SerializeField] private ParticleSystem plumasMuerte;
+        
+        // Referencia a los audios
+        [SerializeField] private Audios audioData;
         
         // Variable para controlar la velocidad
         [SerializeField] private float flyingSpeed;
@@ -53,6 +59,8 @@ namespace Entities.Enemies.Arrano.Scripts
         // Start is called before the first frame update
         void Start()
         {
+            _audiosource = gameObject.GetComponent<AudioSource>();
+            
             var rightLimit = gameObject.transform.Find("RightLimit");
             _rightLimitPosition = rightLimit.position;
         
@@ -84,6 +92,8 @@ namespace Entities.Enemies.Arrano.Scripts
             _animator.SetBool("IsUp", false);
             _animator.SetBool("IsDead", false);
             _animator.SetBool("IsHit", false);
+            _audiosource.clip = audioData.audios[0];
+            _audiosource.Play();
             
             if (!_facingRight && Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
             {
@@ -136,7 +146,7 @@ namespace Entities.Enemies.Arrano.Scripts
             if (hitData.collider.CompareTag("Player"))
             {
                 _animator.SetBool("IsPreAttack", true);
-                
+                player = hitData.collider.gameObject;
                 Attack();
             }
 
@@ -155,8 +165,7 @@ namespace Entities.Enemies.Arrano.Scripts
             
             //_animator.SetBool("IsPreAttack", false);
             //_animator.SetBool("IsAttack", true);
-            
-            //Debug.Log(_endPosition);
+            Debug.LogError(_endPosition);
             StartCoroutine(nameof(GoDown));
         }
     
@@ -172,7 +181,7 @@ namespace Entities.Enemies.Arrano.Scripts
         
             // TODO: Animacion Picado
             //_animator.SetBool("IsAttack", false);
-            
+            _audiosource.clip = audioData.audios[1];
             
             _posX = transform.position.x;
             InvokeRepeating(nameof(StartMovingDown),0,0.01f);
@@ -184,6 +193,9 @@ namespace Entities.Enemies.Arrano.Scripts
         // Metodo que se mueva hacia abajo
         private void StartMovingDown()
         {
+            //Debug.LogError("LA RESTA ES y: " + (Math.Abs(transform.position.y - _endPosition.y)));
+           // Debug.LogError("Mi posicion en y: " + transform.position.y);
+           // Debug.LogError("La posicion del player : " + _endPosition.y);
             if (_facingRight)
             {
                 Move(transform.position, new Vector2(transform.position.x + 3, _endPosition.y), flyingSpeed * 1.2f);
@@ -203,10 +215,12 @@ namespace Entities.Enemies.Arrano.Scripts
             _animator.SetBool("IsAttack", true);
             _animator.SetBool("IsPreAttack", false);
             
-        
+            
             InvokeRepeating(nameof(StartMovingTowards), 0, 0.01f);
+            
             if (_facingRight)
             {
+                Debug.LogError("Pocicion en x: " + (Math.Abs((transform.position.x - 8) - _endPosition.x) <= 0.5f)); 
                 yield return new WaitUntil(() => Math.Abs((transform.position.x - 8) - _endPosition.x) <= 0.5f);
             }
             else
@@ -335,6 +349,7 @@ namespace Entities.Enemies.Arrano.Scripts
         {
             //TODO Animacion Muerte
             _animator.SetBool("IsDead", true );
+            _audiosource.clip = audioData.audios[3];
             Instantiate(plumasMuerte, transform.position, transform.rotation);
             Invoke(nameof(DestroyThis),2f);
         
