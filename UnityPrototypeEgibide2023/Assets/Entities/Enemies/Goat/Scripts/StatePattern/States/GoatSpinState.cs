@@ -18,8 +18,8 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
 
         public void Enter()
         {
-
-        
+            entity.animator.SetBool("IsStunned", true);
+            entity.StartCoroutine(entity.TurnAround());
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -30,6 +30,7 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         
         public void Exit()
         {
+            entity.animator.SetBool("IsStunned", false);
         }
     }
 }

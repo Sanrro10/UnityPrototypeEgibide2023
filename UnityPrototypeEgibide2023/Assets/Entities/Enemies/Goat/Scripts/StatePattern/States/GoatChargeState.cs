@@ -18,8 +18,9 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
 
         public void Enter()
         {
-
-        
+            entity.canCollide = true;
+            entity.animator.SetBool("IsCharge", true);
+            entity.InvokeRepeating(nameof(entity.Move), 0, 0.01f);
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -30,6 +31,9 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         
         public void Exit()
         {
+            entity.canCollide = false;
+            entity.animator.SetBool("IsCharge", false);
+            entity.CancelInvoke(nameof(entity.Move));
         }
     }  
 }
