@@ -18,7 +18,8 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
 
         public void Enter()
         {
-
+            entity.animator.SetBool("IsPrepare", true);
+            entity.Invoke(nameof(entity.Charge), entity.waitTime);
         
         }
 
@@ -30,6 +31,8 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         
         public void Exit()
         {
+            entity.animator.SetBool("IsPrepare", false);
+            entity.CancelInvoke(nameof(entity.Charge));
         }
     }
 }

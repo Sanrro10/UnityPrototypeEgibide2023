@@ -18,7 +18,7 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
 
         public void Enter()
         {
-
+            entity.animator.SetBool("IsStunned", true);
         
         }
 
@@ -30,6 +30,7 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         
         public void Exit()
         {
+            entity.animator.SetBool("IsStunned", false);
         }
     }
 }
