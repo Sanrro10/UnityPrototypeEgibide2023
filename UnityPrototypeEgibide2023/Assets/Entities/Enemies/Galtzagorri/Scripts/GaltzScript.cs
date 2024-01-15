@@ -207,6 +207,14 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         
         }
 
+        public override void OnReceiveDamage(int damage)
+        {
+            base.OnReceiveDamage(damage);
+            
+            //TODO utilizar la logica de recibir daño
+            //(Se puede utilizar el Shader de Gaizka para hacer lo tipico de recibir daño)
+        }
+
         private void DestroyThis()
         {
             Destroy(gameObject);
