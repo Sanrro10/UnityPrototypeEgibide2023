@@ -366,6 +366,12 @@ namespace Entities.Enemies.Arrano.Scripts
         
         }
 
+        public override void OnReceiveDamage(int damage)
+        {
+            base.OnReceiveDamage(damage);
+            //TODO añadir logica de recibir daño, o no, si no le hace falta nada más
+        }
+
         private void DestroyThis()
         {
             Destroy(gameObject);
