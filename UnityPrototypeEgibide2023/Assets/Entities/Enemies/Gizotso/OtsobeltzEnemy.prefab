@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 8528201023340679709}
   - component: {fileID: 8549386292965630671}
   - component: {fileID: 117344820920164700}
+  - component: {fileID: 5622325146450441590}
   m_Layer: 0
   m_Name: AttackZone
   m_TagString: Untagged
@@ -244,6 +245,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c234548771ab38d4b8909e6383677e38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5622325146450441590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3018751870457076232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c13aff87825a84fa26e0b01fd890de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  damageLayer: 6
 --- !u!1 &4141916840027194018
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,12 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveEnemyData: {fileID: 11400000, guid: 6d8931f7f3201154f9365b48b3005d3f, type: 2}
   attacking: 0
-  gizotsoAnimator: {fileID: 3756747904083322608}
-  fuerzaSalto: 0
-  gizoRigidBody: {fileID: 5702428252875769023}
-  scriptaAttackZone: {fileID: 117344820920164700}
-  attackZone: {fileID: 3018751870457076232}
-  duracionClipActual: 0
+  _animator: {fileID: 0}
 --- !u!50 &5702428252875769023
 Rigidbody2D:
   serializedVersion: 4
