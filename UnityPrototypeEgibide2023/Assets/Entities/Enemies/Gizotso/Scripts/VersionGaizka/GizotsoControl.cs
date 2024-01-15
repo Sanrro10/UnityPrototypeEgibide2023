@@ -28,7 +28,7 @@ public class GizotsoControl : MonoBehaviour
     public float tiempoHurt = 1.0f;
     public float longitudRaycast = 5.0f;
 
-    [Header("Límites de Movimiento")]
+    [Header("LÃ­mites de Movimiento")]
     public Transform limiteIzquierdo;
     public Transform limiteDerecho;
     [SerializeField]float posIzquiMax;
@@ -61,15 +61,15 @@ public class GizotsoControl : MonoBehaviour
     {
         if (gizotsoAnimator == null)
         {
-            Debug.LogError("El Animator no está asignado en el Inspector.");
+            Debug.LogError("El Animator no estÃ¡ asignado en el Inspector.");
         }
         posIzquiMax = limiteIzquierdo.position.x;
         posDereMax = limiteDerecho.position.x;
-        // Inicializa el método del estado actual
+        // Inicializa el mÃ©todo del estado actual
         //InicializarMetodoEstado();
         CambiarEstado(EstadoEnemigo.Idle, Idle);
         Patrullar();
-        // Comienza a alternar entre Idle y Walk después de un tiempo
+        // Comienza a alternar entre Idle y Walk despuÃ©s de un tiempo
         //Invoke("AlternarEstadoIdleWalk", 3.0f );
     }
     void Patrullar()
@@ -129,7 +129,7 @@ public class GizotsoControl : MonoBehaviour
                 float direccion = playerTransform.position.x > transform.position.x ? 1.0f : -1.0f;
                 transform.Translate(Vector2.right * direccion * velocidadCaminata * Time.deltaTime);
 
-                // Cambia la dirección para que el enemigo siempre mire al jugador
+                // Cambia la direcciÃ³n para que el enemigo siempre mire al jugador
                 if (direccion > 0 && mirandoDerecha || direccion < 0 && !mirandoDerecha)
                 {
                     CambiarDireccion();
@@ -287,19 +287,19 @@ public class GizotsoControl : MonoBehaviour
                 // Debug.LogError("distanciaAPlayer es " + distanciaAPlayer + " rangoAtaque es " + rangoAtaque); ;
                 if (gizotsoAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
                 {
-                    // Obtener el clip de animación actual
+                    // Obtener el clip de animaciÃ³n actual
                     AnimationClip clip = gizotsoAnimator.GetCurrentAnimatorClipInfo(0)[0].clip;
 
-                    // Obtener la duración del clip de animación
+                    // Obtener la duraciÃ³n del clip de animaciÃ³n
                     duracionClipActual = clip.length;
 
-                    // Hacer algo con la duración (por ejemplo, imprimir en la consola)
-                    Debug.LogError("Duración de la animación actual: " + duracionClipActual);
+                    // Hacer algo con la duraciÃ³n (por ejemplo, imprimir en la consola)
+                    Debug.LogError("DuraciÃ³n de la animaciÃ³n actual: " + duracionClipActual);
                 }
                 if (hit.collider != null && hit.collider.CompareTag("Player"))
                 {
                     CambiarEstado(EstadoEnemigo.Chase, Perseguir);
-                    Debug.LogError("Hit collider es !=player de attack debería cambiar a Perseguir");
+                    Debug.LogError("Hit collider es !=player de attack deberÃ­a cambiar a Perseguir");
 
 
                 }
@@ -322,15 +322,15 @@ public class GizotsoControl : MonoBehaviour
                 if (distanciaAPlayer <= rangoDeteccion)
                 {
                     CambiarEstado(EstadoEnemigo.Chase, Perseguir);
-                    Debug.LogError("Entrado en distanciaAPlayer <= rangoDeteccion de attack debería cambiar a Perseguir");
+                    Debug.LogError("Entrado en distanciaAPlayer <= rangoDeteccion de attack deberÃ­a cambiar a Perseguir");
                 }
                 else
                 {
                     Patrullar();
-                    Debug.LogError("Entrado en patrullar de attack debería cambiar a patrullar");
+                    Debug.LogError("Entrado en patrullar de attack deberÃ­a cambiar a patrullar");
 
                 }
-                //Debug.LogError("Entrado en patrullar de attack debería cambiar a patrullar");
+                //Debug.LogError("Entrado en patrullar de attack deberÃ­a cambiar a patrullar");
             }
             //CambiarEstado(EstadoEnemigo.Chase, Perseguir);
             yield return null;
@@ -362,16 +362,16 @@ public class GizotsoControl : MonoBehaviour
     }
     private IEnumerator RodarDashCoroutine()
     {
-        // Activar el trigger para la animación de rodar
+        // Activar el trigger para la animaciÃ³n de rodar
         ActivarTrigger("Rodar");
 
         // Desactivar temporalmente las colisiones con el jugador
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), gameObject.layer, true);
         float direccion = mirandoDerecha ? -1.0f : 1.0f;
-        // Calcular la nueva posición después de rodar
+        // Calcular la nueva posiciÃ³n despuÃ©s de rodar
         Vector3 nuevaPosicion = transform.position +  new Vector3(distanciaLateralDash* direccion, 0f, 0f);
         Debug.LogError("Nueva posicion para dash = " + nuevaPosicion);
-        // Moverse mientras rueda (puedes ajustar la lógica según tus necesidades)
+        // Moverse mientras rueda (puedes ajustar la lÃ³gica segÃºn tus necesidades)
         while ((direccion > 0 && transform.position.x < nuevaPosicion.x) ||
                (direccion < 0 && transform.position.x > nuevaPosicion.x))
         {
@@ -386,7 +386,7 @@ public class GizotsoControl : MonoBehaviour
         // Activar las colisiones con el jugador nuevamente
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), gameObject.layer, false);
 
-        // Cambiar a otro estado (si es necesario) después del dash
+        // Cambiar a otro estado (si es necesario) despuÃ©s del dash
         if (playerTransform != null)
         {
             if(distanciaAPlayer <= rangoDeteccion)
@@ -438,7 +438,7 @@ public class GizotsoControl : MonoBehaviour
 
     private void InicializarMetodoEstado()
     {
-        // Inicializa el método del estado actual
+        // Inicializa el mÃ©todo del estado actual
         switch (estadoActual)
         {
             case EstadoEnemigo.Idle:

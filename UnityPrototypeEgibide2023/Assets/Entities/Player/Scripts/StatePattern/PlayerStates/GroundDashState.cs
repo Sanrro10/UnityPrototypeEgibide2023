@@ -33,8 +33,14 @@ namespace StatePattern.PlayerStates
                 return;
             }
 
+            
             if (!player.isDashing)
             {
+                if (player.isHoldingHorizontal)
+                {
+                    player.PmStateMachine.TransitionTo(player.PmStateMachine.WalkState);
+                    return;
+                }
                 player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
             }
             
