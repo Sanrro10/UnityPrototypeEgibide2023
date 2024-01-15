@@ -4,28 +4,30 @@ using UnityEngine.WSA;
 
 namespace Entities.Potions.BasePotion.Scripts
 {
-    public class PotionBehavior : MonoBehaviour
+    public class PotionBehavior : EntityControler
     {
+        
 
-        private PlayerController _playerController;   
-        private GameObject _player;
-
-
-
-        [SerializeField] private float _speed;
-
-        [SerializeField] private int health;
-    
-        [SerializeField] private GameObject owner;
-        [SerializeField] private GameObject explosion;
+        [SerializeField] private BasePotionData data;
+        
         void Start()
         {
-            _player = GameObject.Find("Player Espada State");
-            _playerController = _player.GetComponent<PlayerController>();
-        
-        
-            ApplyForce();
-        
+            Health.Set(data.health);
+            InvulnerableTime = 0.3f;
+        }
+
+        public override void OnReceiveDamage(int damage)
+        {
+            Health.RemoveHealth(damage); 
+            Invulnerable = true;
+            Invoke(nameof(DamageCooldown), InvulnerableTime);
+            
+        }
+
+        public override void OnDeath()
+        {
+            base.OnDeath();
+            Explode();
         }
 
 
@@ -40,25 +42,13 @@ namespace Entities.Potions.BasePotion.Scripts
 
             if (collision.gameObject.CompareTag("PlayerAttack"))
             {
-                
+                return;
             }
             Bounce(1);
-            
-        
-        
-        
         }
 
         private void ApplyForce()
         {
-            if (_playerController.facingRight)
-            {
-                GetComponent<Rigidbody2D>().velocity = new Vector2( 1 * _speed, 0 );
-            }
-            else
-            {
-                GetComponent<Rigidbody2D>().velocity = new Vector2( -1 * _speed, 0 );
-            }
         
         
         
@@ -67,28 +57,16 @@ namespace Entities.Potions.BasePotion.Scripts
     
         private void Bounce(int damage)
         {
-            health -= damage;
-            if (health <= 0)
-            {
-                Explode();
-            }
+            Health.RemoveHealth(damage);
+            
         }
     
 
         private void Explode()
         {   
-            Instantiate(explosion, transform.position, Quaternion.identity);
+            Instantiate(data.explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
-    
-        public void SetOwner(GameObject newOwner)
-        {
-            this.owner = newOwner;
-        }
-    
-        public GameObject GetOwner()
-        {
-            return owner;
-        }
+
     }
 }
