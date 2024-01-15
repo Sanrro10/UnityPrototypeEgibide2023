@@ -145,7 +145,7 @@ namespace Entities.Enemies.Arrano.Scripts
             _startPosition = transform.position;
             _endPosition = _player.transform.position;
             
-            _animator.SetBool("IsPreAttack", false);
+            //_animator.SetBool("IsPreAttack", false);
             
             //Debug.Log(_endPosition);
             StartCoroutine(nameof(GoDown));

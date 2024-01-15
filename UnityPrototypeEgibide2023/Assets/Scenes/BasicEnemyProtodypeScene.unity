@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!95 &4813575 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4872463811334060630, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
-  m_PrefabInstance: {fileID: 1245735281}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &353457251 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7135554547026302137, guid: 82442c9188332a44e91be6aa349ea02e, type: 3}
@@ -813,41 +808,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 139597257927589616, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
-      propertyPath: _animator
-      value: 
-      objectReference: {fileID: 4813575}
-    - target: {fileID: 139597257927589616, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
-      propertyPath: playerLayer.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1505240439631308721, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 192.4
-      objectReference: {fileID: 0}
     - target: {fileID: 2434248398684095206, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 2687026382389403482, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -110.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534584641843547334, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.2383
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534584641843547334, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.2203
-      objectReference: {fileID: 0}
     - target: {fileID: 4534584641843547334, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 120.96
+      value: 22.4
       objectReference: {fileID: 0}
     - target: {fileID: 4534584641843547334, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.67
+      value: 16.4
       objectReference: {fileID: 0}
     - target: {fileID: 4534584641843547334, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
       propertyPath: m_LocalPosition.z
