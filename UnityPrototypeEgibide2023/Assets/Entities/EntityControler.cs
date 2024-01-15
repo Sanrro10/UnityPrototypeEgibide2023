@@ -22,7 +22,7 @@ namespace Entities
 
         public virtual void OnDeath()
         {
-  
+            
         }
 
         public virtual void OnReceiveDamage(int damage)
