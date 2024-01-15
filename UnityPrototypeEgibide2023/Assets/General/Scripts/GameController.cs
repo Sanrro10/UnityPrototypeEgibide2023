@@ -11,6 +11,10 @@ namespace General.Scripts
 
         private SPlayerSpawnData _lastCheckpoint;
         private SPlayerSpawnData _playerSpawnDataInNewScene;
+        //Prueba - Guardado
+        //Variable para SaveLoadManager
+        private GameData gameData;
+        //Fin: Prueba - Guardado
 
         public GameObject playerPrefab;
 
@@ -51,8 +55,22 @@ namespace General.Scripts
                 DontDestroyOnLoad(canvasPausa);
                 //Load data from the save file
                 //LoadData();
-                _lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
-                _lastCheckpoint.Position = Vector3.zero;
+                //Prueba Guardado
+                gameData = SaveLoadManager.LoadGame();
+                if (gameData.isValid)
+                {
+                    _lastCheckpoint.Scene = gameData.spawnScene;
+                    _lastCheckpoint.Position = gameData.spawnPosition;
+                    _playerSpawnDataInNewScene.Scene = _lastCheckpoint.Scene;
+                    _playerSpawnDataInNewScene.Position = _lastCheckpoint.Position;
+                }
+                else
+                {
+                    _lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
+                    _lastCheckpoint.Position = Vector3.zero;
+                }
+                //Fin: Prueba Guardado
+
             
             }
             else
@@ -99,6 +117,13 @@ namespace General.Scripts
         {
             Instance._lastCheckpoint.Position = cordinates;
             Instance._lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
+            //Prueba - Guardado
+            gameData.spawnScene = _lastCheckpoint.Scene;
+            gameData.spawnPosition = _lastCheckpoint.Position;
+            gameData.isValid = true;
+            /*Debug.LogWarning("Awake -> GameData.position: " + gameData.spawnPosition);
+            Debug.LogWarning("Awake -> GameData.scene: " + gameData.spawnScene);*/
+            //Fin: Prueba - Guardado
         }
 
         public void PlayerRespawn()
@@ -146,6 +171,20 @@ namespace General.Scripts
             canvasPausa.gameObject.SetActive(false);
             _jugador.GetComponent<PlayerController>().EnablePlayerControls();
         }
+        
+        //Prueba Guardado
+        public void SaveGame()
+        {
+            //Debug.Log("GameController -> Dentro del metodo SaveGame");
+            SaveLoadManager.SaveGame(gameData);
+        }
+        
+        public void LoadGame()
+        {
+            Debug.Log("GameController -> Dentro del metodo LoadGame");
+            SaveLoadManager.LoadGame();
+        }
+        //Fin: Prueba Guardado
     
         public IEnumerator Wait()
         {
