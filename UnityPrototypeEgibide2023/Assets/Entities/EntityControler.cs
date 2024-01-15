@@ -22,7 +22,7 @@ namespace Entities
 
         public virtual void OnDeath()
         {
-  
+            
         }
 
         public virtual void OnReceiveDamage(int damage)
@@ -47,7 +47,7 @@ namespace Entities
         public void DamageCooldown()
         {
             Invulnerable = false;
-            Rb.WakeUp();
+            //Rb.WakeUp();
         }
     }
 }
