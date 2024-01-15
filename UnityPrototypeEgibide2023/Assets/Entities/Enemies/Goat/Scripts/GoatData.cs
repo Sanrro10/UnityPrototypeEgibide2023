@@ -11,5 +11,6 @@ namespace Entities.Enemies.Goat.Scripts
         public float waitTime;
         public float jumpForce;
         public float visionDistance;
+        public int health;
     }
 }

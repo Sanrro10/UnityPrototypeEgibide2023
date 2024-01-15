@@ -47,7 +47,7 @@ namespace Entities
         public void DamageCooldown()
         {
             Invulnerable = false;
-            Rb.WakeUp();
+            //Rb.WakeUp();
         }
     }
 }

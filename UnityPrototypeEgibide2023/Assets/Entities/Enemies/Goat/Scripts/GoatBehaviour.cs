@@ -27,13 +27,20 @@ namespace Entities.Enemies.Goat.Scripts
             animator = GetComponent<Animator>();
             stateMachine = new GoatStateMachine(this);
             stateMachine.Initialize(stateMachine.GoatIdleState);
+            Health.Set(data.health);
         }
 
         public void Charge()
         {
             stateMachine.TransitionTo(stateMachine.GoatChargeState);
         }
-    
+
+        public override void OnDeath()
+        {
+            base.OnDeath();
+            stateMachine.TransitionTo(stateMachine.GoatDeathState);
+        }
+
 
         private void Death()
         {
