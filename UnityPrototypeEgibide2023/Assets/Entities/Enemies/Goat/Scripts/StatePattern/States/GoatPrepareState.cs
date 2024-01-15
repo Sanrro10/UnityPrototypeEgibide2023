@@ -19,7 +19,7 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         public void Enter()
         {
             entity.animator.SetBool("IsPrepare", true);
-            entity.Invoke(nameof(entity.Charge), entity.waitTime);
+            entity.Invoke(nameof(entity.Charge), entity.data.waitTime);
         
         }
 

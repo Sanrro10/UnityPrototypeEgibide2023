@@ -29,9 +29,9 @@ namespace Entities.Enemies.Goat.Scripts
             if (other.CompareTag("Player"))
             {
             
-                other.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2((goatBehaviour.facingRight ? 1 : -1)* 1000f , 1000f));
+                other.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2((goatBehaviour.facingRight ? 1 : -1)* goatBehaviour.data.force , goatBehaviour.data.force));
                 goatBehaviour.BounceAgainstPlayer();
-                other.GetComponentInParent<PlayerController>().StunEntity(goatBehaviour.stunTime);
+                other.GetComponentInParent<PlayerController>().StunEntity(goatBehaviour.data.stunTime);
             }
         
         }
