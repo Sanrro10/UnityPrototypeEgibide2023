@@ -1,9 +1,10 @@
 using System.Collections;
+using Entities.Enemies.Goat.Scripts.StatePattern;
 using UnityEngine;
 
-namespace Entities.Enemies.Goat
+namespace Entities.Enemies.Goat.Scripts
 {
-    public class GoatBehaviour : MonoBehaviour
+    public class GoatBehaviour : EntityControler
     {
         public float speed;
         public float force;
@@ -11,11 +12,16 @@ namespace Entities.Enemies.Goat
         public bool facingRight;
         public float stunTime;
         public bool canCollide = true;
-
+        public float waitTime = 0.5f;
+        public bool collidedWithPlayer = false;
         [SerializeField] private LayerMask playerLayer;
         // reference to player
 
         private Rigidbody2D _rb;
+
+        public GoatStateMachine stateMachine;
+        
+        [SerializeField] public Animator animator;
 
         [SerializeField] private GameObject eyes;
         // Start is called before the first frame update
@@ -24,15 +30,14 @@ namespace Entities.Enemies.Goat
             _rb = GetComponent<Rigidbody2D>();
             stunTime = 0.5f;
             force = 500f;
-            InvokeRepeating(nameof(LookForEnemy), 0, 0.01f);
+            animator = GetComponent<Animator>();
+            stateMachine = new GoatStateMachine(this);
+            stateMachine.Initialize(stateMachine.GoatIdleState);
         }
 
-        // Update is called once per frame
-        public void ActivateEnemy()
+        public void Charge()
         {
-            canCollide = true;
-            InvokeRepeating(nameof(Move), 0, 0.01f);
-            CancelInvoke(nameof(LookForEnemy));
+            stateMachine.TransitionTo(stateMachine.GoatChargeState);
         }
     
 
@@ -55,68 +60,66 @@ namespace Entities.Enemies.Goat
     
         // Get the direction the goat is facing
 
-    
 
-        private IEnumerator TurnAround()
+        public IEnumerator TurnAround()
         {
-        
-            while(Mathf.Abs(this.transform.rotation.eulerAngles.y - (facingRight ? 180 : 0)) > 0.3f)
+            int newEulerY = -1;
+            
+            while(newEulerY != 180 && newEulerY != 0)
             {
-                this.transform.Rotate(new Vector3(0, 1, 0), 180f * Time.deltaTime);
-                yield return Time.deltaTime;
+                transform.eulerAngles = new Vector3(transform.transform.eulerAngles.x,
+                    transform.rotation.eulerAngles.y - (facingRight ? 10 : -10), transform.rotation.eulerAngles.z);
+                newEulerY = (int)transform.rotation.eulerAngles.y;
+                yield return 0.05f;
             }
         
             facingRight = !facingRight;
 
-            ActivateEnemy();
+            stateMachine.TransitionTo(stateMachine.GoatPrepareState);
         }
-    
-        private IEnumerator HasStopped(bool wasPlayer)
+
+        public IEnumerator HasStopped(bool wasPlayer)
         {
             while (_rb.velocity != new Vector2(0, 0))
             {
                 yield return 0.1f;
             }
-
-            canCollide = true;
-            if(!wasPlayer) StartCoroutine(TurnAround());
-            else ActivateEnemy();
+            Debug.Log("It was player: " + wasPlayer + "");
+            if(wasPlayer) stateMachine.TransitionTo(stateMachine.GoatIdleState);
+            else stateMachine.TransitionTo(stateMachine.GoatSpinState);
         }
     
 
-        private void LookForEnemy()
+        public void LookForEnemy()
         {
             Debug.DrawRay(eyes.transform.position, (facingRight ? Vector2.right : Vector2.left) * 3f, Color.red);
             RaycastHit2D hit = Physics2D.Raycast(eyes.transform.position, (facingRight ? Vector2.right : Vector2.left), 3f, playerLayer);
         
             if (hit.collider != null)
             {
-
-                Debug.Log(hit.collider.gameObject.name);
                 if (hit.collider.CompareTag("Player"))
                 {
-                    ActivateEnemy();
+                    stateMachine.TransitionTo(stateMachine.GoatPrepareState);
+                    
                 }
             }
         }
 
         public void BounceAgainstWall()
         {
-            CancelInvoke(nameof(Move));
-            StartCoroutine(HasStopped(false));
-        
-            // Add force to the goat like a jump
-            _rb.velocity = new Vector2(_rb.velocity.x * -1, jumpForce);
-        
+            collidedWithPlayer = false;
+            stateMachine.TransitionTo(stateMachine.GoatStunnedState);
         }
 
+        public void Bounce()
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x * -1, jumpForce);
+        }
+        
         public void BounceAgainstPlayer()
         {
-            CancelInvoke(nameof(Move));
-            StartCoroutine(HasStopped(true));
-        
-            // Add force to the goat like a jump
-            _rb.velocity = new Vector2(_rb.velocity.x * -1, jumpForce);
+            collidedWithPlayer = true;
+            stateMachine.TransitionTo(stateMachine.GoatStunnedState);
         }
     }
 }

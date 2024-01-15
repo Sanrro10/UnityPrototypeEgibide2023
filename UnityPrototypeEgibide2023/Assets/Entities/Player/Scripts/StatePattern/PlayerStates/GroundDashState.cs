@@ -20,7 +20,7 @@ namespace StatePattern.PlayerStates
             player.isDashing = true;
             player.animator.SetBool("IsDash", true);
             player.FlipSprite();
-            player.StartCoroutine((player.GroundedDashCooldown()));
+            //player.StartCoroutine((player.DashCooldown()));
             player.StartCoroutine(player.Dash());
         }
 
@@ -52,7 +52,7 @@ namespace StatePattern.PlayerStates
         {
             player.animator.SetBool("IsDash", false);
             player.CancelInvoke(nameof(player.Dash));
-            player.StartCoroutine(player.GroundedDashCooldown());
+            player.StartCoroutine(player.DashCooldown());
             player.isDashing = false;
             
             Debug.Log("Exiting Dash State");

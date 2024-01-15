@@ -64,7 +64,6 @@ namespace StatePattern.PlayerStates
             // if we press the dash button, transition to the dash state
             
             
-            
         }
         
         public void Exit()

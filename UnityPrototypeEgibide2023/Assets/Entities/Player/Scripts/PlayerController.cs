@@ -52,6 +52,7 @@ namespace Entities.Player.Scripts
         
                 [SerializeField] private AnimationCurve dashCurve;
                 public bool onDashCooldown = false;
+                public bool onAirDashCooldown = false;
                 public float maxAirHorizontalSpeed;
                 public float maxFallSpeed;
                 public float timeStunned;
@@ -141,7 +142,7 @@ namespace Entities.Player.Scripts
                         // Pause
                         _controls.GeneralActionMap.Pause.performed += ctx => GameController.Instance.Pause();
                 
-                        cinemachine = GameObject.Find("GameCameras").GetComponent<CinemachineStateDrivenCamera>();
+                        cinemachine = GameObject.Find("Main Camera").GetComponent<CinemachineStateDrivenCamera>();
                         healthText = GameObject.Find("TextHealth").GetComponent<Text>();
                         mainText = GameObject.Find("TextMain").GetComponent<Text>();
                         healthBar = GameObject.Find("SliderHealth").GetComponent<Slider>();
@@ -323,6 +324,16 @@ namespace Entities.Player.Scripts
                 public bool CanDash()
                 {
                         if (!onDashCooldown && isPerformingDash) 
+                        {
+                                return true;
+                        }
+
+                        return false;
+                }
+                
+                public bool CanAirDash()
+                {
+                        if (!onAirDashCooldown && isPerformingDash && isAirDashUnlocked) 
                         {
                                 return true;
                         }
@@ -547,6 +558,7 @@ namespace Entities.Player.Scripts
                         float dashTime = 0;
                         float dashSpeedCurve = 0;
                         Debug.Log("Dash Duration: " + _dashCurve.keys[_dashCurve.length - 1].time);
+                        base.Invulneravility();
                         while (dashTime < _dashCurve.keys[_dashCurve.length - 1].time)
                         {
                                 dashSpeedCurve = _dashCurve.Evaluate(dashTime) * dashSpeed; 
@@ -556,6 +568,7 @@ namespace Entities.Player.Scripts
                         }
                         Physics2D.IgnoreLayerCollision(6,7, false);
                         isDashing = false;
+                        base.EndInvulneravility();
                 
                 
                 }
@@ -578,13 +591,35 @@ namespace Entities.Player.Scripts
                         yield return new WaitForSeconds(0.2f);
                         feetBoxCollider.enabled = true;
                 }
-                public IEnumerator GroundedDashCooldown()
+                public IEnumerator DashCooldown()
                 {
                         onDashCooldown = true;
                         yield return new WaitForSeconds(playerData.dashCooldown);
+                        //Wait until the player is grounded
+                        while (!IsGrounded())
+                        { 
+                                yield return new WaitForFixedUpdate();
+                        }
                         onDashCooldown = false;
-                }
+                        base.EndInvulneravility();
 
+                }
+                
+                public IEnumerator AirDashCooldown()
+                {
+                        onDashCooldown = true;
+                        onAirDashCooldown = true;
+                        yield return new WaitForSeconds(playerData.dashCooldown);
+                        //Wait until the player is grounded
+                        while (!IsGrounded())
+                        { 
+                                yield return new WaitForFixedUpdate();
+                        }
+                        onDashCooldown = false;
+                        onAirDashCooldown = false;
+                        base.EndInvulneravility();
+
+                }
         
                 // Getters and setters
                 public void SetNumberOfGrounds(int numberOfGrounds)
@@ -640,13 +675,9 @@ namespace Entities.Player.Scripts
                         //Colision con el enemigo
                         if (collision.gameObject.CompareTag("Enemy"))
                         {
-                                if (!Invulnerable)
-                                {
-                                        CameraShakeManager.instance.CameraShake(_impulseSource);
-                                        _audioSource.PlayOneShot(_playerAudios.audios[0]);
-                                        Invulnerable = true;
-                                        OnReceiveDamage(25);
-                                }
+                                CameraShakeManager.instance.CameraShake(_impulseSource);
+                                _audioSource.PlayOneShot(_playerAudios.audios[0]);
+                                OnReceiveDamage(25);
                         }
                 
                         //Colision con el enemigo
@@ -654,7 +685,7 @@ namespace Entities.Player.Scripts
                         {
                                 isAirDashUnlocked = true;
                                 playerData.airDashUnlocked = true;
-                                Debug.Log("AAirdash");
+                                
                         }
                 }
 
@@ -663,12 +694,8 @@ namespace Entities.Player.Scripts
                         //Colision con el enemigo
                         if (other.gameObject.CompareTag("Enemy"))
                         {
-                                if (!Invulnerable)
-                                {
-                                        CameraShakeManager.instance.CameraShake(_impulseSource);
-                                        Invulnerable = true;
-                                        OnReceiveDamage(25);
-                                }
+                        CameraShakeManager.instance.CameraShake(_impulseSource);
+                        OnReceiveDamage(25);
                         }
                 }
         

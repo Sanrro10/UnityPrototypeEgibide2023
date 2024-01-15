@@ -26,10 +26,22 @@ namespace Entities
         }
 
         public virtual void OnReceiveDamage(int damage)
-        {
+        { 
             if (Invulnerable) return;
            Health.RemoveHealth(damage); 
+           Debug.Log("Damage:" + damage);
+           Invulnerable = true;
            Invoke(nameof(DamageCooldown), InvulnerableTime);
+        }
+        
+        public virtual void Invulneravility()
+        {
+            Invulnerable = true;
+        }
+        
+        public virtual void EndInvulneravility()
+        {
+            Invulnerable = false;
         }
         
         public void DamageCooldown()

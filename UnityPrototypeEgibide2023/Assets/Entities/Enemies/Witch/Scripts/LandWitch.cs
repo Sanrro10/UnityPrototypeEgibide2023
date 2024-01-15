@@ -28,8 +28,9 @@ namespace Entities.Enemies.Witch.Scripts
         private bool _hasBeenActivated = false;
         private int _lastCheckedHealth;
         
-        private GameObject[] _puntosTeleport;
+        [SerializeField] private GameObject[] puntosTeleport;
         private int _lastTeleportPoint;
+        private int _teleportPointClosestToPlayer;
     
         private GameObject _playerRef;
         [SerializeField] private SpriteRenderer spriteWitch;
@@ -45,7 +46,11 @@ namespace Entities.Enemies.Witch.Scripts
             gameObject.GetComponent<HealthComponent>().SendMessage("Set", landWitchData.health, SendMessageOptions.RequireReceiver);
             _lastCheckedHealth = landWitchData.health;
             _playerRef = GameController.Instance.GetPlayerGameObject();
-            _puntosTeleport = GameObject.FindGameObjectsWithTag("WitchTeleport");
+            if (puntosTeleport.Length == 0 || puntosTeleport == null)
+            {
+                puntosTeleport = GameObject.FindGameObjectsWithTag("WitchTeleport");
+            }
+
             animationLength();
         }
 
@@ -212,14 +217,14 @@ namespace Entities.Enemies.Witch.Scripts
      avoiding the last one that was moved to, and activates teleport animation*/
         private void CheckForTeleportPoints()
         {
-            var numberOfTeleportPoint = _puntosTeleport.Length;
+            var numberOfTeleportPoint = puntosTeleport.Length;
             GameObject newTeleportPoint = new GameObject();
             bool puntoEncontrado = false;
         
             while (!puntoEncontrado)
             {
                 var newRandom = (int)(Random.Range(0f, numberOfTeleportPoint));
-                newTeleportPoint = _puntosTeleport[newRandom];
+                newTeleportPoint = puntosTeleport[newRandom];
                 if (newRandom != _lastTeleportPoint)
                 {
                     _lastTeleportPoint = newRandom;
@@ -227,10 +232,22 @@ namespace Entities.Enemies.Witch.Scripts
                     gameObject.transform.position = newTeleportPoint.transform.position;
                 }
             }
+        }
+        
+        /*Checks the closest point to the player, to prevent the witch from moving to it, and trying to maintain distance
+         to player;*/
+        private void CheckPointClosestToPlayer()
+        {
+            _teleportPointClosestToPlayer = -1;
+            float distancex = -1;
+            float distancey = -1;
+            foreach (GameObject punto in puntosTeleport)
+            {
+                distancex = punto.transform.position.x;
+                distancey = punto.transform.position.y;
 
 
-           
-
+            }   
         }
 
         /*ANIMATION BOOLEAN ACTIVATION AND DEACTIVATION*/
