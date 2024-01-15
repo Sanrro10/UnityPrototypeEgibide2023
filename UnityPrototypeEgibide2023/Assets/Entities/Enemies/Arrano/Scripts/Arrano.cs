@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Entities.Player.Scripts;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 namespace Entities.Enemies.Arrano.Scripts
@@ -9,7 +10,7 @@ namespace Entities.Enemies.Arrano.Scripts
     public class Arrano : EntityControler
     {
         // Referencia a Animator
-        private Animator _animator;
+        [SerializeField] private Animator _animator;
         
         // Referencia al sistema de particulas
         [SerializeField] private ParticleSystem plumasMuerte;
@@ -120,7 +121,7 @@ namespace Entities.Enemies.Arrano.Scripts
             }
             
             if (hitData.collider == null) return;
-            //Debug.Log(hitData.collider.tag);
+            Debug.Log(hitData.collider.tag);
             if (hitData.collider.CompareTag("Player"))
             {
                 _animator.SetBool("IsPreAttack", true);
@@ -210,11 +211,11 @@ namespace Entities.Enemies.Arrano.Scripts
         {
             if (_facingRight)
             {
-                Move(transform.position, new Vector2(_endPosition.x * 1.5f, transform.position.y), flyingSpeed * 0.8f);
+                Move(transform.position, new Vector2(_endPosition.x + 50, transform.position.y), flyingSpeed * 0.8f);
             }
             else
             {
-                Move(transform.position, new Vector2(_endPosition.x * -1.5f, transform.position.y), flyingSpeed * 0.8f);
+                Move(transform.position, new Vector2(_endPosition.x - 50, transform.position.y), flyingSpeed * 0.8f);
             }
         
         }
