@@ -45,7 +45,7 @@ namespace Entities.Enemies.Witch.Scripts
             if (collision.collider.gameObject.CompareTag("Player"))
             {
                 _damageDealt = true;
-                _playerRef.GetComponent<PlayerController>().OnReceiveDamage(_witchData.missileDamage);
+                _playerRef.GetComponent<PlayerController>().OnReceiveDamage(_witchData.missileDamage, 0, Vector2.zero);
             }
             Explode();
             

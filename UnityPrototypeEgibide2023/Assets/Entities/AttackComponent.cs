@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Entities;
@@ -5,18 +6,44 @@ using UnityEngine;
 
 public class AttackComponent : MonoBehaviour
 {
-    public int damage;
-    public int damageLayer;
-private void OnTriggerEnter2D(Collider2D other)
+    [System.Serializable]
+    public struct AttackData
     {
-        if (other.gameObject.layer == damageLayer)
+        public AttackData(int damage, float knockback, Vector2 angle, int layer)
         {
-            other.GetComponent<EntityControler>().OnReceiveDamage(damage);
-            other.GetComponent<EntityControler>().Invulneravility();
-            
-            // TODO: Maybe add knockback
-            return;
+            this.damage = damage;
+            this.knockback = knockback;
+            this.angle = angle;
+            this.layer = layer;
         }
+        public int damage;
+        public float knockback;
+        public Vector2 angle;
+        public int layer;
+    }
+    
+    private List<AttackData> _attackData;
+
+    public void Start()
+    {
+        _attackData = new List<AttackData>();
+    }
+
+    public void AddAttackData(AttackData attackData)
+    {
+        this._attackData.Add(attackData);
+    }
+
+    public void ClearAttackData()
+    {
+        this._attackData.Clear();
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var found = _attackData.Find((attack) => attack.layer == other.gameObject.layer);
+        if (found.Equals(default(AttackData))) return;
+        other.GetComponent<EntityControler>().OnReceiveDamage(found.damage, found.knockback, found.angle);
     }
     
 }

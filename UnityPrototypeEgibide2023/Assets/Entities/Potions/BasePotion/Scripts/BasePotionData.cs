@@ -2,7 +2,7 @@
 
 namespace Entities.Potions.BasePotion.Scripts
 {
-    [CreateAssetMenu(fileName = "BasePotionData", menuName = "ScriptableObjects", order = 1)]
+    [CreateAssetMenu(fileName = "BasePotionData", menuName = "BasePotionData", order = 1)]
     public class BasePotionData : ScriptableObject
     {
         public int health;

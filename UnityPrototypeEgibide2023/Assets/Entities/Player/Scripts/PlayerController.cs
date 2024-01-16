@@ -1,9 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Numerics;
 using Cinemachine;
 using General.Scripts;
 using StatePattern;
 using UnityEngine;
 using UnityEngine.UI;
+using Vector2 = UnityEngine.Vector2;
 
 namespace Entities.Player.Scripts
 {
@@ -16,7 +19,7 @@ namespace Entities.Player.Scripts
                 [SerializeField] private GameObject feet;
                 [SerializeField] private BoxCollider2D feetBoxCollider; 
                 [SerializeField] private PlayerData playerData;
-                [SerializeField] private GameObject meleeAttack;
+                [SerializeField] public  GameObject meleeAttack;
                 public Animator animator;
                 private SpriteRenderer _spriteRenderer;
         
@@ -101,7 +104,7 @@ namespace Entities.Player.Scripts
                         _spriteRenderer = GetComponent<SpriteRenderer>();
                         _controls = new InputActions();
                         _rigidbody2D = GetComponent<Rigidbody2D>();
-                
+                        
                         //Enable the actions
                         _controls.Enable();
                 
@@ -127,6 +130,7 @@ namespace Entities.Player.Scripts
                         //Potion launch
                         _controls.GeneralActionMap.Potion.performed += ctx => isPerformingPotionThrow = true;
                         _controls.GeneralActionMap.Potion.canceled += ctx => isPerformingPotionThrow = false;
+
                         
                         // Initialize data
                         horizontalSpeed = playerData.movementSpeed;
@@ -272,7 +276,7 @@ namespace Entities.Player.Scripts
         
                 public bool IsGrounded()
                 {
-                        if (_rigidbody2D.velocity.y > 0) return false;
+                        // if (_rigidbody2D.velocity.y > 0) return false;
                         return 0 < _numberOfGrounds;
                 }
         
@@ -673,12 +677,12 @@ namespace Entities.Player.Scripts
                 private void OnCollisionEnter2D(Collision2D collision)
                 {
                         //Colision con el enemigo
-                        if (collision.gameObject.CompareTag("Enemy"))
+                        /* if (collision.gameObject.CompareTag("Enemy"))
                         {
                                 CameraShakeManager.instance.CameraShake(_impulseSource);
                                 _audioSource.PlayOneShot(_playerAudios.audios[0]);
                                 OnReceiveDamage(25);
-                        }
+                        } */
                 
                         //Colision con el enemigo
                         if (collision.gameObject.CompareTag("AirDashUnlock"))
@@ -692,20 +696,20 @@ namespace Entities.Player.Scripts
                 private void OnCollisionStay2D(Collision2D other)
                 {
                         //Colision con el enemigo
-                        if (other.gameObject.CompareTag("Enemy"))
+                        /* if (other.gameObject.CompareTag("Enemy"))
                         {
                         CameraShakeManager.instance.CameraShake(_impulseSource);
                         OnReceiveDamage(25);
-                        }
+                        } */
                 }
         
 
         
                 
-                public override void OnReceiveDamage(int damage) 
+                public override void OnReceiveDamage(int damage, float knockback, Vector2 angle) 
                 {
                         Debug.Log(Health.Get());
-                        base.OnReceiveDamage(damage);
+                        base.OnReceiveDamage(damage, knockback, angle);
                         healthText.text = Health.Get().ToString();
                         healthBar.value = Health.Get();
                         Debug.Log(Health.Get());

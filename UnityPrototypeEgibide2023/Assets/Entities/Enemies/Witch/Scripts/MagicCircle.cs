@@ -75,7 +75,7 @@ namespace Entities.Enemies.Witch.Scripts
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                _playerRef.OnReceiveDamage(_witchData.magicCircleDamage);
+                _playerRef.OnReceiveDamage(_witchData.magicCircleDamage, 0 , Vector2.zero);
             }
         }
     }

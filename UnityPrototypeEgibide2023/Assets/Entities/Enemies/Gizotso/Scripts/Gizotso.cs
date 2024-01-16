@@ -204,9 +204,9 @@ namespace Entities.Enemies.Gizotso.Scripts
             Invoke(nameof(DestroyThis),2f);
         }
 
-        public override void OnReceiveDamage(int damage)
+        public override void OnReceiveDamage(int damage, float knockback, Vector2 angle)
         {
-            base.OnReceiveDamage(damage);
+            base.OnReceiveDamage(damage, knockback, angle);
             
             //TODO Incluir logica de recibir daño, si es que la tiene
         }

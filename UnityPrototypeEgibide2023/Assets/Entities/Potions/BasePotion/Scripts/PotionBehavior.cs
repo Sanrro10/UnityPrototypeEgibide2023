@@ -13,12 +13,12 @@ namespace Entities.Potions.BasePotion.Scripts
         void Start()
         {
             Health.Set(data.health);
-            InvulnerableTime = 0.3f;
+            InvulnerableTime = 0.2f;
         }
 
-        public override void OnReceiveDamage(int damage)
+        public override void OnReceiveDamage(int damage, float knockback, Vector2 angle)
         {
-            Health.RemoveHealth(damage); 
+            Health.RemoveHealth(1); 
             Invulnerable = true;
             Invoke(nameof(DamageCooldown), InvulnerableTime);
             
@@ -34,14 +34,9 @@ namespace Entities.Potions.BasePotion.Scripts
         void OnCollisionEnter2D(Collision2D collision)
         {
             // if collision is against floor 
-            if (collision.gameObject.CompareTag("EnemyHurtbox"))
+            if (collision.gameObject.layer == 7)
             {
                 Explode();
-                return;
-            }
-
-            if (collision.gameObject.CompareTag("PlayerAttack"))
-            {
                 return;
             }
             Bounce(1);
@@ -49,7 +44,7 @@ namespace Entities.Potions.BasePotion.Scripts
 
         private void ApplyForce()
         {
-        
+            
         
         
         }
@@ -65,6 +60,7 @@ namespace Entities.Potions.BasePotion.Scripts
         private void Explode()
         {   
             Instantiate(data.explosion, transform.position, Quaternion.identity);
+            // Add particle effects
             Destroy(gameObject);
         }
 

@@ -17,7 +17,6 @@ namespace StatePattern.PlayerStates
         {
             Debug.Log("Entering Idle State");
             player.setXVelocity(0);
-            player.SetXVelocity(0);
             player.animator.SetBool("IsIdle", true);
         }
 

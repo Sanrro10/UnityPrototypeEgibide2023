@@ -14,7 +14,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             GameObject parent = transform.parent.gameObject;
             var script = parent.GetComponent<GaltzScript>();
             if (other.gameObject.CompareTag("Player") && !_enemyHit) {
-                other.GetComponentInParent<PlayerController>().OnReceiveDamage(1);
+                other.GetComponentInParent<PlayerController>().OnReceiveDamage(1, 0, Vector2.zero);
                 _enemyHit = true;
             }
 
