@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Xml.Schema;
 using Entities.Player.Scripts;
 using General.Scripts;
 using UnityEngine;
@@ -58,9 +59,10 @@ namespace Entities.Enemies.Arrano.Scripts
         private float _yPos;
         private float _posX;
 
-        private int _tiempoAudioIdle = 40;
-        private int _tiempoAudioAttack = 40;
-        private int _tiempoAudioUp = 40;
+        private int _tiempoTotal = 30;
+        private int _tiempoAudioIdle = 0;
+        private int _tiempoAudioAttack = 0;
+        private int _tiempoAudioUp = 0;
 
         private char _Idle;
         private char _Attack;
@@ -98,8 +100,7 @@ namespace Entities.Enemies.Arrano.Scripts
         {
         
             // TODO: Animacion Idle
-            _audioSource.clip = audioData.audios[0];
-            _audioSource.Play();
+            Audios(1, _tiempoTotal, _tiempoAudioIdle, 'I');
             
             if (!_facingRight && Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
             {
@@ -153,7 +154,7 @@ namespace Entities.Enemies.Arrano.Scripts
         // Metodo con la logica del ataque
         public void Attack()
         {
-            
+            Audios(0, _tiempoTotal, _tiempoAudioAttack, 'A');
             
             CancelInvoke(nameof(PassiveBehaviour));
             CancelInvoke(nameof(ChangeVertical));
@@ -248,7 +249,7 @@ namespace Entities.Enemies.Arrano.Scripts
             
             // TODO: Animacion subida
             _animator.SetBool("IsUp", true);
-            _animator.SetBool("IsAttack", false);
+            Audios(2, _tiempoTotal, _tiempoAudioUp, 'U');
         
             InvokeRepeating(nameof(StartMovingUp),0,0.01f);
             yield return new WaitUntil(() => Math.Abs(transform.position.y - _startPosition.y) < 0.5f);
@@ -340,21 +341,73 @@ namespace Entities.Enemies.Arrano.Scripts
             } 
         }
 
-        public void audios(int audio, int tiempoAudio, char tipo)
+        public void Audios(int audio, int tiempoAudioTotal, int tiempoAudioModo, char tipo)
         {
-            if (audio == 0)
-            {
-                _audioSource.clip = audioData.audios[audio];
-                _audioSource.Play();
-                if (tipo.Equals('I'))
+        switch (tipo)
+        {
+            case 'I':
+                if (tiempoAudioTotal == 0 && tiempoAudioModo == 0 )
                 {
+                    _audioSource.clip = audioData.audios[audio];
+                    _audioSource.Play();
+
+                    _tiempoAudioIdle = 30;
+                    _tiempoTotal = 30;
+                }
+                else
+                {
+                    Timer();
                     
                 }
-               // _tiempoAudio = 30;
-            }
 
-            //--_tiempoAudio;
+                break;
+            case 'A':
+                if ( tiempoAudioModo == 0)
+                {
+                    _audioSource.clip = audioData.audios[audio];
+                    _audioSource.Play();
 
+                    _tiempoAudioAttack = 30;
+                    _tiempoTotal = 20;
+                }
+                else
+                {
+                    Timer();
+                }
+                
+                break;
+            case 'U':
+                if (tiempoAudioModo == 0)
+                {
+                    _audioSource.clip = audioData.audios[audio];
+                    _audioSource.Play();
+
+                    _tiempoAudioUp = 30;
+                    _tiempoTotal = 20;
+                }
+                else
+                {
+                    Timer();
+                }
+                break;
+            default:  
+                break;
+        }
+        
+        void Timer()
+        {
+            if (_tiempoAudioAttack >= 1)
+            {
+                _tiempoAudioAttack -= 1;
+            } else if (_tiempoAudioIdle >= 1)
+            {
+                _tiempoAudioIdle -= 1;
+            } else if (_tiempoAudioUp >= 1)
+            {
+                _tiempoAudioUp -= 1;
+            }    
+        }        
+        
         }
 
         public override void OnDeath()
