@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,9 +10,12 @@ namespace Entities.Enemies.Gizotso.Scripts
     {
         // Datos del enemigo
         [SerializeField] private PassiveEnemyData passiveEnemyData;
-    
+        
         // Variable para que no ande ni entre en bucle de ataques mientras está atacando
-        public bool attacking;
+        private bool _attacking;
+        
+        // Variable para añadir cooldown al ataque
+        private bool _onCooldown;
     
         // Posiciones de los límites entre los que andas
         private Vector3 _leftLimitPosition;
@@ -24,21 +28,22 @@ namespace Entities.Enemies.Gizotso.Scripts
         private NavMeshAgent _navMeshAgent;
     
         // Referencia al Animator
-        [SerializeField] private Animator _animator;
+        [SerializeField] private Animator animator;
         
-        private static readonly int andando = Animator.StringToHash("andando");
-        private static readonly int muerto = Animator.StringToHash("muerto");
-        private static readonly int atacando = Animator.StringToHash("atacando");
-        private static readonly int primerGolpe = Animator.StringToHash("primerGolpe");
-        private static readonly int segundoGolpe = Animator.StringToHash("segundoGolpe");
-        private static readonly int dash = Animator.StringToHash("dash");
-
+        // Referencia al objeto hijo de la hitbox de ataque
+        [SerializeField] private GameObject attackHitBox;
+        
+        // Pasar nombre de booleanos a "IDs" para ahorrarnos comparaciones de strings
+        private static readonly int IsIdle = Animator.StringToHash("IsIdle");
+        private static readonly int IsPreAttack = Animator.StringToHash("IsPreAttack");
+        private static readonly int IsFirstAttack = Animator.StringToHash("IsFirstAttack");
+        private static readonly int IsSecondAttack = Animator.StringToHash("IsSecondAttack");
+        private static readonly int IsHurt = Animator.StringToHash("IsHurt");
+        private static readonly int IsDetah = Animator.StringToHash("IsDeath");
 
         void Start()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
-
-            _animator = GetComponentInChildren<Animator>();
             
             var rightLimit = gameObject.transform.Find("RightLimit");
             _rightLimitPosition = rightLimit.position;
@@ -54,23 +59,28 @@ namespace Entities.Enemies.Gizotso.Scripts
     
         private void PassiveBehavior()
         {
-            if (attacking) return;
+            // Si está atacando no se mueve
+            if (_attacking) return;
             
-            // TODO: Animacion Walk
-            _animator.SetBool(muerto, false);
-            _animator.SetBool(atacando, false);
-            _animator.SetBool(primerGolpe, false);
-            _animator.SetBool(segundoGolpe, false);
-            _animator.SetBool(dash, false);
-            _animator.SetBool(andando, true);
+            // Animacion Idle, setea el resto de aniamciones a False por si acaso
+            animator.SetBool(IsPreAttack, false);
+            animator.SetBool(IsFirstAttack, false);
+            animator.SetBool(IsSecondAttack, false);
+            animator.SetBool(IsHurt,false);
+            animator.SetBool(IsDetah, false);
+            animator.SetBool(IsIdle, true);
             
+            // Cambia de dirección
             _navMeshAgent.SetDestination(_goingRight ? _rightLimitPosition : _leftLimitPosition);
+            
+            // Comprobar si ha llegado al límite izquierdo
             if (Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
             {
                 _goingRight = true;
                 return;
             }
-        
+            
+            // Comprobar si ha llegado al límite derecho
             if (Math.Abs(transform.position.x - _rightLimitPosition.x) < 0.5)
             {
                 _goingRight = false;
@@ -79,7 +89,8 @@ namespace Entities.Enemies.Gizotso.Scripts
 
         public void Attack()
         {
-            if (!attacking)
+            // Emprezar corutina de ataque si no está atacando ya
+            if (!_attacking && !_onCooldown)
             {
                 StartCoroutine(nameof(Cooldown));
             }
@@ -87,57 +98,76 @@ namespace Entities.Enemies.Gizotso.Scripts
 
         private IEnumerator Cooldown()
         {
+            // Control de estados
+            _attacking = true;
+            _onCooldown = true;
+            
+            // Para el NavMesh para que deje de andar
             _navMeshAgent.isStopped = true;
-            attacking = true;
-        
-            // TODO: Animacion Pre-Ataque
-            _animator.SetBool(atacando, true);
             
-            yield return new WaitForSeconds(1f);
-        
+            // Animacion Pre-Ataque
+            animator.SetBool(IsIdle, false);
+            animator.SetBool(IsPreAttack, true);
             
+            // Coge la duración de la animación actual para que la ejecución no siga hasta que termine
+            AnimationClip currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+            float lengthAnim = currentAnim.length;
+            yield return new WaitForSeconds(lengthAnim);
             
-            GameObject attackZone = gameObject.transform.Find("AttackZone").gameObject;
-        
-            // TODO --------------------------------------------------------------------------
-            // CUADRAR TIEMPOS CON LA ANIMACION
+            // Animacion Ataque
+            animator.SetBool(IsPreAttack, false);
+            animator.SetBool(IsFirstAttack, true);
             
-            // Primer golpe
-            // TODO: Animacion Ataque
-            _animator.SetBool(atacando, false);
-            _animator.SetBool(primerGolpe, true);
-            attackZone.SetActive(true);
+            currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+            lengthAnim = currentAnim.length;
+            
+            /* PRIMER GOLPE */
+            // Activar hitbox de ataque
+            attackHitBox.SetActive(true);
+            
+            // Hacer que se mueva un poco durante la animación de ataque
             InvokeRepeating(nameof(Dash),0f,0.05f);
-            GetComponentInChildren<GizotsoAttackZone>().Attack();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(lengthAnim);
             CancelInvoke(nameof(Dash));
-        
-            // Segundo golpe
-            // TODO: Animacion Ataque
-            _animator.SetBool(primerGolpe, false);
-            _animator.SetBool(segundoGolpe, true);
-            attackZone.SetActive(true);
+            
+            // Desactivar hitbox de ataque
+            attackHitBox.SetActive(false);
+            
+            /* SEGUNDO GOLPE (igual que el primero) */
+            animator.SetBool(IsFirstAttack, false);
+            animator.SetBool(IsSecondAttack, true);
+            
+            currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+            lengthAnim = currentAnim.length;
+            
+            attackHitBox.SetActive(true);
             InvokeRepeating(nameof(Dash),0f,0.05f);
-            GetComponentInChildren<GizotsoAttackZone>().Attack();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(lengthAnim);
             CancelInvoke(nameof(Dash));
-        
-            // TODO: Animacion de stun
-            _animator.SetBool(segundoGolpe, false);
-            _animator.SetBool(dash, true);
+            
+            // Desactivar hitbox de ataque
+            attackHitBox.SetActive(false);
+            
+            // Animacion de stun
+            animator.SetBool(IsSecondAttack, false);
+            //animator.SetBool(IsHurt, true);
             
             // TODO: Tiempo que va a estar stuneado
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.1f);
         
+            // Volver a activar el NavMesh para que se mueve
             _navMeshAgent.isStopped = false;
-            _animator.SetBool(dash, false);
-            _animator.SetBool(andando, true);
+            //animator.SetBool(IsHurt, false);
+            animator.SetBool(IsIdle, true);
+            
+            _attacking = false;
             
             // Tiempo hasta que puede hacer otro ataque para que no se quede en bucle atacando
-            yield return new WaitForSeconds(3f);
-            attacking = false;
+            yield return new WaitForSeconds(1f);
+            _onCooldown = false;
         }
 
+        // Metodo que mueve al enemigo durante la animación del ataque
         private void Dash()
         {
             if (_goingRight)
@@ -152,10 +182,15 @@ namespace Entities.Enemies.Gizotso.Scripts
     
         public override void OnDeath()
         {
-            // TODO Animacion Muerte
+            // Animación muerte
+            animator.SetBool(IsPreAttack, false);
+            animator.SetBool(IsFirstAttack, false);
+            animator.SetBool(IsSecondAttack, false);
+            animator.SetBool(IsHurt,false);
+            animator.SetBool(IsIdle, false);
+            animator.SetBool(IsDetah, true);
         
             Invoke(nameof(DestroyThis),2f);
-        
         }
 
         public override void OnReceiveDamage(int damage)

@@ -21,27 +21,21 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 737fc3171e7d9b246899e33c19fa65b0, type: 3}
+      value: {fileID: 21300000, guid: 4d69bd152322dd9449d848e4ba566420, type: 3}
+    - time: 0.125
+      value: {fileID: 21300000, guid: 8a52971046f16874286d2c43977e241b, type: 3}
     - time: 0.20833333
-      value: {fileID: 21300000, guid: 9f244ce184d5ec049a59083b073870b8, type: 3}
+      value: {fileID: 21300000, guid: 859083f90ac10c34f80180a32dd8a06a, type: 3}
+    - time: 0.29166666
+      value: {fileID: 21300000, guid: e51837333f21b9c4a9e3fce5dec034a0, type: 3}
     - time: 0.33333334
-      value: {fileID: 21300000, guid: f9a10efea5823544a8888ef71ffac5f9, type: 3}
+      value: {fileID: 21300000, guid: 3e1110efbd623034db576f1685f041dd, type: 3}
     - time: 0.45833334
-      value: {fileID: 21300000, guid: 7d42f84f7a5b80b4dbe19ab4a768c621, type: 3}
+      value: {fileID: 21300000, guid: 657d8a187e3451d40899f56c29478d4c, type: 3}
+    - time: 0.5416667
+      value: {fileID: 21300000, guid: 4d69bd152322dd9449d848e4ba566420, type: 3}
     - time: 0.625
-      value: {fileID: 21300000, guid: 15aeeafd74e51b840b74fbb2b0d151d2, type: 3}
-    - time: 0.7916667
-      value: {fileID: 21300000, guid: 5c4a44c9a44ad394c82ccfb32e517684, type: 3}
-    - time: 1.0416666
-      value: {fileID: 21300000, guid: ca5e320caa28f4e428f30e9ce495ad33, type: 3}
-    - time: 1.2083334
-      value: {fileID: 21300000, guid: b01f64306de57874daad0acceedde794, type: 3}
-    - time: 1.3333334
-      value: {fileID: 21300000, guid: c67f3358ccc5fec49b8cba4f817772a2, type: 3}
-    - time: 1.7083334
-      value: {fileID: 21300000, guid: ac915d86143887041b64dbe109960674, type: 3}
-    - time: 1.7916666
-      value: {fileID: 21300000, guid: b3a5a98794f29c849b5c8b732d18c2c6, type: 3}
+      value: {fileID: 21300000, guid: 4e6eb6d7d9b45ee458f01768a85f515d, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -64,23 +58,20 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 737fc3171e7d9b246899e33c19fa65b0, type: 3}
-    - {fileID: 21300000, guid: 9f244ce184d5ec049a59083b073870b8, type: 3}
-    - {fileID: 21300000, guid: f9a10efea5823544a8888ef71ffac5f9, type: 3}
-    - {fileID: 21300000, guid: 7d42f84f7a5b80b4dbe19ab4a768c621, type: 3}
-    - {fileID: 21300000, guid: 15aeeafd74e51b840b74fbb2b0d151d2, type: 3}
-    - {fileID: 21300000, guid: 5c4a44c9a44ad394c82ccfb32e517684, type: 3}
-    - {fileID: 21300000, guid: ca5e320caa28f4e428f30e9ce495ad33, type: 3}
-    - {fileID: 21300000, guid: b01f64306de57874daad0acceedde794, type: 3}
-    - {fileID: 21300000, guid: c67f3358ccc5fec49b8cba4f817772a2, type: 3}
-    - {fileID: 21300000, guid: ac915d86143887041b64dbe109960674, type: 3}
-    - {fileID: 21300000, guid: b3a5a98794f29c849b5c8b732d18c2c6, type: 3}
+    - {fileID: 21300000, guid: 4d69bd152322dd9449d848e4ba566420, type: 3}
+    - {fileID: 21300000, guid: 8a52971046f16874286d2c43977e241b, type: 3}
+    - {fileID: 21300000, guid: 859083f90ac10c34f80180a32dd8a06a, type: 3}
+    - {fileID: 21300000, guid: e51837333f21b9c4a9e3fce5dec034a0, type: 3}
+    - {fileID: 21300000, guid: 3e1110efbd623034db576f1685f041dd, type: 3}
+    - {fileID: 21300000, guid: 657d8a187e3451d40899f56c29478d4c, type: 3}
+    - {fileID: 21300000, guid: 4d69bd152322dd9449d848e4ba566420, type: 3}
+    - {fileID: 21300000, guid: 4e6eb6d7d9b45ee458f01768a85f515d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.8333333
+    m_StopTime: 0.6666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -100,15 +91,15 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.2083334
-    functionName: DireccionColliderRayo
+  - time: 0.20833333
+    functionName: LanzarParticulasPolvo
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.7916666
-    functionName: DireccionColliderRayo
+  - time: 0.5416667
+    functionName: LanzarParticulasPolvo
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
