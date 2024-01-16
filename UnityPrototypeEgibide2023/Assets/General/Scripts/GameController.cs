@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Entities;
 using Entities.Player.Scripts;
@@ -145,13 +146,13 @@ namespace General.Scripts
         }
 
 
-        public void ChangeSceneMenu(string escena)
+        public void ChangeSceneMenu()
         {
-            canvasPausa.gameObject.SetActive(false);
-            SceneManager.LoadScene(escena);
-
-
-        }public void ChangeScene(string escena)
+            DeletePersistentElement();
+            SceneManager.LoadScene("Main Menu");
+        }
+        
+        public void ChangeScene(string escena)
         {
             SceneManager.LoadScene(escena);
         }
@@ -184,6 +185,14 @@ namespace General.Scripts
             Debug.Log("GameController -> Dentro del metodo LoadGame");
             SaveLoadManager.LoadGame();
         }
+
+        public void DeletePersistentElement()
+        {
+            Destroy(canvasPausa.gameObject);
+            Destroy(gameObject);
+            Time.timeScale = 1;
+        }
+
         //Fin: Prueba Guardado
     
         public IEnumerator Wait()

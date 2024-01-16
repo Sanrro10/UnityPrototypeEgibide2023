@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -5,6 +6,7 @@ using Cinemachine;
 using Entities.Potions.BasePotion.Scripts;
 using General.Scripts;
 using StatePattern;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Quaternion = UnityEngine.Quaternion;
@@ -756,9 +758,10 @@ namespace Entities.Player.Scripts
                         OnReceiveDamage(25);
                         } */
                 }
-        
 
-        
+                public void EnableInput()
+                {
+                        _controls = new InputActions();
                 
                 public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true) 
                 {
