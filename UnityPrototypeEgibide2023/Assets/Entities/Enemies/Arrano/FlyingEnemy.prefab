@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6368294887561887957}
   - component: {fileID: 4872463811334060630}
   - component: {fileID: -6216817808388750918}
+  - component: {fileID: 4120615037757765805}
   m_Layer: 7
   m_Name: FlyingEnemy
   m_TagString: Enemy
@@ -302,6 +303,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4120615037757765805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2434248398684095206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c13aff87825a84fa26e0b01fd890de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  damageLayer: 6
 --- !u!1 &3235892323308809892
 GameObject:
   m_ObjectHideFlags: 0
