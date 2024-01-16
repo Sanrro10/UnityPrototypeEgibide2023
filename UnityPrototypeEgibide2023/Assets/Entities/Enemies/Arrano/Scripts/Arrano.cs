@@ -10,11 +10,16 @@ namespace Entities.Enemies.Arrano.Scripts
 {
     public class Arrano : EntityControler
     {
+        // Referencia a Audio Source
+        [SerializeField] private AudioSource _audioSource;
         // Referencia a Animator
         [SerializeField] private Animator _animator;
         
         // Referencia al sistema de particulas
         [SerializeField] private ParticleSystem plumasMuerte;
+        
+        // Referencia a los audios
+        [SerializeField] private Audios audioData;
         
         // Variable para controlar la velocidad
         [SerializeField] private float flyingSpeed;
@@ -52,9 +57,19 @@ namespace Entities.Enemies.Arrano.Scripts
     
         private float _yPos;
         private float _posX;
+
+        private int _tiempoAudioIdle = 40;
+        private int _tiempoAudioAttack = 40;
+        private int _tiempoAudioUp = 40;
+
+        private char _Idle;
+        private char _Attack;
+        private char _Up;
         // Start is called before the first frame update
         void Start()
         {
+            _audioSource = gameObject.GetComponent<AudioSource>();
+            
             var rightLimit = gameObject.transform.Find("RightLimit");
             _rightLimitPosition = rightLimit.position;
         
@@ -83,7 +98,8 @@ namespace Entities.Enemies.Arrano.Scripts
         {
         
             // TODO: Animacion Idle
-            
+            _audioSource.clip = audioData.audios[0];
+            _audioSource.Play();
             
             if (!_facingRight && Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
             {
@@ -145,7 +161,7 @@ namespace Entities.Enemies.Arrano.Scripts
             _startPosition = transform.position;
             _endPosition = _player.transform.position;
             
-            _animator.SetBool("IsPreAttack", false);
+            //_animator.SetBool("IsPreAttack", false);
             
             //Debug.Log(_endPosition);
             StartCoroutine(nameof(GoDown));
@@ -291,6 +307,8 @@ namespace Entities.Enemies.Arrano.Scripts
         // Corutina para girar
         private IEnumerator Rotate()
         {
+            _audioSource.clip = audioData.audios[1];
+            _audioSource.Play();
             flyingSpeed *= 0.3f;
             _rotated = false;
             CancelInvoke(nameof(TurnAround));
@@ -320,6 +338,23 @@ namespace Entities.Enemies.Arrano.Scripts
             {
                 _rotated = true;
             } 
+        }
+
+        public void audios(int audio, int tiempoAudio, char tipo)
+        {
+            if (audio == 0)
+            {
+                _audioSource.clip = audioData.audios[audio];
+                _audioSource.Play();
+                if (tipo.Equals('I'))
+                {
+                    
+                }
+               // _tiempoAudio = 30;
+            }
+
+            //--_tiempoAudio;
+
         }
 
         public override void OnDeath()
