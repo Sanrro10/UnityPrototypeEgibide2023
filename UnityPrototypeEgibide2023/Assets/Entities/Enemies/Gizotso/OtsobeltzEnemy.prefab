@@ -5217,7 +5217,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7690046758821122844}
@@ -5237,15 +5237,15 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4574948532688236967}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -334000983
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 100
   avoidancePriority: 50
-  m_AngularSpeed: 1000
+  m_AngularSpeed: 100000
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
@@ -5264,8 +5264,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   passiveEnemyData: {fileID: 11400000, guid: 6d8931f7f3201154f9365b48b3005d3f, type: 2}
-  attacking: 0
-  _animator: {fileID: 3756747904083322608}
+  animator: {fileID: 3756747904083322608}
+  attackHitBox: {fileID: 3018751870457076232}
 --- !u!50 &5702428252875769023
 Rigidbody2D:
   serializedVersion: 4
@@ -10276,7 +10276,7 @@ Animator:
   m_GameObject: {fileID: 9069875208865588841}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e770838a514d6324daf52b8bf8d8e0af, type: 2}
+  m_Controller: {fileID: 9100000, guid: 89fffaafde4e8e14599c13e4f346436e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

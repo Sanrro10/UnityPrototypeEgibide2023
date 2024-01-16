@@ -76,15 +76,26 @@ namespace Entities.Enemies.Gizotso.Scripts
             // Comprobar si ha llegado al límite izquierdo
             if (Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
             {
+                _onCooldown = true;
                 _goingRight = true;
+                StartCoroutine(nameof(Turn));
                 return;
             }
             
             // Comprobar si ha llegado al límite derecho
             if (Math.Abs(transform.position.x - _rightLimitPosition.x) < 0.5)
             {
+                _onCooldown = true;
                 _goingRight = false;
+                StartCoroutine(nameof(Turn));
             }
+        }
+
+        // Pequeña corutina para que mientres gire no pueda atacar al jugador
+        private IEnumerator Turn()
+        {
+            yield return new WaitForSeconds(0.5f);
+            _onCooldown = false;
         }
 
         public void Attack()
