@@ -672,13 +672,14 @@ namespace Entities.Player.Scripts
                 }
                 private void OnCollisionEnter2D(Collision2D collision)
                 {
-                        //Colision con el enemigo
+                        /*//Colision con el enemigo
                         if (collision.gameObject.CompareTag("Enemy"))
                         {
                                 CameraShakeManager.instance.CameraShake(_impulseSource);
                                 _audioSource.PlayOneShot(_playerAudios.audios[0]);
                                 OnReceiveDamage(25);
                         }
+                        */
                 
                         //Colision con el enemigo
                         if (collision.gameObject.CompareTag("AirDashUnlock"))
@@ -689,7 +690,7 @@ namespace Entities.Player.Scripts
                         }
                 }
 
-                private void OnCollisionStay2D(Collision2D other)
+                /*private void OnCollisionStay2D(Collision2D other)
                 {
                         //Colision con el enemigo
                         if (other.gameObject.CompareTag("Enemy"))
@@ -697,7 +698,7 @@ namespace Entities.Player.Scripts
                         CameraShakeManager.instance.CameraShake(_impulseSource);
                         OnReceiveDamage(25);
                         }
-                }
+                }*/
         
 
         
