@@ -28,9 +28,9 @@ namespace Entities
             attackData ??= new List<AttackData>();
         }
 
-        public void AddAttackData(AttackData attackData)
+        public void AddAttackData(AttackData ad)
         {
-            this.attackData.Add(attackData);
+            this.attackData.Add(ad);
         }
 
         public void ClearAttackData()
