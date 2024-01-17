@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Xml.Schema;
 using Entities.Player.Scripts;
 using General.Scripts;
 using UnityEngine;
@@ -10,11 +11,16 @@ namespace Entities.Enemies.Arrano.Scripts
 {
     public class Arrano : EntityControler
     {
+        // Referencia a Audio Source
+        [SerializeField] private AudioSource _audioSource;
         // Referencia a Animator
         [SerializeField] private Animator _animator;
         
         // Referencia al sistema de particulas
         [SerializeField] private ParticleSystem plumasMuerte;
+        
+        // Referencia a los audios
+        [SerializeField] private Audios audioData;
         
         // Variable para controlar la velocidad
         [SerializeField] private float flyingSpeed;
@@ -52,9 +58,20 @@ namespace Entities.Enemies.Arrano.Scripts
     
         private float _yPos;
         private float _posX;
+
+        private int _tiempoTotal = 30;
+        private int _tiempoAudioIdle = 0;
+        private int _tiempoAudioAttack = 0;
+        private int _tiempoAudioUp = 0;
+
+        private char _Idle;
+        private char _Attack;
+        private char _Up;
         // Start is called before the first frame update
         void Start()
         {
+            _audioSource = gameObject.GetComponent<AudioSource>();
+            
             var rightLimit = gameObject.transform.Find("RightLimit");
             _rightLimitPosition = rightLimit.position;
         
@@ -83,7 +100,7 @@ namespace Entities.Enemies.Arrano.Scripts
         {
         
             // TODO: Animacion Idle
-            
+            Audios(1, _tiempoTotal, _tiempoAudioIdle, 'I');
             
             if (!_facingRight && Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
             {
@@ -137,7 +154,7 @@ namespace Entities.Enemies.Arrano.Scripts
         // Metodo con la logica del ataque
         public void Attack()
         {
-            
+            Audios(0, _tiempoTotal, _tiempoAudioAttack, 'A');
             
             CancelInvoke(nameof(PassiveBehaviour));
             CancelInvoke(nameof(ChangeVertical));
@@ -145,7 +162,7 @@ namespace Entities.Enemies.Arrano.Scripts
             _startPosition = transform.position;
             _endPosition = _player.transform.position;
             
-            _animator.SetBool("IsPreAttack", false);
+            //_animator.SetBool("IsPreAttack", false);
             
             //Debug.Log(_endPosition);
             StartCoroutine(nameof(GoDown));
@@ -232,7 +249,7 @@ namespace Entities.Enemies.Arrano.Scripts
             
             // TODO: Animacion subida
             _animator.SetBool("IsUp", true);
-            _animator.SetBool("IsAttack", false);
+            Audios(2, _tiempoTotal, _tiempoAudioUp, 'U');
         
             InvokeRepeating(nameof(StartMovingUp),0,0.01f);
             yield return new WaitUntil(() => Math.Abs(transform.position.y - _startPosition.y) < 0.5f);
@@ -291,6 +308,8 @@ namespace Entities.Enemies.Arrano.Scripts
         // Corutina para girar
         private IEnumerator Rotate()
         {
+            _audioSource.clip = audioData.audios[1];
+            _audioSource.Play();
             flyingSpeed *= 0.3f;
             _rotated = false;
             CancelInvoke(nameof(TurnAround));
@@ -320,6 +339,75 @@ namespace Entities.Enemies.Arrano.Scripts
             {
                 _rotated = true;
             } 
+        }
+
+        public void Audios(int audio, int tiempoAudioTotal, int tiempoAudioModo, char tipo)
+        {
+        switch (tipo)
+        {
+            case 'I':
+                if (tiempoAudioTotal == 0 && tiempoAudioModo == 0 )
+                {
+                    _audioSource.clip = audioData.audios[audio];
+                    _audioSource.Play();
+
+                    _tiempoAudioIdle = 30;
+                    _tiempoTotal = 30;
+                }
+                else
+                {
+                    Timer();
+                    
+                }
+
+                break;
+            case 'A':
+                if ( tiempoAudioModo == 0)
+                {
+                    _audioSource.clip = audioData.audios[audio];
+                    _audioSource.Play();
+
+                    _tiempoAudioAttack = 30;
+                    _tiempoTotal = 20;
+                }
+                else
+                {
+                    Timer();
+                }
+                
+                break;
+            case 'U':
+                if (tiempoAudioModo == 0)
+                {
+                    _audioSource.clip = audioData.audios[audio];
+                    _audioSource.Play();
+
+                    _tiempoAudioUp = 30;
+                    _tiempoTotal = 20;
+                }
+                else
+                {
+                    Timer();
+                }
+                break;
+            default:  
+                break;
+        }
+        
+        void Timer()
+        {
+            if (_tiempoAudioAttack >= 1)
+            {
+                _tiempoAudioAttack -= 1;
+            } else if (_tiempoAudioIdle >= 1)
+            {
+                _tiempoAudioIdle -= 1;
+            } else if (_tiempoAudioUp >= 1)
+            {
+                _tiempoAudioUp -= 1;
+            }    
+        }        
+        
         }
 
         public override void OnDeath()

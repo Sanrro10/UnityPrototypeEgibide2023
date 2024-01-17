@@ -32,11 +32,6 @@ namespace StatePattern.PlayerStates
                 player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
                 return;
             }
-            if (player.isPerformingJump && !player.onDJump)
-            {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.DJumpState);
-                return;
-            }
             if (player.isPerformingDash && player.isAirDashUnlocked)
             {
                 player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
