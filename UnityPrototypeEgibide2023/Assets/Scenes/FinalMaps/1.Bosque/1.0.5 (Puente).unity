@@ -276,7 +276,7 @@ PrefabInstance:
     - target: {fileID: 2263321978739387193, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ccbc8da4077f94241bc141aee9ed1b94, type: 2}
+      objectReference: {fileID: 2100000, guid: 2c9908e51a68ade4a80efac09b761ef9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1557,7 +1557,7 @@ PrefabInstance:
     - target: {fileID: 2263321978739387193, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ccbc8da4077f94241bc141aee9ed1b94, type: 2}
+      objectReference: {fileID: 2100000, guid: 2c9908e51a68ade4a80efac09b761ef9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3931,7 +3931,7 @@ PrefabInstance:
     - target: {fileID: 2263321978739387193, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ccbc8da4077f94241bc141aee9ed1b94, type: 2}
+      objectReference: {fileID: 2100000, guid: 2c9908e51a68ade4a80efac09b761ef9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4256,6 +4256,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2015443411}
     m_Modifications:
+    - target: {fileID: 422379459523676261, guid: 8a345118a28de8945a9f34c4c263a7bd, type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: 0.47947663
+      objectReference: {fileID: 0}
+    - target: {fileID: 422379459523676261, guid: 8a345118a28de8945a9f34c4c263a7bd, type: 3}
+      propertyPath: m_Points.Array.data[0].y
+      value: 1.9953197
+      objectReference: {fileID: 0}
+    - target: {fileID: 422379459523676261, guid: 8a345118a28de8945a9f34c4c263a7bd, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 0.48600137
+      objectReference: {fileID: 0}
+    - target: {fileID: 422379459523676261, guid: 8a345118a28de8945a9f34c4c263a7bd, type: 3}
+      propertyPath: m_Points.Array.data[1].y
+      value: -0.013131196
+      objectReference: {fileID: 0}
     - target: {fileID: 1067710575436930765, guid: 8a345118a28de8945a9f34c4c263a7bd, type: 3}
       propertyPath: m_Name
       value: 5 X 1 Ruler Variant (2)
@@ -4313,7 +4329,8 @@ PrefabInstance:
       value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2584355382588657674, guid: 8a345118a28de8945a9f34c4c263a7bd, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2944083636211240427, guid: 8a345118a28de8945a9f34c4c263a7bd, type: 3}
