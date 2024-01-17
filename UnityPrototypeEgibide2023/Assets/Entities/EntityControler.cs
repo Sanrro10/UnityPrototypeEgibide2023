@@ -25,7 +25,7 @@ namespace Entities
             
         }
 
-        public virtual void OnReceiveDamage(int damage)
+        public virtual void OnReceiveDamage(int damage, float knockback, Vector2 angle)
         { 
             if (Invulnerable) return;
            Health.RemoveHealth(damage); 

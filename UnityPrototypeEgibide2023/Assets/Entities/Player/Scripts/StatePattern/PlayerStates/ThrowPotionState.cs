@@ -1,6 +1,6 @@
-﻿using Entities.Player.Scripts;
+﻿using StatePattern;
 
-namespace StatePattern.PlayerStates
+namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
     public class ThrowPotionState : IState
     {

@@ -1,8 +1,7 @@
-﻿
-using Entities.Player.Scripts;
+﻿using StatePattern;
 using UnityEngine;
 
-namespace StatePattern.PlayerStates
+namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
     public class IdleState: IState
     {
@@ -17,7 +16,6 @@ namespace StatePattern.PlayerStates
         {
             Debug.Log("Entering Idle State");
             player.setXVelocity(0);
-            player.SetXVelocity(0);
             player.animator.SetBool("IsIdle", true);
         }
 

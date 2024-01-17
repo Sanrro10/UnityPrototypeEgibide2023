@@ -1,48 +1,50 @@
-﻿using Entities.Player.Scripts;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace StatePattern.PlayerStates
+namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
-    public class AirMeleeAttackDownState : IState
+    public class AirMeleeAttackDownState : AttackState
     {
-        private PlayerController player;
         
-        public AirMeleeAttackDownState(PlayerController player)
+        public AirMeleeAttackDownState(PlayerController player) : base(player)
         {
-            this.player = player;
+            AttackDirection = new Vector2(0, -1);
+            KnockbackMultiplier = 1.5f;
         }
 
-        public void Enter()
+        public override void Enter()
         {
+            base.Enter();
             Debug.Log("Entering Air Down Attack State");
 
-            player.isInMiddleOfAirAttack = true;
-            player.animator.SetBool("IsAADown", true);
-            player.InvokeRepeating(nameof(player.AirMove), 0, 0.01f);
-            player.Invoke(nameof(player.EndAirAttack), 0.8f);
+            Player.isInMiddleOfAirAttack = true;
+            Player.animator.SetBool("IsAADown", true);
+            Player.InvokeRepeating(nameof(Player.AirMove), 0, 0.01f);
+            Player.Invoke(nameof(Player.EndAirAttack), 0.8f);
         }
 
         // per-frame logic, include condition to transition to a new state
-        public void Update()
+        public override void Update()
         {     
-            if (!player.isInMiddleOfAirAttack)
+            base.Update();
+            if (!Player.isInMiddleOfAirAttack)
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirState);
                 return;
             }
-            if (player.IsGrounded()) {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
+            if (Player.IsGrounded()) {
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.IdleState);
                 return;
             }
         }
         
-        public void Exit()
+        public override void Exit()
         {
-            player.CancelInvoke(nameof(player.AirMove));
-            player.CancelInvoke(nameof(player.EndAirAttack));
-            player.animator.SetBool("IsAADown", false);
-            player.canAttack = true;
-            player.isInMiddleOfAirAttack = false;
+            base.Exit();
+            Player.CancelInvoke(nameof(Player.AirMove));
+            Player.CancelInvoke(nameof(Player.EndAirAttack));
+            Player.animator.SetBool("IsAADown", false);
+            Player.canAttack = true;
+            Player.isInMiddleOfAirAttack = false;
 
             Debug.Log("Exiting Air Down Attack State");
         }

@@ -429,7 +429,7 @@ namespace Entities.Enemies.Arrano.Scripts
         {
             if (other.CompareTag("Player") && !_hit)
             {
-                _player.GetComponent<PlayerController>().OnReceiveDamage(1);
+                _player.GetComponent<PlayerController>().OnReceiveDamage(1, 0, Vector2.zero);
                 _hit = true;
             }
         }

@@ -1,23 +1,23 @@
-﻿using StatePattern;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
-    public class AirMeleeAttackUpState : AttackState
+    public class AirMeleeAttackForwardState : AttackState
     {
-        public AirMeleeAttackUpState(PlayerController player) : base(player)
+        
+        public AirMeleeAttackForwardState(PlayerController player) : base(player)
         {
-            AttackDirection = new Vector2(0, 1);
+            AttackDirection = new Vector2((Player.facingRight ? 1 : -1), 0.2f);
             KnockbackMultiplier = 1.5f;
         }
 
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Entering Air Up Attack State");
+            Debug.Log("Entering Air Right Attack State");
 
             Player.isInMiddleOfAirAttack = true;
-            Player.animator.SetBool("IsAAUp", true);
+            Player.animator.SetBool("IsAARight", true);
             Player.InvokeRepeating(nameof(Player.AirMove), 0, 0.01f);
             Player.Invoke(nameof(Player.EndAirAttack), 0.8f);
         }
@@ -42,11 +42,11 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             base.Exit();
             Player.CancelInvoke(nameof(Player.AirMove));
             Player.CancelInvoke(nameof(Player.EndAirAttack));
-            Player.animator.SetBool("IsAAUp", false);
+            Player.animator.SetBool("IsAARight", false);
             Player.canAttack = true;
             Player.isInMiddleOfAirAttack = false;
 
-            Debug.Log("Exiting Air Up Attack State");
+            Debug.Log("Exiting Air Right Attack State");
         }
     }
 }

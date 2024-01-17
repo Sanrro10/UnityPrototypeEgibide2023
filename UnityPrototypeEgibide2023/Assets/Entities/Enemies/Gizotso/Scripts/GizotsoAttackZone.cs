@@ -11,7 +11,7 @@ namespace Entities.Enemies.Gizotso.Scripts
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.gameObject.CompareTag("Player")) return;
-            other.GetComponentInParent<PlayerController>().OnReceiveDamage(1);
+            other.GetComponentInParent<PlayerController>().OnReceiveDamage(1, 0, Vector2.zero);
         }
     }
 }

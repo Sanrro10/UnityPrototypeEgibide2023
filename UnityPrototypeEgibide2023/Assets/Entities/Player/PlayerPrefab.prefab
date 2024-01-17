@@ -612,7 +612,7 @@ MonoBehaviour:
   feet: {fileID: 3689923748673784380}
   feetBoxCollider: {fileID: 247002988172625619}
   playerData: {fileID: 11400000, guid: 250688029bc5ce249ad115649f524455, type: 2}
-  meleeAttack: {fileID: 0}
+  meleeAttack: {fileID: 8693262974154283486}
   animator: {fileID: 0}
   isAirDashUnlocked: 0
   isHoldingHorizontal: 0
@@ -5654,7 +5654,7 @@ GameObject:
   - component: {fileID: 2408566496683021549}
   - component: {fileID: 5109368273114715851}
   - component: {fileID: 8794067023522406955}
-  m_Layer: 6
+  m_Layer: 16
   m_Name: Excalibur
   m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
@@ -5785,5 +5785,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c13aff87825a84fa26e0b01fd890de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
-  damageLayer: 7
+  attackData: []

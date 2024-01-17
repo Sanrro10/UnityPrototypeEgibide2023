@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Entities.Player.Scripts
 {
-    [CreateAssetMenu(fileName = "PlayerData", menuName = "ScriptableObjects", order = 1)]
+    [CreateAssetMenu(fileName = "PlayerData", menuName = "PlayerData", order = 1)]
     public class PlayerData : ScriptableObject
     {
         public float movementSpeed;
@@ -21,6 +21,9 @@ namespace Entities.Player.Scripts
         public bool airDashUnlocked = false;
         public float groundDashDuration;
         public float collectables;
+
+        public int damage;
+        public float knockback;
         
         public AnimationCurve dashCurve;
         public float airdashForce;

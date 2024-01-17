@@ -1,43 +1,46 @@
-﻿using Entities.Player.Scripts;
+﻿using System.Collections.Generic;
 using UnityEngine;
-namespace StatePattern.PlayerStates
+
+namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
-    public class MeleeAttackLeftState : IState
+    public class MeleeAttackLeftState : AttackState
     {
-        private PlayerController player;
-        
-        public MeleeAttackLeftState(PlayerController player)
+        private List<AttackComponent.AttackData> _attackData;
+        public MeleeAttackLeftState(PlayerController player) : base(player)
         {
-            this.player = player;
+            AttackDirection = new Vector2(-1, 0.2f);
+            KnockbackMultiplier = 1.5f;
         }
 
-        public void Enter()
+        public override void Enter()
         {
+            base.Enter();
             Debug.Log("Entering Left Attack State");
             
-            
-            player.isInMiddleOfAttack = true;
-            player.animator.SetBool("IsALeft", true);
-            player.Invoke(nameof(player.EndAttack), 0.8f);
+            Player.isInMiddleOfAttack = true;
+            Player.animator.SetBool("IsALeft", true);
+            Player.Invoke(nameof(Player.EndAttack), 0.8f);
         }
 
         // per-frame logic, include condition to transition to a new state
-        public void Update()
+        public override void Update()
         {
-            if (!player.isInMiddleOfAttack)
+            base.Update();
+            if (!Player.isInMiddleOfAttack)
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.IdleState);
                 return;
             }
         }
         
-        public void Exit()
+        public override void Exit()
         {
-            player.CancelInvoke(nameof(player.EndAttack));
-            player.canAttack = true;
-            player.isInMiddleOfAttack = false;
+            base.Exit();
+            Player.CancelInvoke(nameof(Player.EndAttack));
+            Player.canAttack = true;
+            Player.isInMiddleOfAttack = false;
 
-            player.animator.SetBool("IsALeft", false);
+            Player.animator.SetBool("IsALeft", false);
             
             Debug.Log("Exit Left Attack State");
         }
