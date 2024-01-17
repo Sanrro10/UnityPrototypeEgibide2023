@@ -441,27 +441,18 @@ namespace Entities.Player.Scripts
                                 PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackDownState);
                                 return;
                         }
-                        if (xDirection == 1)
+                        if ((xDirection == 1 && facingRight) || (xDirection == -1 && !facingRight))
                         {
-                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackRightState);
+                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackForwardState);
                                 return;
                         }
-                        if (xDirection == -1)
+                        if ((xDirection == -1 && !facingRight) || (xDirection == 1 && facingRight))
                         {
-                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackLeftState);
-                                return;
-                        }
-
-                        if (facingRight)
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackRightState);
+                                PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackBackwardState);
                                 return;
                         }
                         
-                        PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackLeftState);
-
-
-                
+                        PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackForwardState);
                 }
 
                 public void EndAttack()

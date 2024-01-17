@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Entities.Player.Scripts;
-using StatePattern.PlayerStates;
+using Entities.Player.Scripts.StatePattern.PlayerStates;
 using UnityEngine;
 
 namespace StatePattern
@@ -27,8 +27,8 @@ namespace StatePattern
         public MeleeAttackRightState MeleeAttackRightState;
         public MeleeAttackLeftState MeleeAttackLeftState;
         public MeleeAttackUpState MeleeAttackUpState;
-        public AirMeleeAttackRightState AirMeleeAttackRightState;
-        public AirMeleeAttackLeftState AirMeleeAttackLeftState;
+        public AirMeleeAttackForwardState AirMeleeAttackForwardState;
+        public AirMeleeAttackBackwardState AirMeleeAttackBackwardState;
         public AirMeleeAttackUpState AirMeleeAttackUpState;
         public AirMeleeAttackDownState AirMeleeAttackDownState;
         public StunnedState StunnedState;
@@ -46,8 +46,8 @@ namespace StatePattern
             this.MeleeAttackRightState = new MeleeAttackRightState(player);
             this.MeleeAttackLeftState = new MeleeAttackLeftState(player);
             this.MeleeAttackUpState = new MeleeAttackUpState(player);
-            this.AirMeleeAttackRightState = new AirMeleeAttackRightState(player);
-            this.AirMeleeAttackLeftState = new AirMeleeAttackLeftState(player);
+            this.AirMeleeAttackForwardState = new AirMeleeAttackForwardState(player);
+            this.AirMeleeAttackBackwardState = new AirMeleeAttackBackwardState(player);
             this.AirMeleeAttackUpState = new AirMeleeAttackUpState(player);
             this.AirMeleeAttackDownState = new AirMeleeAttackDownState(player);
             this.StunnedState = new StunnedState(player);

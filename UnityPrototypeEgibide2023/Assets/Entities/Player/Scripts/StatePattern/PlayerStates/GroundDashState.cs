@@ -1,8 +1,7 @@
-﻿
-using Entities.Player.Scripts;
+﻿using StatePattern;
 using UnityEngine;
 
-namespace StatePattern.PlayerStates
+namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
     public class GroundDashState : IState
     {

@@ -1,23 +1,23 @@
-﻿using System.Collections.Generic;
-using Entities.Player.Scripts;
+﻿using StatePattern;
 using UnityEngine;
 
-namespace StatePattern.PlayerStates
+namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
     public class AttackState : IState
     {
-        protected PlayerController _player;
-        protected Vector2 _attackDirection;
-        protected float _knockbackMultiplier;
-        public AttackState(PlayerController player)
+        protected PlayerController Player;
+        protected Vector2 AttackDirection;
+        protected float KnockbackMultiplier;
+
+        protected AttackState(PlayerController player)
         {
-            this._player = player;
+            this.Player = player;
         }
         
         public virtual void Enter()
         {
-            _player.meleeAttack.GetComponent<AttackComponent>().AddAttackData(new AttackComponent.AttackData(_player.GetPlayerData().damage, _player.GetPlayerData().knockback * _knockbackMultiplier, _attackDirection, 6));
-            _player.meleeAttack.GetComponent<AttackComponent>().AddAttackData(new AttackComponent.AttackData(1, _player.GetPlayerData().knockback * _knockbackMultiplier, _attackDirection, 7));
+            Player.meleeAttack.GetComponent<AttackComponent>().AddAttackData(new AttackComponent.AttackData(Player.GetPlayerData().damage, Player.GetPlayerData().knockback * KnockbackMultiplier, AttackDirection, 7));
+            Player.meleeAttack.GetComponent<AttackComponent>().AddAttackData(new AttackComponent.AttackData(1, Player.GetPlayerData().knockback * KnockbackMultiplier, AttackDirection, 8));
         }
 
         public virtual void Update()
@@ -27,7 +27,7 @@ namespace StatePattern.PlayerStates
 
         public virtual void Exit()
         {
-            _player.meleeAttack.GetComponent<AttackComponent>().ClearAttackData();
+            Player.meleeAttack.GetComponent<AttackComponent>().ClearAttackData();
         }
     }
 }

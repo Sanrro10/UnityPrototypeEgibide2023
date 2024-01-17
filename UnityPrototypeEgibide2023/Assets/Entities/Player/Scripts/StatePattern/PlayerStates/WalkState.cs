@@ -1,8 +1,6 @@
-﻿
-using Entities.Player.Scripts;
-using UnityEngine;
+﻿using StatePattern;
 
-namespace StatePattern.PlayerStates
+namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
     public class WalkState : IState
     {

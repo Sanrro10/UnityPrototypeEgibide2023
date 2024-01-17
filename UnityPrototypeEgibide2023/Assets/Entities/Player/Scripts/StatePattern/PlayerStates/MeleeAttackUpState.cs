@@ -1,43 +1,46 @@
-﻿using Entities.Player.Scripts;
-using UnityEngine;
-namespace StatePattern.PlayerStates
+﻿using UnityEngine;
+
+namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
-    public class MeleeAttackUpState : IState
+    public class MeleeAttackUpState : AttackState
     {
-        private PlayerController player;
         
-        public MeleeAttackUpState(PlayerController player)
+        public MeleeAttackUpState(PlayerController player): base(player)
         {
-            this.player = player;
+            AttackDirection = new Vector2(0, 1);
+            KnockbackMultiplier = 1.5f;
         }
 
-        public void Enter()
+        public override void Enter()
         {
+            base.Enter();
             Debug.Log("Entering Up Attack State");
             
             
-            player.isInMiddleOfAttack = true;
-            player.animator.SetBool("IsAUp", true);
-            player.Invoke(nameof(player.EndAttack), 0.8f);
+            Player.isInMiddleOfAttack = true;
+            Player.animator.SetBool("IsAUp", true);
+            Player.Invoke(nameof(Player.EndAttack), 0.8f);
         }
 
         // per-frame logic, include condition to transition to a new state
-        public void Update()
+        public override void Update()
         {
-            if (!player.isInMiddleOfAttack)
+            base.Update();
+            if (!Player.isInMiddleOfAttack)
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.IdleState);
                 return;
             }
         }
         
-        public void Exit()
+        public override void Exit()
         {
-            player.CancelInvoke(nameof(player.EndAttack));
-            player.canAttack = true;
-            player.isInMiddleOfAttack = false;
+            base.Exit();
+            Player.CancelInvoke(nameof(Player.EndAttack));
+            Player.canAttack = true;
+            Player.isInMiddleOfAttack = false;
 
-            player.animator.SetBool("IsAUp", false);
+            Player.animator.SetBool("IsAUp", false);
             
             Debug.Log("Exit Up Attack State");
         }

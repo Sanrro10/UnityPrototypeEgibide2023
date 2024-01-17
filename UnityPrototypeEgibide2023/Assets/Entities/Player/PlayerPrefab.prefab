@@ -648,7 +648,7 @@ MonoBehaviour:
   feet: {fileID: 3689923748673784380}
   feetBoxCollider: {fileID: 247002988172625619}
   playerData: {fileID: 11400000, guid: 250688029bc5ce249ad115649f524455, type: 2}
-  meleeAttack: {fileID: 0}
+  meleeAttack: {fileID: 8693262974154283486}
   animator: {fileID: 0}
   isAirDashUnlocked: 0
   isHoldingHorizontal: 0
@@ -5821,12 +5821,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c13aff87825a84fa26e0b01fd890de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackData:
-  - damage: 25
-    knockback: 0
-    angle: {x: 0, y: 0}
-    layer: 7
-  - damage: 1
-    knockback: 200
-    angle: {x: 1, y: 1}
-    layer: 7
+  attackData: []
