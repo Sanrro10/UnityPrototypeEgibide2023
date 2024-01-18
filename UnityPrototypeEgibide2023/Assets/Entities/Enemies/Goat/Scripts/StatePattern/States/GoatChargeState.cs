@@ -18,7 +18,7 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
 
         public void Enter()
         {
-            entity.canCollide = true;
+            entity.frontTrigger.SetActive(true);
             entity.animator.SetBool("IsCharge", true);
             entity.InvokeRepeating(nameof(entity.Move), 0, 0.01f);
         }
@@ -31,7 +31,7 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         
         public void Exit()
         {
-            entity.canCollide = false;
+            entity.frontTrigger.SetActive(false);
             entity.animator.SetBool("IsCharge", false);
             entity.CancelInvoke(nameof(entity.Move));
         }

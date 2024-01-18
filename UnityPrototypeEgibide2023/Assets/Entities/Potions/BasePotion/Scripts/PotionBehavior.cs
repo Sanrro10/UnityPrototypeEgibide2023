@@ -16,7 +16,7 @@ namespace Entities.Potions.BasePotion.Scripts
             InvulnerableTime = 0.2f;
         }
 
-        public override void OnReceiveDamage(int damage, float knockback, Vector2 angle)
+        public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true)
         {
             Health.RemoveHealth(1); 
             Invulnerable = true;
