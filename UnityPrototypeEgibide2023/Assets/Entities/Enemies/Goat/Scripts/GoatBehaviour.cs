@@ -6,14 +6,13 @@ namespace Entities.Enemies.Goat.Scripts
 {
     public class GoatBehaviour : EntityControler
     {
-        public bool facingRight;
-        public bool canCollide = true;
         public bool collidedWithPlayer = false;
         [SerializeField] public GoatData data;
         [SerializeField] private LayerMask playerLayer;
         // reference to player
         public bool canCollideWithPlayer = false;
         private Rigidbody2D _rb;
+        public GameObject frontTrigger;
 
         public GoatStateMachine stateMachine;
         
@@ -51,7 +50,7 @@ namespace Entities.Enemies.Goat.Scripts
         // Move the goat using the rigidbody2D
         public void Move()
         {
-            _rb.velocity = new Vector2(data.movementSpeed * (facingRight ? 1 : -1), _rb.velocity.y);
+            _rb.velocity = new Vector2(data.movementSpeed * (FacingRight ? 1 : -1), _rb.velocity.y);
         }
         
         public void Jump() 
@@ -92,8 +91,8 @@ namespace Entities.Enemies.Goat.Scripts
 
         public void LookForEnemy()
         {
-            Debug.DrawRay(eyes.transform.position, (facingRight ? Vector2.right : Vector2.left) * data.visionDistance, Color.red);
-            RaycastHit2D hit = Physics2D.Raycast(eyes.transform.position, (facingRight ? Vector2.right : Vector2.left), data.visionDistance , playerLayer);
+            Debug.DrawRay(eyes.transform.position, (FacingRight ? Vector2.right : Vector2.left) * data.visionDistance, Color.red);
+            RaycastHit2D hit = Physics2D.Raycast(eyes.transform.position, (FacingRight ? Vector2.right : Vector2.left), data.visionDistance , playerLayer);
         
             if (hit.collider != null)
             {

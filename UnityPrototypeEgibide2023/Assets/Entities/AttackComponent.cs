@@ -22,10 +22,12 @@ namespace Entities
         }
     
         public List<AttackData> attackData;
+        public EntityControler entity;
 
         public void Start()
         {
             attackData ??= new List<AttackData>();
+            entity ??= GetComponentInParent<EntityControler>();
         }
 
         public void AddAttackData(AttackData ad)

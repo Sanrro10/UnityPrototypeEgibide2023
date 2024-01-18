@@ -32,7 +32,6 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         
         public void Exit()
         {
-            entity.canCollide = false;
             entity.animator.SetBool("IsCharge", false);
             entity.CancelInvoke(nameof(entity.Move));
         }
