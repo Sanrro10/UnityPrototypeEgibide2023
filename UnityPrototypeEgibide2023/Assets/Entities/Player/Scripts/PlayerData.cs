@@ -21,7 +21,7 @@ namespace Entities.Player.Scripts
         public bool airDashUnlocked = false;
         public float groundDashDuration;
         public float collectables;
-
+        public int health;
         public int damage;
         public float knockback;
         
