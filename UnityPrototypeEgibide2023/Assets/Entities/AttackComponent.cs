@@ -20,15 +20,12 @@ namespace Entities
             public Vector2 angle;
             public int layer;
         }
-
-        public EntityControler entity;
     
         public List<AttackData> attackData;
 
         public void Start()
         {
             attackData ??= new List<AttackData>();
-            entity ??= GetComponentInParent<EntityControler>();
         }
 
         public void AddAttackData(AttackData ad)

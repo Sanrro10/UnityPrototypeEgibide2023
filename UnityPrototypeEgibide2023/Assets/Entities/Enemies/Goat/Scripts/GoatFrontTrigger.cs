@@ -31,6 +31,7 @@ namespace Entities.Enemies.Goat.Scripts
                 player.StunEntity(goatBehaviour.data.stunTime);
                 
             }
+
         }
     }
 }
