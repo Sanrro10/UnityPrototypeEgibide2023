@@ -34,7 +34,6 @@ namespace Entities.Player.Scripts
                 public bool isPerformingPotionThrow = false;
                 public bool isDashing = false;
                 public bool onDJump = false;
-                public bool facingRight = true;
                 public bool isCollidingLeft = false;
                 public bool isCollidingRight = false;
                 public bool canAttack = true;
@@ -197,7 +196,7 @@ namespace Entities.Player.Scripts
                 {
                         FlipSprite();
                 
-                        if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
+                        if((FacingRight && isCollidingRight) || (!FacingRight && isCollidingLeft))
                         {
                                 Rb.velocity = new Vector2(0, Rb.velocity.y); 
                                 return;
@@ -345,15 +344,15 @@ namespace Entities.Player.Scripts
                         float direction = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
                         if (direction == -1)
                         {
-                                facingRight = false;
+                                FacingRight = false;
                                 animator.SetBool("IsFlipped", false);
                         }
                         else if (direction == 1)
                         {
-                                facingRight = true;
+                                FacingRight = true;
                                 animator.SetBool("IsFlipped", true);
                         }
-                        _spriteRenderer.flipX = !facingRight;
+                        _spriteRenderer.flipX = !FacingRight;
 
                 }
                 
@@ -408,7 +407,7 @@ namespace Entities.Player.Scripts
                                 return;
                         }
                         
-                        if (facingRight)
+                        if (FacingRight)
                         {
                                 PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackRightState);
                                 return;
@@ -437,12 +436,12 @@ namespace Entities.Player.Scripts
                                 PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackDownState);
                                 return;
                         }
-                        if ((xDirection == 1 && facingRight) || (xDirection == -1 && !facingRight))
+                        if ((xDirection == 1 && FacingRight) || (xDirection == -1 && !FacingRight))
                         {
                                 PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackForwardState);
                                 return;
                         }
-                        if ((xDirection == -1 && !facingRight) || (xDirection == 1 && facingRight))
+                        if ((xDirection == -1 && !FacingRight) || (xDirection == 1 && FacingRight))
                         {
                                 PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackBackwardState);
                                 return;
@@ -693,7 +692,7 @@ namespace Entities.Player.Scripts
 
         
                 
-                public override void OnReceiveDamage(int damage, float knockback, Vector2 angle) 
+                public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true) 
                 {
                         base.OnReceiveDamage(damage, knockback, angle, facingRight);
                         healthText.text = Health.Get().ToString();
