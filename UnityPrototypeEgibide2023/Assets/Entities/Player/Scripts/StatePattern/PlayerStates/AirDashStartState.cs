@@ -16,8 +16,6 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         {
 
             player.isDashing = true;
-            
-            
             player.animator.SetTrigger("Dash");
 
             player.SetGravity(0);
@@ -28,7 +26,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             player.StartCoroutine(player.FloatDuration());
             player.StartCoroutine(player.AirDashCooldown());
             
-            Debug.Log("Entering AirDashStart State");
+            // Debug.Log("Entering AirDashStart State");
             // Debug.Log("Entering AirDashStart State");
             // Initialize Dash
         }

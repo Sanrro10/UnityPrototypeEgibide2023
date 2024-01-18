@@ -13,7 +13,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         
         public void Enter()
         {
-            Debug.Log("Entering Air State");
+            // Debug.Log("Entering Air State");
 
             player.animator.SetBool("IsAir", true);
             player.InvokeRepeating(nameof(player.AirMove), 0, 0.01f);
@@ -49,7 +49,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         
         public void Exit()
         {
-            Debug.Log("Exiting Air State");
+            // Debug.Log("Exiting Air State");
             player.CancelInvoke(nameof(player.AirMove));
             player.animator.SetBool("IsAir", false);
         }

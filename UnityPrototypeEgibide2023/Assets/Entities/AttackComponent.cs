@@ -8,7 +8,7 @@ namespace Entities
         [System.Serializable]
         public struct AttackData
         {
-            public AttackData(int damage, float knockback, Vector2 angle, int layer)
+            public AttackData(int damage, float knockback, Vector2 angle, LayerMask layer)
             {
                 this.damage = damage;
                 this.knockback = knockback;
@@ -18,7 +18,7 @@ namespace Entities
             public int damage;
             public float knockback;
             public Vector2 angle;
-            public int layer;
+            public LayerMask layer;
         }
     
         public List<AttackData> attackData;
@@ -41,9 +41,11 @@ namespace Entities
         private void OnTriggerEnter2D(Collider2D other)
         {
             var found = attackData.Find((attack) => attack.layer == other.gameObject.layer);
+            Debug.Log(found);
             if (found.Equals(default(AttackData))) return;
             var entity = other.GetComponent<EntityControler>();
             if (entity == null) return;
+            Debug.Log("We are doing damage");
             other.GetComponent<EntityControler>().OnReceiveDamage(found.damage, found.knockback, found.angle);
         }
     

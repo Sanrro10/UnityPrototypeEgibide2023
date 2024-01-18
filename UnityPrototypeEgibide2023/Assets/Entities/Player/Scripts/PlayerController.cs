@@ -69,9 +69,7 @@ namespace Entities.Player.Scripts
                 private Slider healthBar;
                 private Text healthText;
                 private Text mainText;
-        
-        
-                private bool Invulnerable;
+                
                 private Rigidbody2D _rb;
                 private CapsuleCollider2D _capsule;
       
@@ -428,6 +426,7 @@ namespace Entities.Player.Scripts
                 }
                 public void AirAttack()
                 {
+                        // TODO: ARREGLAR IZQUIERDA DERECHA
                         //float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
                         float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
                         float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();

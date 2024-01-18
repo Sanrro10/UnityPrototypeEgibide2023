@@ -14,7 +14,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Entering Air Left Attack State");
+            Debug.Log("Entering Air Backward Attack State");
 
             Player.isInMiddleOfAirAttack = true;
             Player.animator.SetBool("IsAALeft", true);
@@ -46,7 +46,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             Player.canAttack = true;
             Player.isInMiddleOfAirAttack = false;
 
-            Debug.Log("Exiting Air Left Attack State");
+            Debug.Log("Exiting Backward Left Attack State");
         }
     }
 }

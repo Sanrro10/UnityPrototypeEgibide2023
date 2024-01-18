@@ -14,7 +14,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 
         public void Enter()
         {
-            Debug.Log("Entering Idle State");
+            // Debug.Log("Entering Idle State");
             player.setXVelocity(0);
             player.animator.SetBool("IsIdle", true);
         }
@@ -67,7 +67,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public void Exit()
         {
             player.animator.SetBool("IsIdle", false);
-            Debug.Log("Exiting Idle State");
+            // Debug.Log("Exiting Idle State");
         }
     }
 }

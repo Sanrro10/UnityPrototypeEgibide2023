@@ -14,7 +14,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Entering Up Attack State");
+            // Debug.Log("Entering Up Attack State");
             
             
             Player.isInMiddleOfAttack = true;
@@ -42,7 +42,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 
             Player.animator.SetBool("IsAUp", false);
             
-            Debug.Log("Exit Up Attack State");
+            // Debug.Log("Exit Up Attack State");
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 
         public void Enter()
         {
-            Debug.Log("Entering Jump State");
+            // Debug.Log("Entering Jump State");
             player.animator.SetBool("IsJump", true);
             player.InvokeRepeating(nameof(player.Jump), 0, 0.01f);
             player.StartCoroutine(player.MaxJumpDuration());
@@ -57,7 +57,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             player.CancelInvoke(nameof(player.Jump));
             player.isPerformingJump = false;
             
-            Debug.Log("Exiting Jump State");
+            // Debug.Log("Exiting Jump State");
         }
     }
 }

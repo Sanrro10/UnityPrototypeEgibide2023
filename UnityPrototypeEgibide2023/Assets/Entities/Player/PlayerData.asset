@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9103126d918beb943b2b72435e5882a6, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 7
   jumpPower: 15
   facingRight: 0
   downAttack: 1
@@ -28,6 +28,8 @@ MonoBehaviour:
   airDashUnlocked: 0
   groundDashDuration: 0
   collectables: 0
+  damage: 25
+  knockback: 300
   dashCurve:
     serializedVersion: 2
     m_Curve:

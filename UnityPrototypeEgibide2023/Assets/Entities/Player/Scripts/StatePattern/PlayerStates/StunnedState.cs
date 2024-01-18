@@ -13,7 +13,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         
         public void Enter()
         {
-            Debug.Log("Entering Stunned State");
+            //  Debug.Log("Entering Stunned State");
             player.Invoke(nameof(player.EndStun), player.timeStunned);
             player.isStunned = true;
         }
@@ -32,7 +32,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         
         public void Exit()
         {
-            Debug.Log("Exiting Stunned State");
+            // Debug.Log("Exiting Stunned State");
         }  
     }
 }

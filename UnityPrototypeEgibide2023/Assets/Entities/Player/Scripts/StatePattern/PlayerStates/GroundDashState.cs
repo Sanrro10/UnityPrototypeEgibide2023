@@ -14,7 +14,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 
         public void Enter()
         {
-            Debug.Log("Entering Ground Dash State");
+            // Debug.Log("Entering Ground Dash State");
             
             player.isDashing = true;
             player.animator.SetBool("IsDash", true);
@@ -54,7 +54,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             player.StartCoroutine(player.DashCooldown());
             player.isDashing = false;
             
-            Debug.Log("Exiting Dash State");
+            // Debug.Log("Exiting Dash State");
         }
     }
 }
