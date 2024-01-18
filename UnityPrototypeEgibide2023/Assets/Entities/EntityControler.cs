@@ -9,17 +9,14 @@ namespace Entities
         protected bool Invulnerable;
         protected float InvulnerableTime = 0.5f;
         protected Rigidbody2D Rb;
-        public bool FacingRight = true;
+        public bool FacingRight;
     
         void Awake()
         {
             Health = gameObject.AddComponent(typeof(HealthComponent)) as HealthComponent;
+            Rb ??= GetComponent<Rigidbody2D>();
         }
-
-        private void Start()
-        {
-            Rb = GetComponent<Rigidbody2D>();
-        }
+        
 
         public virtual void OnDeath()
         {
@@ -48,7 +45,15 @@ namespace Entities
 
         public virtual void Push(float knockback, Vector2 angle, bool facingRight)
         {
-            
+            Debug.Log(knockback + " " + angle + " " + facingRight);
+            if (facingRight)
+            {
+                Rb.AddForce(new Vector2(angle.x * knockback, angle.y * knockback));
+            }
+            else
+            {
+                Rb.AddForce(new Vector2(-angle.x * knockback, angle.y * knockback));
+            }
         }
         
         public void DamageCooldown()

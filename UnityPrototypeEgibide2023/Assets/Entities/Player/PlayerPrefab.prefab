@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6495408939162842929}
   - component: {fileID: 247002988172625619}
   - component: {fileID: 2695071535495535820}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Feet
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2538641633103216759}
   - component: {fileID: 4351536339321135645}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Square
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 348339756065992962}
   - component: {fileID: 4015876454567288133}
   - component: {fileID: 2803667331601823779}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LeftTrigger
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -609,6 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2710c75d35449d478cb43d2f0ad7e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FacingRight: 1
   feet: {fileID: 3689923748673784380}
   feetBoxCollider: {fileID: 247002988172625619}
   playerData: {fileID: 11400000, guid: 250688029bc5ce249ad115649f524455, type: 2}
@@ -617,24 +618,17 @@ MonoBehaviour:
   isAirDashUnlocked: 0
   isHoldingHorizontal: 0
   isHoldingVertical: 0
+  isPerformingPotionThrow: 0
   isPerformingJump: 0
   isPerformingMeleeAttack: 0
   isPerformingDash: 0
-  isPerformingPotionThrow: 0
   isDashing: 0
-  onDJump: 0
-  facingRight: 1
   isCollidingLeft: 0
   isCollidingRight: 0
-  canAttack: 1
-  meleeAttackCooldown: 0
-  meleeAttackDuration: 0
-  meleeAttackStart: 0
-  jumpDuration: 0
   isInMiddleOfAirAttack: 0
   isInMiddleOfAttack: 0
-  friction: 0
   isStunned: 0
+  canAttack: 1
   horizontalSpeed: 0
   dashSpeed: 0
   jumpForce: 0
@@ -5529,7 +5523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6079609707914866683}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PotionSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5562,7 +5556,7 @@ GameObject:
   - component: {fileID: 1544061359826283677}
   - component: {fileID: 6470279182328652135}
   - component: {fileID: 3712546547639152366}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RightTrigger
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5785,6 +5779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c13aff87825a84fa26e0b01fd890de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entity: {fileID: 0}
   attackData:
   - damage: 0
     knockback: 0
