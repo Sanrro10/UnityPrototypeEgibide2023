@@ -57,7 +57,8 @@ namespace General.Scripts
                 //Load data from the save file
                 //LoadData();
                 //Prueba Guardado
-                gameData = SaveLoadManager.LoadGame();
+                
+                gameData = SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
                 if (gameData.isValid)
                 {
                     _lastCheckpoint.Scene = gameData.spawnScene;
@@ -177,13 +178,13 @@ namespace General.Scripts
         public void SaveGame()
         {
             //Debug.Log("GameController -> Dentro del metodo SaveGame");
-            SaveLoadManager.SaveGame(gameData);
+            SaveLoadManager.SaveGame(gameData, "");
         }
         
         public void LoadGame()
         {
             Debug.Log("GameController -> Dentro del metodo LoadGame");
-            SaveLoadManager.LoadGame();
+            SaveLoadManager.LoadGame("");
         }
 
         public void DeletePersistentElement()

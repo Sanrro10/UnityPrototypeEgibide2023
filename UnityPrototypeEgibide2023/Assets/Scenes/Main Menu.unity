@@ -409,7 +409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &118403876
 RectTransform:
   m_ObjectHideFlags: 0
@@ -476,14 +476,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 409904731}
         m_TargetAssemblyTypeName: SceneScript, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: deleteGame
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 1.0.1 (Tutorial)
+          m_StringArgument: savegame.json
           m_BoolArgument: 0
         m_CallState: 1
 --- !u!114 &118403878
@@ -1103,14 +1103,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 409904731}
         m_TargetAssemblyTypeName: SceneScript, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: playGame
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 1.0.1 (Tutorial)
+          m_StringArgument: 2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &774952312
@@ -1370,16 +1370,16 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 409904731}
         m_TargetAssemblyTypeName: SceneScript, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: prueba
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 1.0.1 (Tutorial)
+          m_StringArgument: 1
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &885324349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1436,7 +1436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &953091813
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1503,14 +1503,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 409904731}
         m_TargetAssemblyTypeName: SceneScript, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: deleteGame
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 1.0.1 (Tutorial)
+          m_StringArgument: savegame1.json
           m_BoolArgument: 0
         m_CallState: 1
 --- !u!114 &953091815
@@ -1703,7 +1703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1175624952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1946,7 +1946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1303699237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2386,14 +2386,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 409904731}
         m_TargetAssemblyTypeName: SceneScript, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: playGame
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 1.0.1 (Tutorial)
+          m_StringArgument: 3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1394600529
@@ -3119,7 +3119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1963331216
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3186,14 +3186,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 409904731}
         m_TargetAssemblyTypeName: SceneScript, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: deleteGame
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 1.0.1 (Tutorial)
+          m_StringArgument: savegame2.json
           m_BoolArgument: 0
         m_CallState: 1
 --- !u!114 &1963331218

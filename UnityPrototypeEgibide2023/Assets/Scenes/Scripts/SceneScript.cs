@@ -1,13 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneScript : MonoBehaviour
 {
     
     [SerializeField] private Canvas canvaSlotPartidas;
     [SerializeField] private Canvas canvasManuPrincipal;
+    private string mainScene = "1.0.1 (Tutorial)";
     
     // Start is called before the first frame update
     void Start()
@@ -20,8 +23,25 @@ public class SceneScript : MonoBehaviour
     {
         
     }
+
+    /*private void Awake()
+    {
+        GameObject botones = GameObject.Find("CanvasSlotPartidas");
+        if (botones != null)
+        {
+            Button[] allButtons = botones.GetComponentsInChildren<Button>();
+            foreach (Button button in allButtons)
+            {
+                Text buttonText = button.GetComponentInChildren<Text>();
+                if (buttonText != null)
+                {
+                    buttonText.text = "Nuevo texto"; // Cambia esto por el texto que quieras poner
+                }
+            }
+        }
+    }*/
     
-    public void ChangeScene(string escena)
+    private void ChangeScene(string escena)
     {
         SceneManager.LoadScene(escena);
     }
@@ -31,7 +51,7 @@ public class SceneScript : MonoBehaviour
         canvasManuPrincipal.gameObject.SetActive(false);
         canvaSlotPartidas.gameObject.SetActive(true);
     }
-
+    
     public void returnMainMenu()
     {
         canvasManuPrincipal.gameObject.SetActive(true);
@@ -42,7 +62,7 @@ public class SceneScript : MonoBehaviour
     {
         //Revisar no funciona como deberia
         GameData gameData = new GameData();
-        SaveLoadManager.SaveGame(gameData);
+        SaveLoadManager.SaveGame(gameData, nameSaveFile);
     }
 
     public void Exit()
@@ -55,5 +75,11 @@ public class SceneScript : MonoBehaviour
         #else
             Application.Quit();
         #endif
+    }
+
+    public void playGame(string slot)
+    {
+        PlayerPrefs.SetString("slot", slot);
+        ChangeScene(mainScene);
     }
 }

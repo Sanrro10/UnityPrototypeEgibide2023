@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class SaveLoadManager
 {
-    public static void SaveGame(GameData gameData)
+    
+    private static string nameFile = "savegame";
+    private static string extensionFile = ".json";
+    
+    public static void SaveGame(GameData gameData, string file)
     {
         string json = JsonUtility.ToJson(gameData);
-        string path = Application.persistentDataPath + "/savegame.json";
+        string path = Application.persistentDataPath + "/"+ file;
         File.WriteAllText(path, json);
         
         /*Debug.Log("SaveLoadManager -> GameData.position: " + gameData.spawnPosition);
@@ -15,9 +19,9 @@ public class SaveLoadManager
         Debug.Log("SaveLoadManager -> path: " + path);*/
     }
 
-    public static GameData LoadGame()
+    public static GameData LoadGame(string slotForFile)
     {
-        string path = Application.persistentDataPath + "/savegame.json";
+        string path = Application.persistentDataPath + "/" + nameFile + slotForFile + extensionFile ;
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
@@ -26,7 +30,7 @@ public class SaveLoadManager
                 gameData.isValid = true;
                 return gameData;
             } catch {
-                Debug.LogWarning("Horrible things happened! - NullReferenceException: Object reference not set to an instance of an object. The object does not exist in the file: savegame.json");
+                Debug.LogWarning("Horrible things happened! - NullReferenceException: Object reference not set to an instance of an object. The object does not exist in the file: " + nameFile + slotForFile + extensionFile);
                 return returnIsValidFalse();
             }
         }
@@ -37,12 +41,12 @@ public class SaveLoadManager
         }
     }
     
-    public static void CreateGame(GameData gameData)
+    /*public static void CreateGame(GameData gameData)
     {
         string json = JsonUtility.ToJson(gameData);
         string path = Application.persistentDataPath + "/savegame.json";
         File.WriteAllText(path, json);
-    }
+    }*/
 
     private static GameData returnIsValidFalse()
     {
