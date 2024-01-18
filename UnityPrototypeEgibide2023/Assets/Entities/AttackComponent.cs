@@ -20,15 +20,12 @@ namespace Entities
             public Vector2 angle;
             public LayerMask layer;
         }
-
-        public EntityControler entity;
     
         public List<AttackData> attackData;
 
         public void Start()
         {
             attackData ??= new List<AttackData>();
-            entity ??= GetComponentInParent<EntityControler>();
         }
 
         public void AddAttackData(AttackData ad)
@@ -46,9 +43,10 @@ namespace Entities
             var found = attackData.Find((attack) => attack.layer == other.gameObject.layer);
             Debug.Log(found);
             if (found.Equals(default(AttackData))) return;
-            var otherEntity = other.GetComponent<EntityControler>();
-            if (otherEntity == null) return;
-            other.GetComponent<EntityControler>().OnReceiveDamage(found.damage, found.knockback, found.angle, entity.FacingRight);
+            var entity = other.GetComponent<EntityControler>();
+            if (entity == null) return;
+            Debug.Log("We are doing damage");
+            other.GetComponent<EntityControler>().OnReceiveDamage(found.damage, found.knockback, found.angle);
         }
     
     }

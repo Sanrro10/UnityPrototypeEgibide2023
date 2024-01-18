@@ -28,18 +28,25 @@ namespace Entities.Player.Scripts
                 public bool isAirDashUnlocked = false;
                 public bool isHoldingHorizontal = false;
                 public bool isHoldingVertical = false;
-                public bool isPerformingPotionThrow = false;
                 public bool isPerformingJump = false;
                 public bool isPerformingMeleeAttack = false;
                 public bool isPerformingDash = false;
+                public bool isPerformingPotionThrow = false;
                 public bool isDashing = false;
+                public bool onDJump = false;
+                public bool facingRight = true;
                 public bool isCollidingLeft = false;
                 public bool isCollidingRight = false;
+                public bool canAttack = true;
+                public float meleeAttackCooldown;
+                public float meleeAttackDuration;
+                public float meleeAttackStart;
+                public float jumpDuration;
                 public bool isInMiddleOfAirAttack = false;
                 public bool isInMiddleOfAttack = false;
+                public float friction;
                 public bool isStunned = false;
-                public bool canAttack = true;
-                
+        
                 // internal state variables
                 public float horizontalSpeed;
                 public float dashSpeed;
@@ -143,7 +150,7 @@ namespace Entities.Player.Scripts
                         healthBar = GameObject.Find("SliderHealth").GetComponent<Slider>();
         
                         //Set health
-                        Health.Set(playerData.health);
+                        Health.Set(100);
                         healthText.text = Health.Get().ToString();
                         healthBar.value = Health.Get();
         
@@ -195,14 +202,14 @@ namespace Entities.Player.Scripts
                 {
                         FlipSprite();
                 
-                        if((FacingRight && isCollidingRight) || (!FacingRight && isCollidingLeft))
+                        if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
                         {
                                 _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y); 
                                 return;
                         }
 
                         _rigidbody2D.velocity =
-                                new Vector2((FacingRight ? horizontalSpeed : horizontalSpeed * -1), _rigidbody2D.velocity.y); 
+                                new Vector2((facingRight ? horizontalSpeed : horizontalSpeed * -1), _rigidbody2D.velocity.y); 
                 }
 
                 public void AirMove()
@@ -275,7 +282,7 @@ namespace Entities.Player.Scripts
                 {
                 
                         _rigidbody2D.velocity =
-                                new Vector2((FacingRight ? dashSpeed : (dashSpeed -10) * -1), 0); 
+                                new Vector2((facingRight ? dashSpeed : (dashSpeed -10) * -1), 0); 
                         Debug.Log("IsDashing");
                 
                 }
@@ -341,15 +348,15 @@ namespace Entities.Player.Scripts
                         float direction = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
                         if (direction == -1)
                         {
-                                FacingRight = false;
+                                facingRight = false;
                                 animator.SetBool("IsFlipped", false);
                         }
                         else if (direction == 1)
                         {
-                                FacingRight = true;
+                                facingRight = true;
                                 animator.SetBool("IsFlipped", true);
                         }
-                        _spriteRenderer.flipX = !FacingRight;
+                        _spriteRenderer.flipX = !facingRight;
 
                 }
                 
@@ -404,7 +411,7 @@ namespace Entities.Player.Scripts
                                 return;
                         }
                         
-                        if (FacingRight)
+                        if (facingRight)
                         {
                                 PmStateMachine.TransitionTo(PmStateMachine.MeleeAttackRightState);
                                 return;
@@ -433,12 +440,12 @@ namespace Entities.Player.Scripts
                                 PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackDownState);
                                 return;
                         }
-                        if ((xDirection == 1 && FacingRight) || (xDirection == -1 && !FacingRight))
+                        if ((xDirection == 1 && facingRight) || (xDirection == -1 && !facingRight))
                         {
                                 PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackForwardState);
                                 return;
                         }
-                        if ((xDirection == -1 && !FacingRight) || (xDirection == 1 && FacingRight))
+                        if ((xDirection == -1 && !facingRight) || (xDirection == 1 && facingRight))
                         {
                                 PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackBackwardState);
                                 return;
@@ -549,7 +556,7 @@ namespace Entities.Player.Scripts
                         while (dashTime < _dashCurve.keys[_dashCurve.length - 1].time)
                         {
                                 dashSpeedCurve = _dashCurve.Evaluate(dashTime) * dashSpeed; 
-                                _rigidbody2D.velocity = new Vector2((FacingRight ? dashSpeedCurve : dashSpeedCurve * -1), 0); 
+                                _rigidbody2D.velocity = new Vector2((facingRight ? dashSpeedCurve : dashSpeedCurve * -1), 0); 
                                 yield return new WaitForFixedUpdate(); 
                                 dashTime += Time.deltaTime;
                         }
@@ -689,8 +696,9 @@ namespace Entities.Player.Scripts
 
         
                 
-                public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true) 
+                public override void OnReceiveDamage(int damage, float knockback, Vector2 angle) 
                 {
+                        Debug.Log(Health.Get());
                         base.OnReceiveDamage(damage, knockback, angle);
                         healthText.text = Health.Get().ToString();
                         healthBar.value = Health.Get();

@@ -9,7 +9,6 @@ namespace Entities
         protected bool Invulnerable;
         protected float InvulnerableTime = 0.5f;
         protected Rigidbody2D Rb;
-        public bool FacingRight = true;
     
         void Awake()
         {
@@ -26,14 +25,13 @@ namespace Entities
             
         }
 
-        public virtual void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true)
+        public virtual void OnReceiveDamage(int damage, float knockback, Vector2 angle)
         { 
             if (Invulnerable) return;
            Health.RemoveHealth(damage); 
            Debug.Log("Damage:" + damage);
            Invulnerable = true;
            Invoke(nameof(DamageCooldown), InvulnerableTime);
-           Push(knockback, angle, facingRight);
         }
         
         public virtual void Invulneravility()
@@ -44,11 +42,6 @@ namespace Entities
         public virtual void EndInvulneravility()
         {
             Invulnerable = false;
-        }
-
-        public virtual void Push(float knockback, Vector2 angle, bool facingRight)
-        {
-            
         }
         
         public void DamageCooldown()
