@@ -30,6 +30,7 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         
         public void Exit()
         {
+            entity.FacingRight = !entity.FacingRight;
             entity.animator.SetBool("IsStunned", false);
         }
     }

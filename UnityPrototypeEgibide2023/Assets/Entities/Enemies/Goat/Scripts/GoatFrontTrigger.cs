@@ -5,35 +5,33 @@ namespace Entities.Enemies.Goat.Scripts
 {
     public class GoatFrontTrigger : MonoBehaviour
     {
-        private BoxCollider2D _collider2D;
     
         [SerializeField] private GoatBehaviour goatBehaviour;
         // Start is called before the first frame update
 
+        private void Awake()
+        {
+            goatBehaviour = GetComponentInParent < GoatBehaviour>();
+        }
     
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!goatBehaviour.canCollide)
-            {
-                return;
-            }
-        
+            if (goatBehaviour.canCollideWithPlayer == false) return;
             if (other.CompareTag("Wall"))
             {
+                goatBehaviour.canCollideWithPlayer = false;
                 goatBehaviour.BounceAgainstWall();
                 return;
             }
-        
-        
 
-            if (other.CompareTag("Player"))
+            if (other.gameObject.layer == 6)
             {
-            
-                other.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2((goatBehaviour.facingRight ? 1 : -1)* goatBehaviour.data.force , goatBehaviour.data.force));
+                PlayerController player = other.GetComponent<PlayerController>();
                 goatBehaviour.BounceAgainstPlayer();
-                other.GetComponentInParent<PlayerController>().StunEntity(goatBehaviour.data.stunTime);
+                player.StunEntity(goatBehaviour.data.stunTime);
+                
             }
-        
+
         }
     }
 }

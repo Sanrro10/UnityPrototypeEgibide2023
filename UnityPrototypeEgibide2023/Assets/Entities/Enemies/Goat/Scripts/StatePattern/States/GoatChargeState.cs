@@ -18,7 +18,8 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
 
         public void Enter()
         {
-            entity.canCollide = true;
+            entity.canCollideWithPlayer = true;
+            entity.frontTrigger.SetActive(true);
             entity.animator.SetBool("IsCharge", true);
             entity.InvokeRepeating(nameof(entity.Move), 0, 0.01f);
         }

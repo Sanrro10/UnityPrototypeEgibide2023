@@ -18,7 +18,7 @@ namespace Entities
             public int damage;
             public float knockback;
             public Vector2 angle;
-            public LayerMask layer;
+            public int layer;
         }
     
         public List<AttackData> attackData;
@@ -40,13 +40,17 @@ namespace Entities
     
         private void OnTriggerEnter2D(Collider2D other)
         {
-            var found = attackData.Find((attack) => attack.layer == other.gameObject.layer);
-            Debug.Log(found);
-            if (found.Equals(default(AttackData))) return;
-            var entity = other.GetComponent<EntityControler>();
-            if (entity == null) return;
-            Debug.Log("We are doing damage");
-            other.GetComponent<EntityControler>().OnReceiveDamage(found.damage, found.knockback, found.angle);
+            attackData.ForEach((attack) =>
+            {
+                if (attack.layer == other.gameObject.layer)
+                {
+                    var otherEntity = other.GetComponent<EntityControler>();
+                    if (otherEntity == null) return;
+            
+                    other.GetComponent<EntityControler>().OnReceiveDamage(attack.damage, attack.knockback, attack.angle, entity.FacingRight);
+                }
+            });
+            
         }
     
     }

@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 3025178551828506822}
   - component: {fileID: -8147011581568639974}
   - component: {fileID: 3320793074386851084}
-  - component: {fileID: 5540778365088003417}
-  - component: {fileID: 2455672764805234671}
   m_Layer: 7
   m_Name: Goat Enemy
   m_TagString: Enemy
@@ -52,13 +50,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5577af004f3bd4fae024c3cc927bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facingRight: 0
-  canCollide: 0
+  FacingRight: 0
   collidedWithPlayer: 0
   data: {fileID: 11400000, guid: 2281c6db7bcee5643a02e6bae71950fa, type: 2}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  canCollideWithPlayer: 0
+  frontTrigger: {fileID: 6935363163640485508}
   animator: {fileID: 0}
   eyes: {fileID: 6328714735705215187}
 --- !u!61 &4021914991555316336
@@ -118,7 +117,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 15
+  m_Mass: 7
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
@@ -206,6 +205,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+
 --- !u!114 &5540778365088003417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +273,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4972848032259499101}
   - component: {fileID: 4758315396221689438}
-  - component: {fileID: 4906829273493925045}
+  - component: {fileID: 81187496379259106}
+  - component: {fileID: 4664732135265022744}
   m_Layer: 0
   m_Name: Front Trigger
   m_TagString: Untagged
@@ -341,7 +342,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.014143, y: 5.427615}
   m_EdgeRadius: 0
---- !u!114 &4906829273493925045
+--- !u!114 &81187496379259106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6935363163640485508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c13aff87825a84fa26e0b01fd890de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 0}
+  attackData:
+  - damage: 50
+    knockback: 8000
+    angle: {x: 1, y: 1}
+    layer: 6
+--- !u!114 &4664732135265022744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -353,4 +372,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f38eef04c83851e41b50a23f63aceb4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goatBehaviour: {fileID: 8252942493118146068}
+  goatBehaviour: {fileID: 0}

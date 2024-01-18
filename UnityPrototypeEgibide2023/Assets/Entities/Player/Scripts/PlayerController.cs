@@ -15,7 +15,7 @@ namespace Entities.Player.Scripts
                 // Components
                 public PlayerMovementStateMachine PmStateMachine { get; private set; }
                 private InputActions _controls;
-                private Rigidbody2D _rigidbody2D;
+ 
                 [SerializeField] private GameObject feet;
                 [SerializeField] private BoxCollider2D feetBoxCollider; 
                 [SerializeField] private PlayerData playerData;
@@ -70,7 +70,6 @@ namespace Entities.Player.Scripts
                 private Text healthText;
                 private Text mainText;
                 
-                private Rigidbody2D _rb;
                 private CapsuleCollider2D _capsule;
       
     
@@ -101,7 +100,6 @@ namespace Entities.Player.Scripts
                         animator = GetComponent<Animator>();
                         _spriteRenderer = GetComponent<SpriteRenderer>();
                         _controls = new InputActions();
-                        _rigidbody2D = GetComponent<Rigidbody2D>();
                         
                         //Enable the actions
                         _controls.Enable();
@@ -134,11 +132,11 @@ namespace Entities.Player.Scripts
                         horizontalSpeed = playerData.movementSpeed;
                         maxAirHorizontalSpeed = playerData.maxAirHorizontalSpeed;
                         _numberOfGrounds = 0;
-                        _rigidbody2D.gravityScale = playerData.gravity;
+                        Rb.gravityScale = playerData.gravity;
                         _dashCurve = playerData.dashCurve;
                         maxFallSpeed = playerData.maxFallSpeed;
-                        _rigidbody2D.gravityScale = playerData.gravity;
-                        baseGravity = _rigidbody2D.gravityScale;
+                        Rb.gravityScale = playerData.gravity;
+                        baseGravity = Rb.gravityScale;
                         jumpForce = playerData.jumpPower;
                         dashSpeed = playerData.dashSpeed;
                         // Pause
@@ -153,9 +151,6 @@ namespace Entities.Player.Scripts
                         Health.Set(100);
                         healthText.text = Health.Get().ToString();
                         healthBar.value = Health.Get();
-        
-                        //Set the rigidBody
-                        _rb = GetComponent<Rigidbody2D>();
                 
                         //set Potion Slider
                         _sliderPotion = GameObject.Find("SliderPotion").GetComponent<Slider>();
@@ -177,25 +172,25 @@ namespace Entities.Player.Scripts
                         PmStateMachine.StateUpdate();
                 
                         // Clamp gravity
-                        Vector2 clampVel = _rigidbody2D.velocity;
+                        Vector2 clampVel = Rb.velocity;
                         clampVel.y = Mathf.Clamp(clampVel.y, -maxFallSpeed, 9999);
-                        _rigidbody2D.velocity = clampVel;
+                        Rb.velocity = clampVel;
                 
                 }
 
                 public void ClampVelocity(float x, float y)
                 {
-                        Vector2 clampVel = _rigidbody2D.velocity;
+                        Vector2 clampVel = Rb.velocity;
                         clampVel.y = Mathf.Clamp(clampVel.y, -y, y);
                         clampVel.x = Mathf.Clamp(clampVel.x, -x, x);
-                        _rigidbody2D.velocity = clampVel;
+                        Rb.velocity = clampVel;
                 }
 
 
 
                 public void Jump()
                 {
-                        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpForce);
+                        Rb.velocity = new Vector2(Rb.velocity.x, jumpForce);
                 }
 
                 public void Move()
@@ -204,12 +199,13 @@ namespace Entities.Player.Scripts
                 
                         if((facingRight && isCollidingRight) || (!facingRight && isCollidingLeft))
                         {
-                                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y); 
+                                Rb.velocity = new Vector2(0, Rb.velocity.y); 
                                 return;
                         }
 
-                        _rigidbody2D.velocity =
-                                new Vector2((facingRight ? horizontalSpeed : horizontalSpeed * -1), _rigidbody2D.velocity.y); 
+                        Rb.velocity =
+                                new Vector2((FacingRight ? horizontalSpeed : horizontalSpeed * -1), Rb.velocity.y); 
+
                 }
 
                 public void AirMove()
@@ -219,53 +215,53 @@ namespace Entities.Player.Scripts
                         float movementDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
                         if((movementDirection == 1 && isCollidingRight) || (movementDirection == -1 && isCollidingLeft))
                         {
-                                _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y); 
+                                Rb.velocity = new Vector2(0, Rb.velocity.y); 
                                 return;
                         }
 
                         if (movementDirection == 1)
                         {
-                                if (_rigidbody2D.velocity.x > maxAirHorizontalSpeed)
+                                if (Rb.velocity.x > maxAirHorizontalSpeed)
                                 {
                                         return;
                                 }
-                                _rigidbody2D.velocity =
-                                        new Vector2(_rigidbody2D.velocity.x + airAcceleration, _rigidbody2D.velocity.y);
+                                Rb.velocity =
+                                        new Vector2(Rb.velocity.x + airAcceleration, Rb.velocity.y);
                                 return;
 
                         }
 
                         if (movementDirection == -1)
                         {
-                                if (_rigidbody2D.velocity.x < -maxAirHorizontalSpeed)
+                                if (Rb.velocity.x < -maxAirHorizontalSpeed)
                                 {
                                         return;
                                 }
 
-                                _rigidbody2D.velocity =
-                                        new Vector2(_rigidbody2D.velocity.x - airAcceleration, _rigidbody2D.velocity.y);
+                                Rb.velocity =
+                                        new Vector2(Rb.velocity.x - airAcceleration, Rb.velocity.y);
                                 return;
                         }
 
-                        if (_rigidbody2D.velocity.x > 0)
+                        if (Rb.velocity.x > 0)
                         {
-                                float velocityX = _rigidbody2D.velocity.x - airDrag;
+                                float velocityX = Rb.velocity.x - airDrag;
 
                                 if (velocityX < 0)
                                         velocityX = 0;
-                                _rigidbody2D.velocity =
-                                        new Vector2(velocityX, _rigidbody2D.velocity.y);
+                                Rb.velocity =
+                                        new Vector2(velocityX, Rb.velocity.y);
                                 return;
                         }
                         
-                        if (_rigidbody2D.velocity.x < 0)
+                        if (Rb.velocity.x < 0)
                         {
-                                float velocityX = _rigidbody2D.velocity.x + airDrag;
+                                float velocityX = Rb.velocity.x + airDrag;
 
                                 if (velocityX > 0)
                                         velocityX = 0;
-                                _rigidbody2D.velocity =
-                                        new Vector2(velocityX, _rigidbody2D.velocity.y);
+                                Rb.velocity =
+                                        new Vector2(velocityX, Rb.velocity.y);
                                 return;
                         }
 
@@ -274,15 +270,16 @@ namespace Entities.Player.Scripts
         
                 public bool IsGrounded()
                 {
-                        // if (_rigidbody2D.velocity.y > 0) return false;
+                        // if (Rb.velocity.y > 0) return false;
                         return 0 < _numberOfGrounds;
                 }
         
                 public void EndDash()
                 {
                 
-                        _rigidbody2D.velocity =
-                                new Vector2((facingRight ? dashSpeed : (dashSpeed -10) * -1), 0); 
+                        Rb.velocity =
+                                new Vector2((FacingRight ? dashSpeed : (dashSpeed -10) * -1), 0); 
+
                         Debug.Log("IsDashing");
                 
                 }
@@ -383,7 +380,7 @@ namespace Entities.Player.Scripts
                         {
                                 yForce = playerData.airdashForce / 2;
                         }
-                        _rigidbody2D.velocity = new Vector2(xForce, yForce * 2);
+                        Rb.velocity = new Vector2(xForce, yForce * 2);
 
 
                 }
@@ -517,15 +514,14 @@ namespace Entities.Player.Scripts
         
                 public override void OnDeath()
                 {
-                        Debug.Log("muerte");
                         DisablePlayerControls();
                         Invoke(nameof(CallSceneLoad), 1);
                 
                         _audioSource.PlayOneShot(_playerAudios.audios[1]);
-                        //_audioSource.clip = Resources.Load<AudioClip>("HITMARKER SOUND EFFECT");
-                        //_audioSource.Play();
-                        //_canvasPausa.gameObject.SetActive(true); 
+                        
                 }
+                
+
         
                 public void CallSceneLoad()
                 {
@@ -556,7 +552,8 @@ namespace Entities.Player.Scripts
                         while (dashTime < _dashCurve.keys[_dashCurve.length - 1].time)
                         {
                                 dashSpeedCurve = _dashCurve.Evaluate(dashTime) * dashSpeed; 
-                                _rigidbody2D.velocity = new Vector2((facingRight ? dashSpeedCurve : dashSpeedCurve * -1), 0); 
+                                Rb.velocity = new Vector2((FacingRight ? dashSpeedCurve : dashSpeedCurve * -1), 0); 
+
                                 yield return new WaitForFixedUpdate(); 
                                 dashTime += Time.deltaTime;
                         }
@@ -628,22 +625,22 @@ namespace Entities.Player.Scripts
         
                 public void SetXVelocity(float i)
                 {
-                        _rigidbody2D.velocity = new Vector2(i, _rigidbody2D.velocity.y);
+                        Rb.velocity = new Vector2(i, Rb.velocity.y);
                 }
 
                 public void SetYVelocity(float i)
                 {
-                        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, i);
+                        Rb.velocity = new Vector2(Rb.velocity.x, i);
                 }
 
                 public void RestartGravity()
                 {
-                        _rigidbody2D.gravityScale = playerData.gravity;
+                        Rb.gravityScale = playerData.gravity;
                 }
         
                 public void SetGravity(float i)
                 {
-                        _rigidbody2D.gravityScale = i;
+                        Rb.gravityScale = i;
                 }
         
                 // --------------- EVENTS ----------------------
@@ -657,7 +654,7 @@ namespace Entities.Player.Scripts
 
                 public void setXVelocity(float i)
                 {
-                        _rigidbody2D.velocity = new Vector2(i, _rigidbody2D.velocity.y);
+                        Rb.velocity = new Vector2(i, Rb.velocity.y);
                 }
 
                 public PlayerData GetPlayerData()
@@ -698,21 +695,19 @@ namespace Entities.Player.Scripts
                 
                 public override void OnReceiveDamage(int damage, float knockback, Vector2 angle) 
                 {
-                        Debug.Log(Health.Get());
-                        base.OnReceiveDamage(damage, knockback, angle);
+                        base.OnReceiveDamage(damage, knockback, angle, facingRight);
                         healthText.text = Health.Get().ToString();
                         healthBar.value = Health.Get();
-                        Debug.Log(Health.Get());
                 } 
 
                 public void SetCurrentGravity(float gravity)
                 {
-                        _rigidbody2D.gravityScale = gravity;
+                        Rb.gravityScale = gravity;
                 }
 
                 public void ResetGravity()
                 {
-                        _rigidbody2D.gravityScale = baseGravity;
+                        Rb.gravityScale = baseGravity;
                 }
                 
                 public void SetIsOnMiddleOfAirAttack()

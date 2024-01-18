@@ -12,7 +12,7 @@ namespace Entities.Enemies.Goat.Scripts
         [SerializeField] public GoatData data;
         [SerializeField] private LayerMask playerLayer;
         // reference to player
-
+        public bool canCollideWithPlayer = false;
         private Rigidbody2D _rb;
 
         public GoatStateMachine stateMachine;
@@ -53,7 +53,7 @@ namespace Entities.Enemies.Goat.Scripts
         {
             _rb.velocity = new Vector2(data.movementSpeed * (facingRight ? 1 : -1), _rb.velocity.y);
         }
-    
+        
         public void Jump() 
         {
             _rb.AddForce(new Vector2(_rb.velocity.x, data.jumpForce));
@@ -64,23 +64,23 @@ namespace Entities.Enemies.Goat.Scripts
 
         public IEnumerator TurnAround()
         {
-            int newEulerY = -1;
-            
-            while(newEulerY != 180 && newEulerY != 0)
+            Vector2 startRotation = transform.eulerAngles;
+            float endRotation = startRotation.x + 180.0f;
+            float t = 0.0f;
+            while ( t  < 0.5f )
             {
-                transform.eulerAngles = new Vector3(transform.transform.eulerAngles.x,
-                    transform.rotation.eulerAngles.y - (facingRight ? 10 : -10), transform.rotation.eulerAngles.z);
-                newEulerY = (int)transform.rotation.eulerAngles.y;
+                t += Time.deltaTime;
+                float yRotation = Mathf.Lerp(startRotation.x, endRotation, t / 0.5f);
+                transform.eulerAngles = new Vector2(startRotation.x, yRotation);
                 yield return 0.1f;
             }
-        
-            facingRight = !facingRight;
 
             stateMachine.TransitionTo(stateMachine.GoatPrepareState);
         }
 
         public IEnumerator HasStopped(bool wasPlayer)
         {
+            yield return 0.1f;
             while (_rb.velocity != new Vector2(0, 0))
             {
                 yield return 0.1f;
@@ -113,7 +113,7 @@ namespace Entities.Enemies.Goat.Scripts
 
         public void Bounce()
         {
-            _rb.velocity = new Vector2(_rb.velocity.x * -0.5f, data.jumpForce);
+            _rb.velocity = new Vector2(_rb.velocity.x * -1f, data.jumpForce);
         }
         
         public void BounceAgainstPlayer()

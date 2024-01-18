@@ -18,7 +18,6 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
 
         public void Enter()
         {
-            Debug.Log("Entered Idle State_ GOAT");
             entity.animator.SetBool("IsIdle", true);
             entity.InvokeRepeating(nameof(entity.LookForEnemy), 0, 0.01f);
         

@@ -8,7 +8,6 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
 {
     public class GoatPrepareState : IState
     {
-        // Start is called before the first frame update
         private GoatBehaviour entity;
         
         public GoatPrepareState(GoatBehaviour entity)
@@ -31,8 +30,8 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         
         public void Exit()
         {
-            entity.animator.SetBool("IsPrepare", false);
             entity.CancelInvoke(nameof(entity.Charge));
+            entity.animator.SetBool("IsPrepare", false);
         }
     }
 }
