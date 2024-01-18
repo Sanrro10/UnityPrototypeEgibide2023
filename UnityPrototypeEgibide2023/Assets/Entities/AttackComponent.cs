@@ -42,6 +42,8 @@ namespace Entities
         {
             var found = attackData.Find((attack) => attack.layer == other.gameObject.layer);
             if (found.Equals(default(AttackData))) return;
+            var entity = other.GetComponent<EntityControler>();
+            if (entity == null) return;
             other.GetComponent<EntityControler>().OnReceiveDamage(found.damage, found.knockback, found.angle);
         }
     
