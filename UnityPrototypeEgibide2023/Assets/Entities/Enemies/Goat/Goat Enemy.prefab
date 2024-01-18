@@ -52,14 +52,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FacingRight: 0
-  facingRight: 0
-  canCollide: 1
-  collidedWithPlayer: 0
   data: {fileID: 11400000, guid: 2281c6db7bcee5643a02e6bae71950fa, type: 2}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   canCollideWithPlayer: 0
+  collidedWithPlayer: 0
   frontTrigger: {fileID: 6935363163640485508}
   animator: {fileID: 0}
   eyes: {fileID: 6328714735705215187}
@@ -229,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3714688172470977376}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +261,7 @@ GameObject:
   - component: {fileID: 4758315396221689438}
   - component: {fileID: 81187496379259106}
   - component: {fileID: 4664732135265022744}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Front Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

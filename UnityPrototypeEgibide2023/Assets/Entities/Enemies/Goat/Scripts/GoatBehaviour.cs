@@ -6,12 +6,11 @@ namespace Entities.Enemies.Goat.Scripts
 {
     public class GoatBehaviour : EntityControler
     {
-        public bool collidedWithPlayer = false;
         [SerializeField] public GoatData data;
         [SerializeField] private LayerMask playerLayer;
         // reference to player
         public bool canCollideWithPlayer = false;
-        private Rigidbody2D _rb;
+        public bool collidedWithPlayer = false;
         public GameObject frontTrigger;
 
         public GoatStateMachine stateMachine;
@@ -22,7 +21,6 @@ namespace Entities.Enemies.Goat.Scripts
         // Start is called before the first frame update
         void Start()
         {
-            _rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             stateMachine = new GoatStateMachine(this);
             stateMachine.Initialize(stateMachine.GoatIdleState);
@@ -34,9 +32,16 @@ namespace Entities.Enemies.Goat.Scripts
             stateMachine.TransitionTo(stateMachine.GoatChargeState);
         }
 
+        public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true)
+        {
+            base.OnReceiveDamage(damage, knockback, angle, facingRight);
+            Debug.Log(Health.Get());
+        }
+
         public override void OnDeath()
         {
             base.OnDeath();
+            Debug.Log("We dead");
             stateMachine.TransitionTo(stateMachine.GoatDeathState);
         }
 
@@ -50,12 +55,12 @@ namespace Entities.Enemies.Goat.Scripts
         // Move the goat using the rigidbody2D
         public void Move()
         {
-            _rb.velocity = new Vector2(data.movementSpeed * (FacingRight ? 1 : -1), _rb.velocity.y);
+            Rb.velocity = new Vector2(data.movementSpeed * (FacingRight ? 1 : -1), Rb.velocity.y);
         }
         
         public void Jump() 
         {
-            _rb.AddForce(new Vector2(_rb.velocity.x, data.jumpForce));
+            Rb.AddForce(new Vector2(Rb.velocity.x, data.jumpForce));
         }
     
         // Get the direction the goat is facing
@@ -80,7 +85,7 @@ namespace Entities.Enemies.Goat.Scripts
         public IEnumerator HasStopped(bool wasPlayer)
         {
             yield return 0.1f;
-            while (_rb.velocity != new Vector2(0, 0))
+            while (Rb.velocity != new Vector2(0, 0))
             {
                 yield return 0.1f;
             }
@@ -112,7 +117,7 @@ namespace Entities.Enemies.Goat.Scripts
 
         public void Bounce()
         {
-            _rb.velocity = new Vector2(_rb.velocity.x * -1f, data.jumpForce);
+            Rb.velocity = new Vector2(Rb.velocity.x * -1f, data.jumpForce);
         }
         
         public void BounceAgainstPlayer()

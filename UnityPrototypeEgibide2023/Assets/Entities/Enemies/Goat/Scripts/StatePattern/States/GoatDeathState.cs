@@ -19,7 +19,9 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         public void Enter()
         {
             entity.animator.SetBool("IsStunned", true);
-        
+            entity.StopAllCoroutines();
+            entity.CancelInvoke();
+
         }
 
         // per-frame logic, include condition to transition to a new state
