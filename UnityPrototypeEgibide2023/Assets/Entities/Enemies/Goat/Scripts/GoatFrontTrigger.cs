@@ -19,13 +19,13 @@ namespace Entities.Enemies.Goat.Scripts
             if (goatBehaviour.canCollideWithPlayer == false) return;
             if (other.CompareTag("Wall"))
             {
-                goatBehaviour.canCollideWithPlayer = false;
                 goatBehaviour.BounceAgainstWall();
                 return;
             }
 
             if (other.gameObject.layer == 6)
             {
+                goatBehaviour.canCollideWithPlayer = false;
                 PlayerController player = other.GetComponent<PlayerController>();
                 goatBehaviour.BounceAgainstPlayer();
                 player.StunEntity(goatBehaviour.data.stunTime);
