@@ -7,16 +7,16 @@ public class SaveLoadManager
     private static string nameFile = "savegame";
     private static string extensionFile = ".json";
     
-    public static void SaveGame(GameData gameData, string file)
+    public static void SaveGame(GameData gameData, string slotForFile)
     {
         string json = JsonUtility.ToJson(gameData);
-        string path = Application.persistentDataPath + "/"+ file;
+        string path = Application.persistentDataPath + "/" + nameFile + slotForFile + extensionFile;
         File.WriteAllText(path, json);
         
         /*Debug.Log("SaveLoadManager -> GameData.position: " + gameData.spawnPosition);
         Debug.Log("SaveLoadManager -> GameData.scene: " + gameData.spawnScene);
-        Debug.Log("SaveLoadManager -> json: " + json);
-        Debug.Log("SaveLoadManager -> path: " + path);*/
+        Debug.Log("SaveLoadManager -> json: " + json);*/
+        Debug.Log("SaveLoadManager -> path: " + path);
     }
 
     public static GameData LoadGame(string slotForFile)

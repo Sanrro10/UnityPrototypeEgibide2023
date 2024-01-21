@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ public class SceneScript : MonoBehaviour
     [SerializeField] private Canvas canvaSlotPartidas;
     [SerializeField] private Canvas canvasManuPrincipal;
     private string mainScene = "1.0.1 (Tutorial)";
-    
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +51,25 @@ public class SceneScript : MonoBehaviour
     {
         canvasManuPrincipal.gameObject.SetActive(false);
         canvaSlotPartidas.gameObject.SetActive(true);
+        GameObject botones = GameObject.Find("CanvasSlotPartidas");
+        if (botones != null)
+        {
+            Button[] allButtons = botones.GetComponentsInChildren<Button>();
+            foreach (Button button in allButtons)
+            {
+                TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
+                if (buttonText != null)
+                {
+                    Debug.Log(button.name);
+                    if (button.name == "btn_Slot_1")
+                    {
+                        buttonText.text = "Nuevo texto"; // Cambia esto por el texto que quieras poner
+
+                    }
+                }
+            }
+        }
+
     }
     
     public void returnMainMenu()
@@ -58,11 +78,11 @@ public class SceneScript : MonoBehaviour
         canvaSlotPartidas.gameObject.SetActive(false);
     }
 
-    public void deleteGame(string nameSaveFile)
+    public void deleteGame(string slot)
     {
         //Revisar no funciona como deberia
         GameData gameData = new GameData();
-        SaveLoadManager.SaveGame(gameData, nameSaveFile);
+        SaveLoadManager.SaveGame(gameData, slot);
     }
 
     public void Exit()

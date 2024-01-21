@@ -178,7 +178,7 @@ namespace General.Scripts
         public void SaveGame()
         {
             //Debug.Log("GameController -> Dentro del metodo SaveGame");
-            SaveLoadManager.SaveGame(gameData, "");
+            SaveLoadManager.SaveGame(gameData, PlayerPrefs.GetString("slot"));
         }
         
         public void LoadGame()
