@@ -24,14 +24,14 @@ namespace Entities
             
         }
 
-        public virtual void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true)
+        public virtual void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool toTheRight = true)
         { 
             if (Invulnerable) return;
            Health.RemoveHealth(damage); 
            Debug.Log("Damage:" + damage);
            Invulnerable = true;
            Invoke(nameof(DamageCooldown), InvulnerableTime);
-           Push(knockback, angle, facingRight);
+           Push(knockback, angle, toTheRight);
         }
         
         public virtual void Invulneravility()
@@ -44,16 +44,16 @@ namespace Entities
             Invulnerable = false;
         }
 
-        public virtual void Push(float knockback, Vector2 angle, bool facingRight)
+        public virtual void Push(float knockback, Vector2 angle, bool toTheRight = true)
         {
-            Debug.Log(knockback + " " + angle + " " + facingRight);
-            if (facingRight)
+            Debug.Log(knockback + " " + angle + " " + toTheRight);
+            if (toTheRight)
             {
                 Rb.AddForce(new Vector2(angle.x * knockback, angle.y * knockback));
             }
             else
             {
-                Rb.AddForce(new Vector2(-angle.x * knockback, angle.y * knockback));
+                Rb.AddForce(new Vector2(-(angle.x * knockback), angle.y * knockback));
             }
         }
 

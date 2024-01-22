@@ -23,7 +23,7 @@ namespace Entities
     
         public List<AttackData> attackData;
         public EntityControler entity;
-
+        public bool toTheRight = true;
         public void Start()
         {
             attackData ??= new List<AttackData>();
@@ -48,8 +48,7 @@ namespace Entities
                 {
                     var otherEntity = other.GetComponent<EntityControler>();
                     if (otherEntity == null) return;
-            
-                    other.GetComponent<EntityControler>().OnReceiveDamage(attack.damage, attack.knockback, attack.angle, entity.FacingRight);
+                    other.GetComponent<EntityControler>().OnReceiveDamage(attack.damage, attack.knockback, attack.angle, (entity == null ? toTheRight : entity.FacingRight));
                 }
             });
             
