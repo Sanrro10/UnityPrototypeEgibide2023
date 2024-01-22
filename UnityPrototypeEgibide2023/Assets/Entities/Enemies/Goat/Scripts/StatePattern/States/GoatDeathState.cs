@@ -21,6 +21,7 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
             entity.animator.SetBool("IsStunned", true);
             entity.StopAllCoroutines();
             entity.CancelInvoke();
+            
 
         }
 

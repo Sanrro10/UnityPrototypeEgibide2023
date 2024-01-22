@@ -6,7 +6,9 @@ namespace Entities.Enemies.Goat.Scripts
     public class GoatData : ScriptableObject
     {
         public float movementSpeed;
-        public float force;
+        public float knockback;
+        public int damage;
+        public Vector2 angle;
         public float stunTime;
         public float waitTime;
         public float jumpForce;

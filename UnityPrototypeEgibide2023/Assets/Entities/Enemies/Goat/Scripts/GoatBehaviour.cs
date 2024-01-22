@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using Entities.Enemies.Goat.Scripts.StatePattern;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Entities.Enemies.Goat.Scripts
@@ -8,10 +10,14 @@ namespace Entities.Enemies.Goat.Scripts
     {
         [SerializeField] public GoatData data;
         [SerializeField] private LayerMask playerLayer;
+
+        [SerializeField] public GameObject attackHitbox;
+
+        [NotNull] public AttackComponent AttackComponent;
+
         // reference to player
         public bool canCollideWithPlayer = false;
         public bool collidedWithPlayer = false;
-        public GameObject frontTrigger;
 
         public GoatStateMachine stateMachine;
         
@@ -25,6 +31,9 @@ namespace Entities.Enemies.Goat.Scripts
             stateMachine = new GoatStateMachine(this);
             stateMachine.Initialize(stateMachine.GoatIdleState);
             Health.Set(data.health);
+            AttackComponent = attackHitbox.GetComponent<AttackComponent>();
+            AttackComponent.AddAttackData(new AttackComponent.AttackData(data.damage, data.knockback, data.angle, 6));
+            AttackComponent.DeactivateHitbox();
         }
 
         public void Charge()

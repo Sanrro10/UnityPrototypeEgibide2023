@@ -39,6 +39,22 @@ namespace Entities
         {
             this.attackData.Clear();
         }
+
+        public void DeactivateHitbox()
+        {
+            GetComponent<Collider2D>().enabled = false;
+        }
+        
+        public void ActivateHitbox()
+        {
+            GetComponent<Collider2D>().enabled = true;
+        }
+
+        public void ActivateHitbox(float time)
+        {
+            GetComponent<Collider2D>().enabled = true;
+            Invoke(nameof(DeactivateHitbox), time);
+        }
     
         private void OnTriggerEnter2D(Collider2D other)
         {
