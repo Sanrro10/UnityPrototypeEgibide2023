@@ -6,7 +6,7 @@ namespace Entities.Potions.BasePotion.Scripts
 {
     public class PotionBehavior : EntityControler
     {
-        
+        [SerializeField] private Vector2 spawnForce;
 
         [SerializeField] private BasePotionData data;
         
@@ -15,25 +15,24 @@ namespace Entities.Potions.BasePotion.Scripts
             Health.Set(data.health);
             InvulnerableTime = 0.2f;
         }
-
+        
         public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true)
         {
-            Health.RemoveHealth(1); 
-            Invulnerable = true;
-            Invoke(nameof(DamageCooldown), InvulnerableTime);
-            
+            Rb.velocity = new Vector2();
+            base.OnReceiveDamage(damage, knockback, angle, facingRight);
+            Bounce(1);
         }
 
         public override void OnDeath()
         {
             base.OnDeath();
-            Explode();
+            
         }
 
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            // if collision is against floor 
+            // if collision is against enemy 
             if (collision.gameObject.layer == 7)
             {
                 Explode();
@@ -42,25 +41,16 @@ namespace Entities.Potions.BasePotion.Scripts
             Bounce(1);
         }
 
-        private void ApplyForce()
-        {
-            
-        
-        
-        }
-
     
         private void Bounce(int damage)
         {
             Health.RemoveHealth(damage);
-            
         }
     
 
         private void Explode()
         {   
             Instantiate(data.explosion, transform.position, Quaternion.identity);
-            // Add particle effects
             Destroy(gameObject);
         }
 

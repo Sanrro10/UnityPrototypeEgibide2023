@@ -24,6 +24,7 @@ namespace Entities.Player.Scripts
 
         public int damage;
         public float knockback;
+        public float knockbackPotion;
         
         public AnimationCurve dashCurve;
         public float airdashForce;
