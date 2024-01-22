@@ -94,7 +94,7 @@ namespace Entities.Enemies.Gizotso.Scripts
         // Pequeña corutina para que mientres gire no pueda atacar al jugador
         private IEnumerator Turn()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.75f);
             _onCooldown = false;
         }
 
