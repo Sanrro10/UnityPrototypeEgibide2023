@@ -11,7 +11,10 @@ public class SceneScript : MonoBehaviour
     
     [SerializeField] private Canvas canvaSlotPartidas;
     [SerializeField] private Canvas canvasManuPrincipal;
+    [SerializeField] private Canvas canvasConfirmDeleteGame;
     private string mainScene = "1.0.1 (Tutorial)";
+    private bool confirm = false;
+    private string guardarSlot;
   
     // Start is called before the first frame update
     void Start()
@@ -78,11 +81,40 @@ public class SceneScript : MonoBehaviour
         canvaSlotPartidas.gameObject.SetActive(false);
     }
 
+    public void showConfirmationDeleteGame()
+    {
+        canvaSlotPartidas.gameObject.SetActive(false);
+        canvasConfirmDeleteGame.gameObject.SetActive(true);
+    }
+    
+    public void hideConfirmationDeleteGame()
+    {
+        canvasConfirmDeleteGame.gameObject.SetActive(false);
+        canvaSlotPartidas.gameObject.SetActive(true);
+    }
+
+    public void confirmationDeleteGame(bool res)
+    {
+        confirm =  res;
+        deleteGame(guardarSlot);
+    }
+    
     public void deleteGame(string slot)
     {
+        
         //Revisar no funciona como deberia
-        GameData gameData = new GameData();
-        SaveLoadManager.SaveGame(gameData, slot);
+        if (confirm)
+        {
+            GameData gameData = new GameData();
+            SaveLoadManager.SaveGame(gameData, slot);
+            hideConfirmationDeleteGame();
+        }
+        else
+        {
+            guardarSlot = slot;
+            showConfirmationDeleteGame();
+        }
+
     }
 
     public void Exit()
