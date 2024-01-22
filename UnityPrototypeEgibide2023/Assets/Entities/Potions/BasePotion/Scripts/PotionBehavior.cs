@@ -20,7 +20,7 @@ namespace Entities.Potions.BasePotion.Scripts
         {
             Rb.velocity = new Vector2();
             base.OnReceiveDamage(damage, knockback, angle, facingRight);
-            Bounce(1);
+            Bounce(0);
         }
 
         public override void OnDeath()

@@ -8,16 +8,17 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         private List<AttackComponent.AttackData> _attackData;
         public MeleeAttackLeftState(PlayerController player) : base(player)
         {
-            AttackDirection = new Vector2(-1, 0.2f);
+            AttackDirection = new Vector2(1, 0.2f);
             KnockbackMultiplier = 1.5f;
         }
 
         public override void Enter()
         {
+            Player.FacingRight = false;
             base.Enter();
             // Debug.Log("Entering Left Attack State");
 
-            Player.FacingRight = false;
+            
             Player.isInMiddleOfAttack = true;
             Player.animator.SetBool("IsALeft", true);
             Player.Invoke(nameof(Player.EndAttack), 0.8f);
