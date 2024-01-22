@@ -80,8 +80,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c13aff87825a84fa26e0b01fd890de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  damageLayer: 6
+  attackData:
+  - damage: 10
+    knockback: 0
+    angle: {x: 0, y: 0}
+    layer: 6
+  entity: {fileID: 0}
 --- !u!1 &568938862113311284
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,6 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
     public class AirMeleeAttackForwardState : AttackState
     {
-        
         public AirMeleeAttackForwardState(PlayerController player) : base(player)
         {
             AttackDirection = new Vector2(1, 0.2f);
@@ -14,7 +13,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Entering Air Right Attack State");
+            Debug.Log("Entering Air Forward Attack State");
 
             Player.isInMiddleOfAirAttack = true;
             Player.animator.SetBool("IsAARight", true);
@@ -46,7 +45,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             Player.canAttack = true;
             Player.isInMiddleOfAirAttack = false;
 
-            Debug.Log("Exiting Air Right Attack State");
+            Debug.Log("Entering Air Forward Attack State");
         }
     }
 }

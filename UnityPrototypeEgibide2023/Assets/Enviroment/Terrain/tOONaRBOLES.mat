@@ -8,12 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: tOONaRBOLES
-  m_Shader: {fileID: 14000, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 10509, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - EFFECT_BUMP
+  m_ValidKeywords: []
   m_InvalidKeywords:
+  - EFFECT_BUMP
   - GRADIENT2COL_ON
   - OUTBASE8DIR_ON
   - _
@@ -180,6 +180,7 @@ Material:
     - _1st_ShadeColor_Step: 0.294
     - _2nd_ShadeColor_Feather: 0.0001
     - _2nd_ShadeColor_Step: 0.223
+    - _AO: 0
     - _Add_Antipodean_RimLight: 0
     - _Alpha: 1
     - _AlphaCutoffValue: 0.25
@@ -191,6 +192,7 @@ Material:
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
     - _BaseColor_Step: 0.294
+    - _BaseLight: 1
     - _BaseShade_Feather: 0.005
     - _Base_Speed: 0
     - _BillboardY: 0
@@ -384,6 +386,7 @@ Material:
     - _ShineWidth: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SquashAmount: 1
     - _SrcBlend: 1
     - _StepOffset: 0
     - _TextureScrollXSpeed: 1
@@ -457,5 +460,7 @@ Material:
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
     - _ViewShift: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

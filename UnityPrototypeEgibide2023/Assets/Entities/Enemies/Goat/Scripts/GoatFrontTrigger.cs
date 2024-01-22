@@ -11,7 +11,7 @@ namespace Entities.Enemies.Goat.Scripts
 
         private void Awake()
         {
-            goatBehaviour = GetComponentInParent < GoatBehaviour>();
+            goatBehaviour = GetComponentInParent <GoatBehaviour>();
         }
     
         private void OnTriggerEnter2D(Collider2D other)
@@ -19,16 +19,13 @@ namespace Entities.Enemies.Goat.Scripts
             if (goatBehaviour.canCollideWithPlayer == false) return;
             if (other.CompareTag("Wall"))
             {
-                goatBehaviour.canCollideWithPlayer = false;
                 goatBehaviour.BounceAgainstWall();
                 return;
             }
 
             if (other.gameObject.layer == 6)
             {
-                PlayerController player = other.GetComponent<PlayerController>();
                 goatBehaviour.BounceAgainstPlayer();
-                player.StunEntity(goatBehaviour.data.stunTime);
                 
             }
 

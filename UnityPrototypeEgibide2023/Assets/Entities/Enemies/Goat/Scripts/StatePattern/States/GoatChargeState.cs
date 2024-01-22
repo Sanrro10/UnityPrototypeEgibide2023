@@ -19,7 +19,7 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         public void Enter()
         {
             entity.canCollideWithPlayer = true;
-            entity.frontTrigger.SetActive(true);
+            entity.AttackComponent.ActivateHitbox();
             entity.animator.SetBool("IsCharge", true);
             entity.InvokeRepeating(nameof(entity.Move), 0, 0.01f);
         }
@@ -32,6 +32,7 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         
         public void Exit()
         {
+            entity.AttackComponent.DeactivateHitbox();
             entity.animator.SetBool("IsCharge", false);
             entity.CancelInvoke(nameof(entity.Move));
         }

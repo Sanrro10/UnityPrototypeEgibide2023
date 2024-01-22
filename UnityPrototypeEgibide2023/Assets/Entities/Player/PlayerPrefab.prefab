@@ -397,8 +397,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024030099, y: -1.2134823}
-  m_Size: {x: 8.21412, y: 16.948298}
+  m_Offset: {x: 0, y: -1.3}
+  m_Size: {x: 3, y: 16}
   m_Direction: 0
 --- !u!50 &585542745143910898
 Rigidbody2D:
@@ -618,17 +618,23 @@ MonoBehaviour:
   isAirDashUnlocked: 0
   isHoldingHorizontal: 0
   isHoldingVertical: 0
-  isPerformingPotionThrow: 0
   isPerformingJump: 0
   isPerformingMeleeAttack: 0
   isPerformingDash: 0
+  isPerformingPotionThrow: 0
   isDashing: 0
+  onDJump: 0
   isCollidingLeft: 0
   isCollidingRight: 0
+  canAttack: 1
+  meleeAttackCooldown: 0
+  meleeAttackDuration: 0
+  meleeAttackStart: 0
+  jumpDuration: 0
   isInMiddleOfAirAttack: 0
   isInMiddleOfAttack: 0
+  friction: 0
   isStunned: 0
-  canAttack: 1
   horizontalSpeed: 0
   dashSpeed: 0
   jumpForce: 0
@@ -5664,8 +5670,8 @@ Transform:
   m_GameObject: {fileID: 8693262974154283486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.67, y: -0.3, z: 0}
-  m_LocalScale: {x: 4.48178, y: 4.448251, z: 1.057756}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4.5, y: 4.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7731164896381682722}
@@ -5729,7 +5735,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8693262974154283486}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -5779,11 +5785,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c13aff87825a84fa26e0b01fd890de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 0}
   attackData:
   - damage: 0
     knockback: 0
     angle: {x: 0, y: 0}
-    layer:
-      serializedVersion: 2
-      m_Bits: 0
+    layer: 0
+  entity: {fileID: 0}
+  toTheRight: 1

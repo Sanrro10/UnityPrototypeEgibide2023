@@ -8,14 +8,16 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         private List<AttackComponent.AttackData> _attackData;
         public MeleeAttackLeftState(PlayerController player) : base(player)
         {
-            AttackDirection = new Vector2(-1, 0.2f);
+            AttackDirection = new Vector2(1, 0.2f);
             KnockbackMultiplier = 1.5f;
         }
 
         public override void Enter()
         {
+            Player.FacingRight = false;
             base.Enter();
             // Debug.Log("Entering Left Attack State");
+
             
             Player.isInMiddleOfAttack = true;
             Player.animator.SetBool("IsALeft", true);
@@ -26,9 +28,25 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public override void Update()
         {
             base.Update();
+            if (!Player.IsGrounded())
+            {
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirState);
+                return;
+            }
+            if (Player.CanDash())
+            {
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.GroundDashState);
+                return;
+            }
+            if (Player.isPerformingJump)
+            {
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.JumpState);
+                return;
+            }
             if (!Player.isInMiddleOfAttack)
             {
-                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.IdleState);
+                if(Player.isHoldingHorizontal) Player.PmStateMachine.TransitionTo(Player.PmStateMachine.WalkState);
+                else Player.PmStateMachine.TransitionTo(Player.PmStateMachine.IdleState);
                 return;
             }
         }
