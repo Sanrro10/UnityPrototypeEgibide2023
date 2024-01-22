@@ -10,6 +10,7 @@ namespace Entities.Potions.BasePotion.Scripts
 
         [SerializeField] private BasePotionData data;
         
+        private Vector2 _lastVelocity;
         void Start()
         {
             Health.Set(data.health);
@@ -20,7 +21,6 @@ namespace Entities.Potions.BasePotion.Scripts
         {
             Rb.velocity = new Vector2();
             base.OnReceiveDamage(damage, knockback, angle, facingRight);
-            Bounce(0);
         }
 
         public override void OnDeath()
@@ -44,6 +44,26 @@ namespace Entities.Potions.BasePotion.Scripts
     
         private void Bounce(int damage)
         {
+            _lastVelocity = Rb.velocity;
+            Rb.velocity = new Vector2();
+            float verticalVelocity = 0;
+            if (_lastVelocity.y <= 0)
+            {
+                verticalVelocity = -8;
+            }
+            else
+            {
+                verticalVelocity = 8;
+            }
+            
+            if (_lastVelocity.x < 0)
+            {
+                Rb.velocity = new Vector2(8, verticalVelocity);
+            }
+            else
+            {
+                Rb.velocity = new Vector2(-8, verticalVelocity);
+            }
             Health.RemoveHealth(damage);
         }
     

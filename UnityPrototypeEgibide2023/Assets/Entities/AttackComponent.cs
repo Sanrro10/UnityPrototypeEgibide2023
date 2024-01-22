@@ -30,27 +30,27 @@ namespace Entities
             entity ??= GetComponentInParent<EntityControler>();
         }
 
-        public void AddAttackData(AttackData ad)
+        public virtual void AddAttackData(AttackData ad)
         {
             this.attackData.Add(ad);
         }
 
-        public void ClearAttackData()
+        public virtual void ClearAttackData()
         {
             this.attackData.Clear();
         }
 
-        public void DeactivateHitbox()
+        public virtual void DeactivateHitbox()
         {
             GetComponent<Collider2D>().enabled = false;
         }
         
-        public void ActivateHitbox()
+        public virtual void ActivateHitbox()
         {
             GetComponent<Collider2D>().enabled = true;
         }
 
-        public void ActivateHitbox(float time)
+        public virtual void ActivateHitbox(float time)
         {
             GetComponent<Collider2D>().enabled = true;
             Invoke(nameof(DeactivateHitbox), time);
