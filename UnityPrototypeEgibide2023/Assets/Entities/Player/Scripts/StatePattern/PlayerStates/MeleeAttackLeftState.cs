@@ -16,7 +16,8 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         {
             base.Enter();
             // Debug.Log("Entering Left Attack State");
-            
+
+            Player.FacingRight = false;
             Player.isInMiddleOfAttack = true;
             Player.animator.SetBool("IsALeft", true);
             Player.Invoke(nameof(Player.EndAttack), 0.8f);
@@ -26,9 +27,25 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public override void Update()
         {
             base.Update();
+            if (!Player.IsGrounded())
+            {
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirState);
+                return;
+            }
+            if (Player.CanDash())
+            {
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.GroundDashState);
+                return;
+            }
+            if (Player.isPerformingJump)
+            {
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.JumpState);
+                return;
+            }
             if (!Player.isInMiddleOfAttack)
             {
-                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.IdleState);
+                if(Player.isHoldingHorizontal) Player.PmStateMachine.TransitionTo(Player.PmStateMachine.WalkState);
+                else Player.PmStateMachine.TransitionTo(Player.PmStateMachine.IdleState);
                 return;
             }
         }

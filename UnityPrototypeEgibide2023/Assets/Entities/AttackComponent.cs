@@ -23,7 +23,7 @@ namespace Entities
     
         public List<AttackData> attackData;
         public EntityControler entity;
-
+        public bool toTheRight = true;
         public void Start()
         {
             attackData ??= new List<AttackData>();
@@ -39,6 +39,22 @@ namespace Entities
         {
             this.attackData.Clear();
         }
+
+        public void DeactivateHitbox()
+        {
+            GetComponent<Collider2D>().enabled = false;
+        }
+        
+        public void ActivateHitbox()
+        {
+            GetComponent<Collider2D>().enabled = true;
+        }
+
+        public void ActivateHitbox(float time)
+        {
+            GetComponent<Collider2D>().enabled = true;
+            Invoke(nameof(DeactivateHitbox), time);
+        }
     
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -48,8 +64,7 @@ namespace Entities
                 {
                     var otherEntity = other.GetComponent<EntityControler>();
                     if (otherEntity == null) return;
-            
-                    other.GetComponent<EntityControler>().OnReceiveDamage(attack.damage, attack.knockback, attack.angle, entity.FacingRight);
+                    other.GetComponent<EntityControler>().OnReceiveDamage(attack.damage, attack.knockback, attack.angle, (entity == null ? toTheRight : entity.FacingRight));
                 }
             });
             

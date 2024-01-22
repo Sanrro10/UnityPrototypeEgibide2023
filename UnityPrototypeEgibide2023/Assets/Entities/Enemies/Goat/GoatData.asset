@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: GoatData
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  force: 8000
+  knockback: 5000
+  damage: 25
+  angle: {x: 1, y: 1}
   stunTime: 0.5
   waitTime: 0.5
   jumpForce: 10
