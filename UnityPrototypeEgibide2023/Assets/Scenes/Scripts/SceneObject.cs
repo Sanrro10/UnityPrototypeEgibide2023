@@ -18,6 +18,11 @@ public class SceneObject
     {
         return new SceneObject() { m_SceneName = sceneName };
     }
+    public string GetSceneName()
+    {
+        return m_SceneName;
+    }
+    
 }
 
 #if UNITY_EDITOR

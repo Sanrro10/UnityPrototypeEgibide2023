@@ -123,6 +123,7 @@ namespace General.Scripts
             gameData.spawnScene = _lastCheckpoint.Scene;
             gameData.spawnPosition = _lastCheckpoint.Position;
             gameData.isValid = true;
+            SaveGame();
             /*Debug.LogWarning("Awake -> GameData.position: " + gameData.spawnPosition);
             Debug.LogWarning("Awake -> GameData.scene: " + gameData.spawnScene);*/
             //Fin: Prueba - Guardado

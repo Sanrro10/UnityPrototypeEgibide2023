@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,38 +14,19 @@ public class SceneScript : MonoBehaviour
     [SerializeField] private Canvas canvasManuPrincipal;
     [SerializeField] private Canvas canvasConfirmDeleteGame;
     private string mainScene = "1.0.1 (Tutorial)";
+    private string textSlotDefault = "Nueva Partida";
     private bool confirm = false;
     private string guardarSlot;
-  
-    // Start is called before the first frame update
-    void Start()
+    private List <GameData>  gameDatas;
+    private Button btnSlot1;
+    private Button btnSlot2;
+    private Button btnSlot3;
+
+    public void Start()
     {
-        
+        gameDatas = SaveLoadManager.ListDataAllGame();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    /*private void Awake()
-    {
-        GameObject botones = GameObject.Find("CanvasSlotPartidas");
-        if (botones != null)
-        {
-            Button[] allButtons = botones.GetComponentsInChildren<Button>();
-            foreach (Button button in allButtons)
-            {
-                Text buttonText = button.GetComponentInChildren<Text>();
-                if (buttonText != null)
-                {
-                    buttonText.text = "Nuevo texto"; // Cambia esto por el texto que quieras poner
-                }
-            }
-        }
-    }*/
-    
     private void ChangeScene(string escena)
     {
         SceneManager.LoadScene(escena);
@@ -63,11 +45,23 @@ public class SceneScript : MonoBehaviour
                 TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
                 if (buttonText != null)
                 {
-                    Debug.Log(button.name);
                     if (button.name == "btn_Slot_1")
                     {
-                        buttonText.text = "Nuevo texto"; // Cambia esto por el texto que quieras poner
-
+                        btnSlot1 = button;
+                        string slotDataInfo = (gameDatas[0].isValid) ? gameDatas[0].spawnScene.GetSceneName() : textSlotDefault;
+                        buttonText.text = slotDataInfo;
+                    }
+                    if (button.name == "btn_Slot_2")
+                    {
+                        btnSlot2 = button;
+                        string slotDataInfo = (gameDatas[1].isValid) ? gameDatas[1].spawnScene.GetSceneName(): textSlotDefault;
+                        buttonText.text = slotDataInfo;
+                    }
+                    if (button.name == "btn_Slot_3")
+                    {
+                        btnSlot3 = button;
+                        string slotDataInfo = (gameDatas[2].isValid) ? gameDatas[2].spawnScene.GetSceneName() : textSlotDefault;
+                        buttonText.text = slotDataInfo;
                     }
                 }
             }
@@ -101,12 +95,22 @@ public class SceneScript : MonoBehaviour
     
     public void deleteGame(string slot)
     {
-        
-        //Revisar no funciona como deberia
         if (confirm)
         {
             GameData gameData = new GameData();
             SaveLoadManager.SaveGame(gameData, slot);
+            if (slot.Equals("1"))
+            {
+                btnSlot1.GetComponentInChildren<TMP_Text>().text = textSlotDefault;
+            }
+            if (slot.Equals("2"))
+            {
+                btnSlot2.GetComponentInChildren<TMP_Text>().text = textSlotDefault;
+            }
+            if (slot.Equals("3"))
+            {
+                btnSlot3.GetComponentInChildren<TMP_Text>().text = textSlotDefault;
+            }
             hideConfirmationDeleteGame();
         }
         else
