@@ -12,30 +12,18 @@ public class FallingRock_Script : EntityControler
  
     void FixedUpdate ()
     {
+        //Guardar la velocidad de la piedra
         rbVelocity = Rb.velocity;
+        
+        //La piedra ha dejado de moverse
         if (isMoving && rbVelocity == Vector3.zero)
         {
-            //rb has stopped moving
-            Debug.Log("la piedra cayo");
-            isMoving = false;
+            //Borrar la piedra
             Destroy(gameObject);            
         }
         else if (!isMoving && rbVelocity != Vector3.zero)
         {
             isMoving = true;
         }
-    }
-    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
