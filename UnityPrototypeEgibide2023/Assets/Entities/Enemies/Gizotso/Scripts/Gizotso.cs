@@ -39,7 +39,7 @@ namespace Entities.Enemies.Gizotso.Scripts
         private static readonly int IsFirstAttack = Animator.StringToHash("IsFirstAttack");
         private static readonly int IsSecondAttack = Animator.StringToHash("IsSecondAttack");
         private static readonly int IsHurt = Animator.StringToHash("IsHurt");
-        private static readonly int IsDetah = Animator.StringToHash("IsDeath");
+        private static readonly int IsDead = Animator.StringToHash("IsDead");
 
         void Start()
         {
@@ -67,7 +67,7 @@ namespace Entities.Enemies.Gizotso.Scripts
             animator.SetBool(IsFirstAttack, false);
             animator.SetBool(IsSecondAttack, false);
             animator.SetBool(IsHurt,false);
-            animator.SetBool(IsDetah, false);
+            animator.SetBool(IsDead, false);
             animator.SetBool(IsIdle, true);
             
             // Cambia de dirección
@@ -193,15 +193,21 @@ namespace Entities.Enemies.Gizotso.Scripts
     
         public override void OnDeath()
         {
+            StopAllCoroutines();
+            CancelInvoke(nameof(PassiveBehavior));
+            
             // Animación muerte
             animator.SetBool(IsPreAttack, false);
             animator.SetBool(IsFirstAttack, false);
             animator.SetBool(IsSecondAttack, false);
             animator.SetBool(IsHurt,false);
             animator.SetBool(IsIdle, false);
-            animator.SetBool(IsDetah, true);
-        
-            Invoke(nameof(DestroyThis),2f);
+            animator.SetBool(IsDead, true);
+            
+            AnimationClip currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+            float lengthAnim = currentAnim.length;
+            Invoke(nameof(DestroyThis),lengthAnim);
+            
         }
 
         public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true)
