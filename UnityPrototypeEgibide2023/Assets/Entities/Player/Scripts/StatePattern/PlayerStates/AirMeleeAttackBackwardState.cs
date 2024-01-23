@@ -14,10 +14,10 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Entering Air Backward Attack State");
 
             Player.isInMiddleOfAirAttack = true;
-            Player.animator.SetBool("IsAALeft", true);
+            if (Player.FacingRight) Player.animator.SetBool("IsAABackwardRight", true);
+            else Player.animator.SetBool("IsAABackwardLeft", true);
             Player.InvokeRepeating(nameof(Player.AirMove), 0, 0.01f);
             Player.Invoke(nameof(Player.EndAirAttack), 0.8f);
         }
@@ -42,11 +42,10 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             base.Exit();
             Player.CancelInvoke(nameof(Player.AirMove));
             Player.CancelInvoke(nameof(Player.EndAirAttack));
-            Player.animator.SetBool("IsAALeft", false);
+            Player.animator.SetBool("IsAABackwardRight", false);
+            Player.animator.SetBool("IsAABackwardLeft", false);
             Player.canAttack = true;
             Player.isInMiddleOfAirAttack = false;
-
-            Debug.Log("Exiting Backward Left Attack State");
         }
     }
 }

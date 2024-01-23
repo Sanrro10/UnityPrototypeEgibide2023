@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +25,9 @@ namespace Entities
         public List<AttackData> attackData;
         public EntityControler entity;
         public bool toTheRight = true;
+
+        public static event Action<EntityControler, EntityControler> OnHit;
+        
         public void Start()
         {
             attackData ??= new List<AttackData>();
@@ -62,8 +66,10 @@ namespace Entities
             {
                 if (attack.layer == other.gameObject.layer)
                 {
+                    
                     var otherEntity = other.GetComponent<EntityControler>();
                     if (otherEntity == null) return;
+                    if (entity != null) OnHit?.Invoke(entity, otherEntity);
                     other.GetComponent<EntityControler>().OnReceiveDamage(attack.damage, attack.knockback, attack.angle, (entity == null ? toTheRight : entity.FacingRight));
                 }
             });

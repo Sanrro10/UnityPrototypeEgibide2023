@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using Cinemachine;
+using Entities.Potions.BasePotion.Scripts;
 using General.Scripts;
 using StatePattern;
 using UnityEngine;
@@ -58,7 +59,7 @@ namespace Entities.Player.Scripts
                 public float maxAirHorizontalSpeed;
                 public float maxFallSpeed;
                 public float timeStunned;
-        
+                public bool onHitPushback = false;
                 private AnimationCurve _dashCurve;
                 private int _numberOfGrounds;
         
@@ -106,7 +107,7 @@ namespace Entities.Player.Scripts
                         // Initialize the state machine
                         PmStateMachine = new PlayerMovementStateMachine(this);
                         PmStateMachine.Initialize(PmStateMachine.IdleState);
-                
+                        AttackComponent.OnHit += OnHit;
                         //Inputs
                         _controls.GeneralActionMap.HorizontalMovement.started += ctx => isHoldingHorizontal = true;
                         _controls.GeneralActionMap.HorizontalMovement.canceled += ctx => isHoldingHorizontal = false;
@@ -183,6 +184,57 @@ namespace Entities.Player.Scripts
                         clampVel.y = Mathf.Clamp(clampVel.y, -y, y);
                         clampVel.x = Mathf.Clamp(clampVel.x, -x, x);
                         Rb.velocity = clampVel;
+                }
+                
+                private void OnHit(EntityControler attacker, EntityControler victim)
+                {
+                        // Mal pero me da pereza hacerlo mejor
+                        if (attacker != this) return;
+                        if (onHitPushback) return;
+                        onHitPushback = true;
+                        Invoke(nameof(SetOnHitPushback), 0.2f);
+                        if (PmStateMachine.CurrentState == PmStateMachine.AirMeleeAttackDownState)
+                        {
+                                Rb.velocity = new Vector2(Rb.velocity.x, 0);
+                                Rb.AddForce(new Vector2(0, 6000));
+                                return;
+                        }
+                        if (PmStateMachine.CurrentState == PmStateMachine.AirMeleeAttackUpState)
+                        {
+                                Rb.velocity = new Vector2(Rb.velocity.x, 0);
+                                Rb.AddForce(new Vector2(0, -6000));
+                                return;
+                        }
+                        if (PmStateMachine.CurrentState == PmStateMachine.AirMeleeAttackForwardState)
+                        {
+                                Rb.velocity = new Vector2(0, Rb.velocity.y);
+                                Rb.AddForce(new Vector2((this.FacingRight ?  -3000 : 3000), 0));
+                                return;
+                        }
+                        if (PmStateMachine.CurrentState == PmStateMachine.AirMeleeAttackBackwardState)
+                        {
+                                Rb.velocity = new Vector2(0, Rb.velocity.y);
+                                Rb.AddForce(new Vector2((this.FacingRight ?  3000 : -3000), 0));
+                                return;
+                        }
+
+                        if (PmStateMachine.CurrentState == PmStateMachine.MeleeAttackLeftState)
+                        {
+                                Rb.AddForce(new Vector2(1500, 0));
+                                return;
+                        }
+
+                        if (victim is PotionBehavior) return;
+                        if (PmStateMachine.CurrentState == PmStateMachine.MeleeAttackRightState)
+                        {
+                                Rb.AddForce(new Vector2(-1500, 0));
+                                return;
+                        }
+                }
+                
+                private void SetOnHitPushback()
+                {
+                        onHitPushback = false;
                 }
 
 

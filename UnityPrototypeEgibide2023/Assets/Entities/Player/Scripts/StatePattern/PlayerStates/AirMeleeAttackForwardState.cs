@@ -16,9 +16,11 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             Debug.Log("Entering Air Forward Attack State");
 
             Player.isInMiddleOfAirAttack = true;
+            if (Player.FacingRight) Player.animator.SetBool("IsAAForwardRight", true);
+            else Player.animator.SetBool("IsAAForwardLeft", true);
             Player.animator.SetBool("IsAARight", true);
             Player.InvokeRepeating(nameof(Player.AirMove), 0, 0.01f);
-            Player.Invoke(nameof(Player.EndAirAttack), 0.8f);
+            Player.Invoke(nameof(Player.EndAirAttack), 0.5f);
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -41,7 +43,8 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             base.Exit();
             Player.CancelInvoke(nameof(Player.AirMove));
             Player.CancelInvoke(nameof(Player.EndAirAttack));
-            Player.animator.SetBool("IsAARight", false);
+            Player.animator.SetBool("IsAAForwardRight", false);
+            Player.animator.SetBool("IsAAForwardLeft", false);
             Player.canAttack = true;
             Player.isInMiddleOfAirAttack = false;
 

@@ -9,17 +9,16 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         {
             AttackDirection = new Vector2(0, -1);
             KnockbackMultiplier = 1.5f;
+            
         }
 
         public override void Enter()
         {
             base.Enter();
-            // Debug.Log("Entering Air Down Attack State");
-
             Player.isInMiddleOfAirAttack = true;
             Player.animator.SetBool("IsAADown", true);
             Player.InvokeRepeating(nameof(Player.AirMove), 0, 0.01f);
-            Player.Invoke(nameof(Player.EndAirAttack), 0.8f);
+            Player.Invoke(nameof(Player.EndAirAttack), 0.5f);
         }
 
         // per-frame logic, include condition to transition to a new state

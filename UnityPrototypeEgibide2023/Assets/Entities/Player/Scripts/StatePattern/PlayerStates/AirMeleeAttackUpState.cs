@@ -19,7 +19,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             Player.isInMiddleOfAirAttack = true;
             Player.animator.SetBool("IsAAUp", true);
             Player.InvokeRepeating(nameof(Player.AirMove), 0, 0.01f);
-            Player.Invoke(nameof(Player.EndAirAttack), 0.8f);
+            Player.Invoke(nameof(Player.EndAirAttack), 0.5f);
         }
 
         // per-frame logic, include condition to transition to a new state
