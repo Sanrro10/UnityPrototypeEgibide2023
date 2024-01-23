@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708759497972585280}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.2}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5444717034806940976}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!212 &7974043610264321516
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -132,13 +132,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3525091886910784852}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5444717034806940976}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &6174979746416191203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -198,7 +198,6 @@ GameObject:
   - component: {fileID: 3307753614163098454}
   - component: {fileID: 6587194223641560078}
   - component: {fileID: 1439161467440231347}
-  - component: {fileID: 3314279967288258210}
   m_Layer: 7
   m_Name: Galtzagorri
   m_TagString: Enemy
@@ -258,7 +257,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7135554547026302137}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 0.24
   m_Speed: 10
   m_Acceleration: 100
@@ -284,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e71dc13f88434498e28866ab0ac785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FacingRight: 0
   basicEnemyData: {fileID: 11400000, guid: 5144410f825c2e846a5f8e903fe19d89, type: 2}
   hideouts:
   - {fileID: 0}
@@ -292,7 +292,7 @@ MonoBehaviour:
   scriptGaltzHideout: {fileID: 6174979746416191203}
   _waiting: 0
   _waitingForPlayer: 0
-  _lastAvailablePosition: {x: 0, y: 0, z: 0}
   _hiding: 0
   _hidden: 0
   _attacking: 0
+  animator: {fileID: 1823551605130537553}

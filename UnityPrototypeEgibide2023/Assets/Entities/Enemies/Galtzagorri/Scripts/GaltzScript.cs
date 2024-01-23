@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using General.Scripts;
+using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
@@ -30,29 +31,41 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         private Rigidbody2D _rb2D;
     
         // Variable para que espere X segundos al aparecer
-        [SerializeField] private bool _waiting;
+        [SerializeField]private bool _waiting;
     
         // Variable para que espere X segundos hasta irse a un escondite (por si el Player está saltando, etc)
-        [SerializeField] private bool _waitingForPlayer;
+        [SerializeField]private bool _waitingForPlayer;
     
         // Variable para que vaya a la última posición conocida del jugador
-        [SerializeField] private Vector3 _lastAvailablePosition;
+        private Vector3 _lastAvailablePosition;
     
         // Variable que controla si está en proceso de esconderse
-        [SerializeField] private bool _hiding;
+        [SerializeField]private bool _hiding;
     
         // Variable que controla si está escondido
-        [SerializeField] private bool _hidden;
+        [SerializeField]private bool _hidden;
     
         // Variable que controla si setá atacando
-        [SerializeField] private bool _attacking;
+        [SerializeField]private bool _attacking;
         
-        
+        // Referencia al animator
+        [SerializeField] private Animator animator;
 
+        // Pasar nombre de booleanos a "IDs" para ahorrarnos comparaciones de strings
+        private static readonly int IsIdle1 = Animator.StringToHash("IsIdle1");
+        private static readonly int IsIdle2 = Animator.StringToHash("IsIdle2");
+        private static readonly int IsIdleOut = Animator.StringToHash("IsIdleOut");
+        private static readonly int IsRunning = Animator.StringToHash("IsRunning");
+        private static readonly int IsJumping = Animator.StringToHash("IsJumping");
+        private static readonly int IsHurt = Animator.StringToHash("IsHurt");
+        private static readonly int IsDead = Animator.StringToHash("IsDead");
+
+        
         void Start()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _rb2D = GetComponent<Rigidbody2D>();
+            
             // Añadir una aceleración random para que no haya problemas de que se stackeen
             _navMeshAgent.acceleration = Random.Range(15, 30);
 
@@ -67,7 +80,6 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         {
             if (CanReachPlayer())
             {
-                Debug.LogError("Llego al jugador");
                 // TODO: Animacion Run
                 CancelInvoke(nameof(Hide));
                 _waitingForPlayer = false;
@@ -175,7 +187,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         {
             if (Vector3.Distance(other.gameObject.transform.position, _navMeshAgent.destination) < 1 && _hiding)
             {
-                // TODO: Animacion Idle
+                Debug.Log("ACTIVATE HIDING");
                 _navMeshAgent.isStopped = true;
                 _rb2D.velocity = new Vector2(0, 0);
                 _hiding = false;
@@ -201,10 +213,16 @@ namespace Entities.Enemies.Galtzagorri.Scripts
     
         public override void OnDeath()
         {
-            // TODO Activar animacion de muerte y logica relacionada
-        
+            // TODO Logica de muerte relacionada
+            animator.SetBool(IsIdle1, false);
+            animator.SetBool(IsHurt, false);
+            animator.SetBool(IsIdle2, false);
+            animator.SetBool(IsRunning, false);
+            animator.SetBool(IsJumping, false);
+            animator.SetBool(IsIdleOut, false);
+            animator.SetBool(IsDead, true);
+            
             Invoke(nameof(DestroyThis),2f);
-        
         }
 
         private void DestroyThis()
