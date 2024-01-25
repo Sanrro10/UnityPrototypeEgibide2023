@@ -9,6 +9,7 @@ public class SceneChangeTrigger : MonoBehaviour
 {
     [SerializeField] private SceneObject scene;
     [SerializeField] private Vector3 spawnPoint;
+    [SerializeField] private Vector3 goToPosition;
     private GameController.SPlayerSpawnData _spawnData;
 
     private void Awake()
@@ -16,6 +17,7 @@ public class SceneChangeTrigger : MonoBehaviour
         _spawnData = new GameController.SPlayerSpawnData();
         _spawnData.Scene = scene;
         _spawnData.Position = spawnPoint;
+        _spawnData.GoToPosition = goToPosition;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -82,6 +82,8 @@ namespace Entities.Player.Scripts
                 [SerializeField] private Audios _playerAudios;
 
                 private AudioSource _audioSource;
+
+                private GameController.SPlayerSpawnData _sPlayerSpawnData;
         
                 //Potion UI
                 private bool _onPotionCooldown;
@@ -595,7 +597,27 @@ namespace Entities.Player.Scripts
                         GameController.Instance.SceneLoad(GameController.Instance.GetCheckpoint(),true);
                         //gameControler.GetComponent<GameController>().SceneLoad(gameControler.GetComponent<GameController>().GetCheckpoint());
                 }
-        
+
+                public void OnSceneChange(GameController.SPlayerSpawnData playerSpawnData)
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.SceneChangeState);
+                        SetSPlayerSpawnData(playerSpawnData);
+                }
+
+                public void ForceMove(bool fRight)
+                {
+                        if (!fRight)
+                        {
+                                //animator.SetBool("IsFlipped",false);
+                                FacingRight = false;
+                        }
+                        else
+                        {
+                                //animator.SetBool("IsFlipped" , true);
+                                FacingRight = true;
+                        }
+                        Move();
+                }
                 // -------------- COROUTINES -----------------
 
                 public IEnumerator PotionCooldownSlider()
@@ -709,7 +731,17 @@ namespace Entities.Player.Scripts
                 {
                         Rb.gravityScale = i;
                 }
-        
+
+                public GameController.SPlayerSpawnData GetSPlayerSpawnData()
+                {
+                        return _sPlayerSpawnData;
+                }
+
+                public void SetSPlayerSpawnData(GameController.SPlayerSpawnData spsd)
+                {
+                        _sPlayerSpawnData = spsd;
+                }
+
                 // --------------- EVENTS ----------------------
 
                 public IEnumerator MaxJumpDuration()
