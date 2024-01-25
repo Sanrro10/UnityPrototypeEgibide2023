@@ -43,6 +43,7 @@ namespace Entities.Player.Scripts
                 public bool isInMiddleOfAttack = false;
                 public float friction;
                 public bool isStunned = false;
+                public bool hasReachedSpawnPoint = false;
         
                 // internal state variables
                 public float horizontalSpeed;
