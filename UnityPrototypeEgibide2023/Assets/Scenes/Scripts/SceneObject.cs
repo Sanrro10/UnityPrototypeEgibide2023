@@ -22,6 +22,10 @@ public class SceneObject
     {
         return m_SceneName;
     }
+    public void SetSceneName(string sceneName)
+    {
+        m_SceneName =  sceneName;
+    }
     
 }
 

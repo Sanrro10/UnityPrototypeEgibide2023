@@ -15,12 +15,14 @@ namespace General.Scripts
         //Prueba - Guardado
         //Variable para SaveLoadManager
         private GameData gameData;
+        private string mainSceneName  = "1.0.1 (Tutorial)";
         //Fin: Prueba - Guardado
 
         public GameObject playerPrefab;
 
         public static GameController Instance;
         [SerializeField] private Canvas canvasPausa;
+        [SerializeField] private Canvas canvasGameOver;
         [SerializeField] private PlayerData playerData;
         private GameObject _jugador;
         private bool _useCheckpoint;
@@ -54,6 +56,7 @@ namespace General.Scripts
                 Instance = this;
                 DontDestroyOnLoad(transform.gameObject);
                 DontDestroyOnLoad(canvasPausa);
+                DontDestroyOnLoad(canvasGameOver);
                 //Load data from the save file
                 //LoadData();
                 //Prueba Guardado
@@ -78,6 +81,7 @@ namespace General.Scripts
             else
             {
                 Destroy(canvasPausa.gameObject);
+                Destroy(canvasGameOver.gameObject);
                 Destroy(gameObject);
                 Destroy(_jugador);
                 //canvasPausa.gameObject.SetActive(false);
@@ -142,8 +146,13 @@ namespace General.Scripts
 
         public void SceneLoad(SPlayerSpawnData spawnData, bool useCheckpoint)
         {
+            canvasGameOver.gameObject.SetActive(false);
             _useCheckpoint = useCheckpoint;
             _playerSpawnDataInNewScene = spawnData;
+            if (spawnData.Scene.GetSceneName() == null)
+            {
+                spawnData.Scene.SetSceneName(mainSceneName);
+            }
             SceneManager.LoadScene(spawnData.Scene);
         }
 
@@ -191,6 +200,7 @@ namespace General.Scripts
         public void DeletePersistentElement()
         {
             Destroy(canvasPausa.gameObject);
+            Destroy(canvasGameOver.gameObject);
             Destroy(gameObject);
             Time.timeScale = 1;
         }
@@ -207,7 +217,7 @@ namespace General.Scripts
         public void GameOver()
         {
             Time.timeScale = 0;
-            canvasPausa.gameObject.SetActive(true);
+            canvasGameOver.gameObject.SetActive(true);
         }
     
     }

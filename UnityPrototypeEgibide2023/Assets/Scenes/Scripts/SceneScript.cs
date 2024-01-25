@@ -21,6 +21,9 @@ public class SceneScript : MonoBehaviour
     private Button btnSlot1;
     private Button btnSlot2;
     private Button btnSlot3;
+    private Button btnSlot1Delete;
+    private Button btnSlot2Delete;
+    private Button btnSlot3Delete;
 
     public void Start()
     {
@@ -49,6 +52,7 @@ public class SceneScript : MonoBehaviour
                     {
                         btnSlot1 = button;
                         string slotDataInfo = (gameDatas[0].isValid) ? gameDatas[0].spawnScene.GetSceneName() : textSlotDefault;
+                        bool inNotNewFile = (slotDataInfo.Equals(textSlotDefault)) ? true : false;
                         buttonText.text = slotDataInfo;
                     }
                     if (button.name == "btn_Slot_2")

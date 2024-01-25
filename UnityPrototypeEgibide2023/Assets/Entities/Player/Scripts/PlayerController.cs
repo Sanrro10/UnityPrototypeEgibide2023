@@ -73,6 +73,8 @@ namespace Entities.Player.Scripts
                 private Text healthText;
                 private Text mainText;
                 
+                private bool Invulnerable;
+                private Rigidbody2D _rb;
                 private CapsuleCollider2D _capsule;
       
     
@@ -81,9 +83,7 @@ namespace Entities.Player.Scripts
                 private CinemachineImpulseSource _impulseSource;
 
                 public CinemachineStateDrivenCamera cinemachine;
-
-                private Canvas _canvasPausa;
-
+                
                 [SerializeField] private Audios _playerAudios;
 
                 private AudioSource _audioSource;
@@ -98,6 +98,7 @@ namespace Entities.Player.Scripts
                 public GameObject throwPosition;
         
                 //private AudioSource _audioSource;
+                
                 void Start()
                 {
                         // Audio = 
@@ -584,7 +585,9 @@ namespace Entities.Player.Scripts
                 public override void OnDeath()
                 {
                         DisablePlayerControls();
-                        Invoke(nameof(CallSceneLoad), 1);
+                        GameController.Instance.GameOver();
+                        
+                        //Invoke(nameof(CallSceneLoad), 1);
                 
                         _audioSource.PlayOneShot(_playerAudios.audios[1]);
                         
