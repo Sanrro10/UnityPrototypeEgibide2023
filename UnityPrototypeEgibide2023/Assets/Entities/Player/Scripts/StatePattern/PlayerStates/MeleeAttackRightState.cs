@@ -7,7 +7,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         
         public MeleeAttackRightState(PlayerController player) : base(player)
         {
-            AttackDirection = new Vector2(1, 0.2f);
+            AttackDirection = new Vector2(1, 0.5f);
             KnockbackMultiplier = 1.5f;
         }
 

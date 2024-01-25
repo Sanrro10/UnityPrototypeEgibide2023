@@ -64,12 +64,14 @@ namespace Entities
         {
             attackData.ForEach((attack) =>
             {
+                Debug.Log("Le esta pegando?");
                 if (attack.layer == other.gameObject.layer)
                 {
                     
                     var otherEntity = other.GetComponent<EntityControler>();
                     if (otherEntity == null) return;
                     if (entity != null) OnHit?.Invoke(entity, otherEntity);
+                    Debug.Log("Hit");
                     other.GetComponent<EntityControler>().OnReceiveDamage(attack.damage, attack.knockback, attack.angle, (entity == null ? toTheRight : entity.FacingRight));
                 }
             });

@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
 using General.Scripts;
-using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Entities.Enemies.Galtzagorri.Scripts
