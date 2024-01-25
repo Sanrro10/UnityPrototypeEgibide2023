@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol2 (LOD)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 752c2dfc577690d4abed2ee889fa7516, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -81,24 +85,23 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5537152068166679905}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: -7.7521157, y: 8.060254, z: -39.645782}
-  m_Size: 79.37451
+  m_LocalReferencePoint: {x: 0.005998727, y: 0.048341796, z: 0.0027270876}
+  m_Size: 0.11820656
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.6
+  - screenRelativeHeight: 0.5218281
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6329552025928031412}
-  - screenRelativeHeight: 0.3
+  - screenRelativeHeight: 0.17771094
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 8271663695427154702}
-  - screenRelativeHeight: 0.1
+  - screenRelativeHeight: 0.007354635
     fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 6329552025928031412}
+    renderers: []
   m_Enabled: 1
 --- !u!23 &6329552025928031412 stripped
 MeshRenderer:
