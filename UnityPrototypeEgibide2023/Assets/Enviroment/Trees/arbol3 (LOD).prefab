@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: arbol3 (LOD)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4d8af1736f337004382045293d8216ce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -86,24 +90,23 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4319397709545819960}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
-  m_Size: 1
+  m_LocalReferencePoint: {x: 0.0020077247, y: 0.0538359, z: -0.0016773827}
+  m_Size: 0.1293282
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.6
+  - screenRelativeHeight: 0.6308434
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2373794085693746925}
-  - screenRelativeHeight: 0.3
+  - screenRelativeHeight: 0.06466757
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 4837023213737406271}
-  - screenRelativeHeight: 0.1
+  - screenRelativeHeight: 0.038652573
     fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2373794085693746925}
+    renderers: []
   m_Enabled: 1
 --- !u!1001 &6116199859142816699
 PrefabInstance:
