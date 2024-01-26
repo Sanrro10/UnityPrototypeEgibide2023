@@ -7,8 +7,6 @@ namespace Entities.Player.Scripts
     {
         public float movementSpeed;
         public float jumpPower;
-        public bool facingRight;
-        public float downAttack;
         public float dashSpeed;
         public float dashCooldown;
         public float gravity;
@@ -19,12 +17,11 @@ namespace Entities.Player.Scripts
         public float maxAirHorizontalSpeed;
         public float maxFallSpeed;
         public bool airDashUnlocked = false;
-        public float groundDashDuration;
-        public float collectables;
 
         public int damage;
         public float knockback;
         public float knockbackPotion;
+        public float potionThrowDuration;
         
         public AnimationCurve dashCurve;
         public float airdashForce;

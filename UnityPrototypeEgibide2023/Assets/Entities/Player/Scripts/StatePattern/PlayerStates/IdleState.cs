@@ -48,19 +48,18 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
                 return;
             }
             
-            
-            
-            // if we press the jump button, transition to the jump state
-            
-            // if we press the attack button, transition to the attack state
             if (player.isPerformingMeleeAttack)
             {
                 player.GroundAttack();
                 return;
             }
             
-            // if we press the dash button, transition to the dash state
-            
+            if (player.CanThrowPotion())
+            {
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.ThrowPotionState);
+                return;
+            }
+
             
         }
         

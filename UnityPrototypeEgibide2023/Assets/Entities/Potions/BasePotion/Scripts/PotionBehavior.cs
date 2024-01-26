@@ -1,3 +1,4 @@
+using System;
 using Entities.Player.Scripts;
 using UnityEngine;
 
@@ -5,10 +6,10 @@ namespace Entities.Potions.BasePotion.Scripts
 {
     public class PotionBehavior : EntityControler
     {
-        [SerializeField] private Vector2 spawnForce;
 
         [SerializeField] private BasePotionData data;
-
+        
+        public static event Action<PotionBehavior> OnPotionDestroy;
         private bool _hasBeenHitted = false;
         void Start()
         {
@@ -52,6 +53,7 @@ namespace Entities.Potions.BasePotion.Scripts
         private void Explode()
         {   
             Instantiate(data.explosion, transform.position, Quaternion.identity);
+            OnPotionDestroy?.Invoke(this);
             Destroy(gameObject);
         }
 

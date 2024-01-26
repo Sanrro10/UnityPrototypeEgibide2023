@@ -20,13 +20,6 @@ public class CollectableScript : MonoBehaviour
         
     }
     
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            _playerData.collectables++;
-            Destroy(this.gameObject);
-        }
-    }
+    
     
 }
