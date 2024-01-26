@@ -27,7 +27,7 @@ public class FallingRock_Script : EntityControler
             spawnedExplotion = Instantiate(explotion, transform.position = new Vector3(transform.position.x,transform.position.y,transform.position.z), Quaternion.identity);
             rock.SetActive(false);
             
-            Invoke("DeleteExplotion", 1);
+            //Invoke("DeleteExplotion", 1);
             Invoke("DeleteRock", 1);
 
                       
