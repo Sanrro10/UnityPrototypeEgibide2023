@@ -7,10 +7,12 @@ namespace Entities.Enemies.Galtzagorri.Scripts
     {
         [SerializeField] private GameObject[] galtzagorris;
         
+        
         // Evento que activa el enemigo cuando entra en el rango
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.gameObject.CompareTag("Player")) return;
+            
             foreach (var galtzagorri in galtzagorris)
             {
                 var script = galtzagorri.GetComponent<GaltzScript>();
@@ -23,7 +25,8 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         private void OnTriggerExit2D(Collider2D other)
         {
             if (!other.gameObject.CompareTag("Player")) return;
-            if (other.gameObject.name != "Square") return;
+            if (other.gameObject.name != "EnemyDetection") return;
+            
             foreach (var galtzagorri in galtzagorris)
             {
                 var script = galtzagorri.GetComponent<GaltzScript>();
@@ -31,5 +34,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             }
             
         }
+
+        
     }
 }
