@@ -27,7 +27,7 @@ public class SceneScript : MonoBehaviour
 
     public void Start()
     {
-        gameDatas = SaveLoadManager.ListDataAllGame();
+        fillGameDatas();
     }
 
     private void ChangeScene(string escena)
@@ -43,6 +43,9 @@ public class SceneScript : MonoBehaviour
         if (botones != null)
         {
             Button[] allButtons = botones.GetComponentsInChildren<Button>();
+            bool btn_Slot1_delete = false;
+            bool btn_Slot2_delete = false;
+            bool btn_Slot3_delete = false;
             foreach (Button button in allButtons)
             {
                 TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
@@ -52,20 +55,55 @@ public class SceneScript : MonoBehaviour
                     {
                         btnSlot1 = button;
                         string slotDataInfo = (gameDatas[0].isValid) ? gameDatas[0].spawnScene.GetSceneName() : textSlotDefault;
-                        bool inNotNewFile = (slotDataInfo.Equals(textSlotDefault)) ? true : false;
+                        if (slotDataInfo.Equals(textSlotDefault))
+                        {
+                            btn_Slot1_delete = true;
+                        }
                         buttonText.text = slotDataInfo;
                     }
                     if (button.name == "btn_Slot_2")
                     {
                         btnSlot2 = button;
                         string slotDataInfo = (gameDatas[1].isValid) ? gameDatas[1].spawnScene.GetSceneName(): textSlotDefault;
+                        if (slotDataInfo.Equals(textSlotDefault))
+                        {
+                            btn_Slot2_delete = true;
+                        }
                         buttonText.text = slotDataInfo;
                     }
                     if (button.name == "btn_Slot_3")
                     {
                         btnSlot3 = button;
                         string slotDataInfo = (gameDatas[2].isValid) ? gameDatas[2].spawnScene.GetSceneName() : textSlotDefault;
+                        if (slotDataInfo.Equals(textSlotDefault))
+                        {
+                            btn_Slot3_delete = true;
+                        }
                         buttonText.text = slotDataInfo;
+                    }
+                    if (button.name == "btn_Slot_1_delete")
+                    {
+                        btnSlot1Delete = button;
+                        if (btn_Slot1_delete)
+                        {
+                            button.gameObject.SetActive(false);
+                        }
+                    }
+                    if (button.name == "btn_Slot_2_delete")
+                    {
+                        btnSlot2Delete = button;
+                        if (btn_Slot2_delete)
+                        {
+                            button.gameObject.SetActive(false);
+                        }
+                    }
+                    if (button.name == "btn_Slot_3_delete")
+                    {
+                        btnSlot3Delete = button;
+                        if (btn_Slot3_delete)
+                        {
+                            button.gameObject.SetActive(false);
+                        }
                     }
                 }
             }
@@ -77,6 +115,7 @@ public class SceneScript : MonoBehaviour
     {
         canvasManuPrincipal.gameObject.SetActive(true);
         canvaSlotPartidas.gameObject.SetActive(false);
+        fillGameDatas();
     }
 
     public void showConfirmationDeleteGame()
@@ -106,14 +145,17 @@ public class SceneScript : MonoBehaviour
             if (slot.Equals("1"))
             {
                 btnSlot1.GetComponentInChildren<TMP_Text>().text = textSlotDefault;
+                btnSlot1Delete.gameObject.SetActive(false);
             }
             if (slot.Equals("2"))
             {
                 btnSlot2.GetComponentInChildren<TMP_Text>().text = textSlotDefault;
+                btnSlot2Delete.gameObject.SetActive(false);
             }
             if (slot.Equals("3"))
             {
                 btnSlot3.GetComponentInChildren<TMP_Text>().text = textSlotDefault;
+                btnSlot3Delete.gameObject.SetActive(false);
             }
             hideConfirmationDeleteGame();
         }
@@ -141,5 +183,10 @@ public class SceneScript : MonoBehaviour
     {
         PlayerPrefs.SetString("slot", slot);
         ChangeScene(mainScene);
+    }
+
+    private List<GameData> fillGameDatas()
+    {
+        return gameDatas = SaveLoadManager.ListDataAllGame();
     }
 }

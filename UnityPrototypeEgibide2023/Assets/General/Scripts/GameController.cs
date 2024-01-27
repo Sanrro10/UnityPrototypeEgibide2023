@@ -149,7 +149,7 @@ namespace General.Scripts
             canvasGameOver.gameObject.SetActive(false);
             _useCheckpoint = useCheckpoint;
             _playerSpawnDataInNewScene = spawnData;
-            if (spawnData.Scene.GetSceneName() == null)
+            if (spawnData.Scene.GetSceneName() == null || spawnData.Scene.GetSceneName().Equals("") )
             {
                 spawnData.Scene.SetSceneName(mainSceneName);
             }
@@ -194,7 +194,7 @@ namespace General.Scripts
         public void LoadGame()
         {
             Debug.Log("GameController -> Dentro del metodo LoadGame");
-            SaveLoadManager.LoadGame("");
+            SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
         }
 
         public void DeletePersistentElement()
@@ -219,6 +219,6 @@ namespace General.Scripts
             Time.timeScale = 0;
             canvasGameOver.gameObject.SetActive(true);
         }
-    
+        
     }
 }
