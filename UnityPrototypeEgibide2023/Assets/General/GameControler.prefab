@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6902749216005068649}
   - component: {fileID: 7572438358083942645}
+  - component: {fileID: 1923951380494025171}
   m_Layer: 0
   m_Name: GameControler
   m_TagString: Untagged
@@ -44,6 +45,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea1d769e7400f74fab1c03e12e1d5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FacingRight: 0
   playerPrefab: {fileID: 5937788470338340945, guid: c9d31c634c3c9e344ae14d09c0c65376, type: 3}
   canvasPausa: {fileID: 1723647343670209534, guid: 7336a87f7b351a248bfb54af67f57bef, type: 3}
   playerData: {fileID: 11400000, guid: 250688029bc5ce249ad115649f524455, type: 2}
+--- !u!114 &1923951380494025171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446935457121955194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44672ad16dc07b542bcbdc7239c5d01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidadRotacion: 0.5
