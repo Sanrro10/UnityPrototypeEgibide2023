@@ -180,7 +180,7 @@ namespace Entities.Player.Scripts
 
                 private void ResetPotionCooldown(PotionBehavior entity)
                 {
-                        _onPotionCooldown = false;
+                        StartCoroutine(PotionCooldownSlider());
                 }
 
                 private void FixedUpdate()
@@ -344,6 +344,7 @@ namespace Entities.Player.Scripts
 
                 public void ThrowPotion()
                 {
+                        _sliderPotion.value = 0;
                         _onPotionCooldown = true;
                        Instantiate(selectedPotion, 
                                new Vector2(throwPosition.transform.position.x + (this.FacingRight ? 0.3f : -0.3f), throwPosition.transform.position.y), 
@@ -355,6 +356,7 @@ namespace Entities.Player.Scripts
 
                 public void ThrowPotionAir()
                 {
+                        _sliderPotion.value = 0;
                         _onPotionCooldown = true;
                         float vDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
                         float xPos = throwPosition.transform.position.x + (this.FacingRight ? 0.3f : -0.3f);
@@ -636,7 +638,6 @@ namespace Entities.Player.Scripts
 
                 public IEnumerator PotionCooldownSlider()
                 {
-                        _onPotionCooldown = true;
                         while (_sliderPotion.value < playerData.potionColdownTime)
                         {
                                 _sliderPotion.value += 0.01f;   
