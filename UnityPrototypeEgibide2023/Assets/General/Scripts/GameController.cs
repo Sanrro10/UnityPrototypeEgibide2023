@@ -12,8 +12,6 @@ namespace General.Scripts
 
         private SPlayerSpawnData _lastCheckpoint;
         public SPlayerSpawnData _playerSpawnDataInNewScene;
-
-        private SPlayerSpawnData _playerSpawnDataInNewScene;
         private GameData gameData;
         private string mainSceneName  = "1.0.1 (Tutorial)";
         
