@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7580914593470948707}
   - component: {fileID: 981119560404618474}
   m_Layer: 5
-  m_Name: ButtonMenuPrincipal
+  m_Name: btn_Menu_Principal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 121.31634, y: -98.91637}
+  m_AnchoredPosition: {x: -4.8, y: -33}
   m_SizeDelta: {x: 168.6327, y: 38.6328}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9099363455272324327
@@ -122,17 +122,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RespawnManager, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_TargetAssemblyTypeName: General.Scripts.GameController, Assembly-CSharp
+        m_MethodName: ChangeSceneMenu
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Main menu
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!1 &1083713248619567665
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 1172026929533764793}
   - component: {fileID: 6580926368296130985}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: tmp_Menu_Principal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -329,8 +329,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 2052261530373501967}
   - component: {fileID: 4951782120323613820}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: tmp_Continuar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -463,8 +463,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 3131336341663974957}
   - component: {fileID: 295294650973497890}
   m_Layer: 5
-  m_Name: ButtonContinuar
+  m_Name: btn_Continuar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -541,7 +541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -117.1, y: -98.916}
+  m_AnchoredPosition: {x: -5, y: 18.2}
   m_SizeDelta: {x: 168.6327, y: 38.6328}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8859254153523693979
@@ -627,7 +627,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RespawnManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: General.Scripts.GameController, Assembly-CSharp
         m_MethodName: PauseContinue
         m_Mode: 1
         m_Arguments:
@@ -637,7 +637,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!1 &6356090511384363324
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 4419719867426052986}
   - component: {fileID: 5549080818772075201}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: tmp_Pausa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -670,10 +670,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 624598968160354282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.36963058, y: 0.739}
-  m_AnchorMax: {x: 0.62600005, y: 0.89020866}
-  m_AnchoredPosition: {x: 0.1578064, y: 0.7106018}
-  m_SizeDelta: {x: -0.8506012, y: 1.7276001}
+  m_AnchorMin: {x: 0.36088058, y: 0.610111}
+  m_AnchorMax: {x: 0.61475, y: 0.76577777}
+  m_AnchoredPosition: {x: 4.299988, y: -0.5}
+  m_SizeDelta: {x: 1.1493988, y: -0.2723999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4419719867426052986
 CanvasRenderer:
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

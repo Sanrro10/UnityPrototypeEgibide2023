@@ -28,7 +28,7 @@ namespace Music.Scripts
         {
             _audioSource = GetComponent<AudioSource>();
             Canciones();
-            _audioSource.clip = clips[1];
+            _audioSource.clip = clips[0];
             _audioSource.Play();
 
         
