@@ -14,10 +14,13 @@ namespace Entities.Enemies.Witch.Scripts
         private GameObject _playerGoRef;
         private PlayerController _playerRef;
         private LandWitchData _witchData;
-    
+        private AttackComponent _attackComponent;
+        
         // Start is called before the first frame update
         void Start()
         {
+            _attackComponent = GetComponentInChildren<AttackComponent>();
+            _attackComponent.AddAttackData(new AttackComponent.AttackData(_witchData.magicCircleDamage, 0, new Vector2(0,0), 6, AttackComponent.AttackType.Normal));
             _playerGoRef = GameController.Instance.GetPlayerGameObject();
             _playerRef = GameController.Instance.GetPlayerController();
             _witchData = GameObject.Find("SorginaLand").GetComponent<LandWitch>().landWitchData;
@@ -50,7 +53,7 @@ namespace Entities.Enemies.Witch.Scripts
         {
             //ChangeColor();
             //magicCircleAnimator.SetTrigger("MagicCircleActivate");
-            gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            _attackComponent.ActivateHitbox(_witchData.magicCircleEffectDuration);
             Invoke(nameof(EndOfLife), _witchData.magicCircleEffectDuration);
         }
         private void EndOfLife()
@@ -70,13 +73,5 @@ namespace Entities.Enemies.Witch.Scripts
 
 
         }*/
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.gameObject.CompareTag("Player"))
-            {
-                _playerRef.OnReceiveDamage(_witchData.magicCircleDamage, 0 , Vector2.zero);
-            }
-        }
     }
 }

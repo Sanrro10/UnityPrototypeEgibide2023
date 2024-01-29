@@ -17,11 +17,11 @@ namespace Entities.Potions.BasePotion.Scripts
             InvulnerableTime = 0.2f;
         }
         
-        public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true)
+        public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
         {
             if (!_hasBeenHitted) Rb.velocity = new Vector2();
-            // _hasBeenHitted = true;
-            base.OnReceiveDamage(0, knockback, angle, facingRight);
+            attack.damage = 0;
+            base.OnReceiveDamage(attack, facingRight);
         }
 
         public override void OnDeath()

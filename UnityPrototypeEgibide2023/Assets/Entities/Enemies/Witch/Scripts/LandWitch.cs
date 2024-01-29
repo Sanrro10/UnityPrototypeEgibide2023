@@ -355,9 +355,9 @@ namespace Entities.Enemies.Witch.Scripts
         }
         
         /*Teleports the witch on receiveing damage*/
-        public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true)
+        public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
         {
-            base.OnReceiveDamage(damage, knockback, angle);
+            base.OnReceiveDamage(attack, facingRight);
             StartHitColor();
             Invoke(nameof(AccionateDamageLogic),0);
             Invoke(nameof(EndHitColor), InvulnerableTime);

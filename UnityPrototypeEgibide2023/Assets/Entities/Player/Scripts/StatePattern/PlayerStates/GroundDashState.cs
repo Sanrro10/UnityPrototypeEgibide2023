@@ -21,6 +21,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             player.FlipSprite();
             //player.StartCoroutine((player.DashCooldown()));
             player.StartCoroutine(player.Dash());
+            player.Invulneravility();
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -49,6 +50,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         
         public void Exit()
         {
+            player.EndInvulneravility();
             player.animator.SetBool("IsDash", false);
             player.CancelInvoke(nameof(player.Dash));
             player.StartCoroutine(player.DashCooldown());

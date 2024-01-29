@@ -14,11 +14,10 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 
         public void Enter()
         {
-
-            player.isDashing = true;
             //player.animator.SetTrigger("Dash");
             player.AirDash();
             player.StartCoroutine(player.AirDashDuration());
+            player.StartCoroutine(player.DashCooldown());
             // Debug.Log("Entering Air Dash State");
             // Initialize Dash
         }
@@ -26,22 +25,19 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         // per-frame logic, include condition to transition to a new state
         public void Update()
         {
-            // If we're no longer grounded, transition to the air state
-            
-            
-            // if we press the jump button, transition to the jump state
-            
-            // if we press the attack button, transition to the attack state
-            
-            // if we press the dash button, transition to the dash state
-            
-            
-            
+            if (player.IsGrounded())
+            {
+                if (player.isHoldingHorizontal)
+                    player.PmStateMachine.TransitionTo(player.PmStateMachine.WalkState);
+                else 
+                    player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
+            }
         }
         
         public void Exit()
         {
-            player.isDashing = false;
+            player.StopCoroutine(player.AirDashDuration());
+            
 
         }
     }

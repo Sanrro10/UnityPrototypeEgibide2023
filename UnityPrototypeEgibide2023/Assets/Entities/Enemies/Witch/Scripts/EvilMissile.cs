@@ -14,16 +14,18 @@ namespace Entities.Enemies.Witch.Scripts
         private GameObject _playerRef;
         private LandWitchData _witchData;
         private bool _damageDealt = false;
+        private AttackComponent _attackComponent;
 
         private float _angle;
 
         void Start()
         {
-            
+            _attackComponent = GetComponentInChildren<AttackComponent>();
+            _attackComponent.ActivateHitbox();
             _witchData = GameObject.Find("SorginaLand").GetComponent<LandWitch>().landWitchData;
             _playerRef = GameController.Instance.GetPlayerGameObject();
             _missileBody = gameObject.GetComponent<Rigidbody2D>();
-        
+            _attackComponent.AddAttackData(new AttackComponent.AttackData(_witchData.missileDamage, 0, new Vector2(0,0), 6, AttackComponent.AttackType.Normal));
             Rotacion();
             StartCoroutine(nameof(ApplyForce),0f);
             Invoke(nameof(MaximumAliveTime),15f);
@@ -41,15 +43,7 @@ namespace Entities.Enemies.Witch.Scripts
         /*The missile hits something, if it is the player, damage them, else destroy de missile*/
         void OnCollisionEnter2D(Collision2D collision)
         {
-            if (_damageDealt) return;
-            if (collision.collider.gameObject.CompareTag("Player"))
-            {
-                _damageDealt = true;
-                _playerRef.GetComponent<PlayerController>().OnReceiveDamage(_witchData.missileDamage, 0, Vector2.zero);
-            }
             Explode();
-            
-
         }
 
         /*Launches the Missile Towards the player*/
@@ -66,6 +60,7 @@ namespace Entities.Enemies.Witch.Scripts
 
         private void Explode()
         {   
+            _attackComponent.DeactivateHitbox();
             //Instantiate(explosion, transform.position, Quaternion.identity);
             missileAnimator.SetTrigger("MissileExplode");
             _missileBody.constraints = RigidbodyConstraints2D.FreezeAll;
