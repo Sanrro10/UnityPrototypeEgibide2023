@@ -352,7 +352,12 @@ namespace Entities.Player.Scripts
                 public void ThrowPotion()
                 {
                         _onPotionColdown = true;
-                       Instantiate(selectedPotion, new Vector2(throwPosition.transform.position.x + (this.FacingRight ? 0.3f : -0.3f), throwPosition.transform.position.y) , Quaternion.identity).GetComponent<Rigidbody2D>().velocity = new Vector2((this.FacingRight ? 1 : -1) * 5, 5);
+                       Instantiate(selectedPotion, 
+                               new Vector2(throwPosition.transform.position.x + (this.FacingRight ? 0.3f : -0.3f), throwPosition.transform.position.y), 
+                               Quaternion.identity)
+                               .GetComponent<Rigidbody2D>().velocity = new Vector2(
+                               (!isHoldingVertical ? (this.FacingRight ? 1 : -1) : 0) * 5,
+                               5);
                 }
                 
                 
