@@ -275,10 +275,7 @@ namespace Entities.Enemies.Gizotso.Scripts
             isDying = true;
             
             StopAllCoroutines();
-            CancelInvoke(nameof(TurnAround));
-            CancelInvoke(nameof(PassiveBehavior));
-            CancelInvoke(nameof(Move));
-            CancelInvoke(nameof(Dash));
+            CancelInvoke();
             
             // Animación muerte
             animator.SetBool(IsPreAttack, false);
@@ -288,14 +285,16 @@ namespace Entities.Enemies.Gizotso.Scripts
             animator.SetBool(IsIdle, false);
             animator.SetBool(IsDead, true);
 
-            GameObject playerGameObject = GameController.Instance.GetPlayerGameObject();
+            Rigidbody2D component = GetComponent<Rigidbody2D>();
+            component.isKinematic = true;
+            component.simulated = false;
+            
             PolygonCollider2D gisotzoCollider = gameObject.GetComponent<PolygonCollider2D>();
-            Physics2D.IgnoreCollision(gisotzoCollider, playerGameObject.GetComponent<CapsuleCollider2D>());
+            gisotzoCollider.enabled = false;
             
             AnimationClip currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
             float lengthAnim = currentAnim.length;
             Invoke(nameof(DestroyThis),lengthAnim + 2f);
-            
         }
 
         public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true)
