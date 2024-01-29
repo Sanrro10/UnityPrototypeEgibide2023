@@ -360,7 +360,7 @@ namespace Entities.Enemies.Witch.Scripts
             base.OnReceiveDamage(damage, knockback, angle);
             StartHitColor();
             Invoke(nameof(AccionateDamageLogic),0);
-            Invoke(nameof(EndHitColor), 0.5f);
+            Invoke(nameof(EndHitColor), InvulnerableTime);
         }
 
         /*Calls the delete function on this gameObject*/
