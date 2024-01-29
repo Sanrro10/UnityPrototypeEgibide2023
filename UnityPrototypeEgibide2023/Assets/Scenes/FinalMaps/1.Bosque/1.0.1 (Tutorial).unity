@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 755058875}
-  m_IndirectSpecularColor: {r: 0.490816, g: 0.6817275, b: 0.7858599, a: 1}
+  m_IndirectSpecularColor: {r: 0.49072957, g: 0.68156624, b: 0.78572893, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2780,6 +2780,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
   m_PrefabInstance: {fileID: 181664340}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &565333562
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4046862692306406822, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_Name
+      value: GisotzoRotatePoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 60.83097
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.1755724
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
 --- !u!1001 &580832465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8708,6 +8765,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3756747904083322608, guid: 31e0b5235c4b938419410affe361562a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 89fffaafde4e8e14599c13e4f346436e, type: 2}
     - target: {fileID: 4574948532688236967, guid: 31e0b5235c4b938419410affe361562a, type: 3}
       propertyPath: m_Name
       value: OtsobeltzEnemy
@@ -8788,6 +8849,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc09b5e524fac6242a0fc369ca813e80, type: 3}
+--- !u!1001 &1657909274
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4046862692306406822, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_Name
+      value: GisotzoRotatePoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 76.05745
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.17557
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
 --- !u!4 &1664483659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8285205736366998151, guid: e4193518acfbca6478c03760deb5e239, type: 3}
@@ -11234,3 +11352,5 @@ SceneRoots:
   - {fileID: 2120437556}
   - {fileID: 510190445}
   - {fileID: 1464235056}
+  - {fileID: 565333562}
+  - {fileID: 1657909274}

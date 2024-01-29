@@ -44,7 +44,8 @@ namespace Entities.Enemies.Gizotso.Scripts
         // Variable que indica dónde se va a mover
         private Vector2 _target;
 
-        private bool isDying;
+        // Variable que controla el estado de muerte
+        private bool _isDying;
         
         // Pasar nombre de booleanos a "IDs" para ahorrarnos comparaciones de strings
         private static readonly int IsIdle = Animator.StringToHash("IsIdle");
@@ -134,7 +135,7 @@ namespace Entities.Enemies.Gizotso.Scripts
         public void PrepareAttack()
         {
             // Emprezar corutina de ataque si no está atacando ya
-            if (!_attacking && !_onCooldown && !isDying)
+            if (!_attacking && !_onCooldown && !_isDying)
             {
                 CancelInvoke(nameof(Move));
                 StartCoroutine(nameof(Attack));
@@ -217,7 +218,6 @@ namespace Entities.Enemies.Gizotso.Scripts
         // Metodo que mueve al enemigo durante la animación del ataque
         private void Dash()
         {
-           
             if (_goingRight)
             {
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + 0.1f, transform.position.y), 0.1f);
@@ -230,7 +230,7 @@ namespace Entities.Enemies.Gizotso.Scripts
     
         public override void OnDeath()
         {
-            isDying = true;
+            _isDying = true;
             
             StopAllCoroutines();
             CancelInvoke();
