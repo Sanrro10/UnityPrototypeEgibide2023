@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FacingRight: 0
-  spawnForce: {x: 0, y: 0}
   data: {fileID: 11400000, guid: fd4bff5ad469ba34e857f2e11e7f329d, type: 2}
 --- !u!50 &6219639733953650332
 Rigidbody2D:
@@ -75,7 +74,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &616642016375442671
 CircleCollider2D:

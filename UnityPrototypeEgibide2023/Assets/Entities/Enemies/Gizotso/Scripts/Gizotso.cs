@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
+using Entities.Enemies.Galtzagorri.Scripts;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace Entities.Enemies.Gizotso.Scripts
 {
@@ -22,16 +25,22 @@ namespace Entities.Enemies.Gizotso.Scripts
         private Vector3 _rightLimitPosition;
     
         // Variable para controlar la direccion
-        private bool _goingRight = true;
-    
-        // Variable para acceder al Navmesh desde todos lados
-        private NavMeshAgent _navMeshAgent;
+        private bool _goingRight;
     
         // Referencia al Animator
         [SerializeField] private Animator animator;
         
         // Referencia al objeto hijo de la hitbox de ataque
         [SerializeField] private GameObject attackHitBox;
+
+        // Variable para controlar la velocidad
+        [SerializeField] private float speed = 0.05f;
+        
+        // Variable que controla si está rotado
+        private bool _rotated;
+        
+        // Variable que indica dónde se va a mover
+        private Vector2 _target;
         
         // Pasar nombre de booleanos a "IDs" para ahorrarnos comparaciones de strings
         private static readonly int IsIdle = Animator.StringToHash("IsIdle");
@@ -43,18 +52,29 @@ namespace Entities.Enemies.Gizotso.Scripts
 
         void Start()
         {
-            _navMeshAgent = GetComponent<NavMeshAgent>();
+            // Añadir vida
+            Health.Set(passiveEnemyData.health);
             
+            // Coger las coordenadas de su límite derecho
             var rightLimit = gameObject.transform.Find("RightLimit");
             _rightLimitPosition = rightLimit.position;
 
+            // Coger las coordenadas de su límite izquierdo
             var leftLimit = gameObject.transform.Find("LeftLimit");
             _leftLimitPosition = leftLimit.position;
+
+            // Establecer que su target inicial sea el izquierdo
+            _target = _leftLimitPosition;
         
-            //Set the Health Points
-            gameObject.GetComponent<HealthComponent>().SendMessage("Set", passiveEnemyData.health);
-        
-            InvokeRepeating(nameof(PassiveBehavior), 0f, 0.1f);
+            // Empezar el comportamiento
+            InvokeRepeating(nameof(PassiveBehavior), 0f, 0.3f);
+            InvokeRepeating(nameof(Move), 0f, 0.01f);
+        }
+
+        private void Move()
+        {
+            // Mover el gisotzo al target
+            transform.position = Vector2.MoveTowards(transform.position, _target, speed);
         }
     
         private void PassiveBehavior()
@@ -69,16 +89,14 @@ namespace Entities.Enemies.Gizotso.Scripts
             animator.SetBool(IsHurt,false);
             animator.SetBool(IsDead, false);
             animator.SetBool(IsIdle, true);
-            
-            // Cambia de dirección
-            _navMeshAgent.SetDestination(_goingRight ? _rightLimitPosition : _leftLimitPosition);
-            
+
             // Comprobar si ha llegado al límite izquierdo
             if (Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
             {
                 _onCooldown = true;
                 _goingRight = true;
-                StartCoroutine(nameof(Turn));
+                _target = _rightLimitPosition;
+                StartCoroutine(nameof(Rotate));
                 return;
             }
             
@@ -87,15 +105,43 @@ namespace Entities.Enemies.Gizotso.Scripts
             {
                 _onCooldown = true;
                 _goingRight = false;
-                StartCoroutine(nameof(Turn));
+                _target = _leftLimitPosition;
+                StartCoroutine(nameof(Rotate));
             }
         }
 
         // Pequeña corutina para que mientres gire no pueda atacar al jugador
-        private IEnumerator Turn()
+        private IEnumerator Rotate()
         {
-            yield return new WaitForSeconds(0.75f);
+            //_audioSource.clip = audioData.audios[1];
+            //_audioSource.Play();
+            _rotated = false;
+            CancelInvoke(nameof(TurnAround));
+            InvokeRepeating(nameof(TurnAround),0f, 0.1f);
+            yield return new WaitUntil(() => _rotated);
             _onCooldown = false;
+            CancelInvoke(nameof(TurnAround));
+        }
+
+        // Metodo que hace que se de la vuelta
+        private void TurnAround()
+        {
+            int newEulerY;
+            if (_goingRight)
+            {
+                transform.eulerAngles = new Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y - 30, transform.rotation.eulerAngles.z);
+                newEulerY = (int)transform.rotation.eulerAngles.y;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y + 30, transform.rotation.eulerAngles.z);
+                newEulerY = (int)transform.rotation.eulerAngles.y;
+            }
+        
+            if (newEulerY % 180 == 0 || newEulerY == 0)
+            {
+                _rotated = true;
+            } 
         }
 
         public void Attack()
@@ -103,6 +149,8 @@ namespace Entities.Enemies.Gizotso.Scripts
             // Emprezar corutina de ataque si no está atacando ya
             if (!_attacking && !_onCooldown)
             {
+                CancelInvoke(nameof(PassiveBehavior));
+                CancelInvoke(nameof(Move));
                 StartCoroutine(nameof(Cooldown));
             }
         }
@@ -112,9 +160,6 @@ namespace Entities.Enemies.Gizotso.Scripts
             // Control de estados
             _attacking = true;
             _onCooldown = true;
-            
-            // Para el NavMesh para que deje de andar
-            _navMeshAgent.isStopped = true;
             
             // Animacion Pre-Ataque
             animator.SetBool(IsIdle, false);
@@ -136,10 +181,18 @@ namespace Entities.Enemies.Gizotso.Scripts
             // Activar hitbox de ataque
             attackHitBox.SetActive(true);
             
-            // Hacer que se mueva un poco durante la animación de ataque
-            InvokeRepeating(nameof(Dash),0f,0.05f);
-            yield return new WaitForSeconds(lengthAnim);
-            CancelInvoke(nameof(Dash));
+            // Hacer que se mueva un poco durante la animación de ataque si el jugador se a alejado
+            var script = GetComponentInChildren<GizotsoActiveZone>();
+            if (!script.PlayerInside)
+            {
+                InvokeRepeating(nameof(Dash),0f,0.05f);
+                yield return new WaitForSeconds(lengthAnim);
+                CancelInvoke(nameof(Dash));
+            }
+            else
+            {
+                yield return new WaitForSeconds(lengthAnim);
+            }
             
             // Desactivar hitbox de ataque
             attackHitBox.SetActive(false);
@@ -152,9 +205,17 @@ namespace Entities.Enemies.Gizotso.Scripts
             lengthAnim = currentAnim.length;
             
             attackHitBox.SetActive(true);
-            InvokeRepeating(nameof(Dash),0f,0.05f);
-            yield return new WaitForSeconds(lengthAnim);
-            CancelInvoke(nameof(Dash));
+            
+            if (!script.PlayerInside)
+            {
+                InvokeRepeating(nameof(Dash),0f,0.05f);
+                yield return new WaitForSeconds(lengthAnim);
+                CancelInvoke(nameof(Dash));
+            }
+            else
+            {
+                yield return new WaitForSeconds(lengthAnim);
+            }
             
             // Desactivar hitbox de ataque
             attackHitBox.SetActive(false);
@@ -164,23 +225,25 @@ namespace Entities.Enemies.Gizotso.Scripts
             //animator.SetBool(IsHurt, true);
             
             // TODO: Tiempo que va a estar stuneado
-            yield return new WaitForSeconds(0.1f);
-        
-            // Volver a activar el NavMesh para que se mueve
-            _navMeshAgent.isStopped = false;
+            yield return new WaitForSeconds(1.5f);
+            
             //animator.SetBool(IsHurt, false);
             animator.SetBool(IsIdle, true);
             
             _attacking = false;
             
             // Tiempo hasta que puede hacer otro ataque para que no se quede en bucle atacando
-            yield return new WaitForSeconds(1f);
+            //yield return new WaitForSeconds(1f);
             _onCooldown = false;
+            
+            InvokeRepeating(nameof(PassiveBehavior), 0f, 0.1f);
+            InvokeRepeating(nameof(Move), 0f, 0.01f);
         }
 
         // Metodo que mueve al enemigo durante la animación del ataque
         private void Dash()
         {
+           
             if (_goingRight)
             {
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + 0.1f, transform.position.y), 0.1f);
@@ -206,7 +269,7 @@ namespace Entities.Enemies.Gizotso.Scripts
             
             AnimationClip currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
             float lengthAnim = currentAnim.length;
-            Invoke(nameof(DestroyThis),lengthAnim);
+            Invoke(nameof(DestroyThis),lengthAnim + 2f);
             
         }
 

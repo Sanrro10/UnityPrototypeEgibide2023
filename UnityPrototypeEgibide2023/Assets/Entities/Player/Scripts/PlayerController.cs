@@ -7,6 +7,7 @@ using General.Scripts;
 using StatePattern;
 using UnityEngine;
 using UnityEngine.UI;
+using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 
 namespace Entities.Player.Scripts
@@ -88,8 +89,11 @@ namespace Entities.Player.Scripts
                 //Potion UI
                 private bool _onPotionColdown;
                 private Slider _sliderPotion;
-                //Potion Prefab
-                public GameObject potion;
+                
+                //Potion 
+                public GameObject[] potionList;
+                public GameObject selectedPotion;
+                public GameObject throwPosition;
         
                 //private AudioSource _audioSource;
                 void Start()
@@ -107,7 +111,12 @@ namespace Entities.Player.Scripts
                         // Initialize the state machine
                         PmStateMachine = new PlayerMovementStateMachine(this);
                         PmStateMachine.Initialize(PmStateMachine.IdleState);
+                        
+                        // Subscribe to events
                         AttackComponent.OnHit += OnHit;
+                        PotionBehavior.OnPotionDestroy += ResetPotionCooldown;
+                        
+                        
                         //Inputs
                         _controls.GeneralActionMap.HorizontalMovement.started += ctx => isHoldingHorizontal = true;
                         _controls.GeneralActionMap.HorizontalMovement.canceled += ctx => isHoldingHorizontal = false;
@@ -166,6 +175,11 @@ namespace Entities.Player.Scripts
 
                 }
 
+                private void ResetPotionCooldown(PotionBehavior entity)
+                {
+                        _onPotionColdown = false;
+                }
+
                 private void FixedUpdate()
                 {
                         //Debug.Log(IsGrounded());
@@ -217,23 +231,23 @@ namespace Entities.Player.Scripts
                                 Rb.AddForce(new Vector2((this.FacingRight ?  3000 : -3000), 0));
                                 return;
                         }
-
+                        
+                        if (victim is PotionBehavior) return;
                         if (PmStateMachine.CurrentState == PmStateMachine.MeleeAttackLeftState)
                         {
                                 Rb.AddForce(new Vector2(1500, 0));
                                 return;
                         }
-
-                        if (victim is PotionBehavior) return;
                         if (PmStateMachine.CurrentState == PmStateMachine.MeleeAttackRightState)
                         {
                                 Rb.AddForce(new Vector2(-1500, 0));
                                 return;
                         }
+                        
                 }
                 
                 private void SetOnHitPushback()
-                {
+                { 
                         onHitPushback = false;
                 }
 
@@ -335,30 +349,24 @@ namespace Entities.Player.Scripts
                 
                 }
 
+                public void ThrowPotion()
+                {
+                        _onPotionColdown = true;
+                       Instantiate(selectedPotion, 
+                               new Vector2(throwPosition.transform.position.x + (this.FacingRight ? 0.3f : -0.3f), throwPosition.transform.position.y), 
+                               Quaternion.identity)
+                               .GetComponent<Rigidbody2D>().velocity = new Vector2(
+                               (!isHoldingVertical ? (this.FacingRight ? 1 : -1) : 0) * 5,
+                               5);
+                }
+                
+                
+
                 public void EndThrowPotion()
                 {
                         if (isHoldingHorizontal)
                         {
                                 PmStateMachine.TransitionTo(PmStateMachine.WalkState);
-                                return;
-                        }
-
-                        if (CanDash())
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.GroundDashState);
-                                return;
-                        }
-
-                        if (isPerformingJump)
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.JumpState);
-                                return;
-                        }
-
-                        if (!IsGrounded())
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.AirState);
-                
                                 return;
                         }
                         
@@ -389,6 +397,11 @@ namespace Entities.Player.Scripts
                         }
 
                         return false;
+                }
+
+                public bool CanThrowPotion()
+                {
+                        return !_onPotionColdown && isPerformingPotionThrow;
                 }
 
                 public void FlipSprite()

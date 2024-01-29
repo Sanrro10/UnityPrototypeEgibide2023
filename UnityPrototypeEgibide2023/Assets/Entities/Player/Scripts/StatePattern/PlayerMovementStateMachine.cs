@@ -31,6 +31,7 @@ namespace StatePattern
         public AirMeleeAttackBackwardState AirMeleeAttackBackwardState;
         public AirMeleeAttackUpState AirMeleeAttackUpState;
         public AirMeleeAttackDownState AirMeleeAttackDownState;
+        public ThrowPotionState ThrowPotionState;
         public StunnedState StunnedState;
         
         // Constructor
@@ -50,6 +51,7 @@ namespace StatePattern
             this.AirMeleeAttackBackwardState = new AirMeleeAttackBackwardState(player);
             this.AirMeleeAttackUpState = new AirMeleeAttackUpState(player);
             this.AirMeleeAttackDownState = new AirMeleeAttackDownState(player);
+            this.ThrowPotionState = new ThrowPotionState(player);
             this.StunnedState = new StunnedState(player);
         }
         
