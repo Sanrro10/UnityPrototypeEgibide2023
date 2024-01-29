@@ -15,7 +15,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public void Enter()
         {
             // Debug.Log("Entering Ground Dash State");
-            
+            player.Invulneravility();
             player.isDashing = true;
             player.animator.SetBool("IsDash", true);
             player.FlipSprite();
@@ -53,7 +53,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             player.CancelInvoke(nameof(player.Dash));
             player.StartCoroutine(player.DashCooldown());
             player.isDashing = false;
-            
+            player.EndInvulneravility();
             // Debug.Log("Exiting Dash State");
         }
     }

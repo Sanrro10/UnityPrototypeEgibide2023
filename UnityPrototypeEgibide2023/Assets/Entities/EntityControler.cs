@@ -28,7 +28,6 @@ namespace Entities
         { 
             if (Invulnerable) return;
            Health.RemoveHealth(damage); 
-           Debug.Log("Damage:" + damage);
            Invulnerable = true;
            Invoke(nameof(DamageCooldown), InvulnerableTime);
            Push(knockback, angle, toTheRight);

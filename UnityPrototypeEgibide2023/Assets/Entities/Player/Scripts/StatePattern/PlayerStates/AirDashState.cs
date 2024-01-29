@@ -19,6 +19,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             //player.animator.SetTrigger("Dash");
             player.AirDash();
             player.StartCoroutine(player.AirDashDuration());
+            player.StartCoroutine(player.AirDashCooldown());
             // Debug.Log("Entering Air Dash State");
             // Initialize Dash
         }
@@ -27,7 +28,13 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public void Update()
         {
             // If we're no longer grounded, transition to the air state
-            
+            if (player.IsGrounded())
+            {
+                if (player.isHoldingHorizontal)
+                    player.PmStateMachine.TransitionTo(player.PmStateMachine.WalkState);
+                else
+                    player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
+            }
             
             // if we press the jump button, transition to the jump state
             
@@ -41,6 +48,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         
         public void Exit()
         {
+            player.StopCoroutine(player.AirDashDuration());
             player.isDashing = false;
 
         }

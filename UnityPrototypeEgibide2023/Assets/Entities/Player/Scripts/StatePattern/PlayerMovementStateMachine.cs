@@ -34,6 +34,7 @@ namespace StatePattern
         public ThrowPotionState ThrowPotionState;
         public AirThrowPotionState AirThrowPotionState;
         public StunnedState StunnedState;
+        public SceneChangeState SceneChangeState;
         
         // Constructor
         public PlayerMovementStateMachine(PlayerController player)
@@ -55,6 +56,7 @@ namespace StatePattern
             this.ThrowPotionState = new ThrowPotionState(player);
             this.AirThrowPotionState = new AirThrowPotionState(player);
             this.StunnedState = new StunnedState(player);
+            this.SceneChangeState = new SceneChangeState(player);
         }
         
         public void Initialize(IState startingState)

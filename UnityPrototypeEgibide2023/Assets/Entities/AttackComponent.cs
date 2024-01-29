@@ -60,11 +60,10 @@ namespace Entities
             Invoke(nameof(DeactivateHitbox), time);
         }
     
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerStay2D(Collider2D other)
         {
             attackData.ForEach((attack) =>
             {
-                Debug.Log("Le esta pegando?");
                 if (attack.layer == other.gameObject.layer)
                 {
                     

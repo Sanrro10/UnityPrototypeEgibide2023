@@ -5191,6 +5191,7 @@ GameObject:
   - component: {fileID: 5702428252875769023}
   - component: {fileID: 4182883581044624387}
   - component: {fileID: 6831281896471143431}
+  - component: {fileID: 3576957980679103368}
   m_Layer: 7
   m_Name: OtsobeltzEnemy
   m_TagString: Enemy
@@ -5359,6 +5360,41 @@ PolygonCollider2D:
       - {x: -0.39832926, y: -0.14445949}
       - {x: 0.050812125, y: 1.6777897}
   m_UseDelaunayMesh: 0
+--- !u!70 &3576957980679103368
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4574948532688236967}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.11500931, y: 0.63}
+  m_Size: {x: 1.0277634, y: 3.2232103}
+  m_Direction: 0
 --- !u!1 &6670235177131237164
 GameObject:
   m_ObjectHideFlags: 0
