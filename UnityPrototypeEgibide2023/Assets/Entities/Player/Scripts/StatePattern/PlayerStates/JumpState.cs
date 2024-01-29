@@ -42,9 +42,9 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
                 player.AirAttack();
             }
             
-            if (player.isHoldingHorizontal)
+            if (player.CanThrowPotion())
             {
-                player.AirMove();
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.AirThrowPotionState);
                 return;
             }
             

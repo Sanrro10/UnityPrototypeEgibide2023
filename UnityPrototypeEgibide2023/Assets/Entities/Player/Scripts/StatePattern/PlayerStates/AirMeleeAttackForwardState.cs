@@ -45,7 +45,6 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             Player.CancelInvoke(nameof(Player.EndAirAttack));
             Player.animator.SetBool("IsAAForwardRight", false);
             Player.animator.SetBool("IsAAForwardLeft", false);
-            Player.canAttack = true;
             Player.isInMiddleOfAirAttack = false;
 
             Debug.Log("Entering Air Forward Attack State");

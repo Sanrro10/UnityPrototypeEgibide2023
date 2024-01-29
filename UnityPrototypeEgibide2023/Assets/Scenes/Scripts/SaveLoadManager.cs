@@ -23,6 +23,7 @@ public class SaveLoadManager
 
     public static GameData LoadGame(string slotForFile)
     {
+        
         string path = Application.persistentDataPath + "/" + nameFile + slotForFile + extensionFile ;
         if (File.Exists(path))
         {

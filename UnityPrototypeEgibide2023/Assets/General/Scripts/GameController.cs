@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 
 namespace General.Scripts
 {
-    public class GameController : EntityControler
+    public class GameController : MonoBehaviour
     {
 
         private SPlayerSpawnData _lastCheckpoint;
-        private SPlayerSpawnData _playerSpawnDataInNewScene;
+        public SPlayerSpawnData _playerSpawnDataInNewScene;
         private GameData gameData;
         private string mainSceneName  = "1.0.1 (Tutorial)";
         
@@ -29,6 +29,7 @@ namespace General.Scripts
         {
             public Vector3 Position;
             public SceneObject Scene;
+            public Vector3 GoToPosition;
         }
     
         // Start is called before the first frame update
@@ -46,7 +47,16 @@ namespace General.Scripts
     
         void Awake()
         {
-
+            if (canvasPausa == null)
+            {
+                canvasPausa = GameObject.Find("CanvasPausa").GetComponent<Canvas>();
+            }
+            if (canvasGameOver == null)
+            {
+                canvasGameOver = GameObject.Find("CanvasGameOver").GetComponent<Canvas>();
+            }
+            canvasPausa.gameObject.SetActive(false);
+            canvasGameOver.gameObject.SetActive(false);
             Time.timeScale = 1;
             if (Instance == null)
             {
@@ -55,7 +65,7 @@ namespace General.Scripts
                 DontDestroyOnLoad(canvasPausa);
                 DontDestroyOnLoad(canvasGameOver);
                 gameData = SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
-                if (gameData.isValid)
+                if (gameData.isValid && !Application.isEditor)
                 {
                     _lastCheckpoint.Scene = gameData.spawnScene;
                     _lastCheckpoint.Position = gameData.spawnPosition;
@@ -122,6 +132,8 @@ namespace General.Scripts
         public void PlayerSpawnInNewScene()
         {
             GameController.Instance._jugador = Instantiate(playerPrefab, transform.position = Instance._playerSpawnDataInNewScene.Position, Quaternion.identity);
+            GameController.Instance._jugador.SendMessage(nameof(PlayerController.CheckSceneChanged), SendMessageOptions.RequireReceiver);
+            //GameObject.FindWithTag("Player").SendMessage((nameof(PlayerController.OnSceneChange)));
         }
 
         public void SceneLoad(SPlayerSpawnData spawnData, bool useCheckpoint)

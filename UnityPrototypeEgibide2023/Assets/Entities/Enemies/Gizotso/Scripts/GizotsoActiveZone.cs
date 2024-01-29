@@ -14,7 +14,7 @@ namespace Entities.Enemies.Gizotso.Scripts
             if (other.gameObject.name != "EnemyDetection") return;
             _playerInside = true;
             var script = transform.parent.GetComponent<Gizotso>();
-            script.Attack();
+            script.PrepareAttack();
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -29,7 +29,7 @@ namespace Entities.Enemies.Gizotso.Scripts
             if (!other.gameObject.CompareTag("Player")) return;
             if (other.gameObject.name != "EnemyDetection") return;
             var script = transform.parent.GetComponent<Gizotso>();
-            script.Attack();
+            script.PrepareAttack();
         }
 
         public bool PlayerInside => _playerInside;
