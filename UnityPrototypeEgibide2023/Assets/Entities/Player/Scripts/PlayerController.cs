@@ -586,10 +586,8 @@ namespace Entities.Player.Scripts
                 {
                         DisablePlayerControls();
                         GameController.Instance.GameOver();
-                        
                         //Invoke(nameof(CallSceneLoad), 1);
-                
-                        _audioSource.PlayOneShot(_playerAudios.audios[1]);
+                        //_audioSource.PlayOneShot(_playerAudios.audios[1]);
                         
                 }
                 
@@ -765,7 +763,8 @@ namespace Entities.Player.Scripts
                 public void EnableInput()
                 {
                         _controls = new InputActions();
-                
+                }
+
                 public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true) 
                 {
                         base.OnReceiveDamage(damage, knockback, angle, facingRight);
