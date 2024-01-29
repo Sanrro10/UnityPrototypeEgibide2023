@@ -96,7 +96,9 @@ namespace Entities.Player.Scripts
                 public GameObject[] potionList;
                 public GameObject selectedPotion;
                 public GameObject throwPosition;
-        
+                private bool _rotated;
+                private bool _onCooldown;
+
                 //private AudioSource _audioSource;
                 
                 void Start()
@@ -104,7 +106,7 @@ namespace Entities.Player.Scripts
                         // Audio = 
                         _audioSource = GetComponent<AudioSource>();
                         //_force2D = GetComponent<ConstantForce2D>();
-                        animator = GetComponent<Animator>();
+                        animator = GetComponentInChildren<Animator>();
                         _spriteRenderer = GetComponent<SpriteRenderer>();
                         _controls = new InputActions();
                         
@@ -334,6 +336,41 @@ namespace Entities.Player.Scripts
                         }
 
 
+                }
+                
+                // Pequeña corutina para que mientres gire no pueda atacar al jugador
+                private IEnumerator Rotate()
+                {
+                        //_audioSource.clip = audioData.audios[1];
+                        //_audioSource.Play();
+                        _rotated = false;
+                        CancelInvoke(nameof(TurnAround));
+                        InvokeRepeating(nameof(TurnAround),0f, 0.1f);
+                        yield return new WaitUntil(() => _rotated);
+                        _onCooldown = false;
+                        CancelInvoke(nameof(TurnAround));
+                }
+
+                // Metodo que hace que se de la vuelta
+                private void TurnAround()
+                {
+                        int newEulerY;
+                        if (FacingRight)
+                        {
+                                transform.eulerAngles = new UnityEngine.Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y - 30, transform.rotation.eulerAngles.z);
+                                newEulerY = (int)transform.rotation.eulerAngles.y;
+                        }
+                        else
+                        {
+                                transform.eulerAngles = new UnityEngine.Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y + 30, transform.rotation.eulerAngles.z);
+                                newEulerY = (int)transform.rotation.eulerAngles.y;
+                        }
+        
+                        if (newEulerY % 180 == 0 || newEulerY == 0)
+                        {
+                                _rotated = true;
+                                FacingRight = !FacingRight;
+                        } 
                 }
         
                 public bool IsGrounded()
