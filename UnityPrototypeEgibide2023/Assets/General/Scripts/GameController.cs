@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace General.Scripts
 {
-    public class GameController : EntityControler
+    public class GameController : MonoBehaviour
     {
 
         private SPlayerSpawnData _lastCheckpoint;
@@ -46,7 +46,16 @@ namespace General.Scripts
     
         void Awake()
         {
-
+            if (canvasPausa == null)
+            {
+                canvasPausa = GameObject.Find("CanvasPausa").GetComponent<Canvas>();
+            }
+            if (canvasGameOver == null)
+            {
+                canvasGameOver = GameObject.Find("CanvasGameOver").GetComponent<Canvas>();
+            }
+            canvasPausa.gameObject.SetActive(false);
+            canvasGameOver.gameObject.SetActive(false);
             Time.timeScale = 1;
             if (Instance == null)
             {
@@ -55,7 +64,7 @@ namespace General.Scripts
                 DontDestroyOnLoad(canvasPausa);
                 DontDestroyOnLoad(canvasGameOver);
                 gameData = SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
-                if (gameData.isValid)
+                if (gameData.isValid && !Application.isEditor)
                 {
                     _lastCheckpoint.Scene = gameData.spawnScene;
                     _lastCheckpoint.Position = gameData.spawnPosition;
