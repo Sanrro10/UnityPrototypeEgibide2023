@@ -166,7 +166,17 @@ public class SceneScript : MonoBehaviour
         }
 
     }
-
+    
+    public void playGame(string slot)
+    {
+        PlayerPrefs.SetString("slot", slot);
+        ChangeScene(mainScene);
+    }
+    
+    private List<GameData> fillGameDatas()
+    {
+        return gameDatas = SaveLoadManager.ListDataAllGame();
+    }
     public void Exit()
     {
         // save any game data here
@@ -178,15 +188,5 @@ public class SceneScript : MonoBehaviour
             Application.Quit();
         #endif
     }
-
-    public void playGame(string slot)
-    {
-        PlayerPrefs.SetString("slot", slot);
-        ChangeScene(mainScene);
-    }
-
-    private List<GameData> fillGameDatas()
-    {
-        return gameDatas = SaveLoadManager.ListDataAllGame();
-    }
+    
 }

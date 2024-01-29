@@ -12,12 +12,9 @@ namespace General.Scripts
 
         private SPlayerSpawnData _lastCheckpoint;
         private SPlayerSpawnData _playerSpawnDataInNewScene;
-        //Prueba - Guardado
-        //Variable para SaveLoadManager
         private GameData gameData;
         private string mainSceneName  = "1.0.1 (Tutorial)";
-        //Fin: Prueba - Guardado
-
+        
         public GameObject playerPrefab;
 
         public static GameController Instance;
@@ -57,10 +54,6 @@ namespace General.Scripts
                 DontDestroyOnLoad(transform.gameObject);
                 DontDestroyOnLoad(canvasPausa);
                 DontDestroyOnLoad(canvasGameOver);
-                //Load data from the save file
-                //LoadData();
-                //Prueba Guardado
-                
                 gameData = SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
                 if (gameData.isValid)
                 {
@@ -74,8 +67,6 @@ namespace General.Scripts
                     _lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
                     _lastCheckpoint.Position = Vector3.zero;
                 }
-                //Fin: Prueba Guardado
-
             
             }
             else
@@ -84,10 +75,6 @@ namespace General.Scripts
                 Destroy(canvasGameOver.gameObject);
                 Destroy(gameObject);
                 Destroy(_jugador);
-                //canvasPausa.gameObject.SetActive(false);
-                // canvasPausa = GameObject.Find("CanvasPausa").GetComponent<Canvas>();
-                // canvasPausa.gameObject.SetActive(false);
-            
             }
 
             if (!_useCheckpoint)
@@ -98,9 +85,6 @@ namespace General.Scripts
             {
                 PlayerRespawn();
             }
-        
-
-
         }
 
         public GameObject GetPlayerGameObject()
@@ -123,14 +107,10 @@ namespace General.Scripts
         {
             Instance._lastCheckpoint.Position = cordinates;
             Instance._lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
-            //Prueba - Guardado
             gameData.spawnScene = _lastCheckpoint.Scene;
             gameData.spawnPosition = _lastCheckpoint.Position;
             gameData.isValid = true;
             SaveGame();
-            /*Debug.LogWarning("Awake -> GameData.position: " + gameData.spawnPosition);
-            Debug.LogWarning("Awake -> GameData.scene: " + gameData.spawnScene);*/
-            //Fin: Prueba - Guardado
         }
 
         public void PlayerRespawn()
@@ -155,8 +135,6 @@ namespace General.Scripts
             }
             SceneManager.LoadScene(spawnData.Scene);
         }
-
-
         public void ChangeSceneMenu()
         {
             DeletePersistentElement();
@@ -167,9 +145,6 @@ namespace General.Scripts
         {
             SceneManager.LoadScene(escena);
         }
-
-    
-        // Pause Canvas
         public void Pause()
         {
             Time.timeScale = 0;
@@ -184,10 +159,8 @@ namespace General.Scripts
             _jugador.GetComponent<PlayerController>().EnablePlayerControls();
         }
         
-        //Prueba Guardado
         public void SaveGame()
         {
-            //Debug.Log("GameController -> Dentro del metodo SaveGame");
             SaveLoadManager.SaveGame(gameData, PlayerPrefs.GetString("slot"));
         }
         
@@ -196,7 +169,6 @@ namespace General.Scripts
             Debug.Log("GameController -> Dentro del metodo LoadGame");
             SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
         }
-
         public void DeletePersistentElement()
         {
             Destroy(canvasPausa.gameObject);
@@ -204,16 +176,12 @@ namespace General.Scripts
             Destroy(gameObject);
             Time.timeScale = 1;
         }
-
-        //Fin: Prueba Guardado
-    
+        
         public IEnumerator Wait()
         {
             yield return new WaitForSeconds(1);
         }
-    
-        // Pause Game Over
-    
+        
         public void GameOver()
         {
             Time.timeScale = 0;
