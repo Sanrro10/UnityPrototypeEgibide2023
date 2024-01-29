@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Entities.Enemies.Galtzagorri.Scripts;
+using Entities.Player.Scripts;
+using General.Scripts;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -41,6 +44,8 @@ namespace Entities.Enemies.Gizotso.Scripts
         
         // Variable que indica dónde se va a mover
         private Vector2 _target;
+
+        private bool isDying;
         
         // Pasar nombre de booleanos a "IDs" para ahorrarnos comparaciones de strings
         private static readonly int IsIdle = Animator.StringToHash("IsIdle");
@@ -68,6 +73,7 @@ namespace Entities.Enemies.Gizotso.Scripts
         
             // Empezar el comportamiento
             InvokeRepeating(nameof(PassiveBehavior), 0f, 0.3f);
+            InvokeRepeating(nameof(CheckDirection), 0f, 0.03f);
             InvokeRepeating(nameof(Move), 0f, 0.01f);
         }
 
@@ -75,6 +81,19 @@ namespace Entities.Enemies.Gizotso.Scripts
         {
             // Mover el gisotzo al target
             transform.position = Vector2.MoveTowards(transform.position, _target, speed);
+        }
+
+        private void CheckDirection()
+        {
+            if (_goingRight && _target.x < transform.position.x)
+            {
+                StartCoroutine(nameof(Rotate));
+            }
+
+            if (!_goingRight && _target.x > transform.position.x)
+            {
+                StartCoroutine(nameof(Rotate));
+            }
         }
     
         private void PassiveBehavior()
@@ -94,9 +113,7 @@ namespace Entities.Enemies.Gizotso.Scripts
             if (Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
             {
                 _onCooldown = true;
-                _goingRight = true;
                 _target = _rightLimitPosition;
-                StartCoroutine(nameof(Rotate));
                 return;
             }
             
@@ -104,9 +121,7 @@ namespace Entities.Enemies.Gizotso.Scripts
             if (Math.Abs(transform.position.x - _rightLimitPosition.x) < 0.5)
             {
                 _onCooldown = true;
-                _goingRight = false;
                 _target = _leftLimitPosition;
-                StartCoroutine(nameof(Rotate));
             }
         }
 
@@ -141,13 +156,14 @@ namespace Entities.Enemies.Gizotso.Scripts
             if (newEulerY % 180 == 0 || newEulerY == 0)
             {
                 _rotated = true;
+                _goingRight = !_goingRight;
             } 
         }
 
         public void Attack()
         {
             // Emprezar corutina de ataque si no está atacando ya
-            if (!_attacking && !_onCooldown)
+            if (!_attacking && !_onCooldown && !isDying)
             {
                 CancelInvoke(nameof(PassiveBehavior));
                 CancelInvoke(nameof(Move));
@@ -256,8 +272,13 @@ namespace Entities.Enemies.Gizotso.Scripts
     
         public override void OnDeath()
         {
+            isDying = true;
+            
             StopAllCoroutines();
+            CancelInvoke(nameof(TurnAround));
             CancelInvoke(nameof(PassiveBehavior));
+            CancelInvoke(nameof(Move));
+            CancelInvoke(nameof(Dash));
             
             // Animación muerte
             animator.SetBool(IsPreAttack, false);
@@ -266,6 +287,10 @@ namespace Entities.Enemies.Gizotso.Scripts
             animator.SetBool(IsHurt,false);
             animator.SetBool(IsIdle, false);
             animator.SetBool(IsDead, true);
+
+            GameObject playerGameObject = GameController.Instance.GetPlayerGameObject();
+            PolygonCollider2D gisotzoCollider = gameObject.GetComponent<PolygonCollider2D>();
+            Physics2D.IgnoreCollision(gisotzoCollider, playerGameObject.GetComponent<CapsuleCollider2D>());
             
             AnimationClip currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
             float lengthAnim = currentAnim.length;
