@@ -22,11 +22,10 @@ namespace Entities.Enemies.Gizotso.Scripts
         
         // Variable para añadir cooldown al ataque
         private bool _onCooldown;
-    
-        // Posiciones de los límites entre los que andas
-        private Vector3 _leftLimitPosition;
-        private Vector3 _rightLimitPosition;
-    
+        
+        // Variable para controlar la animacion del ataque
+        private bool _attackAnim;
+        
         // Variable para controlar la direccion
         private bool _goingRight;
     
@@ -59,20 +58,18 @@ namespace Entities.Enemies.Gizotso.Scripts
         {
             // Añadir vida
             Health.Set(passiveEnemyData.health);
-            
-            // Coger las coordenadas de su límite derecho
-            var rightLimit = gameObject.transform.Find("RightLimit");
-            _rightLimitPosition = rightLimit.position;
-
-            // Coger las coordenadas de su límite izquierdo
-            var leftLimit = gameObject.transform.Find("LeftLimit");
-            _leftLimitPosition = leftLimit.position;
 
             // Establecer que su target inicial sea el izquierdo
-            _target = _leftLimitPosition;
+            _target = new Vector2(transform.position.x - 1000, transform.position.y);
         
+            animator.SetBool(IsPreAttack, false);
+            animator.SetBool(IsFirstAttack, false);
+            animator.SetBool(IsSecondAttack, false);
+            animator.SetBool(IsHurt,false);
+            animator.SetBool(IsDead, false);
+            animator.SetBool(IsIdle, true);
+            
             // Empezar el comportamiento
-            InvokeRepeating(nameof(PassiveBehavior), 0f, 0.3f);
             InvokeRepeating(nameof(CheckDirection), 0f, 0.03f);
             InvokeRepeating(nameof(Move), 0f, 0.01f);
         }
@@ -85,43 +82,16 @@ namespace Entities.Enemies.Gizotso.Scripts
 
         private void CheckDirection()
         {
+            // Hace girar el gisotzo cuando está yendo a la derecha pero el nuevo target está a la izquierda
             if (_goingRight && _target.x < transform.position.x)
             {
                 StartCoroutine(nameof(Rotate));
             }
 
+            // Hace girar el gisotzo cuando está yendo a la izquierda pero el nuevo target está a la derecha
             if (!_goingRight && _target.x > transform.position.x)
             {
                 StartCoroutine(nameof(Rotate));
-            }
-        }
-    
-        private void PassiveBehavior()
-        {
-            // Si está atacando no se mueve
-            if (_attacking) return;
-            
-            // Animacion Idle, setea el resto de aniamciones a False por si acaso
-            animator.SetBool(IsPreAttack, false);
-            animator.SetBool(IsFirstAttack, false);
-            animator.SetBool(IsSecondAttack, false);
-            animator.SetBool(IsHurt,false);
-            animator.SetBool(IsDead, false);
-            animator.SetBool(IsIdle, true);
-
-            // Comprobar si ha llegado al límite izquierdo
-            if (Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
-            {
-                _onCooldown = true;
-                _target = _rightLimitPosition;
-                return;
-            }
-            
-            // Comprobar si ha llegado al límite derecho
-            if (Math.Abs(transform.position.x - _rightLimitPosition.x) < 0.5)
-            {
-                _onCooldown = true;
-                _target = _leftLimitPosition;
             }
         }
 
@@ -157,21 +127,21 @@ namespace Entities.Enemies.Gizotso.Scripts
             {
                 _rotated = true;
                 _goingRight = !_goingRight;
+                _onCooldown = false;
             } 
         }
 
-        public void Attack()
+        public void PrepareAttack()
         {
             // Emprezar corutina de ataque si no está atacando ya
             if (!_attacking && !_onCooldown && !isDying)
             {
-                CancelInvoke(nameof(PassiveBehavior));
                 CancelInvoke(nameof(Move));
-                StartCoroutine(nameof(Cooldown));
+                StartCoroutine(nameof(Attack));
             }
         }
 
-        private IEnumerator Cooldown()
+        private IEnumerator Attack()
         {
             // Control de estados
             _attacking = true;
@@ -186,15 +156,44 @@ namespace Entities.Enemies.Gizotso.Scripts
             float lengthAnim = currentAnim.length;
             yield return new WaitForSeconds(lengthAnim);
             
-            // Animacion Ataque
+            // Animacion primer ataque
             animator.SetBool(IsPreAttack, false);
             animator.SetBool(IsFirstAttack, true);
+
+            // Primer golpe
+            _attackAnim = false;
+            StartCoroutine(nameof(AttackAnim));
+            yield return new WaitUntil(() => _attackAnim);
             
-            currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
-            lengthAnim = currentAnim.length;
+            // Animación segundo ataque
+            animator.SetBool(IsFirstAttack, false);
+            animator.SetBool(IsSecondAttack, true);
+
+            // Segundo golpe
+            _attackAnim = false;
+            StartCoroutine(nameof(AttackAnim));
+            yield return new WaitUntil(() => _attackAnim);
             
-            /* PRIMER GOLPE */
-            // Activar hitbox de ataque
+            // Animacion de stun
+            animator.SetBool(IsSecondAttack, false);
+            //animator.SetBool(IsHurt, true);
+            
+            // TODO: Tiempo que va a estar stuneado
+            yield return new WaitForSeconds(0.2f);
+            
+            //animator.SetBool(IsHurt, false);
+            animator.SetBool(IsIdle, true);
+            
+            _attacking = false;
+            _onCooldown = false;
+            
+            InvokeRepeating(nameof(Move), 0f, 0.01f);
+        }
+
+        private IEnumerator AttackAnim()
+        {
+            AnimationClip currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+            float lengthAnim = currentAnim.length;
             attackHitBox.SetActive(true);
             
             // Hacer que se mueva un poco durante la animación de ataque si el jugador se a alejado
@@ -209,51 +208,10 @@ namespace Entities.Enemies.Gizotso.Scripts
             {
                 yield return new WaitForSeconds(lengthAnim);
             }
+            _attackAnim = true;
             
             // Desactivar hitbox de ataque
             attackHitBox.SetActive(false);
-            
-            /* SEGUNDO GOLPE (igual que el primero) */
-            animator.SetBool(IsFirstAttack, false);
-            animator.SetBool(IsSecondAttack, true);
-            
-            currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
-            lengthAnim = currentAnim.length;
-            
-            attackHitBox.SetActive(true);
-            
-            if (!script.PlayerInside)
-            {
-                InvokeRepeating(nameof(Dash),0f,0.05f);
-                yield return new WaitForSeconds(lengthAnim);
-                CancelInvoke(nameof(Dash));
-            }
-            else
-            {
-                yield return new WaitForSeconds(lengthAnim);
-            }
-            
-            // Desactivar hitbox de ataque
-            attackHitBox.SetActive(false);
-            
-            // Animacion de stun
-            animator.SetBool(IsSecondAttack, false);
-            //animator.SetBool(IsHurt, true);
-            
-            // TODO: Tiempo que va a estar stuneado
-            yield return new WaitForSeconds(1.5f);
-            
-            //animator.SetBool(IsHurt, false);
-            animator.SetBool(IsIdle, true);
-            
-            _attacking = false;
-            
-            // Tiempo hasta que puede hacer otro ataque para que no se quede en bucle atacando
-            //yield return new WaitForSeconds(1f);
-            _onCooldown = false;
-            
-            InvokeRepeating(nameof(PassiveBehavior), 0f, 0.1f);
-            InvokeRepeating(nameof(Move), 0f, 0.01f);
         }
 
         // Metodo que mueve al enemigo durante la animación del ataque
@@ -309,5 +267,11 @@ namespace Entities.Enemies.Gizotso.Scripts
             Destroy(gameObject);
         }
 
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!other.CompareTag("GisotzoRotatePoint")) return;
+            _onCooldown = true;
+            _target = _goingRight ? new Vector2(transform.position.x - 1000, transform.position.y) : new Vector2(transform.position.x + 1000, transform.position.y);
+        }
     }
 }
