@@ -11,7 +11,6 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 
         private PlayerController player;
         private GameController.SPlayerSpawnData playerSpawnData;
-        private bool facingRight;
 
         public SceneChangeState(PlayerController player)
         {
@@ -28,24 +27,24 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             //check if going right or left
             if (playerSpawnData.Position.x > playerSpawnData.GoToPosition.x)
             {
-                facingRight = false;
+                player.FacingRight = false;
             }
             else
             {
-                facingRight = true;
+                player.FacingRight = true;
             }
+            player.InvokeRepeating(nameof(player.ForceMove), 0, 0.01f);
         }
 
         public void Update()
         {
-            if ((facingRight && player.transform.position.x >= playerSpawnData.GoToPosition.x)
-                || (!facingRight && player.transform.position.x <= playerSpawnData.GoToPosition.x))
+            if ((player.FacingRight && player.transform.position.x >= playerSpawnData.GoToPosition.x)
+                || (!player.FacingRight && player.transform.position.x <= playerSpawnData.GoToPosition.x))
             {
+                player.CancelInvoke(nameof(player.ForceMove));
                 player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
                 return;
             }
-            
-            player.ForceMove(facingRight);
         }
 
         public void Exit()

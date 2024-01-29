@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Entities.Player.Scripts;
+using Entities.Player.Scripts.StatePattern.PlayerStates;
 using General.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,6 +26,10 @@ public class SceneChangeTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if ( other.GetComponent<PlayerController>().PmStateMachine.CurrentState is SceneChangeState)
+            {
+                return;
+            }
             GameController.Instance.SceneLoad(_spawnData,false);
         }
     }

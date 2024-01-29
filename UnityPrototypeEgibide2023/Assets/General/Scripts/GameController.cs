@@ -125,7 +125,8 @@ namespace General.Scripts
         public void PlayerSpawnInNewScene()
         {
             GameController.Instance._jugador = Instantiate(playerPrefab, transform.position = Instance._playerSpawnDataInNewScene.Position, Quaternion.identity);
-            _jugador.SendMessage(nameof(PlayerController.OnSceneChange));
+            GameController.Instance._jugador.SendMessage(nameof(PlayerController.CheckSceneChanged), SendMessageOptions.RequireReceiver);
+            //GameObject.FindWithTag("Player").SendMessage((nameof(PlayerController.OnSceneChange)));
         }
 
         public void SceneLoad(SPlayerSpawnData spawnData, bool useCheckpoint)
