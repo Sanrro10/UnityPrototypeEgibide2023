@@ -11,7 +11,7 @@ namespace General.Scripts
     {
 
         private SPlayerSpawnData _lastCheckpoint;
-        private SPlayerSpawnData _playerSpawnDataInNewScene;
+        public SPlayerSpawnData _playerSpawnDataInNewScene;
         private GameData gameData;
         private string mainSceneName  = "1.0.1 (Tutorial)";
         
@@ -29,6 +29,7 @@ namespace General.Scripts
         {
             public Vector3 Position;
             public SceneObject Scene;
+            public Vector3 GoToPosition;
         }
     
         // Start is called before the first frame update
@@ -122,6 +123,8 @@ namespace General.Scripts
         public void PlayerSpawnInNewScene()
         {
             GameController.Instance._jugador = Instantiate(playerPrefab, transform.position = Instance._playerSpawnDataInNewScene.Position, Quaternion.identity);
+            GameController.Instance._jugador.SendMessage(nameof(PlayerController.CheckSceneChanged), SendMessageOptions.RequireReceiver);
+            //GameObject.FindWithTag("Player").SendMessage((nameof(PlayerController.OnSceneChange)));
         }
 
         public void SceneLoad(SPlayerSpawnData spawnData, bool useCheckpoint)

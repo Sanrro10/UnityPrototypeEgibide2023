@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
+using Vector3 = System.Numerics.Vector3;
 
 namespace Entities.Player.Scripts
 {
@@ -43,6 +44,7 @@ namespace Entities.Player.Scripts
                 public bool isInMiddleOfAttack = false;
                 public float friction;
                 public bool isStunned = false;
+                public bool hasReachedSpawnPoint = false;
         
                 // internal state variables
                 public float horizontalSpeed;
@@ -81,6 +83,9 @@ namespace Entities.Player.Scripts
                 [SerializeField] private Audios _playerAudios;
 
                 private AudioSource _audioSource;
+                
+                //SpawnData
+                private GameController.SPlayerSpawnData _sPlayerSpawnData;
         
                 //Potion UI
                 private bool _onPotionCooldown;
@@ -168,7 +173,9 @@ namespace Entities.Player.Scripts
                 
                         //Check unlocks
                         isAirDashUnlocked = playerData.airDashUnlocked;
-
+                        
+                        //CheckSceneChanged
+                        OnSceneChange();
                 }
 
                 private void ResetPotionCooldown(PotionBehavior entity)
@@ -592,9 +599,39 @@ namespace Entities.Player.Scripts
                 public void CallSceneLoad()
                 {
                         GameController.Instance.SceneLoad(GameController.Instance.GetCheckpoint(),true);
-                        //gameControler.GetComponent<GameController>().SceneLoad(gameControler.GetComponent<GameController>().GetCheckpoint());
+                        //gameController.GetComponent<GameController>().SceneLoad(gameController.GetComponent<GameController>().GetCheckpoint());
                 }
-        
+
+                /*Saves the playerSpawnData so that it can be moved to it's starting position*/
+                public void CheckSceneChanged()
+                {
+                        _sPlayerSpawnData = GameController.Instance._playerSpawnDataInNewScene;
+                }
+                
+                /*Transitions to SceneChangeState which handles player spawn in new scene*/
+                private void OnSceneChange()
+                {
+                        //SetSPlayerSpawnData(playerSpawnData);
+                        PmStateMachine.TransitionTo(PmStateMachine.SceneChangeState);
+                        
+                }
+                
+                /*
+                 * Forces movement of the player when no input is provided and
+                 * it is needed to change its position
+                 */
+                public void ForceMove()
+                {
+                        _spriteRenderer.flipX = !FacingRight;
+                        UnityEngine.Vector3 tempVector3 = transform.position;
+                        float moveStep = 0.1f;
+                        
+                        /*Mira que rico el operador ternario Alejandro :) <3*/
+                        tempVector3.x += (FacingRight ? moveStep : -moveStep);
+                        /*Bua increible lo has visto bien? que bonico UwU*/
+                        gameObject.transform.position = tempVector3;
+  
+                }
                 // -------------- COROUTINES -----------------
 
                 public IEnumerator PotionCooldownSlider()
@@ -708,7 +745,17 @@ namespace Entities.Player.Scripts
                 {
                         Rb.gravityScale = i;
                 }
-        
+
+                public GameController.SPlayerSpawnData GetSPlayerSpawnData()
+                {
+                        return _sPlayerSpawnData;
+                }
+
+                public void SetSPlayerSpawnData(GameController.SPlayerSpawnData spsd)
+                {
+                        _sPlayerSpawnData = spsd;
+                }
+
                 // --------------- EVENTS ----------------------
 
                 public IEnumerator MaxJumpDuration()
