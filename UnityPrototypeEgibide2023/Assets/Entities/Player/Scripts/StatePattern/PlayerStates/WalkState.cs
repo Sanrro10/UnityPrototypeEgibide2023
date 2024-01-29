@@ -24,7 +24,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         {
             // If we're no longer grounded, transition to the air state
             
-
+        
             if (player.isPerformingJump)
             {
                 player.PmStateMachine.TransitionTo(player.PmStateMachine.JumpState);
@@ -51,6 +51,12 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             if (player.isPerformingMeleeAttack)
             {
                 player.GroundAttack();
+                return;
+            }
+
+            if (player.CanThrowPotion())
+            {
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.ThrowPotionState);
                 return;
             }
 

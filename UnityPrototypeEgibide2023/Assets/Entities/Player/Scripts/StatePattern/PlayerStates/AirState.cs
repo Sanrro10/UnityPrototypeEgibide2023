@@ -44,12 +44,17 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
                 player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
                 return;
             }
+            
+            if (player.CanThrowPotion())
+            {
+                player.PmStateMachine.TransitionTo(player.PmStateMachine.AirThrowPotionState);
+                return;
+            }
 
         }
         
         public void Exit()
         {
-            // Debug.Log("Exiting Air State");
             player.CancelInvoke(nameof(player.AirMove));
             player.animator.SetBool("IsAir", false);
         }

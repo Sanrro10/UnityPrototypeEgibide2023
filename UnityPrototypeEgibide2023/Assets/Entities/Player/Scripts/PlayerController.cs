@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -5,8 +6,10 @@ using Cinemachine;
 using Entities.Potions.BasePotion.Scripts;
 using General.Scripts;
 using StatePattern;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 
 namespace Entities.Player.Scripts
@@ -34,14 +37,8 @@ namespace Entities.Player.Scripts
                 public bool isPerformingDash = false;
                 public bool isPerformingPotionThrow = false;
                 public bool isDashing = false;
-                public bool onDJump = false;
                 public bool isCollidingLeft = false;
                 public bool isCollidingRight = false;
-                public bool canAttack = true;
-                public float meleeAttackCooldown;
-                public float meleeAttackDuration;
-                public float meleeAttackStart;
-                public float jumpDuration;
                 public bool isInMiddleOfAirAttack = false;
                 public bool isInMiddleOfAttack = false;
                 public float friction;
@@ -70,6 +67,8 @@ namespace Entities.Player.Scripts
                 private Text healthText;
                 private Text mainText;
                 
+                private bool Invulnerable;
+                private Rigidbody2D _rb;
                 private CapsuleCollider2D _capsule;
       
     
@@ -78,20 +77,22 @@ namespace Entities.Player.Scripts
                 private CinemachineImpulseSource _impulseSource;
 
                 public CinemachineStateDrivenCamera cinemachine;
-
-                private Canvas _canvasPausa;
-
+                
                 [SerializeField] private Audios _playerAudios;
 
                 private AudioSource _audioSource;
         
                 //Potion UI
-                private bool _onPotionColdown;
+                private bool _onPotionCooldown;
                 private Slider _sliderPotion;
-                //Potion Prefab
-                public GameObject potion;
+                
+                //Potion 
+                public GameObject[] potionList;
+                public GameObject selectedPotion;
+                public GameObject throwPosition;
         
                 //private AudioSource _audioSource;
+                
                 void Start()
                 {
                         // Audio = 
@@ -107,7 +108,12 @@ namespace Entities.Player.Scripts
                         // Initialize the state machine
                         PmStateMachine = new PlayerMovementStateMachine(this);
                         PmStateMachine.Initialize(PmStateMachine.IdleState);
+                        
+                        // Subscribe to events
                         AttackComponent.OnHit += OnHit;
+                        PotionBehavior.OnPotionDestroy += ResetPotionCooldown;
+                        
+                        
                         //Inputs
                         _controls.GeneralActionMap.HorizontalMovement.started += ctx => isHoldingHorizontal = true;
                         _controls.GeneralActionMap.HorizontalMovement.canceled += ctx => isHoldingHorizontal = false;
@@ -136,7 +142,6 @@ namespace Entities.Player.Scripts
                         _dashCurve = playerData.dashCurve;
                         maxFallSpeed = playerData.maxFallSpeed;
                         Rb.gravityScale = playerData.gravity;
-                        baseGravity = Rb.gravityScale;
                         jumpForce = playerData.jumpPower;
                         dashSpeed = playerData.dashSpeed;
                         // Pause
@@ -164,6 +169,11 @@ namespace Entities.Player.Scripts
                         //Check unlocks
                         isAirDashUnlocked = playerData.airDashUnlocked;
 
+                }
+
+                private void ResetPotionCooldown(PotionBehavior entity)
+                {
+                        _onPotionCooldown = false;
                 }
 
                 private void FixedUpdate()
@@ -217,23 +227,23 @@ namespace Entities.Player.Scripts
                                 Rb.AddForce(new Vector2((this.FacingRight ?  3000 : -3000), 0));
                                 return;
                         }
-
+                        
+                        if (victim is PotionBehavior) return;
                         if (PmStateMachine.CurrentState == PmStateMachine.MeleeAttackLeftState)
                         {
                                 Rb.AddForce(new Vector2(1500, 0));
                                 return;
                         }
-
-                        if (victim is PotionBehavior) return;
                         if (PmStateMachine.CurrentState == PmStateMachine.MeleeAttackRightState)
                         {
                                 Rb.AddForce(new Vector2(-1500, 0));
                                 return;
                         }
+                        
                 }
                 
                 private void SetOnHitPushback()
-                {
+                { 
                         onHitPushback = false;
                 }
 
@@ -324,16 +334,33 @@ namespace Entities.Player.Scripts
                         // if (Rb.velocity.y > 0) return false;
                         return 0 < _numberOfGrounds;
                 }
-        
-                public void EndDash()
-                {
-                
-                        Rb.velocity =
-                                new Vector2((FacingRight ? dashSpeed : (dashSpeed -10) * -1), 0); 
 
-                        Debug.Log("IsDashing");
-                
+                public void ThrowPotion()
+                {
+                        _onPotionCooldown = true;
+                       Instantiate(selectedPotion, 
+                               new Vector2(throwPosition.transform.position.x + (this.FacingRight ? 0.3f : -0.3f), throwPosition.transform.position.y), 
+                               Quaternion.identity)
+                               .GetComponent<Rigidbody2D>().velocity = new Vector2(
+                               (!isHoldingVertical ? (this.FacingRight ? 1 : -1) : 0) * 5,
+                               5);
                 }
+
+                public void ThrowPotionAir()
+                {
+                        _onPotionCooldown = true;
+                        float vDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
+                        float xPos = throwPosition.transform.position.x + (this.FacingRight ? 0.3f : -0.3f);
+                        float yPos = throwPosition.transform.position.y + (vDirection == -1 ? -1.5f : 0f);
+                        GameObject potion = Instantiate(selectedPotion,
+                                new Vector2(xPos + (this.FacingRight ? 0.3f : -0.3f), yPos),
+                                Quaternion.identity);
+                        
+                        potion.GetComponent<Rigidbody2D>().velocity = new Vector2(
+                                (!isHoldingVertical ? (this.FacingRight ? 1 : -1) : 0) * 5, (!isHoldingVertical ? 0.5f : vDirection) * 5);
+                }
+                
+                
 
                 public void EndThrowPotion()
                 {
@@ -342,27 +369,13 @@ namespace Entities.Player.Scripts
                                 PmStateMachine.TransitionTo(PmStateMachine.WalkState);
                                 return;
                         }
-
-                        if (CanDash())
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.GroundDashState);
-                                return;
-                        }
-
-                        if (isPerformingJump)
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.JumpState);
-                                return;
-                        }
-
-                        if (!IsGrounded())
-                        {
-                                PmStateMachine.TransitionTo(PmStateMachine.AirState);
-                
-                                return;
-                        }
                         
                         PmStateMachine.TransitionTo(PmStateMachine.IdleState);
+                }
+
+                public void EndThrowPotionAir()
+                {
+                        PmStateMachine.TransitionTo(PmStateMachine.AirState);
                 }
                 
         
@@ -391,6 +404,11 @@ namespace Entities.Player.Scripts
                         return false;
                 }
 
+                public bool CanThrowPotion()
+                {
+                        return !_onPotionCooldown && isPerformingPotionThrow;
+                }
+
                 public void FlipSprite()
                 {
                         float direction = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
@@ -410,12 +428,6 @@ namespace Entities.Player.Scripts
                 
                 
                 
-
-                public void StunEntity(float time)
-                {
-                        timeStunned = time;
-                        PmStateMachine.TransitionTo(PmStateMachine.StunnedState);
-                }
                 
                 
                 public void AirDash()
@@ -569,9 +581,9 @@ namespace Entities.Player.Scripts
                 public override void OnDeath()
                 {
                         DisablePlayerControls();
-                        Invoke(nameof(CallSceneLoad), 1);
-                
-                        _audioSource.PlayOneShot(_playerAudios.audios[1]);
+                        GameController.Instance.GameOver();
+                        //Invoke(nameof(CallSceneLoad), 1);
+                        //_audioSource.PlayOneShot(_playerAudios.audios[1]);
                         
                 }
                 
@@ -587,13 +599,13 @@ namespace Entities.Player.Scripts
 
                 public IEnumerator PotionCooldownSlider()
                 {
-                        _onPotionColdown = true;
+                        _onPotionCooldown = true;
                         while (_sliderPotion.value < playerData.potionColdownTime)
                         {
                                 _sliderPotion.value += 0.01f;   
                                 yield return new WaitForSeconds(0.01f);
                         }
-                        _onPotionColdown = false;
+                        _onPotionCooldown = false;
                 }
         
                 public IEnumerator Dash()
@@ -715,6 +727,8 @@ namespace Entities.Player.Scripts
                 { 
                         return playerData;
                 }
+                
+                
                 private void OnCollisionEnter2D(Collision2D collision)
                 {
                         //Colision con el enemigo
@@ -743,13 +757,29 @@ namespace Entities.Player.Scripts
                         OnReceiveDamage(25);
                         } */
                 }
-        
-
-        
-                
+                private IEnumerator Invulneravility()
+                {
+                        _spriteRenderer.material.EnableKeyword("HITEFFECT_ON");
+                        while (Invulnerable)
+                        {
+                                _spriteRenderer.material.SetFloat("_Alpha", 0.3f);
+                                
+                                yield return new WaitForSeconds(0.02f);
+                                _spriteRenderer.material.SetFloat("_Alpha", 1f);
+                                yield return new WaitForSeconds(0.05f);
+                        }
+                        _spriteRenderer.material.SetFloat("_Alpha", 1f);
+                        _spriteRenderer.material.DisableKeyword("HITEFFECT_ON");
+                        yield return null;
+                }
+                public void EnableInput()
+                {
+                        _controls = new InputActions();
+                }
                 public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true) 
                 {
                         base.OnReceiveDamage(damage, knockback, angle, facingRight);
+                        StartCoroutine(Invulneravility());
                         healthText.text = Health.Get().ToString();
                         healthBar.value = Health.Get();
                 } 

@@ -733,7 +733,9 @@ MonoBehaviour:
   touchingFloor: 0
   cinemachine: {fileID: 0}
   _playerAudios: {fileID: 0}
-  potion: {fileID: 0}
+  potionList: []
+  selectedPotion: {fileID: 1266867429699652061, guid: 7ce027b4de00be1428e71ad3b8217ddb, type: 3}
+  throwPosition: {fileID: 6033346189198568744}
 --- !u!198 &1340715924993950240
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5624,7 +5626,7 @@ Transform:
   m_GameObject: {fileID: 6033346189198568744}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.87, y: 7.37, z: 0}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
