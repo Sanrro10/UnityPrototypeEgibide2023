@@ -53,7 +53,6 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         {
             base.Exit();
             Player.CancelInvoke(nameof(Player.EndAttack));
-            Player.canAttack = true;
             Player.isInMiddleOfAttack = false;
 
             Player.animator.SetBool("IsAUp", false);

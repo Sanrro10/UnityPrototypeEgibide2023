@@ -44,7 +44,6 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             Player.CancelInvoke(nameof(Player.EndAirAttack));
             Player.animator.SetBool("IsAABackwardRight", false);
             Player.animator.SetBool("IsAABackwardLeft", false);
-            Player.canAttack = true;
             Player.isInMiddleOfAirAttack = false;
         }
     }
