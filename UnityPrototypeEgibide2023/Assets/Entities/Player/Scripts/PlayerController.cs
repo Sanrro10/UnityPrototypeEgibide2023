@@ -26,7 +26,8 @@ namespace Entities.Player.Scripts
                 [SerializeField] private PlayerData playerData;
                 [SerializeField] public  GameObject meleeAttack;
                 public Animator animator;
-                private SpriteRenderer _spriteRenderer;
+                [SerializeField] private SpriteRenderer _spriteRenderer;
+                
         
         
                 // internal state controls
@@ -69,7 +70,6 @@ namespace Entities.Player.Scripts
                 private Text healthText;
                 private Text mainText;
                 
-                private bool Invulnerable;
                 private Rigidbody2D _rb;
                 private CapsuleCollider2D _capsule;
       
@@ -106,8 +106,9 @@ namespace Entities.Player.Scripts
                         _audioSource = GetComponent<AudioSource>();
                         //_force2D = GetComponent<ConstantForce2D>();
                         animator = GetComponentInChildren<Animator>();
-                        _spriteRenderer = GetComponent<SpriteRenderer>();
+                        _spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
                         _controls = new InputActions();
+                        
                         
                         //Enable the actions
                         _controls.Enable();
@@ -178,6 +179,7 @@ namespace Entities.Player.Scripts
                         
                         //CheckSceneChanged
                         OnSceneChange();
+                        StartCoroutine(KeepSpriteStraight());
                 }
 
                 private void ResetPotionCooldown(PotionBehavior entity)
@@ -337,41 +339,29 @@ namespace Entities.Player.Scripts
 
 
                 }
-                
-                // Pequeña corutina para que mientres gire no pueda atacar al jugador
-                private IEnumerator Rotate()
+ 
+
+                private IEnumerator KeepSpriteStraight()
                 {
-                        //_audioSource.clip = audioData.audios[1];
-                        //_audioSource.Play();
-                        _rotated = false;
-                        CancelInvoke(nameof(TurnAround));
-                        InvokeRepeating(nameof(TurnAround),0f, 0.1f);
-                        yield return new WaitUntil(() => _rotated);
-                        _onCooldown = false;
-                        CancelInvoke(nameof(TurnAround));
+                        
+                        while (true)
+                        {
+                               
+                                int objective = FacingRight ? 0:180;
+                                if ((int)_spriteRenderer.gameObject.transform.rotation.eulerAngles.y !=  objective)
+                                {
+                                        Debug.Log((int)_spriteRenderer.gameObject.transform.rotation.eulerAngles.y);
+                                        _spriteRenderer.gameObject.transform.eulerAngles = new UnityEngine.Vector3(_spriteRenderer.transform.transform.eulerAngles.x, _spriteRenderer.transform.rotation.eulerAngles.y + (FacingRight ? -30: 30), _spriteRenderer.transform.rotation.eulerAngles.z);
+
+                                }
+                                
+                                
+                                
+                                yield return new WaitForSeconds(0.03f);
+                        }
                 }
 
-                // Metodo que hace que se de la vuelta
-                private void TurnAround()
-                {
-                        int newEulerY;
-                        if (FacingRight)
-                        {
-                                transform.eulerAngles = new UnityEngine.Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y - 30, transform.rotation.eulerAngles.z);
-                                newEulerY = (int)transform.rotation.eulerAngles.y;
-                        }
-                        else
-                        {
-                                transform.eulerAngles = new UnityEngine.Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y + 30, transform.rotation.eulerAngles.z);
-                                newEulerY = (int)transform.rotation.eulerAngles.y;
-                        }
-        
-                        if (newEulerY % 180 == 0 || newEulerY == 0)
-                        {
-                                _rotated = true;
-                                FacingRight = !FacingRight;
-                        } 
-                }
+               
         
                 public bool IsGrounded()
                 {
@@ -461,14 +451,16 @@ namespace Entities.Player.Scripts
                         if (direction == -1)
                         {
                                 FacingRight = false;
-                                animator.SetBool("IsFlipped", false);
+                               // animator.SetBool("IsFlipped", false);
+                               //Rotate();
                         }
                         else if (direction == 1)
                         {
                                 FacingRight = true;
-                                animator.SetBool("IsFlipped", true);
+                                //animator.SetBool("IsFlipped", true);
+                                //Rotate();
                         }
-                        _spriteRenderer.flipX = !FacingRight;
+                        //_spriteRenderer.flipX = !FacingRight;
 
                 }
                 
