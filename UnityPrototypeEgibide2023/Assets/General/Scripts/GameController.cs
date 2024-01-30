@@ -4,6 +4,8 @@ using Entities;
 using Entities.Player.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Slider = UnityEngine.UIElements.Slider;
 
 namespace General.Scripts
 {
@@ -197,6 +199,7 @@ namespace General.Scripts
             Time.timeScale = 0;
             canvasPausa.gameObject.SetActive(false);
             canvasOptions.gameObject.SetActive(true);
+            //canvasOptions.
         }
         
         public void hideOptions()
