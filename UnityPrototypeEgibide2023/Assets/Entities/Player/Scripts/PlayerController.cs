@@ -26,7 +26,8 @@ namespace Entities.Player.Scripts
                 [SerializeField] private PlayerData playerData;
                 [SerializeField] public  GameObject meleeAttack;
                 public Animator animator;
-                private SpriteRenderer _spriteRenderer;
+                [SerializeField] private SpriteRenderer _spriteRenderer;
+                
         
         
                 // internal state controls
@@ -94,7 +95,9 @@ namespace Entities.Player.Scripts
                 public GameObject[] potionList;
                 public GameObject selectedPotion;
                 public GameObject throwPosition;
-        
+                private bool _rotated;
+                private bool _onCooldown;
+
                 //private AudioSource _audioSource;
                 
                 void Start()
@@ -102,9 +105,10 @@ namespace Entities.Player.Scripts
                         // Audio = 
                         _audioSource = GetComponent<AudioSource>();
                         //_force2D = GetComponent<ConstantForce2D>();
-                        animator = GetComponent<Animator>();
-                        _spriteRenderer = GetComponent<SpriteRenderer>();
+                        animator = GetComponentInChildren<Animator>();
+                        _spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
                         _controls = new InputActions();
+                        
                         
                         //Enable the actions
                         _controls.Enable();
@@ -175,6 +179,7 @@ namespace Entities.Player.Scripts
                         
                         //CheckSceneChanged
                         OnSceneChange();
+                        StartCoroutine(KeepSpriteStraight());
                 }
 
                 private void ResetPotionCooldown(PotionBehavior entity)
@@ -334,6 +339,29 @@ namespace Entities.Player.Scripts
 
 
                 }
+ 
+
+                private IEnumerator KeepSpriteStraight()
+                {
+                        
+                        while (true)
+                        {
+                               
+                                int objective = FacingRight ? 0:180;
+                                if ((int)_spriteRenderer.gameObject.transform.rotation.eulerAngles.y !=  objective)
+                                {
+                                        Debug.Log((int)_spriteRenderer.gameObject.transform.rotation.eulerAngles.y);
+                                        _spriteRenderer.gameObject.transform.eulerAngles = new UnityEngine.Vector3(_spriteRenderer.transform.transform.eulerAngles.x, _spriteRenderer.transform.rotation.eulerAngles.y + (FacingRight ? -30: 30), _spriteRenderer.transform.rotation.eulerAngles.z);
+
+                                }
+                                
+                                
+                                
+                                yield return new WaitForSeconds(0.03f);
+                        }
+                }
+
+               
         
                 public bool IsGrounded()
                 {
@@ -423,14 +451,16 @@ namespace Entities.Player.Scripts
                         if (direction == -1)
                         {
                                 FacingRight = false;
-                                animator.SetBool("IsFlipped", false);
+                               // animator.SetBool("IsFlipped", false);
+                               //Rotate();
                         }
                         else if (direction == 1)
                         {
                                 FacingRight = true;
-                                animator.SetBool("IsFlipped", true);
+                                //animator.SetBool("IsFlipped", true);
+                                //Rotate();
                         }
-                        _spriteRenderer.flipX = !FacingRight;
+                        //_spriteRenderer.flipX = !FacingRight;
 
                 }
                 

@@ -14,7 +14,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 
         public void Enter()
         {
-
+            
             player.isDashing = true;
             player.animator.SetTrigger("Dash");
 
