@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 755058875}
-  m_IndirectSpecularColor: {r: 0.49072957, g: 0.68156624, b: 0.78572893, a: 1}
+  m_IndirectSpecularColor: {r: 0.49081922, g: 0.68169105, b: 0.7857914, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -290,6 +290,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
+--- !u!4 &73443407 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+  m_PrefabInstance: {fileID: 565333562}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &80380376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2786,7 +2791,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1610340940}
     m_Modifications:
     - target: {fileID: 4046862692306406822, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
       propertyPath: m_Name
@@ -2810,15 +2815,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8715,6 +8720,8 @@ Transform:
   m_Children:
   - {fileID: 277907691}
   - {fileID: 1620412811}
+  - {fileID: 73443407}
+  - {fileID: 1660729978}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1620412810
@@ -8855,7 +8862,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1610340940}
     m_Modifications:
     - target: {fileID: 4046862692306406822, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
       propertyPath: m_Name
@@ -8879,15 +8886,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8906,6 +8913,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+--- !u!4 &1660729978 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8045960582612544002, guid: dd612f89393b22f4796696c40fab76f0, type: 3}
+  m_PrefabInstance: {fileID: 1657909274}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1664483659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8285205736366998151, guid: e4193518acfbca6478c03760deb5e239, type: 3}
@@ -11352,5 +11364,3 @@ SceneRoots:
   - {fileID: 2120437556}
   - {fileID: 510190445}
   - {fileID: 1464235056}
-  - {fileID: 565333562}
-  - {fileID: 1657909274}
