@@ -23,11 +23,11 @@ namespace Entities.Enemies.Witch.Scripts
         void Start()
         {
             _attackComponent = GetComponentInChildren<AttackComponent>(true);
-            _attackComponent.AddAttackData(new AttackComponent.AttackData(_witchData.magicCircleDamage, 0, new Vector2(0,0), 6, AttackComponent.AttackType.Projectile));
             _attackComponent.DeactivateHitbox();
             _playerGoRef = GameController.Instance.GetPlayerGameObject();
             _playerRef = GameController.Instance.GetPlayerController();
             _witchData = GameObject.Find("SorginaLand").GetComponent<LandWitch>().landWitchData;
+            _attackComponent.AddAttackData(new AttackComponent.AttackData(_witchData.magicCircleDamage, 0, new Vector2(0,0), 6, AttackComponent.AttackType.Projectile));
 
 
             InvokeRepeating(nameof(MovementLogic),0,0.02f);
