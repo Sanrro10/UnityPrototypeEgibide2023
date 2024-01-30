@@ -14,12 +14,12 @@ namespace Entities.Potions.BasePotion.Scripts
         void Start()
         {
             Health.Set(data.health);
-            InvulnerableTime = 0.2f;
+            InvulnerableTime = 0.1f;
         }
         
         public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
         {
-            if (!_hasBeenHitted) Rb.velocity = new Vector2();
+            if (!Invulnerable && !_hasBeenHitted)  Rb.velocity = new Vector2();
             attack.damage = 0;
             base.OnReceiveDamage(attack, facingRight);
         }

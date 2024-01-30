@@ -69,7 +69,9 @@ namespace Entities
             Invoke(nameof(DeactivateHitbox), time);
         }
     
-        private void OnTriggerStay2D(Collider2D other)
+        
+        
+        private void OnTriggerEnter2D(Collider2D other)
         {
             attackData.ForEach((attack) =>
             {
@@ -84,7 +86,7 @@ namespace Entities
             
         }
         
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerStay2D(Collider2D other)
         {
             attackData.ForEach((attack) =>
             {
