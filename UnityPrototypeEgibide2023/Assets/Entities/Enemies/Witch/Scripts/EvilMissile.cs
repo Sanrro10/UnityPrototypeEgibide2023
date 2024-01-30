@@ -14,7 +14,7 @@ namespace Entities.Enemies.Witch.Scripts
         private GameObject _playerRef;
         private LandWitchData _witchData;
         private bool _damageDealt = false;
-        private AttackComponent _attackComponent;
+        [SerializeField] private AttackComponent _attackComponent;
 
         private float _angle;
 

@@ -6,7 +6,7 @@ namespace Entities
 {
     public class AttackComponent : MonoBehaviour
     {
-        [System.Serializable]
+        [Serializable]
         public struct AttackData
         {
             public AttackData(int damage, float knockback, Vector2 angle, int layer, AttackType? attackType)
@@ -23,8 +23,6 @@ namespace Entities
             public int layer;
             public AttackType attackType;
         }
-        
-        [System.Serializable]
         public enum AttackType
         {
             Normal,
@@ -35,7 +33,6 @@ namespace Entities
     
         public List<AttackData> attackData;
         public EntityControler entity;
-        public AttackType attackType;
         public bool toTheRight = true;
 
         public static event Action<EntityControler, EntityControler> OnHit;
@@ -72,6 +69,21 @@ namespace Entities
             Invoke(nameof(DeactivateHitbox), time);
         }
     
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            attackData.ForEach((attack) =>
+            {
+                if (attack.layer == other.gameObject.layer)
+                {
+                    var otherEntity = other.GetComponent<EntityControler>();
+                    if (otherEntity == null) return;
+                    if (entity != null) OnHit?.Invoke(entity, otherEntity);
+                    other.GetComponent<EntityControler>().OnReceiveDamage(attack, (entity == null ? toTheRight : entity.FacingRight));
+                }
+            });
+            
+        }
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             attackData.ForEach((attack) =>
@@ -88,4 +100,6 @@ namespace Entities
         }
     
     }
+    
+    
 }
