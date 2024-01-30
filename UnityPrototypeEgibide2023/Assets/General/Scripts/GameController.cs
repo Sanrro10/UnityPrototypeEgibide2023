@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace General.Scripts
 {
-    public class GameController : EntityControler
+    public class GameController : MonoBehaviour
     {
 
         private SPlayerSpawnData _lastCheckpoint;
@@ -20,6 +20,7 @@ namespace General.Scripts
         public static GameController Instance;
         [SerializeField] private Canvas canvasPausa;
         [SerializeField] private Canvas canvasGameOver;
+        [SerializeField] private Canvas canvasOptions;
         [SerializeField] private PlayerData playerData;
         private GameObject _jugador;
         private bool _useCheckpoint;
@@ -54,6 +55,7 @@ namespace General.Scripts
                 DontDestroyOnLoad(transform.gameObject);
                 DontDestroyOnLoad(canvasPausa);
                 DontDestroyOnLoad(canvasGameOver);
+                DontDestroyOnLoad(canvasOptions);
                 gameData = SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
                 if (gameData.isValid)
                 {
@@ -73,6 +75,7 @@ namespace General.Scripts
             {
                 Destroy(canvasPausa.gameObject);
                 Destroy(canvasGameOver.gameObject);
+                Destroy(canvasOptions.gameObject);
                 Destroy(gameObject);
                 Destroy(_jugador);
             }
@@ -173,6 +176,7 @@ namespace General.Scripts
         {
             Destroy(canvasPausa.gameObject);
             Destroy(canvasGameOver.gameObject);
+            Destroy(canvasOptions.gameObject);
             Destroy(gameObject);
             Time.timeScale = 1;
         }
@@ -186,6 +190,19 @@ namespace General.Scripts
         {
             Time.timeScale = 0;
             canvasGameOver.gameObject.SetActive(true);
+        }
+        
+        public void showOptions()
+        {
+            Time.timeScale = 0;
+            canvasPausa.gameObject.SetActive(false);
+            canvasOptions.gameObject.SetActive(true);
+        }
+        
+        public void hideOptions()
+        {
+            canvasOptions.gameObject.SetActive(false);
+            canvasPausa.gameObject.SetActive(true);
         }
         
     }
