@@ -610,11 +610,7 @@ namespace Entities.Player.Scripts
                 {
                         _controls.Enable();
                 }
-        
-                void SpawnPotion()
-                {
-                        
-                }
+                
         
                 public override void OnDeath()
                 {
@@ -681,7 +677,7 @@ namespace Entities.Player.Scripts
                         float dashTime = 0;
                         float dashSpeedCurve = 0;
                         Debug.Log("Dash Duration: " + _dashCurve.keys[_dashCurve.length - 1].time);
-                        base.Invulneravility();
+                        
                         while (dashTime < _dashCurve.keys[_dashCurve.length - 1].time)
                         {
                                 dashSpeedCurve = _dashCurve.Evaluate(dashTime) * dashSpeed; 
@@ -718,31 +714,21 @@ namespace Entities.Player.Scripts
                 public IEnumerator DashCooldown()
                 {
                         onDashCooldown = true;
+                        _spriteRenderer.material.EnableKeyword("");
                         yield return new WaitForSeconds(playerData.dashCooldown);
-                        //Wait until the player is grounded
-                        while (!IsGrounded())
-                        { 
-                                yield return new WaitForFixedUpdate();
-                        }
+                        _spriteRenderer.material.DisableKeyword("");
                         onDashCooldown = false;
-                        base.EndInvulneravility();
 
                 }
                 
                 public IEnumerator AirDashCooldown()
                 {
-                        onDashCooldown = true;
                         onAirDashCooldown = true;
-                        yield return new WaitForSeconds(playerData.dashCooldown);
-                        //Wait until the player is grounded
                         while (!IsGrounded())
                         { 
                                 yield return new WaitForFixedUpdate();
                         }
-                        onDashCooldown = false;
                         onAirDashCooldown = false;
-                        base.EndInvulneravility();
-
                 }
         
                 // Getters and setters
@@ -834,7 +820,7 @@ namespace Entities.Player.Scripts
                         OnReceiveDamage(25);
                         } */
                 }
-                private IEnumerator Invulneravility()
+                private IEnumerator CoInvulneravility()
                 {
                         _spriteRenderer.material.EnableKeyword("HITEFFECT_ON");
                         while (Invulnerable)
@@ -853,10 +839,10 @@ namespace Entities.Player.Scripts
                 {
                         _controls = new InputActions();
                 }
-                public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true) 
+                public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true) 
                 {
-                        base.OnReceiveDamage(damage, knockback, angle, facingRight);
-                        StartCoroutine(Invulneravility());
+                        base.OnReceiveDamage(attack, facingRight);
+                        StartCoroutine(CoInvulneravility());
                         healthText.text = Health.Get().ToString();
                         healthBar.value = Health.Get();
                 } 

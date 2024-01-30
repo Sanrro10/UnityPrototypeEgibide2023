@@ -6,20 +6,29 @@ namespace Entities
 {
     public class AttackComponent : MonoBehaviour
     {
-        [System.Serializable]
+        [Serializable]
         public struct AttackData
         {
-            public AttackData(int damage, float knockback, Vector2 angle, LayerMask layer)
+            public AttackData(int damage, float knockback, Vector2 angle, int layer, AttackType? attackType)
             {
                 this.damage = damage;
                 this.knockback = knockback;
                 this.angle = angle;
                 this.layer = layer;
+                this.attackType = attackType ?? AttackType.Normal;
             }
             public int damage;
             public float knockback;
             public Vector2 angle;
             public int layer;
+            public AttackType attackType;
+        }
+        public enum AttackType
+        {
+            Normal,
+            Explosion,
+            Projectile,
+            Electric
         }
     
         public List<AttackData> attackData;
@@ -60,23 +69,37 @@ namespace Entities
             Invoke(nameof(DeactivateHitbox), time);
         }
     
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            attackData.ForEach((attack) =>
+            {
+                if (attack.layer == other.gameObject.layer)
+                {
+                    var otherEntity = other.GetComponent<EntityControler>();
+                    if (otherEntity == null) return;
+                    if (entity != null) OnHit?.Invoke(entity, otherEntity);
+                    other.GetComponent<EntityControler>().OnReceiveDamage(attack, (entity == null ? toTheRight : entity.FacingRight));
+                }
+            });
+            
+        }
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             attackData.ForEach((attack) =>
             {
-                Debug.Log("Le esta pegando?");
                 if (attack.layer == other.gameObject.layer)
                 {
-                    
                     var otherEntity = other.GetComponent<EntityControler>();
                     if (otherEntity == null) return;
                     if (entity != null) OnHit?.Invoke(entity, otherEntity);
-                    Debug.Log("Hit");
-                    other.GetComponent<EntityControler>().OnReceiveDamage(attack.damage, attack.knockback, attack.angle, (entity == null ? toTheRight : entity.FacingRight));
+                    other.GetComponent<EntityControler>().OnReceiveDamage(attack, (entity == null ? toTheRight : entity.FacingRight));
                 }
             });
             
         }
     
     }
+    
+    
 }

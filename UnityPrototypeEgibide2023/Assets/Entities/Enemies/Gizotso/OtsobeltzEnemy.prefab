@@ -4838,7 +4838,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8528201023340679709}
   - component: {fileID: 8549386292965630671}
-  - component: {fileID: 117344820920164700}
   - component: {fileID: 6402611880663791819}
   m_Layer: 16
   m_Name: AttackZone
@@ -4907,18 +4906,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8599421, y: 2.414824}
   m_EdgeRadius: 0
---- !u!114 &117344820920164700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3018751870457076232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c234548771ab38d4b8909e6383677e38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6402611880663791819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10247,11 +10234,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matCambiar: {fileID: 2100000, guid: 8eca8a233978d724e83d24dcd2d5aad2, type: 2}
   coloresposibles:
-  - {r: 0.48235297, g: 0.83921576, b: 1, a: 1}
-  - {r: 1, g: 0.65385866, b: 0.48235297, a: 1}
-  - {r: 0.48235297, g: 0.6359946, b: 1, a: 1}
+  - {r: 0.6320754, g: 0.40090472, b: 0.23056836, a: 1}
+  - {r: 0.8018868, g: 0.51273686, b: 0.36816183, a: 1}
+  - {r: 0.6981132, g: 0.6313016, b: 0.39954904, a: 1}
   - {r: 0.5188679, g: 0.42341578, b: 0.4752475, a: 1}
-  - {r: 0.745283, g: 0.1511659, b: 0.47297925, a: 1}
+  - {r: 0.6792453, g: 0.4667392, b: 0.36311853, a: 1}
   colorElegido: {r: 0.482, g: 0.8395215, b: 1, a: 1}
   colorElegidoOscuro: {r: 0, g: 0, b: 0, a: 0}
   colorOriginal: {r: 0, g: 0, b: 0, a: 0}

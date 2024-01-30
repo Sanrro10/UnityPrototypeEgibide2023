@@ -24,14 +24,14 @@ namespace Entities
             
         }
 
-        public virtual void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool toTheRight = true)
+        public virtual void OnReceiveDamage(AttackComponent.AttackData attack, bool toTheRight = true)
         { 
             if (Invulnerable) return;
-           Health.RemoveHealth(damage); 
-           Debug.Log("Damage:" + damage);
+           Health.RemoveHealth(attack.damage); 
+           Debug.Log("Damage:" + attack.damage);
            Invulnerable = true;
            Invoke(nameof(DamageCooldown), InvulnerableTime);
-           Push(knockback, angle, toTheRight);
+           Push(attack.knockback, attack.angle, toTheRight);
         }
         
         public virtual void Invulneravility()

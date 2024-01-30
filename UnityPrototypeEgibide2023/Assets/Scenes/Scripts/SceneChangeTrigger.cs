@@ -12,6 +12,10 @@ public class SceneChangeTrigger : MonoBehaviour
     [SerializeField] private SceneObject scene;
     [SerializeField] private Vector3 spawnPoint;
     [SerializeField] private Vector3 goToPosition;
+    public bool onTheLeft;
+    public bool useSceneChangeTrigger = true;
+    
+    
     private GameController.SPlayerSpawnData _spawnData;
 
     private void Awake()
@@ -20,6 +24,8 @@ public class SceneChangeTrigger : MonoBehaviour
         _spawnData.Scene = scene;
         _spawnData.Position = spawnPoint;
         _spawnData.GoToPosition = goToPosition;
+        _spawnData.OnTheLeft = onTheLeft;
+        _spawnData.UseSceneChangeTrigger = useSceneChangeTrigger;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
