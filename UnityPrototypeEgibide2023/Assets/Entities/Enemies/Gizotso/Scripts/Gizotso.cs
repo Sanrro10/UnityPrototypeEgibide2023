@@ -334,14 +334,14 @@ namespace Entities.Enemies.Gizotso.Scripts
             }        
         
         }
-
+       
         public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
         {
             base.OnReceiveDamage(attack);
             
             //TODO Incluir logica de recibir daño, si es que la tiene
         }
-
+        
         private void DestroyThis()
         {
             Destroy(gameObject);
