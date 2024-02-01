@@ -183,7 +183,12 @@ namespace Entities.Player.Scripts
                         StartCoroutine(KeepSpriteStraight());
                 }
 
-                private void ResetPotionCooldown(PotionBehavior entity)
+                private void OnDestroy()
+                {
+                        PotionBehavior.OnPotionDestroy -= ResetPotionCooldown;
+                }
+
+                private void ResetPotionCooldown(GameObject entity)
                 {
                         StartCoroutine(PotionCooldownSlider());
                 }
@@ -650,7 +655,7 @@ namespace Entities.Player.Scripts
                  */
                 public void ForceMove()
                 {
-                        _spriteRenderer.flipX = !FacingRight;
+                        
                         UnityEngine.Vector3 tempVector3 = transform.position;
                         float moveStep = 0.1f;
                         

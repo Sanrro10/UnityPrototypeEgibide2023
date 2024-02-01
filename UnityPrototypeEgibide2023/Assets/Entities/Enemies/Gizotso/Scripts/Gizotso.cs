@@ -32,6 +32,12 @@ namespace Entities.Enemies.Gizotso.Scripts
         // Referencia al Animator
         [SerializeField] private Animator animator;
         
+        // Referencia al Audio Source
+        private AudioSource _audioSource;
+        
+        // Referencia a los audios
+        [SerializeField] private Audios audioData;
+        
         // Referencia al objeto hijo de la hitbox de ataque
         [SerializeField] private GameObject attackHitBox;
 
@@ -46,6 +52,11 @@ namespace Entities.Enemies.Gizotso.Scripts
 
         // Variable que controla el estado de muerte
         private bool _isDying;
+        
+        private int _tiempoTotal = 30;
+        private int _tiempoAudioIdle = 0;
+        private int _tiempoAudioAttack = 0;
+        private int _tiempoAudioUp = 0;
         
         // Pasar nombre de booleanos a "IDs" para ahorrarnos comparaciones de strings
         private static readonly int IsIdle = Animator.StringToHash("IsIdle");
@@ -62,7 +73,9 @@ namespace Entities.Enemies.Gizotso.Scripts
 
             // Establecer que su target inicial sea el izquierdo
             _target = new Vector2(transform.position.x - 1000, transform.position.y);
-        
+
+            _audioSource = GetComponent<AudioSource>();
+            
             animator.SetBool(IsPreAttack, false);
             animator.SetBool(IsFirstAttack, false);
             animator.SetBool(IsSecondAttack, false);
@@ -254,14 +267,81 @@ namespace Entities.Enemies.Gizotso.Scripts
             float lengthAnim = currentAnim.length;
             Invoke(nameof(DestroyThis),lengthAnim + 2f);
         }
+        
+        public void Audios(int audio, int tiempoAudioTotal, int tiempoAudioModo, char tipo)
+        {
+            switch (tipo)
+            {
+                case 'I':
+                    if (tiempoAudioTotal == 0 && tiempoAudioModo == 0 )
+                    {
+                        _audioSource.clip = audioData.audios[audio];
+                        _audioSource.Play();
 
+                        _tiempoAudioIdle = 30;
+                        _tiempoTotal = 30;
+                    }
+                    else
+                    {
+                        Timer();
+                    
+                    }
+
+                    break;
+                case 'A':
+                    if ( tiempoAudioModo == 0)
+                    {
+                        _audioSource.clip = audioData.audios[audio];
+                        _audioSource.Play();
+
+                        _tiempoAudioAttack = 30;
+                        _tiempoTotal = 20;
+                    }
+                    else
+                    {
+                        Timer();
+                    }
+                
+                    break;
+                case 'U':
+                    if (tiempoAudioModo == 0)
+                    {
+                        _audioSource.clip = audioData.audios[audio];
+                        _audioSource.Play();
+
+                        _tiempoAudioUp = 30;
+                        _tiempoTotal = 20;
+                    }
+                    else
+                    {
+                        Timer();
+                    }
+                    break;
+            }
+        
+            void Timer()
+            {
+                if (_tiempoAudioAttack >= 1)
+                {
+                    _tiempoAudioAttack -= 1;
+                } else if (_tiempoAudioIdle >= 1)
+                {
+                    _tiempoAudioIdle -= 1;
+                } else if (_tiempoAudioUp >= 1)
+                {
+                    _tiempoAudioUp -= 1;
+                }    
+            }        
+        
+        }
+       
         public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
         {
             base.OnReceiveDamage(attack);
             
             //TODO Incluir logica de recibir daño, si es que la tiene
         }
-
+        
         private void DestroyThis()
         {
             Destroy(gameObject);

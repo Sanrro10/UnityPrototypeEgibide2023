@@ -32,10 +32,9 @@ public class SceneChangeTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if ( other.GetComponent<PlayerController>().PmStateMachine.CurrentState is SceneChangeState)
-            {
-                return;
-            }
+            var pc = other.GetComponent<PlayerController>();
+            if (pc == null) return;
+            if (pc.PmStateMachine.CurrentState is SceneChangeState) return;
             GameController.Instance.SceneLoad(_spawnData,false);
         }
     }
