@@ -827,7 +827,7 @@ namespace Entities.Player.Scripts
                         OnReceiveDamage(25);
                         } */
                 }
-                private IEnumerator CoInvulneravility()
+                private IEnumerator CoInvulnerability()
                 {
                         _spriteRenderer.material.EnableKeyword("HITEFFECT_ON");
                         while (Invulnerable)
@@ -849,7 +849,7 @@ namespace Entities.Player.Scripts
                 public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true) 
                 {
                         base.OnReceiveDamage(attack, facingRight);
-                        StartCoroutine(CoInvulneravility());
+                        StartCoroutine(CoInvulnerability());
                         healthText.text = Health.Get().ToString();
                         healthBar.value = Health.Get();
                 } 
