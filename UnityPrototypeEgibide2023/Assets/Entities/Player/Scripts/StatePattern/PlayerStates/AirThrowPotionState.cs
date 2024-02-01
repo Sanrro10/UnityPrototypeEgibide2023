@@ -2,52 +2,44 @@
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
-    public class AirThrowPotionState : IState
+    public class AirThrowPotionState : AirState
     {
-        private PlayerController player;
 
-        public AirThrowPotionState(PlayerController player)
+        public AirThrowPotionState(PlayerController player) : base(player)
         {
-            this.player = player;
         }
 
-        public void Enter()
+        public override void Enter()
         {
-            player.animator.SetBool("IsAirThrowing", true);
-            player.Invoke(nameof(player.ThrowPotionAir), 0.1f);
-            player.Invoke(nameof(player.EndThrowPotionAir), player.GetPlayerData().potionThrowDuration);
-            player.InvokeRepeating(nameof(player.AirMove), 0, 0.01f);
+            base.Enter();
+            Player.animator.SetBool("IsAirThrowing", true);
+            Player.Invoke(nameof(Player.ThrowPotionAir), 0.1f);
+            Player.Invoke(nameof(Player.EndThrowPotionAir), Player.GetPlayerData().potionThrowDuration);
+            Player.InvokeRepeating(nameof(Player.AirMove), 0, 0.01f);
         }
 
-        public void Update()
+        public override void Update()
         {
-            if (player.IsGrounded())
+            base.Update();
+
+            if (Player.CanAirDash())
             {
-                if (player.isHoldingHorizontal)
-                    player.PmStateMachine.TransitionTo(player.PmStateMachine.WalkState);
-                else
-                    player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
+                Player.PmStateMachine.TransitionTo((Player.PmStateMachine.AirDashStartState));
                 return;
             }
 
-            if (player.CanAirDash())
+            if (Player.isPerformingMeleeAttack)
             {
-                player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
-                return;
-            }
-
-            if (player.isPerformingMeleeAttack)
-            {
-                player.AirAttack();
+                Player.AirAttack();
             }
         }
 
-        public void Exit()
+        public override void Exit()
         {
-            player.CancelInvoke(nameof(player.AirMove));
-            player.CancelInvoke(nameof(player.ThrowPotionAir));
-            player.CancelInvoke(nameof(player.EndThrowPotionAir));
-            player.animator.SetBool("IsAirThrowing", false);
+            Player.CancelInvoke(nameof(Player.AirMove));
+            Player.CancelInvoke(nameof(Player.ThrowPotionAir));
+            Player.CancelInvoke(nameof(Player.EndThrowPotionAir));
+            Player.animator.SetBool("IsAirThrowing", false);
         }
     }
 }

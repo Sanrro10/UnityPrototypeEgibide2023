@@ -3,32 +3,28 @@ using UnityEngine;
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
-    public class JumpState : AirState
+    public class AirborneState: AirState
     {
-        
-        public JumpState(PlayerController player) : base(player)
+        public AirborneState(PlayerController player) : base(player)
         {
         }
-
+        
         public override void Enter()
         {
-            // Debug.Log("Entering Jump State");
+            // Debug.Log("Entering Air State");
             base.Enter();
-            Player.animator.SetBool("IsJump", true);
-            Player.InvokeRepeating(nameof(Player.Jump), 0, 0.01f);
-            Player.StartCoroutine(Player.MaxJumpDuration());
-            Player.StartCoroutine(Player.GroundedCooldown());
+            Player.animator.SetBool("IsAir", true);
             Player.InvokeRepeating(nameof(Player.AirMove), 0, 0.01f);
         }
-
+        
         // per-frame logic, include condition to transition to a new state
         public override void Update()
         {
             base.Update();
-
-            if (!Player.isPerformingJump)
+            
+            if (Player.isPerformingMeleeAttack)
             {
-                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirState);
+                Player.AirAttack();
                 return;
             }
             
@@ -37,28 +33,20 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
                 Player.PmStateMachine.TransitionTo((Player.PmStateMachine.AirDashStartState));
                 return;
             }
-            if (Player.isPerformingMeleeAttack)
-            {
-                Player.AirAttack();
-            }
             
             if (Player.CanThrowPotion())
             {
                 Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirThrowPotionState);
                 return;
             }
-            
+
         }
         
         public override void Exit()
         {
             base.Exit();
-            Player.animator.SetBool("IsJump", false);
             Player.CancelInvoke(nameof(Player.AirMove));
-            Player.CancelInvoke(nameof(Player.Jump));
-            Player.isPerformingJump = false;
-            
-            // Debug.Log("Exiting Jump State");
+            Player.animator.SetBool("IsAir", false);
         }
     }
 }

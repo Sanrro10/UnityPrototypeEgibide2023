@@ -2,72 +2,62 @@
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
-    public class WalkState : IState
+    public class WalkState : GroundState
     {
-        private PlayerController player;
         
-        public WalkState(PlayerController player)
+        public WalkState(PlayerController player) : base(player)
         {
-            this.player = player;
         }
 
-        public void Enter()
+        public override void Enter()
         {
-            //Debug.Log("Entering Walk State");
-            // Debug.Log("Entering Walk State");
-            player.animator.SetBool("IsWalk", true);
-            player.InvokeRepeating(nameof(player.Move), 0, 0.01f);
+            base.Enter();
+            Player.animator.SetBool("IsWalk", true);
+            Player.InvokeRepeating(nameof(Player.Move), 0, 0.01f);
         }
 
         // per-frame logic, include condition to transition to a new state
-        public void Update()
+        public override void Update()
         {
-            // If we're no longer grounded, transition to the air state
-            
-        
-            if (player.isPerformingJump)
+            base.Update();
+            if (Player.isPerformingJump)
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.JumpState);
-                return;
-            }
-            if (!player.IsGrounded())
-            {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.JumpState);
                 return;
             }
 
-            if (!player.isHoldingHorizontal)
+            if (!Player.isHoldingHorizontal)
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.IdleState);
                 return;
             }
             
-            if (player.CanDash())
+            if (Player.CanDash())
             {
-                player.PmStateMachine.TransitionTo((player.PmStateMachine.GroundDashState));
+                Player.PmStateMachine.TransitionTo((Player.PmStateMachine.GroundDashState));
                 return;
             }
 
-            if (player.isPerformingMeleeAttack)
+            if (Player.isPerformingMeleeAttack)
             {
-                player.GroundAttack();
+                Player.GroundAttack();
                 return;
             }
 
-            if (player.CanThrowPotion())
+            if (Player.CanThrowPotion())
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.ThrowPotionState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.ThrowPotionState);
                 return;
             }
 
         }
         
-        public void Exit()
+        public override void Exit()
         {
-            // Debug.Log("Exiting Walk State");
-
-            player.CancelInvoke(nameof(player.Move));
-            player.animator.SetBool("IsWalk", false);
+            base.Exit();
+            
+            Player.CancelInvoke(nameof(Player.Move));
+            Player.animator.SetBool("IsWalk", false);
         }
     }
 }

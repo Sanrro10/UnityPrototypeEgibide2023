@@ -289,7 +289,7 @@ namespace Entities.Player.Scripts
                 public void AirMove()
                 {
                         float airAcceleration = 0.5f;
-                        float airDrag = 0.1f;
+                        float airDrag = 0.01f;
                         float movementDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
                         if((movementDirection == 1 && isCollidingRight) || (movementDirection == -1 && isCollidingLeft))
                         {
@@ -685,9 +685,9 @@ namespace Entities.Player.Scripts
                         while (dashTime < _dashCurve.keys[_dashCurve.length - 1].time)
                         {
                                 dashSpeedCurve = _dashCurve.Evaluate(dashTime) * dashSpeed; 
-                                Rb.velocity = new Vector2((FacingRight ? dashSpeedCurve : dashSpeedCurve * -1), 0); 
-
-                                yield return new WaitForFixedUpdate(); 
+                                Rb.velocity = new Vector2((FacingRight ? dashSpeedCurve : dashSpeedCurve * -1), 0);
+                                if (isPerformingJump) break;
+                                yield return new WaitForSeconds(0.01f); 
                                 dashTime += Time.deltaTime;
                         }
                         Physics2D.IgnoreLayerCollision(6,7, false);

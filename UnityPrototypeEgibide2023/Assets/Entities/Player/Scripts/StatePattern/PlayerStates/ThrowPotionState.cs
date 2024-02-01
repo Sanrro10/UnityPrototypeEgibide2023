@@ -2,49 +2,43 @@
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
-    public class ThrowPotionState : IState
+    public class ThrowPotionState : GroundState
     {
-        private PlayerController player;
         
-        public ThrowPotionState(PlayerController player)
+        public ThrowPotionState(PlayerController player) : base (player)
         {
-            this.player = player;
         }
         
-        public void Enter()
+        public override void Enter()
         {
-            player.animator.SetBool("IsThrowing", true);
-            player.Invoke(nameof(player.ThrowPotion), 0.1f);
-            player.Invoke(nameof(player.EndThrowPotion), player.GetPlayerData().potionThrowDuration);
+            base.Enter();
+            Player.animator.SetBool("IsThrowing", true);
+            Player.Invoke(nameof(Player.ThrowPotion), 0.1f);
+            Player.Invoke(nameof(Player.EndThrowPotion), Player.GetPlayerData().potionThrowDuration);
         }
 
-        public void Update()
+        public override void Update()
         {
-            if (player.isPerformingJump)
+            base.Update();
+            if (Player.isPerformingJump)
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.JumpState);
-                return;
-            }
-
-            if (!player.IsGrounded())
-            {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
-                
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.JumpState);
                 return;
             }
             
-            if (player.CanDash())
+            if (Player.CanDash())
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.GroundDashState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.GroundDashState);
                 return;
             }
         }
 
-        public void Exit()
+        public override void Exit()
         {
-            player.CancelInvoke(nameof(player.ThrowPotion));
-            player.CancelInvoke(nameof(player.EndThrowPotion));
-            player.animator.SetBool("IsThrowing", false);
+            base.Exit();
+            Player.CancelInvoke(nameof(Player.ThrowPotion));
+            Player.CancelInvoke(nameof(Player.EndThrowPotion));
+            Player.animator.SetBool("IsThrowing", false);
         }
     }
 }

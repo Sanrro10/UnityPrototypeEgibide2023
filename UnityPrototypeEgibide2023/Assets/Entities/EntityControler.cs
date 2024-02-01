@@ -63,5 +63,10 @@ namespace Entities
             Invulnerable = false;
             //Rb.WakeUp();
         }
+        
+        public Rigidbody2D GetRigidbody()
+        {
+            return Rb;
+        }
     }
 }

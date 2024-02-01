@@ -3,60 +3,36 @@ using UnityEngine;
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
-    public class AirState: IState
+    public class AirState : IState
     {
-        private PlayerController player;
-        public AirState(PlayerController player)
+        protected PlayerController Player;
+
+        protected AirState(PlayerController player)
         {
-            this.player = player;
+            this.Player = player;
         }
         
-        public void Enter()
+        public virtual void Enter()
         {
-            // Debug.Log("Entering Air State");
-
-            player.animator.SetBool("IsAir", true);
-            player.InvokeRepeating(nameof(player.AirMove), 0, 0.01f);
+            Player.GetRigidbody().drag = 1;
+            Player.GetRigidbody().inertia = 2;
         }
-        
-        // per-frame logic, include condition to transition to a new state
-        public void Update()
-        {
 
-            if (player.IsGrounded())
+        public virtual void Update()
+        {
+            if (Player.IsGrounded())
             {
-                if(player.isHoldingHorizontal)
-                    player.PmStateMachine.TransitionTo(player.PmStateMachine.WalkState);
+                if (Player.isHoldingHorizontal)
+                    Player.PmStateMachine.TransitionTo(Player.PmStateMachine.WalkState);
                 else
-                    player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
+                    Player.PmStateMachine.TransitionTo(Player.PmStateMachine.IdleState);
                 return;
             }
-            
-            if (player.isPerformingMeleeAttack)
-            {
-                player.AirAttack();
-                return;
-            }
-
-            
-            if (player.CanAirDash())
-            {
-                player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
-                return;
-            }
-            
-            if (player.CanThrowPotion())
-            {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.AirThrowPotionState);
-                return;
-            }
-
         }
-        
-        public void Exit()
+
+        public virtual void Exit()
         {
-            player.CancelInvoke(nameof(player.AirMove));
-            player.animator.SetBool("IsAir", false);
+            
         }
     }
 }

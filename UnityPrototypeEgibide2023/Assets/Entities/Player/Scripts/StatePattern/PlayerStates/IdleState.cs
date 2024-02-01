@@ -3,69 +3,62 @@ using UnityEngine;
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
-    public class IdleState: IState
+    public class IdleState: GroundState
     {
-        private PlayerController player;
         
-        public IdleState(PlayerController player)
+        public IdleState(PlayerController player) : base(player)
         {
-            this.player = player;
         }
 
-        public void Enter()
+        public override void Enter()
         {
+            base.Enter();
             // Debug.Log("Entering Idle State");
-            player.setXVelocity(0);
-            player.animator.SetBool("IsIdle", true);
+            Player.animator.SetBool("IsIdle", true);
         }
 
         // per-frame logic, include condition to transition to a new state
-        public void Update()
+        public override void Update()
         {
+            base.Update();
             // If we're no longer grounded, transition to the air state
-            if (player.isHoldingHorizontal)
+            if (Player.isHoldingHorizontal)
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.WalkState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.WalkState);
                 return;
             }
 
-            if (player.CanDash())
+            if (Player.CanDash())
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.GroundDashState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.GroundDashState);
                 return;
             }
 
-            if (player.isPerformingJump)
+            if (Player.isPerformingJump)
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.JumpState);
-                return;
-            }
-
-            if (!player.IsGrounded())
-            {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
-                
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.JumpState);
                 return;
             }
             
-            if (player.isPerformingMeleeAttack)
+            if (Player.isPerformingMeleeAttack)
             {
-                player.GroundAttack();
+                Player.GroundAttack();
                 return;
             }
             
-            if (player.CanThrowPotion())
+            if (Player.CanThrowPotion())
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.ThrowPotionState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.ThrowPotionState);
                 return;
             }
 
             
         }
         
-        public void Exit()
+        public override void Exit()
         {
-            player.animator.SetBool("IsIdle", false);
+            base.Exit();
+            Player.animator.SetBool("IsIdle", false);
             // Debug.Log("Exiting Idle State");
         }
     }

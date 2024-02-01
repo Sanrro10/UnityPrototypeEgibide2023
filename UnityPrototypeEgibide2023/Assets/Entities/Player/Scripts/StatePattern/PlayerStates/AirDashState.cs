@@ -3,40 +3,28 @@ using UnityEngine;
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
-    public class AirDashState : IState
+    public class AirDashState : AirState
     {
-        private PlayerController player;
         
-        public AirDashState(PlayerController player)
+        public AirDashState(PlayerController player) : base(player)
         {
-            this.player = player;
         }
 
-        public void Enter()
+        public override void Enter()
         {
-            //player.animator.SetTrigger("Dash");
-            player.AirDash();
-            player.StartCoroutine(player.AirDashDuration());
-            player.StartCoroutine(player.DashCooldown());
+            base.Enter();
+            Player.AirDash();
+            Player.StartCoroutine(Player.AirDashDuration());
+            Player.StartCoroutine(Player.DashCooldown());
             // Debug.Log("Entering Air Dash State");
             // Initialize Dash
         }
 
-        // per-frame logic, include condition to transition to a new state
-        public void Update()
-        {
-            if (player.IsGrounded())
-            {
-                if (player.isHoldingHorizontal)
-                    player.PmStateMachine.TransitionTo(player.PmStateMachine.WalkState);
-                else 
-                    player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
-            }
-        }
         
-        public void Exit()
+        public override void Exit()
         {
-            player.StopCoroutine(player.AirDashDuration());
+            base.Exit();
+            Player.StopCoroutine(Player.AirDashDuration());
             
 
         }
