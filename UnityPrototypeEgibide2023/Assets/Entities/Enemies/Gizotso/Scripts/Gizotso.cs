@@ -17,6 +17,9 @@ namespace Entities.Enemies.Gizotso.Scripts
         // Datos del enemigo
         [SerializeField] private PassiveEnemyData passiveEnemyData;
         
+        // Referencia al sprite renderer
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        
         // Variable para que no ande ni entre en bucle de ataques mientras está atacando
         private bool _attacking;
         
@@ -25,9 +28,6 @@ namespace Entities.Enemies.Gizotso.Scripts
         
         // Variable para controlar la animacion del ataque
         private bool _attackAnim;
-        
-        // Variable para controlar la direccion
-        private bool _goingRight;
     
         // Referencia al Animator
         [SerializeField] private Animator animator;
@@ -68,6 +68,8 @@ namespace Entities.Enemies.Gizotso.Scripts
 
         void Start()
         {
+            attackHitBox.SetActive(false);
+            
             // Añadir vida
             Health.Set(passiveEnemyData.health);
 
@@ -97,13 +99,13 @@ namespace Entities.Enemies.Gizotso.Scripts
         private void CheckDirection()
         {
             // Hace girar el gisotzo cuando está yendo a la derecha pero el nuevo target está a la izquierda
-            if (_goingRight && _target.x < transform.position.x)
+            if (FacingRight && _target.x < transform.position.x)
             {
                 StartCoroutine(nameof(Rotate));
             }
 
             // Hace girar el gisotzo cuando está yendo a la izquierda pero el nuevo target está a la derecha
-            if (!_goingRight && _target.x > transform.position.x)
+            if (!FacingRight && _target.x > transform.position.x)
             {
                 StartCoroutine(nameof(Rotate));
             }
@@ -126,7 +128,7 @@ namespace Entities.Enemies.Gizotso.Scripts
         private void TurnAround()
         {
             int newEulerY;
-            if (_goingRight)
+            if (FacingRight)
             {
                 transform.eulerAngles = new Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y - 30, transform.rotation.eulerAngles.z);
                 newEulerY = (int)transform.rotation.eulerAngles.y;
@@ -140,7 +142,7 @@ namespace Entities.Enemies.Gizotso.Scripts
             if (newEulerY % 180 == 0 || newEulerY == 0)
             {
                 _rotated = true;
-                _goingRight = !_goingRight;
+                FacingRight = !FacingRight;
                 _onCooldown = false;
             } 
         }
@@ -231,7 +233,7 @@ namespace Entities.Enemies.Gizotso.Scripts
         // Metodo que mueve al enemigo durante la animación del ataque
         private void Dash()
         {
-            if (_goingRight)
+            if (FacingRight)
             {
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + 0.1f, transform.position.y), 0.1f);
             }
@@ -334,13 +336,6 @@ namespace Entities.Enemies.Gizotso.Scripts
             }        
         
         }
-       
-        public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
-        {
-            base.OnReceiveDamage(attack);
-            
-            //TODO Incluir logica de recibir daño, si es que la tiene
-        }
         
         private void DestroyThis()
         {
@@ -351,7 +346,28 @@ namespace Entities.Enemies.Gizotso.Scripts
         {
             if (!other.CompareTag("GisotzoRotatePoint")) return;
             _onCooldown = true;
-            _target = _goingRight ? new Vector2(transform.position.x - 1000, transform.position.y) : new Vector2(transform.position.x + 1000, transform.position.y);
+            _target = FacingRight ? new Vector2(transform.position.x - 1000, transform.position.y) : new Vector2(transform.position.x + 1000, transform.position.y);
+        }
+
+        public override void OnReceiveDamage(AttackComponent.AttackData attack, bool toTheRight = true)
+        {
+            StartCoroutine(nameof(CoInvulneravility));
+        }
+        
+        private IEnumerator CoInvulneravility()
+        {
+            spriteRenderer.material.EnableKeyword("HITEFFECT_ON");
+            while (Invulnerable)
+            {
+                spriteRenderer.material.SetFloat("_Alpha", 0.3f);
+                                
+                yield return new WaitForSeconds(0.02f);
+                spriteRenderer.material.SetFloat("_Alpha", 1f);
+                yield return new WaitForSeconds(0.05f);
+            }
+            spriteRenderer.material.SetFloat("_Alpha", 1f);
+            spriteRenderer.material.DisableKeyword("HITEFFECT_ON");
+            yield return null;
         }
     }
 }
