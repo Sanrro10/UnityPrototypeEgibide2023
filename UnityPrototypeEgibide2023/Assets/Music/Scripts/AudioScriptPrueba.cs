@@ -20,7 +20,7 @@ namespace DigitalRuby.SoundManagerNamespace
         [SerializeField] private AudioMixer masterMixer;
 
         private GameObject go;
-        private GameObject ml;
+        private bool isOk;
         private Slider sl;
         private void Awake()
         {
@@ -40,17 +40,15 @@ namespace DigitalRuby.SoundManagerNamespace
         // Start is called before the first frame update
         void Start()
         {
-            //go = GameObject.Find("CanvasOptions");
-            //Debug.Log(go.name);
+            
             //value = audioVolume;
             //SetVolume(audioVolume);
-            
         }
 
         // Update is called once per frame
         void Update()
         {
-            
+            //Debug.Log(go.name);
         }
         
         public void SetVolume(Slider slider, float _value)

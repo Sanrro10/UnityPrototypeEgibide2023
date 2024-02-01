@@ -351,8 +351,8 @@ namespace Entities.Enemies.Arrano.Scripts
                     _audioSource.clip = audioData.audios[audio];
                     _audioSource.Play();
 
-                    _tiempoAudioIdle = 30;
-                    _tiempoTotal = 30;
+                    _tiempoAudioIdle = 200;
+                    _tiempoTotal = 10;
                 }
                 else
                 {

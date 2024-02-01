@@ -8,6 +8,7 @@ namespace Entities.Enemies.Goat.Scripts
 {
     public class GoatBehaviour : EntityControler
     {
+        [SerializeField] private AudioSource _audioSource;
         [SerializeField] public GoatData data;
         [SerializeField] private LayerMask playerLayer;
 

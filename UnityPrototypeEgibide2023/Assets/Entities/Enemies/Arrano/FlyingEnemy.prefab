@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4872463811334060630}
   - component: {fileID: -6216817808388750918}
   - component: {fileID: 4120615037757765805}
+  - component: {fileID: 2291105433945250161}
   m_Layer: 7
   m_Name: FlyingEnemy
   m_TagString: Enemy
@@ -104,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c041507aaff6c242ae489c64b22ae99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FacingRight: 0
   _audioSource: {fileID: -6216817808388750918}
   _animator: {fileID: 4872463811334060630}
   plumasMuerte: {fileID: 429476913838424807, guid: ea48caffe07a23a47851b0417439fea2, type: 3}
@@ -216,7 +218,7 @@ AudioSource:
   m_GameObject: {fileID: 2434248398684095206}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6858930992531127677, guid: 78ee3f4d62ae5b14894c02e9b0a4bd5f, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -315,8 +317,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c13aff87825a84fa26e0b01fd890de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  damageLayer: 6
+  attackData: []
+  entity: {fileID: 0}
+  toTheRight: 1
+--- !u!114 &2291105433945250161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2434248398684095206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713ec789b9da3d243b1291baab6b0fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audios: {fileID: 11400000, guid: 10bac8a3cb8c1ec47a4aecb6e7316725, type: 2}
 --- !u!1 &3235892323308809892
 GameObject:
   m_ObjectHideFlags: 0
