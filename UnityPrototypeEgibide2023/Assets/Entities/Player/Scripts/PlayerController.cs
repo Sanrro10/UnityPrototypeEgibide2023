@@ -25,6 +25,7 @@ namespace Entities.Player.Scripts
                 [SerializeField] private BoxCollider2D feetBoxCollider; 
                 [SerializeField] private PlayerData playerData;
                 [SerializeField] public  GameObject meleeAttack;
+                [SerializeField] private GameObject dashEffect;
                 public Animator animator;
                 [SerializeField] private SpriteRenderer _spriteRenderer;
                 
@@ -176,7 +177,7 @@ namespace Entities.Player.Scripts
                 
                         //Check unlocks
                         isAirDashUnlocked = playerData.airDashUnlocked;
-                        
+                        dashEffect.SetActive(false);
                         //CheckSceneChanged
                         OnSceneChange();
                         StartCoroutine(KeepSpriteStraight());
@@ -676,8 +677,6 @@ namespace Entities.Player.Scripts
                         Physics2D.IgnoreLayerCollision(6,7, true);
                         float dashTime = 0;
                         float dashSpeedCurve = 0;
-                        Debug.Log("Dash Duration: " + _dashCurve.keys[_dashCurve.length - 1].time);
-                        
                         while (dashTime < _dashCurve.keys[_dashCurve.length - 1].time)
                         {
                                 dashSpeedCurve = _dashCurve.Evaluate(dashTime) * dashSpeed; 
@@ -688,9 +687,6 @@ namespace Entities.Player.Scripts
                         }
                         Physics2D.IgnoreLayerCollision(6,7, false);
                         isDashing = false;
-                        base.EndInvulneravility();
-                
-                
                 }
 
                 public IEnumerator AirDashDuration()
@@ -718,7 +714,13 @@ namespace Entities.Player.Scripts
                         yield return new WaitForSeconds(playerData.dashCooldown);
                         _spriteRenderer.material.DisableKeyword("");
                         onDashCooldown = false;
-
+                        dashEffect.SetActive(true);
+                        Invoke(nameof(DisableDashEffect), 0.3f);
+                }
+                
+                private void DisableDashEffect()
+                {
+                        dashEffect.SetActive(false);
                 }
                 
                 public IEnumerator AirDashCooldown()
