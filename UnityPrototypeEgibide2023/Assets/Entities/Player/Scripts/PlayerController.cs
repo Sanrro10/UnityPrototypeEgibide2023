@@ -649,7 +649,7 @@ namespace Entities.Player.Scripts
                  */
                 public void ForceMove()
                 {
-                        _spriteRenderer.flipX = !FacingRight;
+                        
                         UnityEngine.Vector3 tempVector3 = transform.position;
                         float moveStep = 0.1f;
                         
