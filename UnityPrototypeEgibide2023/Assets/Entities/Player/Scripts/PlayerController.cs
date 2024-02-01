@@ -70,6 +70,9 @@ namespace Entities.Player.Scripts
                 private Slider healthBar;
                 private Text healthText;
                 private Text mainText;
+                private Image imgPotionSelected;
+                private Image imgPotionLeft;
+                private Image imgPotionRight;
                 
                 private Rigidbody2D _rb;
                 private CapsuleCollider2D _capsule;
@@ -141,7 +144,9 @@ namespace Entities.Player.Scripts
                         //Potion launch
                         _controls.GeneralActionMap.Potion.performed += ctx => isPerformingPotionThrow = true;
                         _controls.GeneralActionMap.Potion.canceled += ctx => isPerformingPotionThrow = false;
-
+                        //PotionChange -> Change which potion is selected
+                        _controls.GeneralActionMap.ChangePotionL.performed += ctx=> ChangePotion(true);
+                        _controls.GeneralActionMap.ChangePotionR.performed += ctx => ChangePotion(false);
                         
                         // Initialize data
                         horizontalSpeed = playerData.movementSpeed;
@@ -611,8 +616,30 @@ namespace Entities.Player.Scripts
                 {
                         _controls.Enable();
                 }
+
+                /*Changes the selected potion*/
+                public void ChangePotion(bool leftwards)
+                {
+                        //TODO -> Get Selected Potion (Maybe this on Scene change maybe perhaps)
+                        int selectedIndex = -1;
+                        int valueChange = leftwards ? -1 : 1;//Joder! Un Operador Ternario
+                        
+                        for (var i = 0; i < potionList.Length; i++)
+                        {
+                                if (potionList[i] == selectedPotion)
+                                {
+                                        selectedIndex = i;
+                                        break;
+                                }
+                        }
+
+                        selectedIndex += valueChange;
+                        if (selectedIndex >= potionList.Length) selectedIndex = 0;
+                        if (selectedIndex < 0) selectedIndex = potionList.Length;
+
+                }
                 
-        
+
                 public override void OnDeath()
                 {
                         DisablePlayerControls();
