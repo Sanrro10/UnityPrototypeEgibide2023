@@ -85,10 +85,10 @@ namespace General.Scripts
             }
             else
             {
+                Destroy(_jugador);
                 Destroy(canvasPausa.gameObject);
                 Destroy(canvasGameOver.gameObject);
                 Destroy(gameObject);
-                Destroy(_jugador);
             }
 
             if (!_useCheckpoint)
@@ -216,7 +216,7 @@ namespace General.Scripts
         }
         public void ChangeSceneMenu()
         {
-            DeletePersistentElement();
+            // DeletePersistentElement();
             SceneManager.LoadScene("Main Menu");
         }
         

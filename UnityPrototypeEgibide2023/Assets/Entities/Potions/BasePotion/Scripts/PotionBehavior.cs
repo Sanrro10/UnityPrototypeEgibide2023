@@ -9,7 +9,7 @@ namespace Entities.Potions.BasePotion.Scripts
 
         [SerializeField] private BasePotionData data;
         
-        public static event Action<PotionBehavior> OnPotionDestroy;
+        public static event Action<GameObject> OnPotionDestroy;
         private bool _hasBeenHitted = false;
         void Start()
         {
@@ -53,8 +53,8 @@ namespace Entities.Potions.BasePotion.Scripts
         private void Explode()
         {   
             Instantiate(data.explosion, transform.position, Quaternion.identity);
-            OnPotionDestroy?.Invoke(this);
             Destroy(gameObject);
+            OnPotionDestroy?.Invoke(gameObject);
         }
 
     }

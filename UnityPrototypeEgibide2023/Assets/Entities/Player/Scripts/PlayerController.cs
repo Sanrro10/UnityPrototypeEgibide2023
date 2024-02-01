@@ -182,7 +182,12 @@ namespace Entities.Player.Scripts
                         StartCoroutine(KeepSpriteStraight());
                 }
 
-                private void ResetPotionCooldown(PotionBehavior entity)
+                private void OnDestroy()
+                {
+                        PotionBehavior.OnPotionDestroy -= ResetPotionCooldown;
+                }
+
+                private void ResetPotionCooldown(GameObject entity)
                 {
                         StartCoroutine(PotionCooldownSlider());
                 }
