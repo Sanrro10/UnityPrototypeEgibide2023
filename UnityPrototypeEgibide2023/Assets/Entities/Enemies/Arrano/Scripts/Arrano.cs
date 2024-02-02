@@ -59,7 +59,7 @@ namespace Entities.Enemies.Arrano.Scripts
         private float _yPos;
         private float _posX;
 
-        private int _tiempoTotal = 30;
+        private int _tiempoTotal = 1;
         private int _tiempoAudioIdle = 0;
         private int _tiempoAudioAttack = 0;
         private int _tiempoAudioUp = 0;
@@ -100,7 +100,27 @@ namespace Entities.Enemies.Arrano.Scripts
         {
         
             // TODO: Animacion Idle
-            Audios(1, _tiempoTotal, _tiempoAudioIdle, 'I');
+            if (_tiempoTotal == 0 && _tiempoAudioIdle == 0)
+            {
+                _audioSource.clip = audioData.audios[1];
+                _audioSource.Play();
+
+                _tiempoTotal = 5;
+                _tiempoAudioIdle = 450;
+            }
+            else
+            {
+                if (_tiempoTotal > 0)
+                {
+                    _tiempoTotal -= 1;
+                }
+                
+                if (_tiempoAudioIdle > 0)
+                {
+                    _tiempoAudioIdle -= 1;
+                }
+    
+            }
             
             if (!_facingRight && Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
             {
@@ -154,7 +174,27 @@ namespace Entities.Enemies.Arrano.Scripts
         // Metodo con la logica del ataque
         public void Attack()
         {
-            Audios(0, _tiempoTotal, _tiempoAudioAttack, 'A');
+            if (_tiempoTotal == 0 && _tiempoAudioAttack == 0)
+            {
+                _audioSource.clip = audioData.audios[0];
+                _audioSource.Play();
+
+                _tiempoTotal = 0;
+                _tiempoAudioAttack = 0;
+            }
+            else
+            {
+                if (_tiempoTotal > 0)
+                {
+                    _tiempoTotal -= 1;
+                }
+                
+                if (_tiempoAudioIdle > 0)
+                {
+                    _tiempoAudioIdle -= 1;
+                }
+    
+            }
             
             CancelInvoke(nameof(PassiveBehaviour));
             CancelInvoke(nameof(ChangeVertical));
@@ -249,7 +289,27 @@ namespace Entities.Enemies.Arrano.Scripts
             
             // TODO: Animacion subida
             _animator.SetBool("IsUp", true);
-            Audios(2, _tiempoTotal, _tiempoAudioUp, 'U');
+            if (_tiempoTotal == 0 && _tiempoAudioUp == 0)
+            {
+                _audioSource.clip = audioData.audios[2];
+                _audioSource.Play();
+
+                _tiempoTotal = 5;
+                _tiempoAudioUp = 0;
+            }
+            else
+            {
+                if (_tiempoTotal > 0)
+                {
+                    _tiempoTotal -= 1;
+                }
+                
+                if (_tiempoAudioIdle > 0)
+                {
+                    _tiempoAudioIdle -= 1;
+                }
+    
+            }
         
             InvokeRepeating(nameof(StartMovingUp),0,0.01f);
             yield return new WaitUntil(() => Math.Abs(transform.position.y - _startPosition.y) < 0.5f);
@@ -351,8 +411,8 @@ namespace Entities.Enemies.Arrano.Scripts
                     _audioSource.clip = audioData.audios[audio];
                     _audioSource.Play();
 
-                    _tiempoAudioIdle = 30;
-                    _tiempoTotal = 30;
+                    _tiempoAudioIdle = 200;
+                    _tiempoTotal = 10;
                 }
                 else
                 {
