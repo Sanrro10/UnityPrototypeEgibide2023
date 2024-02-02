@@ -10351,6 +10351,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1610340940}
     m_Modifications:
+    - target: {fileID: -6216817808388750918, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 6858930992531127677, guid: 78ee3f4d62ae5b14894c02e9b0a4bd5f, type: 2}
     - target: {fileID: 1505240439631308721, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 78.4
@@ -10403,7 +10407,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2291105433945250161, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -14016,7 +14021,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 160013988021940176, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_ChildCameras.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1509413639970668840, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_Name

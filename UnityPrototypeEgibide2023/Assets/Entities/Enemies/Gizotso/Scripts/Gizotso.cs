@@ -14,6 +14,9 @@ namespace Entities.Enemies.Gizotso.Scripts
 {
     public class Gizotso : EntityControler
     {
+        // Referencia al audio source
+        [SerializeField] private AudioSource _audioSource;
+        
         // Datos del enemigo
         [SerializeField] private PassiveEnemyData passiveEnemyData;
         
