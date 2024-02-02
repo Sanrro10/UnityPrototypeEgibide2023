@@ -8,27 +8,27 @@ namespace Entities.Potions.BasePotion.Scripts
     {
 
         [SerializeField] private BasePotionData data;
-        
-        public static event Action<PotionBehavior> OnPotionDestroy;
+        private bool _canBounce = true;
         private bool _hasBeenHitted = false;
+        public static event Action<GameObject> OnPotionDestroy;
         void Start()
         {
             Health.Set(data.health);
-            InvulnerableTime = 0.2f;
+            InvulnerableTime = 0.1f;
         }
         
-        public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true)
+        public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
         {
-            if (!_hasBeenHitted) Rb.velocity = new Vector2();
-            // _hasBeenHitted = true;
-            base.OnReceiveDamage(0, knockback, angle, facingRight);
+            if (!Invulnerable && !_hasBeenHitted)  Rb.velocity = new Vector2();
+            attack.damage = 1;
+            if (Health.Get() <= 1) attack.damage = 0;
+            base.OnReceiveDamage(attack, facingRight);
         }
 
         public override void OnDeath()
         {
             base.OnDeath();
             Explode();
-            
         }
 
 
@@ -43,18 +43,25 @@ namespace Entities.Potions.BasePotion.Scripts
         }
 
     
-        private void Bounce(int damage)
+        protected virtual void Bounce(int damage)
         {
+            if (!_canBounce) return;
             Health.RemoveHealth(damage);
+            Invoke(nameof(SetBounce), 0.05f);
+            
         }
-        
+
+        private void SetBounce()
+        {
+            _canBounce = true;
+        }
     
 
-        private void Explode()
+        protected virtual void Explode()
         {   
             Instantiate(data.explosion, transform.position, Quaternion.identity);
-            OnPotionDestroy?.Invoke(this);
             Destroy(gameObject);
+            OnPotionDestroy?.Invoke(gameObject);
         }
 
     }

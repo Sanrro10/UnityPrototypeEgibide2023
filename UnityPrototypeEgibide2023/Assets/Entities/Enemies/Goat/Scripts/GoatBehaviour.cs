@@ -33,7 +33,7 @@ namespace Entities.Enemies.Goat.Scripts
             stateMachine.Initialize(stateMachine.GoatIdleState);
             Health.Set(data.health);
             AttackComponent = attackHitbox.GetComponent<AttackComponent>();
-            AttackComponent.AddAttackData(new AttackComponent.AttackData(data.damage, data.knockback, data.angle, 6));
+            AttackComponent.AddAttackData(new AttackComponent.AttackData(data.damage, data.knockback, data.angle, 6, AttackComponent.AttackType.Normal));
             AttackComponent.DeactivateHitbox();
         }
 
@@ -42,16 +42,14 @@ namespace Entities.Enemies.Goat.Scripts
             stateMachine.TransitionTo(stateMachine.GoatChargeState);
         }
 
-        public override void OnReceiveDamage(int damage, float knockback, Vector2 angle, bool facingRight = true)
+        public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
         {
-            base.OnReceiveDamage(damage, knockback, angle, facingRight);
-            Debug.Log(Health.Get());
+            base.OnReceiveDamage(attack, FacingRight);
         }
 
         public override void OnDeath()
         {
             base.OnDeath();
-            Debug.Log("We dead");
             stateMachine.TransitionTo(stateMachine.GoatDeathState);
         }
 

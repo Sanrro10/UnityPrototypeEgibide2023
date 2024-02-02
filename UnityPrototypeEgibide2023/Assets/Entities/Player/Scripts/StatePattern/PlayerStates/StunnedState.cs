@@ -26,7 +26,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
                if(player.IsGrounded()) 
                    player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
                else
-                   player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);   
+                   player.PmStateMachine.TransitionTo(player.PmStateMachine.AirborneState);   
             }
         }
         

@@ -468,6 +468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6902749216005068649}
   - component: {fileID: 7572438358083942645}
+  - component: {fileID: 1923951380494025171}
   m_Layer: 0
   m_Name: GameControler
   m_TagString: Untagged
@@ -503,6 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea1d769e7400f74fab1c03e12e1d5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FacingRight: 0
   playerPrefab: {fileID: 5937788470338340945, guid: c9d31c634c3c9e344ae14d09c0c65376, type: 3}
   menuPausa: {fileID: 629973782096403335}
   menuGameOver: {fileID: 5343057171329261318}
@@ -4190,3 +4192,4 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+

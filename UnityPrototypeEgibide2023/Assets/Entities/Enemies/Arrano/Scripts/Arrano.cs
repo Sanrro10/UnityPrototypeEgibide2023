@@ -483,15 +483,6 @@ namespace Entities.Enemies.Arrano.Scripts
         {
             Destroy(gameObject);
         }
-
-        // Evento que hace que el Player reciba daño
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.CompareTag("Player") && !_hit)
-            {
-                _player.GetComponent<PlayerController>().OnReceiveDamage(1, 0, Vector2.zero);
-                _hit = true;
-            }
-        }
+        
     }
 }

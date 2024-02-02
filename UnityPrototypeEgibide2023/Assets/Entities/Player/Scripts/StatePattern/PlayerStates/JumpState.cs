@@ -3,59 +3,60 @@ using UnityEngine;
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
-    public class JumpState : IState
+    public class JumpState : AirState
     {
-        private PlayerController player;
         
-        public JumpState(PlayerController player)
+        public JumpState(PlayerController player) : base(player)
         {
-            this.player = player;
         }
 
-        public void Enter()
+        public override void Enter()
         {
             // Debug.Log("Entering Jump State");
-            player.animator.SetBool("IsJump", true);
-            player.InvokeRepeating(nameof(player.Jump), 0, 0.01f);
-            player.StartCoroutine(player.MaxJumpDuration());
-            player.StartCoroutine(player.GroundedCooldown());
-            player.InvokeRepeating(nameof(player.AirMove), 0, 0.01f);
+            base.Enter();
+            Player.animator.SetBool("IsJump", true);
+            Player.InvokeRepeating(nameof(Player.Jump), 0, 0.01f);
+            Player.StartCoroutine(Player.MaxJumpDuration());
+            Player.StartCoroutine(Player.GroundedCooldown());
+            Player.InvokeRepeating(nameof(Player.AirMove), 0, 0.01f);
         }
 
         // per-frame logic, include condition to transition to a new state
-        public void Update()
+        public override void Update()
         {
+            base.Update();
 
-            if (!player.isPerformingJump)
+            if (!Player.isPerformingJump)
             {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirborneState);
                 return;
             }
             
-            if (player.CanAirDash())
+            if (Player.CanAirDash())
             {
-                player.PmStateMachine.TransitionTo((player.PmStateMachine.AirDashStartState));
+                Player.PmStateMachine.TransitionTo((Player.PmStateMachine.AirDashStartState));
                 return;
             }
-            if (player.isPerformingMeleeAttack)
+            if (Player.isPerformingMeleeAttack)
             {
-                player.AirAttack();
+                Player.AirAttack();
             }
             
-            if (player.isHoldingHorizontal)
+            if (Player.CanThrowPotion())
             {
-                player.AirMove();
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirThrowPotionState);
                 return;
             }
             
         }
         
-        public void Exit()
+        public override void Exit()
         {
-            player.animator.SetBool("IsJump", false);
-            player.CancelInvoke(nameof(player.AirMove));
-            player.CancelInvoke(nameof(player.Jump));
-            player.isPerformingJump = false;
+            base.Exit();
+            Player.animator.SetBool("IsJump", false);
+            Player.CancelInvoke(nameof(Player.AirMove));
+            Player.CancelInvoke(nameof(Player.Jump));
+            Player.isPerformingJump = false;
             
             // Debug.Log("Exiting Jump State");
         }

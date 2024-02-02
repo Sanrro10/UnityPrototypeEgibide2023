@@ -30,7 +30,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             base.Update();
             if (!Player.IsGrounded())
             {
-                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirborneState);
                 return;
             }
             if (Player.CanDash())
@@ -55,7 +55,6 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         {
             base.Exit();
             Player.CancelInvoke(nameof(Player.EndAttack));
-            Player.canAttack = true;
             Player.isInMiddleOfAttack = false;
 
             Player.animator.SetBool("IsALeft", false);

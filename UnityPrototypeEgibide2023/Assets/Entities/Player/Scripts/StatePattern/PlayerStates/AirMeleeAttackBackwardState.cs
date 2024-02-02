@@ -28,7 +28,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             base.Update();
             if (!Player.isInMiddleOfAirAttack)
             {
-                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirborneState);
                 return;
             }
             if (Player.IsGrounded()) {
@@ -44,7 +44,6 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             Player.CancelInvoke(nameof(Player.EndAirAttack));
             Player.animator.SetBool("IsAABackwardRight", false);
             Player.animator.SetBool("IsAABackwardLeft", false);
-            Player.canAttack = true;
             Player.isInMiddleOfAirAttack = false;
         }
     }

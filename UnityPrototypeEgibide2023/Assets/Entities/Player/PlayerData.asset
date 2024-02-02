@@ -14,24 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 9
   jumpPower: 18
-  facingRight: 0
-  downAttack: 1
   dashSpeed: 40
-  dashCooldown: 1
+  dashCooldown: 0.5
   gravity: 6
   potionColdownTime: 1
   jumpDuration: 0.2
   floatDuration: 0
-  airdashDuration: 0
+  airdashDuration: 0.1
   maxAirHorizontalSpeed: 5
   maxFallSpeed: 25
   airDashUnlocked: 0
-  groundDashDuration: 0
-  collectables: 0
   damage: 25
   knockback: 1000
   knockbackPotion: 2000
-  potionThrowDuration: 0.25
+  potionThrowDuration: 0.15
   dashCurve:
     serializedVersion: 2
     m_Curve:
@@ -83,4 +79,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  airdashForce: 15
+  airdashForce: 20

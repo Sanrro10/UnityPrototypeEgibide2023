@@ -14,13 +14,20 @@ namespace Entities.Enemies.Witch.Scripts
         private GameObject _playerGoRef;
         private PlayerController _playerRef;
         private LandWitchData _witchData;
-    
+        [SerializeField] private AttackComponent _attackComponent;
+        
+        void Awake()
+        {
+        }
         // Start is called before the first frame update
         void Start()
         {
+            _attackComponent = GetComponentInChildren<AttackComponent>(true);
+            _attackComponent.DeactivateHitbox();
             _playerGoRef = GameController.Instance.GetPlayerGameObject();
             _playerRef = GameController.Instance.GetPlayerController();
             _witchData = GameObject.Find("SorginaLand").GetComponent<LandWitch>().landWitchData;
+            _attackComponent.AddAttackData(new AttackComponent.AttackData(_witchData.magicCircleDamage, 0, new Vector2(0,0), 6, AttackComponent.AttackType.Projectile));
 
 
             InvokeRepeating(nameof(MovementLogic),0,0.02f);
@@ -50,11 +57,13 @@ namespace Entities.Enemies.Witch.Scripts
         {
             //ChangeColor();
             //magicCircleAnimator.SetTrigger("MagicCircleActivate");
-            gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            Debug.Log("Magic Circle Activated");
+            _attackComponent.ActivateHitbox();
             Invoke(nameof(EndOfLife), _witchData.magicCircleEffectDuration);
         }
         private void EndOfLife()
         {
+            _attackComponent.DeactivateHitbox();
             Destroy(gameObject);
         }
 
@@ -70,13 +79,5 @@ namespace Entities.Enemies.Witch.Scripts
 
 
         }*/
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.gameObject.CompareTag("Player"))
-            {
-                _playerRef.OnReceiveDamage(_witchData.magicCircleDamage, 0 , Vector2.zero);
-            }
-        }
     }
 }

@@ -3,57 +3,55 @@ using UnityEngine;
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
-    public class GroundDashState : IState
+    public class GroundDashState : GroundState
     {
-        private PlayerController player;
         
-        public GroundDashState(PlayerController player)
+        public GroundDashState(PlayerController player) : base(player)
         {
-            this.player = player;
         }
 
-        public void Enter()
+        public override void Enter()
         {
-            // Debug.Log("Entering Ground Dash State");
+            base.Enter();
             
-            player.isDashing = true;
-            player.animator.SetBool("IsDash", true);
-            player.FlipSprite();
-            //player.StartCoroutine((player.DashCooldown()));
-            player.StartCoroutine(player.Dash());
+            Player.isDashing = true;
+            Player.animator.SetBool("IsDash", true);
+            Player.FlipSprite();
+            //Player.StartCoroutine((Player.DashCooldown()));
+            Player.StartCoroutine(Player.Dash());
+            Player.Invulnerability();
         }
 
         // per-frame logic, include condition to transition to a new state
-        public void Update()
+        public override void Update()
         {
-            if (!player.IsGrounded())
-            {
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.AirState);
+            base.Update();
+            
+            if (Player.isPerformingJump) {
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.JumpState);
+                Player.Invoke(nameof(Player.SetOutOfDashVelocity), 0.05f);
                 return;
             }
-
             
-            if (!player.isDashing)
+            if (!Player.isDashing)
             {
-                if (player.isHoldingHorizontal)
+                if (Player.isHoldingHorizontal)
                 {
-                    player.PmStateMachine.TransitionTo(player.PmStateMachine.WalkState);
+                    Player.PmStateMachine.TransitionTo(Player.PmStateMachine.WalkState);
                     return;
                 }
-                player.PmStateMachine.TransitionTo(player.PmStateMachine.IdleState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.IdleState);
             }
-            
-            
-            
         }
         
-        public void Exit()
+        public override void Exit()
         {
-            player.animator.SetBool("IsDash", false);
-            player.CancelInvoke(nameof(player.Dash));
-            player.StartCoroutine(player.DashCooldown());
-            player.isDashing = false;
-            
+            base.Exit();
+            Player.StopCoroutine(nameof(Player.Dash));
+            Player.EndInvulnerability();
+            Player.animator.SetBool("IsDash", false);
+            Player.StartCoroutine(Player.DashCooldown());
+            Player.isDashing = false;
             // Debug.Log("Exiting Dash State");
         }
     }

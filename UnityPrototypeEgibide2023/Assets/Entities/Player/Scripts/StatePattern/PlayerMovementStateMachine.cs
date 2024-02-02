@@ -19,7 +19,7 @@ namespace StatePattern
         // We add all possible states here
         public IdleState IdleState;
         public WalkState WalkState;
-        public AirState AirState;
+        public AirborneState AirborneState;
         public GroundDashState GroundDashState;
         public JumpState JumpState;
         public AirDashState AirDashState;
@@ -32,14 +32,16 @@ namespace StatePattern
         public AirMeleeAttackUpState AirMeleeAttackUpState;
         public AirMeleeAttackDownState AirMeleeAttackDownState;
         public ThrowPotionState ThrowPotionState;
+        public AirThrowPotionState AirThrowPotionState;
         public StunnedState StunnedState;
+        public SceneChangeState SceneChangeState;
         
         // Constructor
         public PlayerMovementStateMachine(PlayerController player)
         {
             this.IdleState = new IdleState(player);
             this.WalkState = new WalkState(player);
-            this.AirState = new AirState(player);
+            this.AirborneState = new AirborneState(player);
             this.GroundDashState = new GroundDashState(player);
             this.JumpState = new JumpState(player);
             this.AirDashState = new AirDashState(player);
@@ -52,7 +54,9 @@ namespace StatePattern
             this.AirMeleeAttackUpState = new AirMeleeAttackUpState(player);
             this.AirMeleeAttackDownState = new AirMeleeAttackDownState(player);
             this.ThrowPotionState = new ThrowPotionState(player);
+            this.AirThrowPotionState = new AirThrowPotionState(player);
             this.StunnedState = new StunnedState(player);
+            this.SceneChangeState = new SceneChangeState(player);
         }
         
         public void Initialize(IState startingState)
