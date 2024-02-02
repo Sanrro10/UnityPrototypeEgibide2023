@@ -64,22 +64,22 @@ namespace General.Scripts
     
         void Awake()
         {
-            if (canvasPausa == null)
+            if (menuPausa == null)
             {
-                canvasPausa = GameObject.Find("CanvasPausa").GetComponent<Canvas>();
+                menuPausa = GameObject.Find("menuPausa").GetComponent<GameObject>();
             }
-            if (canvasGameOver == null)
+            if (menuGameOver == null)
             {
-                canvasGameOver = GameObject.Find("CanvasGameOver").GetComponent<Canvas>();
+                menuGameOver = GameObject.Find("menuGameOver").GetComponent<GameObject>();
             }
-            canvasPausa.gameObject.SetActive(false);
-            canvasGameOver.gameObject.SetActive(false);
+            menuPausa.gameObject.SetActive(false);
+            menuGameOver.gameObject.SetActive(false);
             Time.timeScale = 1;
             if (Instance == null)
             {
                 Instance = this;
                 DontDestroyOnLoad(transform.gameObject);
-                //DontDestroyOnLoad(canvasPausa);
+                //DontDestroyOnLoad(menuPausa);
                 //DontDestroyOnLoad(canvasGameOver);
                 //DontDestroyOnLoad(canvasOptions);
                 gameData = SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
@@ -99,7 +99,7 @@ namespace General.Scripts
             }
             else
             {
-                //Destroy(canvasPausa.gameObject);
+                //Destroy(menuPausa.gameObject);
                 //Destroy(canvasGameOver.gameObject);
                 //Destroy(canvasOptions.gameObject);
                 Destroy(gameObject);

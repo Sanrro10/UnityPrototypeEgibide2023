@@ -35,9 +35,6 @@ namespace Entities.Enemies.Gizotso.Scripts
         // Referencia al Animator
         [SerializeField] private Animator animator;
         
-        // Referencia al Audio Source
-        private AudioSource _audioSource;
-        
         // Referencia a los audios
         [SerializeField] private Audios audioData;
         
