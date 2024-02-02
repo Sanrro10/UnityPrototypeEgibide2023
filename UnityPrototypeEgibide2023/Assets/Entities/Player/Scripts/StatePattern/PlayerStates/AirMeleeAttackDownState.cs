@@ -27,7 +27,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             base.Update();
             if (!Player.isInMiddleOfAirAttack)
             {
-                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirborneState);
                 return;
             }
             if (Player.IsGrounded()) {

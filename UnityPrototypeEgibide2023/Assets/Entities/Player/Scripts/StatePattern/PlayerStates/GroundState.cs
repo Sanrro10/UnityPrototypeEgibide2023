@@ -20,7 +20,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         {
             if (!Player.IsGrounded())
             {
-                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirborneState);
                 return;
             }
         }

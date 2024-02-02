@@ -13,9 +13,8 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public override void Enter()
         {
             base.Enter();
-            Player.AirDash();
             Player.StartCoroutine(Player.AirDashDuration());
-            Player.StartCoroutine(Player.DashCooldown());
+            Player.StartCoroutine(Player.AirDashCooldown());
             // Debug.Log("Entering Air Dash State");
             // Initialize Dash
         }
@@ -25,7 +24,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         {
             base.Exit();
             Player.StopCoroutine(Player.AirDashDuration());
-            
+            Player.RestartGravity();
 
         }
     }

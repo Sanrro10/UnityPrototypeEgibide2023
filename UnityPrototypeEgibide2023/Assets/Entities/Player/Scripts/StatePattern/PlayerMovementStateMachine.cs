@@ -19,7 +19,7 @@ namespace StatePattern
         // We add all possible states here
         public IdleState IdleState;
         public WalkState WalkState;
-        public AirborneState AirState;
+        public AirborneState AirborneState;
         public GroundDashState GroundDashState;
         public JumpState JumpState;
         public AirDashState AirDashState;
@@ -41,7 +41,7 @@ namespace StatePattern
         {
             this.IdleState = new IdleState(player);
             this.WalkState = new WalkState(player);
-            this.AirState = new AirborneState(player);
+            this.AirborneState = new AirborneState(player);
             this.GroundDashState = new GroundDashState(player);
             this.JumpState = new JumpState(player);
             this.AirDashState = new AirDashState(player);

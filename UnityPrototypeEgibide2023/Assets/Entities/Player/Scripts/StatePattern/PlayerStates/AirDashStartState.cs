@@ -35,7 +35,6 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public override void Exit()
         {   
             base.Exit();
-            Player.RestartGravity();
         }
     }
 }

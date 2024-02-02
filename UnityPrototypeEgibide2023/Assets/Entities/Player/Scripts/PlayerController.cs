@@ -417,7 +417,7 @@ namespace Entities.Player.Scripts
 
                 public void EndThrowPotionAir()
                 {
-                        PmStateMachine.TransitionTo(PmStateMachine.AirState);
+                        PmStateMachine.TransitionTo(PmStateMachine.AirborneState);
                 }
                 
         
@@ -478,15 +478,10 @@ namespace Entities.Player.Scripts
                 {
                         float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
                         float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
-                
-                        float xForce = playerData.airdashForce * xDirection;
-                        float yForce = playerData.airdashForce * yDirection;
 
+                        float xForce = playerData.airdashForce * (xDirection < 0 ? -1 : 1);
+                        float yForce = playerData.airdashForce * (yDirection < 0 ? -1 : 1);
 
-                        if (yForce == 0)
-                        {
-                                yForce = playerData.airdashForce / 2;
-                        }
                         Rb.velocity = new Vector2(xForce, yForce * 2);
 
 
@@ -687,7 +682,7 @@ namespace Entities.Player.Scripts
                                 dashSpeedCurve = _dashCurve.Evaluate(dashTime) * dashSpeed; 
                                 Rb.velocity = new Vector2((FacingRight ? dashSpeedCurve : dashSpeedCurve * -1), 0);
                                 if (isPerformingJump) break;
-                                yield return new WaitForSeconds(0.01f); 
+                                yield return new WaitForSeconds(Time.deltaTime); 
                                 dashTime += Time.deltaTime;
                         }
                         Physics2D.IgnoreLayerCollision(6,7, false);
@@ -696,8 +691,10 @@ namespace Entities.Player.Scripts
 
                 public IEnumerator AirDashDuration()
                 {
+                        Vector2 dashDirection = new Vector2(_controls.GeneralActionMap.HorizontalMovement.ReadValue<float>(), _controls.GeneralActionMap.VerticalMovement.ReadValue<float>());
+                        Rb.velocity = new Vector2(dashDirection.x * playerData.airdashForce, dashDirection.y * playerData.airdashForce);
                         yield return new WaitForSeconds(playerData.airdashDuration);
-                        PmStateMachine.TransitionTo(PmStateMachine.AirState);
+                        PmStateMachine.TransitionTo(PmStateMachine.AirborneState);
                 }
                 public IEnumerator FloatDuration()
                 {

@@ -28,7 +28,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 
             if (!Player.isPerformingJump)
             {
-                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirState);
+                Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirborneState);
                 return;
             }
             
