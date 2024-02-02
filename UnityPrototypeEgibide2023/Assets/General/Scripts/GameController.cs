@@ -14,6 +14,8 @@ namespace General.Scripts
 
         private SPlayerSpawnData _lastCheckpoint;
         public SPlayerSpawnData _playerSpawnDataInNewScene;
+        //This should be filled when loading the game, otherwise its not going to work;
+        public SPlayerPersistentData PlayerPersistentDataBetweenScenes;
         private GameData gameData;
         private string mainSceneName  = "1.0.1 (Tutorial)";
         public List<int> collectedItems = new List<int>();
@@ -36,7 +38,16 @@ namespace General.Scripts
             public bool OnTheLeft;
             public bool UseSceneChangeTrigger;
         }
-    
+        
+        //Structure for data persistence between Scenes
+        public struct SPlayerPersistentData
+        {
+            public int CurrentHealth;
+            public GameObject[] PotionList;
+            public GameObject SelectedPotion;
+
+        }
+
         // Start is called before the first frame update
         void Start()
         {

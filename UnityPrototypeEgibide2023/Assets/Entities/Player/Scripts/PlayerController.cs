@@ -87,6 +87,8 @@ namespace Entities.Player.Scripts
                 
                 //SpawnData
                 private GameController.SPlayerSpawnData _sPlayerSpawnData;
+                //CurrentPersistentData
+                private GameController.SPlayerPersistentData _sPlayerCurrentPersistentData;
         
                 //Potion UI
                 private bool _onPotionCooldown;
@@ -98,11 +100,25 @@ namespace Entities.Player.Scripts
                 public GameObject throwPosition;
                 private bool _rotated;
                 private bool _onCooldown;
+                private GameObject _potionSelector;
 
                 //private AudioSource _audioSource;
                 
                 void Start()
                 {
+
+                        if (GameController.Instance.PlayerPersistentDataBetweenScenes.Equals(default(GameController.SPlayerPersistentData)))
+                        {
+                                _sPlayerCurrentPersistentData.CurrentHealth = 100;
+                                _sPlayerCurrentPersistentData.PotionList = new GameObject[3];
+                                _sPlayerCurrentPersistentData.SelectedPotion = null;
+                        }
+                        else
+                        {
+                                _sPlayerCurrentPersistentData =
+                                        GameController.Instance.PlayerPersistentDataBetweenScenes;
+                        }
+
                         // Audio = 
                         _audioSource = GetComponent<AudioSource>();
                         //_force2D = GetComponent<ConstantForce2D>();
@@ -141,7 +157,9 @@ namespace Entities.Player.Scripts
                         //Potion launch
                         _controls.GeneralActionMap.Potion.performed += ctx => isPerformingPotionThrow = true;
                         _controls.GeneralActionMap.Potion.canceled += ctx => isPerformingPotionThrow = false;
-
+                        //PotionChange -> Change which potion is selected
+                        _controls.GeneralActionMap.ChangePotionL.performed += ctx=> ShowPotionSelector(true);
+                        _controls.GeneralActionMap.ChangePotionR.performed += ctx => ShowPotionSelector(false);
                         
                         // Initialize data
                         horizontalSpeed = playerData.movementSpeed;
@@ -162,7 +180,7 @@ namespace Entities.Player.Scripts
                         healthBar = GameObject.Find("SliderHealth").GetComponent<Slider>();
         
                         //Set health
-                        Health.Set(100);
+                        Health.Set(_sPlayerCurrentPersistentData.CurrentHealth);
                         healthText.text = Health.Get().ToString();
                         healthBar.value = Health.Get();
                 
@@ -170,7 +188,12 @@ namespace Entities.Player.Scripts
                         _sliderPotion = GameObject.Find("SliderPotion").GetComponent<Slider>();
                         _sliderPotion.maxValue = playerData.potionColdownTime;
                         _sliderPotion.value = playerData.potionColdownTime;
-                
+
+                        _potionSelector = transform.Find("PotionSelector").gameObject;
+                        potionList = _sPlayerCurrentPersistentData.PotionList;
+                        
+                        if(selectedPotion is null)
+                                selectedPotion = _sPlayerCurrentPersistentData.SelectedPotion;
         
                         _impulseSource = GetComponent<CinemachineImpulseSource>();
                 
@@ -186,6 +209,12 @@ namespace Entities.Player.Scripts
                 private void OnDestroy()
                 {
                         PotionBehavior.OnPotionDestroy -= ResetPotionCooldown;
+                         GameController.SPlayerPersistentData thePlayerDataThatIsGoingToBePersisted =
+                                 new GameController.SPlayerPersistentData();
+                         thePlayerDataThatIsGoingToBePersisted.CurrentHealth = Health.Get();
+                         thePlayerDataThatIsGoingToBePersisted.PotionList = potionList;
+                         thePlayerDataThatIsGoingToBePersisted.SelectedPotion = selectedPotion;
+                        GameController.Instance.PlayerPersistentDataBetweenScenes = thePlayerDataThatIsGoingToBePersisted;
                 }
 
                 private void ResetPotionCooldown(GameObject entity)
@@ -611,8 +640,42 @@ namespace Entities.Player.Scripts
                 {
                         _controls.Enable();
                 }
-                
-        
+
+                /*Changes the selected potion*/
+                private void ChangePotion(bool leftwards)
+                {
+                        //TODO -> Get Selected Potion (Maybe this on Scene change maybe perhaps)
+                        int selectedIndex = -1;
+                        int valueChange = leftwards ? -1 : 1;//Joder! Un Operador Ternario
+                        
+                        for (var i = 0; i < potionList.Length; i++)
+                        {
+                                if (potionList[i] == selectedPotion)
+                                {
+                                        selectedIndex = i;
+                                        break;
+                                }
+                        }
+
+                        selectedIndex += valueChange;
+                        if (selectedIndex >= potionList.Length) selectedIndex = 0;
+                        if (selectedIndex < 0) selectedIndex = potionList.Length;
+
+                }
+
+                private void ShowPotionSelector(bool leftwards)
+                {
+                        CancelInvoke(nameof(HidePotionSelector));
+                        Invoke(nameof(HidePotionSelector),0.5f);
+                        _potionSelector.SetActive(true);
+                }
+
+                private void HidePotionSelector()
+                {
+                        _potionSelector.SetActive(false);
+                }
+
+
                 public override void OnDeath()
                 {
                         DisablePlayerControls();
