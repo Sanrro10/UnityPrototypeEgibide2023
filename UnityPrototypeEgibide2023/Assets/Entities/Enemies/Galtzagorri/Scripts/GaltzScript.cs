@@ -9,8 +9,8 @@ namespace Entities.Enemies.Galtzagorri.Scripts
 {
     public class GaltzScript : EntityControler
     {
-        // Referencia al Audio Source
-        [SerializeField] private AudioSource _audioSource;
+        // Referencia al scrip de audios
+        [SerializeField] private GaltzAudios _galtzAudios;
         
         // Referencia del jugador
         private GameObject _playerGameObject;

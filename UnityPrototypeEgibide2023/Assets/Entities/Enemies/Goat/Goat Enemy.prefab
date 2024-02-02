@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -8147011581568639974}
   - component: {fileID: 3320793074386851084}
   - component: {fileID: 4827995732949096150}
+  - component: {fileID: -3660447793482837543}
   m_Layer: 7
   m_Name: Goat Enemy
   m_TagString: Enemy
@@ -52,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FacingRight: 0
+  audioGoat: {fileID: 0}
   data: {fileID: 11400000, guid: 2281c6db7bcee5643a02e6bae71950fa, type: 2}
   playerLayer:
     serializedVersion: 2
@@ -303,6 +305,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-3660447793482837543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235341801465288344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00f4951e9a4ecd4894a8a06d0951899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audios: {fileID: 11400000, guid: fc6889d86037caa45a58be50ee2c4fff, type: 2}
 --- !u!1 &6328714735705215187
 GameObject:
   m_ObjectHideFlags: 0
