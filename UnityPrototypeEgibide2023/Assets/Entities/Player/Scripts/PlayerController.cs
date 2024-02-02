@@ -674,7 +674,6 @@ namespace Entities.Player.Scripts
         
                 public IEnumerator Dash()
                 {
-                        Physics2D.IgnoreLayerCollision(6,7, true);
                         float dashTime = 0;
                         float dashSpeedCurve = 0;
                         while (dashTime < _dashCurve.keys[_dashCurve.length - 1].time)
@@ -685,7 +684,6 @@ namespace Entities.Player.Scripts
                                 yield return new WaitForSeconds(Time.deltaTime); 
                                 dashTime += Time.deltaTime;
                         }
-                        Physics2D.IgnoreLayerCollision(6,7, false);
                         isDashing = false;
                 }
 
