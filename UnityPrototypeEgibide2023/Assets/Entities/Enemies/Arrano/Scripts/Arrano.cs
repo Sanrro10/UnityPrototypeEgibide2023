@@ -59,7 +59,7 @@ namespace Entities.Enemies.Arrano.Scripts
         private float _yPos;
         private float _posX;
 
-        private int _tiempoTotal = 30;
+        private int _tiempoTotal = 1;
         private int _tiempoAudioIdle = 0;
         private int _tiempoAudioAttack = 0;
         private int _tiempoAudioUp = 0;
@@ -113,7 +113,9 @@ namespace Entities.Enemies.Arrano.Scripts
                 if (_tiempoTotal > 0)
                 {
                     _tiempoTotal -= 1;
-                } else if (_tiempoAudioIdle > 0)
+                }
+                
+                if (_tiempoAudioIdle > 0)
                 {
                     _tiempoAudioIdle -= 1;
                 }
@@ -185,7 +187,9 @@ namespace Entities.Enemies.Arrano.Scripts
                 if (_tiempoTotal > 0)
                 {
                     _tiempoTotal -= 1;
-                } else if (_tiempoAudioIdle > 0)
+                }
+                
+                if (_tiempoAudioIdle > 0)
                 {
                     _tiempoAudioIdle -= 1;
                 }
@@ -298,7 +302,9 @@ namespace Entities.Enemies.Arrano.Scripts
                 if (_tiempoTotal > 0)
                 {
                     _tiempoTotal -= 1;
-                }else if (_tiempoAudioIdle > 0)
+                }
+                
+                if (_tiempoAudioIdle > 0)
                 {
                     _tiempoAudioIdle -= 1;
                 }

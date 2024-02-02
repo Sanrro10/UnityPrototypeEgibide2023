@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 755058875}
-  m_IndirectSpecularColor: {r: 0.49070984, g: 0.68177557, b: 0.7859064, a: 1}
+  m_IndirectSpecularColor: {r: 0.4908545, g: 0.68161315, b: 0.7857119, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6952,7 +6952,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 6858930992531127677, guid: 78ee3f4d62ae5b14894c02e9b0a4bd5f, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 29fdd573534731c4aaef9355095261e4, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.035
   m_Pitch: 1
@@ -9951,9 +9951,21 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 139597257927589616, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
+      propertyPath: flyingSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2434248398684095206, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4120615037757765805, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
+      propertyPath: attackData.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4120615037757765805, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
+      propertyPath: attackData.Array.data[0].damage
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4534584641843547334, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
       propertyPath: m_LocalScale.x
