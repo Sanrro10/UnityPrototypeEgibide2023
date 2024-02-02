@@ -16,6 +16,7 @@ namespace General.Scripts
         public SPlayerSpawnData _playerSpawnDataInNewScene;
         private GameData gameData;
         private string mainSceneName  = "1.0.1 (Tutorial)";
+        public List<int> collectedItems = new List<int>();
         
         public GameObject playerPrefab;
 
