@@ -242,34 +242,7 @@ namespace Entities.Enemies.Gizotso.Scripts
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x - 0.1f, transform.position.y), 0.1f);
             }
         }
-    
-        public override void OnDeath()
-        {
-            _isDying = true;
-            
-            StopAllCoroutines();
-            CancelInvoke();
-            
-            // Animación muerte
-            animator.SetBool(IsPreAttack, false);
-            animator.SetBool(IsFirstAttack, false);
-            animator.SetBool(IsSecondAttack, false);
-            animator.SetBool(IsHurt,false);
-            animator.SetBool(IsIdle, false);
-            animator.SetBool(IsDead, true);
 
-            Rigidbody2D component = GetComponent<Rigidbody2D>();
-            component.isKinematic = true;
-            component.simulated = false;
-            
-            PolygonCollider2D gisotzoCollider = gameObject.GetComponent<PolygonCollider2D>();
-            gisotzoCollider.enabled = false;
-            
-            AnimationClip currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
-            float lengthAnim = currentAnim.length;
-            Invoke(nameof(DestroyThis),lengthAnim + 2f);
-        }
-        
         public void Audios(int audio, int tiempoAudioTotal, int tiempoAudioModo, char tipo)
         {
             switch (tipo)
@@ -337,6 +310,33 @@ namespace Entities.Enemies.Gizotso.Scripts
         
         }
         
+        public override void OnDeath()
+        {
+            _isDying = true;
+            
+            StopAllCoroutines();
+            CancelInvoke();
+            
+            // Animación muerte
+            animator.SetBool(IsPreAttack, false);
+            animator.SetBool(IsFirstAttack, false);
+            animator.SetBool(IsSecondAttack, false);
+            animator.SetBool(IsHurt,false);
+            animator.SetBool(IsIdle, false);
+            animator.SetBool(IsDead, true);
+
+            Rigidbody2D component = GetComponent<Rigidbody2D>();
+            component.isKinematic = true;
+            component.simulated = false;
+            
+            PolygonCollider2D gisotzoCollider = gameObject.GetComponent<PolygonCollider2D>();
+            gisotzoCollider.enabled = false;
+            
+            AnimationClip currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+            float lengthAnim = currentAnim.length;
+            Invoke(nameof(DestroyThis),lengthAnim + 2f);
+        }
+        
         private void DestroyThis()
         {
             Destroy(gameObject);
@@ -351,10 +351,11 @@ namespace Entities.Enemies.Gizotso.Scripts
 
         public override void OnReceiveDamage(AttackComponent.AttackData attack, bool toTheRight = true)
         {
-            StartCoroutine(nameof(CoInvulneravility));
+            base.OnReceiveDamage(attack, FacingRight);
+            StartCoroutine(nameof(CoInvulnerability));
         }
         
-        private IEnumerator CoInvulneravility()
+        private IEnumerator CoInvulnerability()
         {
             spriteRenderer.material.EnableKeyword("HITEFFECT_ON");
             while (Invulnerable)
