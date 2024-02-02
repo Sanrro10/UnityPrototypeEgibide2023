@@ -1,4 +1,5 @@
 using Entities.Potions.BasePotion.Scripts;
+using UnityEngine;
 
 namespace Entities.Potions.ThunderPotion.Script
 {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2929620622079085798}
   - component: {fileID: 5434601713336417776}
   - component: {fileID: 6219639733953650332}
-  - component: {fileID: 616642016375442671}
+  - component: {fileID: 8735967353140898178}
   m_Layer: 8
   m_Name: ThunderPotion
   m_TagString: Untagged
@@ -76,8 +76,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &616642016375442671
-CircleCollider2D:
+--- !u!70 &8735967353140898178
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -85,7 +85,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 1266867429699652061}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 33c41b6ef356a4f40a02dd0d42355b34, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -108,9 +108,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.0059696967}
-  serializedVersion: 2
-  m_Radius: 0.03144785
+  m_Offset: {x: -0.0005542288, y: 0.011378977}
+  m_Size: {x: 0.035201553, y: 0.12092462}
+  m_Direction: 0
 --- !u!1 &8317689951598507473
 GameObject:
   m_ObjectHideFlags: 0

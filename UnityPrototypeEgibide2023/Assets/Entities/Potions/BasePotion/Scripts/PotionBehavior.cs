@@ -1,6 +1,7 @@
 using System;
 using Entities.Player.Scripts;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Entities.Potions.BasePotion.Scripts
 {
@@ -15,6 +16,7 @@ namespace Entities.Potions.BasePotion.Scripts
         {
             Health.Set(data.health);
             InvulnerableTime = 0.1f;
+            GetComponent<Rigidbody2D>().angularVelocity = Random.Range(-200, 200);
         }
         
         public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
