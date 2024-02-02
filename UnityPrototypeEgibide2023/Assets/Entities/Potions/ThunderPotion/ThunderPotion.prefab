@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2929620622079085798}
   - component: {fileID: 5434601713336417776}
   - component: {fileID: 6219639733953650332}
-  - component: {fileID: 8735967353140898178}
+  - component: {fileID: 3463308916500642586}
   m_Layer: 8
   m_Name: ThunderPotion
   m_TagString: Untagged
@@ -76,7 +76,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!70 &8735967353140898178
+--- !u!70 &3463308916500642586
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,7 +85,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1266867429699652061}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 33c41b6ef356a4f40a02dd0d42355b34, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -108,8 +108,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0005542288, y: 0.011378977}
-  m_Size: {x: 0.035201553, y: 0.12092462}
+  m_Offset: {x: -0.00000008220204, y: -0.017284377}
+  m_Size: {x: 0.075080596, y: 0.1186621}
   m_Direction: 0
 --- !u!1 &8317689951598507473
 GameObject:
@@ -137,7 +137,7 @@ Transform:
   m_GameObject: {fileID: 8317689951598507473}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.056, y: 0.213, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.027078364, y: 0.027078364, z: 0.027078366}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -184,7 +184,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c599736f5403dea4d9a0db1ca3785a2f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6bdb980b5a682404aac2225817abe126, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

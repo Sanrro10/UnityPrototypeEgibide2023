@@ -93,6 +93,7 @@ namespace Entities.Player.Scripts
                 //Potion UI
                 private bool _onPotionCooldown;
                 private Slider _sliderPotion;
+                private Image _selectedPotionImage;
                 
                 //Potion 
                 public GameObject[] potionList;
@@ -110,7 +111,7 @@ namespace Entities.Player.Scripts
                         if (GameController.Instance.PlayerPersistentDataBetweenScenes.Equals(default(GameController.SPlayerPersistentData)))
                         {
                                 _sPlayerCurrentPersistentData.CurrentHealth = 100;
-                                _sPlayerCurrentPersistentData.PotionList = new GameObject[3];
+                                _sPlayerCurrentPersistentData.PotionList = potionList;
                                 _sPlayerCurrentPersistentData.SelectedPotion = null;
                         }
                         else
@@ -178,6 +179,7 @@ namespace Entities.Player.Scripts
                         healthText = GameObject.Find("TextHealth").GetComponent<Text>();
                         mainText = GameObject.Find("TextMain").GetComponent<Text>();
                         healthBar = GameObject.Find("SliderHealth").GetComponent<Slider>();
+                        _selectedPotionImage = GameObject.Find("ImagePotionSelected").GetComponent<Image>();
         
                         //Set health
                         Health.Set(_sPlayerCurrentPersistentData.CurrentHealth);
@@ -194,7 +196,9 @@ namespace Entities.Player.Scripts
                         
                         if(selectedPotion is null)
                                 selectedPotion = _sPlayerCurrentPersistentData.SelectedPotion;
-        
+                        _selectedPotionImage.sprite = 
+                                selectedPotion != null ? selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite : null;
+                        
                         _impulseSource = GetComponent<CinemachineImpulseSource>();
                 
                 
@@ -641,11 +645,13 @@ namespace Entities.Player.Scripts
                         _controls.Enable();
                 }
 
-                /*Changes the selected potion*/
+                /*Changes the selected potion and show the potions while changing them*/
                 private void ChangePotion(bool leftwards)
                 {
                         //TODO -> Get Selected Potion (Maybe this on Scene change maybe perhaps)
                         int selectedIndex = -1;
+                        int leftIndex = -1;
+                        int rightIndex = -1;
                         int valueChange = leftwards ? -1 : 1;//Joder! Un Operador Ternario
                         
                         for (var i = 0; i < potionList.Length; i++)
@@ -659,7 +665,38 @@ namespace Entities.Player.Scripts
 
                         selectedIndex += valueChange;
                         if (selectedIndex >= potionList.Length) selectedIndex = 0;
-                        if (selectedIndex < 0) selectedIndex = potionList.Length;
+                        if (selectedIndex < 0) selectedIndex = potionList.Length - 1;
+                        
+                        //Put the selected potion index as center image, and change the flowers image
+                        selectedPotion = potionList[selectedIndex];
+                        _potionSelector.transform.Find("SelectedPotionSprite").gameObject.GetComponent<SpriteRenderer>().sprite =
+                                selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite;
+                        
+                        _selectedPotionImage.sprite = selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite;
+                        
+                        if (potionList.Length > 1)
+                        {
+                                leftIndex = selectedIndex - 1;
+                                if (leftIndex >= potionList.Length) leftIndex = 0;
+                                if (leftIndex < 0) leftIndex = potionList.Length - 1;
+                                var leftPotionSprite = _potionSelector.transform.Find("LeftPotionSprite").gameObject;
+                                if(!leftPotionSprite.activeSelf) leftPotionSprite.SetActive(true);
+                                
+                                leftPotionSprite.GetComponent<SpriteRenderer>().sprite =
+                                        potionList[leftIndex].transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite;
+                        }
+
+                        if (potionList.Length > 2)
+                        {
+                                rightIndex = selectedIndex + 1;
+                                if (rightIndex >= potionList.Length) rightIndex = 0;
+                                if (rightIndex < 0) rightIndex = potionList.Length - 1;
+                                var rightPotionSprite = _potionSelector.transform.Find("RightPotionSprite").gameObject;
+                                if(!rightPotionSprite.activeSelf) rightPotionSprite.SetActive(true);
+
+                                rightPotionSprite.GetComponent<SpriteRenderer>().sprite =
+                                        potionList[rightIndex].transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite;
+                        }
 
                 }
 
@@ -668,6 +705,7 @@ namespace Entities.Player.Scripts
                         CancelInvoke(nameof(HidePotionSelector));
                         Invoke(nameof(HidePotionSelector),0.5f);
                         _potionSelector.SetActive(true);
+                        ChangePotion(leftwards);
                 }
 
                 private void HidePotionSelector()
