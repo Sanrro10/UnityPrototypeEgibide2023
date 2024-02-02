@@ -19,7 +19,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             Player.FlipSprite();
             //Player.StartCoroutine((Player.DashCooldown()));
             Player.StartCoroutine(Player.Dash());
-            Player.Invulneravility();
+            Player.Invulnerability();
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -29,6 +29,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             
             if (Player.isPerformingJump) {
                 Player.PmStateMachine.TransitionTo(Player.PmStateMachine.JumpState);
+                Player.Invoke(nameof(Player.SetOutOfDashVelocity), 0.05f);
                 return;
             }
             
@@ -47,12 +48,10 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         {
             base.Exit();
             Player.StopCoroutine(nameof(Player.Dash));
-            Player.EndInvulneravility();
+            Player.EndInvulnerability();
             Player.animator.SetBool("IsDash", false);
             Player.StartCoroutine(Player.DashCooldown());
             Player.isDashing = false;
-            Player.GetRigidbody().velocity = new Vector2((Player.FacingRight ? 20f  : -20f), Player.GetRigidbody().velocity.y);
-
             // Debug.Log("Exiting Dash State");
         }
     }

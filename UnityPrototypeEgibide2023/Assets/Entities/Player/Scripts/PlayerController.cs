@@ -383,7 +383,7 @@ namespace Entities.Player.Scripts
                                new Vector2(throwPosition.transform.position.x + (this.FacingRight ? 0.3f : -0.3f), throwPosition.transform.position.y), 
                                Quaternion.identity)
                                .GetComponent<Rigidbody2D>().velocity = new Vector2(
-                               (!isHoldingVertical ? (this.FacingRight ? 1 : -1) : 0) * 5,
+                               ((!isHoldingVertical ? (this.FacingRight ? 1 : -1) : 0) * 5) + Rb.velocity.x,
                                5);
                 }
 
@@ -399,7 +399,7 @@ namespace Entities.Player.Scripts
                                 Quaternion.identity);
                         
                         potion.GetComponent<Rigidbody2D>().velocity = new Vector2(
-                                (!isHoldingVertical ? (this.FacingRight ? 1 : -1) : 0) * 5, (!isHoldingVertical ? 0.5f : vDirection) * 5);
+                                ((!isHoldingVertical ? (this.FacingRight ? 1 : -1) : 0) * 5) + Rb.velocity.x, (!isHoldingVertical ? 0.5f : vDirection) * 5);
                 }
                 
                 
@@ -784,11 +784,7 @@ namespace Entities.Player.Scripts
                         isPerformingJump = false;
 
                 }
-
-                public void setXVelocity(float i)
-                {
-                        Rb.velocity = new Vector2(i, Rb.velocity.y);
-                }
+                
 
                 public PlayerData GetPlayerData()
                 { 
@@ -864,6 +860,11 @@ namespace Entities.Player.Scripts
                 public void SetIsOnMiddleOfAirAttack()
                 {
                         isInMiddleOfAirAttack = true;
+                }
+
+                public void SetOutOfDashVelocity()
+                {
+                        Rb.velocity = new Vector2((FacingRight ? 15f : -15f), Rb.velocity.y);
                 }
         }
 }

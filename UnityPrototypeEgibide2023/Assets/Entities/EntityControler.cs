@@ -34,12 +34,12 @@ namespace Entities
            Push(attack.knockback, attack.angle, toTheRight);
         }
         
-        public virtual void Invulneravility()
+        public virtual void Invulnerability()
         {
             Invulnerable = true;
         }
         
-        public virtual void EndInvulneravility()
+        public virtual void EndInvulnerability()
         {
             Invulnerable = false;
         }
