@@ -1201,6 +1201,7 @@ MonoBehaviour:
   canvaSlotPartidas: {fileID: 1175624954}
   canvasManuPrincipal: {fileID: 1303699239}
   canvasConfirmDeleteGame: {fileID: 772519262}
+  canvasOptions: {fileID: 0}
 --- !u!1 &428219206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,8 +1796,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Seed of faith
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c6ee090a743fc42409c759620e5dce89, type: 2}
+  m_sharedMaterial: {fileID: -9014079238471957148, guid: c6ee090a743fc42409c759620e5dce89, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3384,19 +3385,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175624951}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 12.5893}
-  m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1382904034}
   - {fileID: 453328471}
   - {fileID: 717860585}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1303699240}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1.4879, y: 0.53}
+  m_AnchoredPosition: {x: 2198.5537, y: 1172.2058}
   m_SizeDelta: {x: 1435.1343, y: 2351.8389}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1181562039
@@ -3762,6 +3763,7 @@ RectTransform:
   m_Children:
   - {fileID: 1181562040}
   - {fileID: 1459346493}
+  - {fileID: 1175624955}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4049,7 +4051,7 @@ GameObject:
   - component: {fileID: 1380433879}
   - component: {fileID: 1380433878}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Flor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4071,7 +4073,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 382, y: 161}
+  m_AnchoredPosition: {x: 387.8, y: 154}
   m_SizeDelta: {x: 73.8032, y: 73.8032}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1380433878
@@ -5969,23 +5971,23 @@ PrefabInstance:
     - target: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: background
       value: 
-      objectReference: {fileID: 21300000, guid: aa5454a831f73c44b81a69e02a23470a, type: 3}
+      objectReference: {fileID: 21300000, guid: 2bf3052ad4c9b8047b8adf8a87dd258e, type: 3}
     - target: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: bookPages.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 134c2b012a5337949b9e81ca532e00d6, type: 3}
+      objectReference: {fileID: 21300000, guid: 05840fa749e17c0429aaab04ebca4e2f, type: 3}
     - target: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: bookPages.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: aa5454a831f73c44b81a69e02a23470a, type: 3}
+      objectReference: {fileID: 21300000, guid: 198dc84f05aa5b944a4d48fe410e25c2, type: 3}
     - target: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: bookPages.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: 767ef51bc42d04b4d8d9d2258b06852c, type: 3}
+      objectReference: {fileID: 21300000, guid: cd5d445ac356b234ca63bda4e2490c75, type: 3}
     - target: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: bookPages.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: 5629e76f037ac594a99d68da1a6cd742, type: 3}
+      objectReference: {fileID: 21300000, guid: 198dc84f05aa5b944a4d48fe410e25c2, type: 3}
     - target: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: bookPages.Array.data[4]
       value: 
@@ -12313,7 +12315,6 @@ SceneRoots:
   - {fileID: 2033418752}
   - {fileID: 2106067940}
   - {fileID: 1303699240}
-  - {fileID: 1175624955}
   - {fileID: 772519263}
   - {fileID: 409904730}
   - {fileID: 3002787689952686876}

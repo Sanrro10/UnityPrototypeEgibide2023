@@ -230,8 +230,10 @@ namespace General.Scripts
         }
         public void ChangeSceneMenu()
         {
+            
             // DeletePersistentElement();
-            SceneManager.LoadScene("Main Menu");
+            SceneManager.LoadScene("Main MenuEstados");
+            this.gameObject.SetActive(false);
         }
         
         public void ChangeScene(string escena)
