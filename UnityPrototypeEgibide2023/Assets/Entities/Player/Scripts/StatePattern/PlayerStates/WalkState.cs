@@ -1,4 +1,5 @@
 ﻿using StatePattern;
+using UnityEngine;
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
@@ -57,6 +58,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             base.Exit();
             
             Player.CancelInvoke(nameof(Player.Move));
+            if (Player.PmStateMachine.CurrentState == Player.PmStateMachine.IdleState) Player.GetRigidbody().velocity = new Vector2(0, Player.GetRigidbody().velocity.y);
             Player.animator.SetBool("IsWalk", false);
         }
     }

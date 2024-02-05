@@ -7,44 +7,47 @@ using UnityEngine;
 public class PlayerOneWayPlatform : MonoBehaviour
 {
 
-    private GameObject _currentOneWayPlatform;
-
-    [SerializeField] private CapsuleCollider2D playerCollider;
-
-    [SerializeField] private CapsuleCollider2D excaliburCollider;
-    // Start is called before the first frame update
-    void Start()
+    private Collider2D _collider;
+    private GameObject _target;
+    private void Start()
     {
-        
+        _target = GameObject.FindWithTag ("Player");
+        _collider = GetComponent<Collider2D>();
+        Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
-        _currentOneWayPlatform = other.gameObject;
-        StartCoroutine(nameof(DisableCollision));
+
+        if (other.CompareTag("PlayerHelper") && other.name == "Feet")
+        {
+            if (_target.GetComponent<Rigidbody2D>().velocity.y <= 0)
+            {
+                Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), false);
+                return;
+            }
+            Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
+        }
+
+
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("OneWayPlatform"))
+        if (other.CompareTag("PlayerHelper") && other.name == "Feet") Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
+    }
+    
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("PlayerHelper") && other.name == "Feet")
         {
-            _currentOneWayPlatform = null;
+            if (_target.GetComponent<Rigidbody2D>().velocity.y <= 0)
+            {
+                Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), false);
+                return;
+            }
+            Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
         }
     }
-
-    private IEnumerator DisableCollision()
-    {
-        BoxCollider2D platformCollider = _currentOneWayPlatform.GetComponent<BoxCollider2D>();
-        Physics2D.IgnoreCollision(playerCollider, platformCollider);
-        Physics2D.IgnoreCollision(excaliburCollider, platformCollider);
-        yield return new WaitForSeconds(1.5f);
-        Physics2D.IgnoreCollision(playerCollider,platformCollider, false);
-        Physics2D.IgnoreCollision(excaliburCollider,platformCollider, false);
-    }
+    
 }

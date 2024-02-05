@@ -20,7 +20,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 
         public virtual void Update()
         {
-            if (Player.IsGrounded())
+            if (Player.IsGrounded() && Player.GetRigidbody().velocity.y < 0.01f )
             {
                 if (Player.isHoldingHorizontal)
                     Player.PmStateMachine.TransitionTo(Player.PmStateMachine.WalkState);
