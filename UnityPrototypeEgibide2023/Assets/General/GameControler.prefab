@@ -468,7 +468,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6902749216005068649}
   - component: {fileID: 7572438358083942645}
-  - component: {fileID: 1923951380494025171}
   m_Layer: 0
   m_Name: GameControler
   m_TagString: Untagged
@@ -504,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea1d769e7400f74fab1c03e12e1d5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FacingRight: 0
+  collectedItems: 
   playerPrefab: {fileID: 5937788470338340945, guid: c9d31c634c3c9e344ae14d09c0c65376, type: 3}
   menuPausa: {fileID: 629973782096403335}
   menuGameOver: {fileID: 5343057171329261318}
@@ -1724,9 +1723,9 @@ RectTransform:
   - {fileID: 5979199418276326589}
   m_Father: {fileID: 6975197170705833922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 82.45565, y: -63.949203}
   m_SizeDelta: {x: 168.6327, y: 38.6328}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3227752047830081633
@@ -2463,9 +2462,9 @@ RectTransform:
   - {fileID: 3461560776427836564}
   m_Father: {fileID: 6975197170705833922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 82.45565, y: -19.3164}
   m_SizeDelta: {x: 168.6327, y: 38.6328}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1551675913541590749
@@ -2577,7 +2576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &811585743234947689
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3431,7 +3430,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -16}
-  m_SizeDelta: {x: 164.9113, y: 0}
+  m_SizeDelta: {x: 164.9113, y: 83.2656}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7612551536216897901
 MonoBehaviour:
@@ -4192,4 +4191,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-

@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - GLOW_ON
   m_InvalidKeywords:
   - _ALPHATEST_ON
   m_LightmapFlags: 0
@@ -172,7 +173,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Glow: 0
+    - _Glow: 1.8
     - _GlowGlobal: 1
     - _GradBlend: 1
     - _GradBoostX: 1.2
