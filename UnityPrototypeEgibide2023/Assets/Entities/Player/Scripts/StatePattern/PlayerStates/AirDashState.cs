@@ -15,6 +15,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             base.Enter();
             Player.StartCoroutine(Player.AirDashDuration());
             Player.StartCoroutine(Player.AirDashCooldown());
+            Player.AirDashEffect();
             // Debug.Log("Entering Air Dash State");
             // Initialize Dash
         }
