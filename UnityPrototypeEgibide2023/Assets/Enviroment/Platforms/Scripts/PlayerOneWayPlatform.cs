@@ -9,38 +9,45 @@ public class PlayerOneWayPlatform : MonoBehaviour
 
     private Collider2D _collider;
     private GameObject _target;
-    private bool _canCollide = false;
     private void Start()
     {
         _target = GameObject.FindWithTag ("Player");
         _collider = GetComponent<Collider2D>();
+        Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (_target == null)
+
+        if (other.CompareTag("PlayerHelper") && other.name == "Feet")
         {
-            _target = GameObject.FindWithTag("Player");
+            if (_target.GetComponent<Rigidbody2D>().velocity.y <= 0)
+            {
+                Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), false);
+                return;
+            }
+            Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
         }
 
-        if (other.CompareTag("PlayerHelper") && other.name == "Feet" && _target.GetComponent<Rigidbody2D>().velocity.x <= 0f)
-        {
-            Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), false);
-            _canCollide = true;
-            return;
-        }
 
-        if (_canCollide) return;
-        Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("PlayerHelper") && other.name == "Feet" && _target.GetComponent<Rigidbody2D>().velocity.y > 0f)
+        if (other.CompareTag("PlayerHelper") && other.name == "Feet") Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
+    }
+    
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("PlayerHelper") && other.name == "Feet")
         {
+            if (_target.GetComponent<Rigidbody2D>().velocity.y <= 0)
+            {
+                Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), false);
+                return;
+            }
             Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
-            _canCollide = false;
-            return;
         }
     }
+    
 }
