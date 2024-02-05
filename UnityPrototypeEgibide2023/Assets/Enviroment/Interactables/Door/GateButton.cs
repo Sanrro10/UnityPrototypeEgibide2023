@@ -6,6 +6,7 @@ public class GateButton : MonoBehaviour
 {
     [SerializeField] private GameObject _gate2D;
     [SerializeField] private GameObject _gate3D;
+    [SerializeField] private float delay;
 
     
     // Start is called before the first frame update
@@ -24,7 +25,7 @@ public class GateButton : MonoBehaviour
     {
         _gate2D.SetActive(false);
         _gate3D.GetComponent<Animator>().SetBool("Action", true);
-        Invoke(nameof(CloseGate),1f);
+        Invoke(nameof(CloseGate),delay);
     }
 
     private void CloseGate()
