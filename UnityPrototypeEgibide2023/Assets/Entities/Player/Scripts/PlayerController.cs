@@ -103,6 +103,9 @@ namespace Entities.Player.Scripts
                 private bool _onCooldown;
                 private GameObject _potionSelector;
 
+
+                [SerializeField] private GameObject effectSpawner;
+                [SerializeField] private GameObject airDashEffect;
                 //private AudioSource _audioSource;
                 
                 void Start()
@@ -490,16 +493,14 @@ namespace Entities.Player.Scripts
                         if (direction == -1)
                         {
                                 FacingRight = false;
-                               // animator.SetBool("IsFlipped", false);
-                               //Rotate();
+                              
                         }
                         else if (direction == 1)
                         {
                                 FacingRight = true;
-                                //animator.SetBool("IsFlipped", true);
-                                //Rotate();
+                                
                         }
-                        //_spriteRenderer.flipX = !FacingRight;
+                        
 
                 }
                 
@@ -832,6 +833,14 @@ namespace Entities.Player.Scripts
                                 yield return new WaitForFixedUpdate();
                         }
                         onAirDashCooldown = false;
+                }
+
+                public void AirDashEffect()
+                {
+                        Instantiate(airDashEffect,
+                                new Vector2(effectSpawner.transform.position.x,
+                                        effectSpawner.transform.position.y),
+                                Quaternion.identity);
                 }
         
                 // Getters and setters
