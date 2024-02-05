@@ -31,7 +31,7 @@ public class GaltzAudios : MonoBehaviour
         _audioSource.Play();
     }
 
-    public void Audio3Play()
+    public void AudioIdlePlay()
     {
         _audioSource.clip = _audios.audios[2];
         _audioSource.Play();
@@ -40,6 +40,12 @@ public class GaltzAudios : MonoBehaviour
     public void Audio4Play()
     {
         _audioSource.clip = _audios.audios[3];
+        _audioSource.Play();
+    }
+
+    public void Audio5Play()
+    {
+        _audioSource.clip = _audios.audios[4];
         _audioSource.Play();
     }
 }
