@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4623359226715620739}
   m_Layer: 0
   m_Name: PotionSelector
-  m_TagString: Untagged
+  m_TagString: PlayerHelper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 4655980073881238817}
   m_Layer: 6
   m_Name: EnemyDetection
-  m_TagString: Player
+  m_TagString: PlayerHelper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 1550642125942851678}
   m_Layer: 6
   m_Name: SpriteRenderer
-  m_TagString: Untagged
+  m_TagString: PlayerHelper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5018,7 +5018,7 @@ GameObject:
   - component: {fileID: 2695071535495535820}
   m_Layer: 0
   m_Name: Feet
-  m_TagString: Player
+  m_TagString: PlayerHelper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5070,7 +5070,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.4992237, y: -5.9697247}
+  m_Offset: {x: -1.4992237, y: -5.976968}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5081,7 +5081,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4832826, y: 0.35627365}
+  m_Size: {x: 2.4832826, y: 0.34178686}
   m_EdgeRadius: 0
 --- !u!114 &2695071535495535820
 MonoBehaviour:
@@ -5107,7 +5107,7 @@ GameObject:
   - component: {fileID: 2538641633103216759}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Player
+  m_TagString: PlayerHelper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5581,7 +5581,7 @@ GameObject:
   - component: {fileID: 6079609707914866683}
   m_Layer: 0
   m_Name: PotionSpawnPoint
-  m_TagString: Untagged
+  m_TagString: PlayerHelper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

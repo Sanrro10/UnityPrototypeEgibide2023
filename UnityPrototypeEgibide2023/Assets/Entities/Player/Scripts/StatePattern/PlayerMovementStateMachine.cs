@@ -12,7 +12,7 @@ namespace StatePattern
     public class PlayerMovementStateMachine : IStateMachine
     {
         public IState CurrentState { get; private set; }
-        
+        public IState LastState { get; private set; }
         // Event to notify other objects that state has changed
         public event Action<IState> OnStateChanged;
 
@@ -70,9 +70,10 @@ namespace StatePattern
 
         public void TransitionTo(IState nextState)
         {
-            CurrentState.Exit();
+            LastState = CurrentState;
             CurrentState = nextState;
-            nextState.Enter();
+            LastState.Exit();
+            CurrentState.Enter();
             
             OnStateChanged?.Invoke(CurrentState);
         }
