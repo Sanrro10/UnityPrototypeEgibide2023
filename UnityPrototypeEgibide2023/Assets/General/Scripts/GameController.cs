@@ -28,6 +28,7 @@ namespace General.Scripts
         [SerializeField] private GameObject menuOptions;
         [SerializeField] private PlayerData playerData;
         private GameObject _jugador;
+        public bool justDied = false;
         private bool _useCheckpoint;
     
         //Create Structure that holds the position and the sceneName of the checkpoint

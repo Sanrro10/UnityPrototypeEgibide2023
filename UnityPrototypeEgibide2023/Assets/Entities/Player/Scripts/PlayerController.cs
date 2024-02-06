@@ -53,7 +53,6 @@ namespace Entities.Player.Scripts
                 public float dashSpeed;
                 public float jumpForce;
                 public float baseGravity;
-                private bool _justDied = false;
                 
                 [SerializeField] private AnimationCurve dashCurve;
                 public bool onDashCooldown = false;
@@ -718,7 +717,7 @@ namespace Entities.Player.Scripts
                 {
                         DisablePlayerControls();
                         GameController.Instance.GameOver();
-                        _justDied = true;
+                        GameController.Instance.justDied = true;
                         //Invoke(nameof(CallSceneLoad), 1);
                         //_audioSource.PlayOneShot(_playerAudios.audios[1]);
 
@@ -741,8 +740,8 @@ namespace Entities.Player.Scripts
                 /*Transitions to SceneChangeState which handles player spawn in new scene*/
                 private void OnSceneChange()
                 {
-                        if(_justDied) PmStateMachine.TransitionTo(PmStateMachine.SceneChangeState);
-                        _justDied = false;
+                        if(!GameController.Instance.justDied) PmStateMachine.TransitionTo(PmStateMachine.SceneChangeState);
+                        GameController.Instance.justDied = false;
                 }
                 
                 /*
