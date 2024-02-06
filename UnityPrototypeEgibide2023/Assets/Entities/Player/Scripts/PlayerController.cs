@@ -216,7 +216,9 @@ namespace Entities.Player.Scripts
                 private void OnDestroy()
                 {
                         PotionBehavior.OnPotionDestroy -= ResetPotionCooldown;
-                        
+                        _controls.GeneralActionMap.ChangePotionL.performed -= ctx=> ShowPotionSelector(true);
+                        _controls.GeneralActionMap.ChangePotionR.performed -= ctx => ShowPotionSelector(false);
+                        _controls.Disable();
                          GameController.SPlayerPersistentData playerPersistentData =
                                  new GameController.SPlayerPersistentData();
                          

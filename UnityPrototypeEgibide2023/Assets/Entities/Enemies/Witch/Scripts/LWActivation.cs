@@ -9,7 +9,7 @@ namespace Entities.Enemies.Witch.Scripts
         private void OnTriggerEnter2D(Collider2D other)
         {
             /*Checks if the player has entered the witch's action zone*/
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("PlayerHelper"))
             {
                 parentScript.SendMessage("SetActiveState" , true, SendMessageOptions.RequireReceiver);
             }
@@ -18,7 +18,7 @@ namespace Entities.Enemies.Witch.Scripts
         private void OnTriggerExit2D(Collider2D other)
         {
             /*Checks if the player has left the witch's action zone*/
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("PlayerHelper"))
             {
                 parentScript.SendMessage("SetActiveState" , false , SendMessageOptions.RequireReceiver);
             
