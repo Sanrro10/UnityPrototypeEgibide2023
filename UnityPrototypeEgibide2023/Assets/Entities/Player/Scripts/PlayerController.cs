@@ -562,9 +562,6 @@ namespace Entities.Player.Scripts
                         //float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
                         float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
                         float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
-                        Debug.Log("yDirection: " + yDirection);
-                        Debug.Log("xDirection: " + xDirection);
-                        Debug.Log("FacingRight: " + FacingRight);
                         if (yDirection == 1)
                         {
                                 PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackUpState);

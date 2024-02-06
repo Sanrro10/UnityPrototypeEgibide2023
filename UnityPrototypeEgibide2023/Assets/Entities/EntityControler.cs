@@ -28,7 +28,6 @@ namespace Entities
         { 
             if (Invulnerable) return;
            Health.RemoveHealth(attack.damage); 
-           Debug.Log("Damage:" + attack.damage);
            Invulnerable = true;
            Invoke(nameof(DamageCooldown), InvulnerableTime);
            Push(attack.knockback, attack.angle, toTheRight);
@@ -46,7 +45,6 @@ namespace Entities
 
         public virtual void Push(float knockback, Vector2 angle, bool toTheRight = true)
         {
-            Debug.Log(knockback + " " + angle + " " + toTheRight);
             if (toTheRight)
             {
                 Rb.AddForce(new Vector2(angle.x * knockback, angle.y * knockback));
