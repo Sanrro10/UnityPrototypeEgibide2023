@@ -16,17 +16,10 @@ namespace Entities.Enemies.Goat.Scripts
     
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (goatBehaviour.canCollideWithPlayer == false) return;
-            if (other.CompareTag("Wall"))
+            if (other.CompareTag("Wall") || other.CompareTag("Floor"))
             {
                 goatBehaviour.BounceAgainstWall();
                 return;
-            }
-
-            if (other.gameObject.layer == 6)
-            {
-                goatBehaviour.BounceAgainstPlayer();
-                
             }
 
         }

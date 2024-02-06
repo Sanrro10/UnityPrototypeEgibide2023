@@ -35,6 +35,18 @@ namespace Entities.Enemies.Goat.Scripts
             AttackComponent = attackHitbox.GetComponent<AttackComponent>();
             AttackComponent.AddAttackData(new AttackComponent.AttackData(data.damage, data.knockback, data.angle, 6, AttackComponent.AttackType.Normal));
             AttackComponent.DeactivateHitbox();
+            AttackComponent.OnHit += OnHit;
+        }
+        
+        private void OnHit(EntityControler attacker, EntityControler victim)
+        {
+            if (attacker == this) 
+                BounceAgainstPlayer();
+        }
+
+        private void OnDestroy()
+        {
+            AttackComponent.OnHit -= OnHit;
         }
 
         public void Charge()
@@ -51,6 +63,11 @@ namespace Entities.Enemies.Goat.Scripts
         {
             base.OnDeath();
             stateMachine.TransitionTo(stateMachine.GoatDeathState);
+        }
+        
+        public void DestroyEntity()
+        {
+            Destroy(gameObject);
         }
 
 
@@ -109,7 +126,7 @@ namespace Entities.Enemies.Goat.Scripts
         
             if (hit.collider != null)
             {
-                if (hit.collider.CompareTag("Player"))
+                if (hit.collider.CompareTag("PlayerHelper"))
                 {
                     stateMachine.TransitionTo(stateMachine.GoatPrepareState);
                     

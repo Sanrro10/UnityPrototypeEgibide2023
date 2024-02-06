@@ -48,4 +48,10 @@ public class AudioGoatScript : MonoBehaviour
         _audioSource.clip = _audios.audios[4];
         _audioSource.Play();
     }
+
+    public void PlayDeadAudio()
+    {
+        _audioSource.clip = _audios.audios[5];
+        _audioSource.Play();
+    }
 }

@@ -14,27 +14,24 @@ namespace Entities
 
         protected virtual void Effect()
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
 
         protected virtual void Search()
         {
-            foreach (int i in GameController.Instance.collectedItems)
+            GameController.Instance.collectedItems.ForEach(i =>
             {
-                if (i == id)
-                {
-                    Destroy(gameObject);
-                    return;
-                }
-            }
-            Effect();
+                if (i == id) Destroy(this.gameObject);
+            });
+            
         }
     
         void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.layer == 7)
+            if (other.gameObject.layer == 6)
             {
                 GameController.Instance.collectedItems.Add(id);
+                Effect();
             }
         }
 

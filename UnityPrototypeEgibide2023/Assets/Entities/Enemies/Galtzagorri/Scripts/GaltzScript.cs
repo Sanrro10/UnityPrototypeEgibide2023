@@ -22,7 +22,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         [SerializeField] private GameObject[] hideouts;
 
         // Referencia del script para los escondites
-        [SerializeField] private galtzHideoutZone scriptGaltzHideout;
+        [SerializeField] private GaltzHideoutZone scriptGaltzHideout;
     
         // Referencia para que el Navmesh sea accesible desde todos lados
         private NavMeshAgent _navMeshAgent;
@@ -201,7 +201,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             // TODO: Animacion Salir del Escondite
             CancelInvoke(nameof(ChasePlayer));
             InvokeRepeating(nameof(ChasePlayer), 0f, 0.1f);
-            scriptGaltzHideout.ResetHit();
+            //scriptGaltzHideout.ResetHit();
         }
 
         // Metodo que desactiva el enemigo
