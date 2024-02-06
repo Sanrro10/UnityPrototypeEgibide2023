@@ -231,7 +231,7 @@ namespace General.Scripts
         public void ChangeSceneMenu()
         {
             // DeletePersistentElement();
-            SceneManager.LoadScene("Main Menu");
+            SceneManager.LoadScene("Main MenuEstados");
         }
         
         public void ChangeScene(string escena)
