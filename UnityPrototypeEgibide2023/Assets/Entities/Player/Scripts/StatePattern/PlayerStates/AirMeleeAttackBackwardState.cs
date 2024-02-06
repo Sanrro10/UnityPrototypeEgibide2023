@@ -19,7 +19,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             if (Player.FacingRight) Player.animator.SetBool("IsAABackwardRight", true);
             else Player.animator.SetBool("IsAABackwardLeft", true);
             Player.InvokeRepeating(nameof(Player.AirMove), 0, 0.01f);
-            Player.Invoke(nameof(Player.EndAirAttack), 0.8f);
+            Player.Invoke(nameof(Player.EndAirAttack), 0.3f);
         }
 
         // per-frame logic, include condition to transition to a new state

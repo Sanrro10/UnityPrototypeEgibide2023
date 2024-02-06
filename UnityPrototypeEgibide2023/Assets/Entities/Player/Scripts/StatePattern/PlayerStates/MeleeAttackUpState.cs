@@ -19,7 +19,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             
             Player.isInMiddleOfAttack = true;
             Player.animator.SetBool("IsAUp", true);
-            Player.Invoke(nameof(Player.EndAttack), 0.8f);
+            Player.Invoke(nameof(Player.EndAttack), 0.3f);
         }
 
         // per-frame logic, include condition to transition to a new state
