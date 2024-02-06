@@ -392,7 +392,6 @@ namespace Entities.Player.Scripts
                                 int objective = FacingRight ? 0:180;
                                 if ((int)_spriteRenderer.gameObject.transform.rotation.eulerAngles.y !=  objective)
                                 {
-                                        Debug.Log((int)_spriteRenderer.gameObject.transform.rotation.eulerAngles.y);
                                         _spriteRenderer.gameObject.transform.eulerAngles = new UnityEngine.Vector3(_spriteRenderer.transform.transform.eulerAngles.x, _spriteRenderer.transform.rotation.eulerAngles.y + (FacingRight ? -30: 30), _spriteRenderer.transform.rotation.eulerAngles.z);
 
                                 }
@@ -947,8 +946,9 @@ namespace Entities.Player.Scripts
                 {
                         _controls = new InputActions();
                 }
-                public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true) 
+                public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
                 {
+                        if (attack.damage > 10) PmStateMachine.TransitionTo(PmStateMachine.StunnedState);
                         base.OnReceiveDamage(attack, facingRight);
                         StartCoroutine(CoInvulnerability());
                         healthText.text = Health.Get().ToString();
