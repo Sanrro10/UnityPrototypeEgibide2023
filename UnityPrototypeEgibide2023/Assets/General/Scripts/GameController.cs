@@ -13,7 +13,7 @@ namespace General.Scripts
     {
 
         private SPlayerSpawnData _lastCheckpoint;
-        public SPlayerSpawnData _playerSpawnDataInNewScene;
+        public SPlayerSpawnData PlayerSpawnDataInNewScene;
         //This should be filled when loading the game, otherwise its not going to work;
         public SPlayerPersistentData PlayerPersistentDataBetweenScenes;
         private GameData gameData;
@@ -87,8 +87,10 @@ namespace General.Scripts
                 {
                     _lastCheckpoint.Scene = gameData.spawnScene;
                     _lastCheckpoint.Position = gameData.spawnPosition;
-                    _playerSpawnDataInNewScene.Scene = _lastCheckpoint.Scene;
-                    _playerSpawnDataInNewScene.Position = _lastCheckpoint.Position;
+                    PlayerSpawnDataInNewScene.Scene = _lastCheckpoint.Scene;
+                    PlayerSpawnDataInNewScene.Position = _lastCheckpoint.Position;
+                    PlayerSpawnDataInNewScene.GoToPosition = _lastCheckpoint.Position;
+                    PlayerPersistentDataBetweenScenes.CurrentHealth = 100;
                 }
                 else
                 {
@@ -149,14 +151,14 @@ namespace General.Scripts
     
         public void PlayerSpawnInNewScene()
         {
-            if (Instance._playerSpawnDataInNewScene.Position == Vector3.zero &&
-                Instance._playerSpawnDataInNewScene.GoToPosition == Vector3.zero &&
-                Instance._playerSpawnDataInNewScene.UseSceneChangeTrigger)
+            if (Instance.PlayerSpawnDataInNewScene.Position == Vector3.zero &&
+                Instance.PlayerSpawnDataInNewScene.GoToPosition == Vector3.zero &&
+                Instance.PlayerSpawnDataInNewScene.UseSceneChangeTrigger)
             {
                 CalculatePlayerSpawnPosition();
                 
             }
-            GameController.Instance._jugador = Instantiate(playerPrefab, transform.position = Instance._playerSpawnDataInNewScene.Position, Quaternion.identity);
+            GameController.Instance._jugador = Instantiate(playerPrefab, transform.position = Instance.PlayerSpawnDataInNewScene.Position, Quaternion.identity);
             GameController.Instance._jugador.SendMessage(nameof(PlayerController.CheckSceneChanged), SendMessageOptions.RequireReceiver);
             //GameObject.FindWithTag("Player").SendMessage((nameof(PlayerController.OnSceneChange)));
         }
@@ -177,7 +179,7 @@ namespace General.Scripts
                         correctChild = currentChild;
                     }
 
-                    if (Instance._playerSpawnDataInNewScene.OnTheLeft) //Search for the leftmost one
+                    if (Instance.PlayerSpawnDataInNewScene.OnTheLeft) //Search for the leftmost one
                     {
                         if (currentChild.transform.position.x < correctChild.transform.position.x)
                         {
@@ -196,21 +198,21 @@ namespace General.Scripts
 
             Vector3 tempVector = correctChild!.transform.position;
             
-            if (Instance._playerSpawnDataInNewScene.OnTheLeft)
+            if (Instance.PlayerSpawnDataInNewScene.OnTheLeft)
             {
-                Instance._playerSpawnDataInNewScene.Position = new Vector3(tempVector.x - 3,
+                Instance.PlayerSpawnDataInNewScene.Position = new Vector3(tempVector.x - 3,
                     tempVector.y - 5.05f,
                     tempVector.z);
-                Instance._playerSpawnDataInNewScene.GoToPosition = new Vector3(tempVector.x + 3,
+                Instance.PlayerSpawnDataInNewScene.GoToPosition = new Vector3(tempVector.x + 3,
                     tempVector.y - 5.05f,
                     tempVector.z);
             }
             else
             {
-                Instance._playerSpawnDataInNewScene.Position = new Vector3(tempVector.x + 3,
+                Instance.PlayerSpawnDataInNewScene.Position = new Vector3(tempVector.x + 3,
                     tempVector.y - 5.05f,
                     tempVector.z);
-                Instance._playerSpawnDataInNewScene.GoToPosition = new Vector3(tempVector.x - 3,
+                Instance.PlayerSpawnDataInNewScene.GoToPosition = new Vector3(tempVector.x - 3,
                     tempVector.y - 5.05f,
                     tempVector.z);
             }
@@ -221,7 +223,7 @@ namespace General.Scripts
         {
             menuGameOver.SetActive(false);
             _useCheckpoint = useCheckpoint;
-            _playerSpawnDataInNewScene = spawnData;
+            PlayerSpawnDataInNewScene = spawnData;
             if (spawnData.Scene.GetSceneName() == null || spawnData.Scene.GetSceneName().Equals("") )
             {
                 spawnData.Scene.SetSceneName(mainSceneName);
@@ -261,6 +263,7 @@ namespace General.Scripts
         {
             Debug.Log("GameController -> Dentro del metodo LoadGame");
             SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
+            _useCheckpoint = true;
         }
         public void DeletePersistentElement()
         {
