@@ -1,6 +1,7 @@
 using System;
 using Entities.Player.Scripts;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Entities.Potions.BasePotion.Scripts
 {
@@ -8,19 +9,21 @@ namespace Entities.Potions.BasePotion.Scripts
     {
 
         [SerializeField] private BasePotionData data;
-        
-        public static event Action<GameObject> OnPotionDestroy;
+        private bool _canBounce = true;
         private bool _hasBeenHitted = false;
+        public static event Action<GameObject> OnPotionDestroy;
         void Start()
         {
             Health.Set(data.health);
             InvulnerableTime = 0.1f;
+            GetComponent<Rigidbody2D>().angularVelocity = Random.Range(-200, 200);
         }
         
         public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
         {
             if (!Invulnerable && !_hasBeenHitted)  Rb.velocity = new Vector2();
-            attack.damage = 0;
+            attack.damage = 1;
+            if (Health.Get() <= 1) attack.damage = 0;
             base.OnReceiveDamage(attack, facingRight);
         }
 
@@ -28,7 +31,6 @@ namespace Entities.Potions.BasePotion.Scripts
         {
             base.OnDeath();
             Explode();
-            
         }
 
 
@@ -43,14 +45,21 @@ namespace Entities.Potions.BasePotion.Scripts
         }
 
     
-        private void Bounce(int damage)
+        protected virtual void Bounce(int damage)
         {
+            if (!_canBounce) return;
             Health.RemoveHealth(damage);
+            Invoke(nameof(SetBounce), 0.05f);
+            
         }
-        
+
+        private void SetBounce()
+        {
+            _canBounce = true;
+        }
     
 
-        private void Explode()
+        protected virtual void Explode()
         {   
             Instantiate(data.explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);

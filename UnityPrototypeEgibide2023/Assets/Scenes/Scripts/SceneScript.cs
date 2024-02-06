@@ -13,6 +13,8 @@ public class SceneScript : MonoBehaviour
     [SerializeField] private Canvas canvaSlotPartidas;
     [SerializeField] private Canvas canvasManuPrincipal;
     [SerializeField] private Canvas canvasConfirmDeleteGame;
+    [SerializeField] private Canvas canvasOptions;
+    
     private string mainScene = "1.0.1 (Tutorial)";
     private string textSlotDefault = "Nueva Partida";
     private bool confirm = false;
@@ -115,6 +117,7 @@ public class SceneScript : MonoBehaviour
     {
         canvasManuPrincipal.gameObject.SetActive(true);
         canvaSlotPartidas.gameObject.SetActive(false);
+        canvasOptions.gameObject.SetActive(false);
         fillGameDatas();
     }
 
@@ -176,6 +179,12 @@ public class SceneScript : MonoBehaviour
     private List<GameData> fillGameDatas()
     {
         return gameDatas = SaveLoadManager.ListDataAllGame();
+    }
+
+    public void showMenuOptions()
+    {
+        canvasManuPrincipal.gameObject.SetActive(false);
+        canvasOptions.gameObject.SetActive(true);
     }
     public void Exit()
     {

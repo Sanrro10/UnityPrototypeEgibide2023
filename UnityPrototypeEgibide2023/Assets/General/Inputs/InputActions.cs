@@ -98,6 +98,24 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangePotionL"",
+                    ""type"": ""Button"",
+                    ""id"": ""1f95bedc-8bef-4290-b142-12d9dd2a28f8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangePotionR"",
+                    ""type"": ""Button"",
+                    ""id"": ""ebb1a760-4741-4421-948d-982f6419beab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -694,6 +712,50 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""VerticalMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a3b1097-dbc3-4564-bab6-99bbf7f51059"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangePotionL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9fd9c7f-d46e-4511-b2d2-583288ed846f"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangePotionL"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8d0dc06-8e6b-40da-8004-e663fa2fb7e7"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangePotionR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b12add45-8a0e-42cf-a440-a8994d34f277"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangePotionR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -710,6 +772,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_GeneralActionMap_Pause = m_GeneralActionMap.FindAction("Pause", throwIfNotFound: true);
         m_GeneralActionMap_HorizontalMovement = m_GeneralActionMap.FindAction("HorizontalMovement", throwIfNotFound: true);
         m_GeneralActionMap_VerticalMovement = m_GeneralActionMap.FindAction("VerticalMovement", throwIfNotFound: true);
+        m_GeneralActionMap_ChangePotionL = m_GeneralActionMap.FindAction("ChangePotionL", throwIfNotFound: true);
+        m_GeneralActionMap_ChangePotionR = m_GeneralActionMap.FindAction("ChangePotionR", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -779,6 +843,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_GeneralActionMap_Pause;
     private readonly InputAction m_GeneralActionMap_HorizontalMovement;
     private readonly InputAction m_GeneralActionMap_VerticalMovement;
+    private readonly InputAction m_GeneralActionMap_ChangePotionL;
+    private readonly InputAction m_GeneralActionMap_ChangePotionR;
     public struct GeneralActionMapActions
     {
         private @InputActions m_Wrapper;
@@ -791,6 +857,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_GeneralActionMap_Pause;
         public InputAction @HorizontalMovement => m_Wrapper.m_GeneralActionMap_HorizontalMovement;
         public InputAction @VerticalMovement => m_Wrapper.m_GeneralActionMap_VerticalMovement;
+        public InputAction @ChangePotionL => m_Wrapper.m_GeneralActionMap_ChangePotionL;
+        public InputAction @ChangePotionR => m_Wrapper.m_GeneralActionMap_ChangePotionR;
         public InputActionMap Get() { return m_Wrapper.m_GeneralActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -824,6 +892,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @VerticalMovement.started += instance.OnVerticalMovement;
             @VerticalMovement.performed += instance.OnVerticalMovement;
             @VerticalMovement.canceled += instance.OnVerticalMovement;
+            @ChangePotionL.started += instance.OnChangePotionL;
+            @ChangePotionL.performed += instance.OnChangePotionL;
+            @ChangePotionL.canceled += instance.OnChangePotionL;
+            @ChangePotionR.started += instance.OnChangePotionR;
+            @ChangePotionR.performed += instance.OnChangePotionR;
+            @ChangePotionR.canceled += instance.OnChangePotionR;
         }
 
         private void UnregisterCallbacks(IGeneralActionMapActions instance)
@@ -852,6 +926,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @VerticalMovement.started -= instance.OnVerticalMovement;
             @VerticalMovement.performed -= instance.OnVerticalMovement;
             @VerticalMovement.canceled -= instance.OnVerticalMovement;
+            @ChangePotionL.started -= instance.OnChangePotionL;
+            @ChangePotionL.performed -= instance.OnChangePotionL;
+            @ChangePotionL.canceled -= instance.OnChangePotionL;
+            @ChangePotionR.started -= instance.OnChangePotionR;
+            @ChangePotionR.performed -= instance.OnChangePotionR;
+            @ChangePotionR.canceled -= instance.OnChangePotionR;
         }
 
         public void RemoveCallbacks(IGeneralActionMapActions instance)
@@ -879,5 +959,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnHorizontalMovement(InputAction.CallbackContext context);
         void OnVerticalMovement(InputAction.CallbackContext context);
+        void OnChangePotionL(InputAction.CallbackContext context);
+        void OnChangePotionR(InputAction.CallbackContext context);
     }
 }
