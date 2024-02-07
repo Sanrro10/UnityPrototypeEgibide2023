@@ -414,6 +414,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 405251208428994576, guid: acccd81928279d1489ef25f9ec2d6674, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307753614163098454, guid: acccd81928279d1489ef25f9ec2d6674, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5229221926811063738, guid: acccd81928279d1489ef25f9ec2d6674, type: 3}
       propertyPath: m_Size.y
       value: 1.4577665
@@ -470,6 +478,10 @@ PrefabInstance:
       propertyPath: activeZone
       value: 
       objectReference: {fileID: 87854262}
+    - target: {fileID: 5551038127865809596, guid: acccd81928279d1489ef25f9ec2d6674, type: 3}
+      propertyPath: attackZone
+      value: 
+      objectReference: {fileID: 1337310437}
     - target: {fileID: 5551038127865809596, guid: acccd81928279d1489ef25f9ec2d6674, type: 3}
       propertyPath: hideouts.Array.data[0]
       value: 
@@ -885,6 +897,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 010872ff15d96b0488495d71182a9d2f, type: 3}
+--- !u!1 &1337310437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5619438104037316313, guid: acccd81928279d1489ef25f9ec2d6674, type: 3}
+  m_PrefabInstance: {fileID: 637979035}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1476556183
 GameObject:
   m_ObjectHideFlags: 0

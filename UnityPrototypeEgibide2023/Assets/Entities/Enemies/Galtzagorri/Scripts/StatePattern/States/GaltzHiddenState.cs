@@ -23,13 +23,17 @@ namespace Entities.Enemies.Galtzagorri.Scripts.StatePattern.States
 
         public void Update()
         {
-            
+            if (_entity.canExit && _entity.isIn && !_entity.waiting)
+            {
+                _entity.StartCoroutine(nameof(_entity.Wait));
+            }
         }
 
         public void Exit()
         {
             _entity.animator.SetBool(IsIdle1, false);
             _entity.AlternateHitbox(true);
+            _entity.currentHideout = null;
         }
     }
 

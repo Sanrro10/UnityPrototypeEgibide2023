@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Entities.Enemies.Galtzagorri.Scripts;
 using StatePattern;
 using UnityEngine;
 
@@ -20,7 +17,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts.StatePattern.States
         {
             _entity.animator.SetBool(IsDead, true);
             _entity.AlternateHitbox(false);
-            _entity.StartCoroutine(nameof(_entity.Dying));
+            _entity.Die();
         }
 
         public void Update()
