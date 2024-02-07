@@ -53,6 +53,7 @@ namespace Entities.Player.Scripts
                 public float dashSpeed;
                 public float jumpForce;
                 public float baseGravity;
+                public Vector2 lastGroundedPosition;
                 
                 [SerializeField] private AnimationCurve dashCurve;
                 public bool onDashCooldown = false;
@@ -950,6 +951,8 @@ namespace Entities.Player.Scripts
                 public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
                 {
                         if (attack.damage > 10) PmStateMachine.TransitionTo(PmStateMachine.StunnedState);
+                        if (attack.attackType == AttackComponent.AttackType.KillArea)
+                                transform.position = lastGroundedPosition;
                         base.OnReceiveDamage(attack, facingRight);
                         StartCoroutine(CoInvulnerability());
                         healthText.text = Health.Get().ToString();

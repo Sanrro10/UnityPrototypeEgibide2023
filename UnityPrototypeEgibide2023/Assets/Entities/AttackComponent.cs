@@ -28,7 +28,8 @@ namespace Entities
             Normal,
             Explosion,
             Projectile,
-            Electric
+            Electric,
+            KillArea,
         }
     
         public List<AttackData> attackData;
