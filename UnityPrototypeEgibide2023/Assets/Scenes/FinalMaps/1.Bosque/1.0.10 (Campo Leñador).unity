@@ -7253,10 +7253,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
 --- !u!4 &709132684 stripped
 Transform:
@@ -9640,6 +9637,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1504399967}
     m_Modifications:
+    - target: {fileID: 212522539124793228, guid: 46872c1491a383140a0b1ac4ad8b8697, type: 3}
+      propertyPath: id
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 536628051645286835, guid: 46872c1491a383140a0b1ac4ad8b8697, type: 3}
       propertyPath: m_Name
       value: Collectable
