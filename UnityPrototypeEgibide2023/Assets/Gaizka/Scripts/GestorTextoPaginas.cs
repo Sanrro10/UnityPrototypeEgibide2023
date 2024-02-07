@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GestorTextoPaginas : MonoBehaviour
 {
     [SerializeField] private Book book;
     [SerializeField] private int page;
+    public UnityEvent eventoP2;
+    public UnityEvent eventoP4;
+    public UnityEvent eventoP0;
     public OneSpriteFadeOnT [] textos;
     private OneSpriteFadeOnT actual;
     private void Start()
@@ -26,16 +30,22 @@ public class GestorTextoPaginas : MonoBehaviour
     {
         switch (pagina)
         {
+            case 0:
+                eventoP0.Invoke();
+                break;
             case 2:
-                textos[0].StartFadeIn();
+                eventoP2.Invoke();
+                //textos[0].StartFadeIn();
                 actual = textos[0];
-                Debug.Log ("Why hello there good sir! Let me teach you about Trigonometry!");
+                Debug.Log ("Segunda pagina");
                 break;
             case 4:
-                print ("Hello and good day!");
-                break;
+                eventoP4.Invoke();
+                actual = textos[1];
+                print ("Cuarta pagina");
+                break;  
             case 6:
-                print ("Whadya want?");
+                print ("Sexta pagina");
                 break;
             default:
                 //textos[0].StartFadeOut();
@@ -48,7 +58,7 @@ public class GestorTextoPaginas : MonoBehaviour
     {
         if (actual!=null)
         {
-            actual.StartFadeOut();
+            actual.StartFadeOut(0.00001f);
         }
     }
 }
