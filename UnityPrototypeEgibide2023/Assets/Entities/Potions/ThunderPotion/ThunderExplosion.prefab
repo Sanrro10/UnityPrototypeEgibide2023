@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2170611828382072468}
   - component: {fileID: 6136895054722065204}
-  - component: {fileID: 4795543016009169900}
+  - component: {fileID: 5453031974899329304}
   m_Layer: 16
   m_Name: RightHitbox
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 5616267083329341456}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.95, y: 0, z: 0}
+  m_LocalPosition: {x: 1.152, y: -0.057, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -53,8 +53,8 @@ MonoBehaviour:
     attackType: 3
   entity: {fileID: 0}
   toTheRight: 0
---- !u!61 &4795543016009169900
-BoxCollider2D:
+--- !u!60 &5453031974899329304
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -85,7 +85,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.11101726, y: 7.99321}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -95,9 +95,16 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.0834298, y: 18.691238}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.9056206, y: 17.245499}
+      - {x: -0.95105654, y: 0.30901697}
+      - {x: -0.9693405, y: -1.3395706}
+      - {x: -0.34837484, y: -1.3387638}
+      - {x: -0.07338959, y: 1.1941683}
+      - {x: 1.2376424, y: 3.2812629}
+      - {x: 1.8739185, y: 15.409261}
+  m_UseDelaunayMesh: 0
 --- !u!1 &6689064700737022471
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5491102717646707065}
   - component: {fileID: 8728089032858334214}
-  - component: {fileID: 4198684288473000390}
+  - component: {fileID: 1616273747156843679}
   m_Layer: 16
   m_Name: LeftHitbox
   m_TagString: Untagged
@@ -151,8 +158,8 @@ MonoBehaviour:
     attackType: 3
   entity: {fileID: 0}
   toTheRight: 0
---- !u!61 &4198684288473000390
-BoxCollider2D:
+--- !u!60 &1616273747156843679
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -183,7 +190,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.91546166, y: 7.9456406}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -193,9 +200,15 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.784972, y: 18.786377}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -1.1693133, y: 17.251232}
+      - {x: -2.8087435, y: 8.234347}
+      - {x: -1.0690243, y: 3.547658}
+      - {x: -1.0081644, y: -1.4600009}
+      - {x: -0.25394762, y: -1.4478776}
+      - {x: -0.03119874, y: 17.29386}
+  m_UseDelaunayMesh: 0
 --- !u!1 &8335995614613475259
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +546,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3053106618019483998, guid: 75de9df387e2d0046ba582739182f098, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7497199504795352903, guid: 75de9df387e2d0046ba582739182f098, type: 3}
       propertyPath: m_LocalPosition.x
