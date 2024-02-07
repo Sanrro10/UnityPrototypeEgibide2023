@@ -510,10 +510,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
 --- !u!4 &98797544 stripped
 Transform:
@@ -887,18 +884,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2018830246}
     m_Modifications:
-    - target: {fileID: 28632898654425881, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+    - target: {fileID: 231100256398208944, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: tutorialUI
       value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1227450876}
     - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.211105
@@ -939,59 +928,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1180391230448752861, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_text
-      value: 'Si mueres reapareceras en el checkpoint
-
-'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontAsset
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: tutorialUI
       value: 
-      objectReference: {fileID: 11400000, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.90588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.90588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4293388287
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1227450876}
     - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_Name
-      value: Texto
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
+      value: SiMueresReaparecesEnElCheckpoint
       objectReference: {fileID: 0}
     - target: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
 --- !u!1001 &183854380
 PrefabInstance:
@@ -3285,18 +3237,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2018830246}
     m_Modifications:
-    - target: {fileID: 28632898654425881, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 84.03
@@ -3337,57 +3277,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1180391230448752861, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_text
-      value: Golpea la pocion en el aire para lanzarla mas lejos
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontAsset
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: tutorialUI
       value: 
-      objectReference: {fileID: 11400000, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.90588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.90588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4293388287
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1227450876}
     - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_Name
-      value: Texto (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
+      value: GolpearLaPocionEnElAireParaLanzarlasLejos
       objectReference: {fileID: 0}
     - target: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
 --- !u!4 &559982660 stripped
 Transform:
@@ -5809,18 +5714,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2018830246}
     m_Modifications:
-    - target: {fileID: 28632898654425881, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.344156
@@ -5831,7 +5724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.21144554
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5861,69 +5754,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1180391230448752861, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180391230448752861, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_text
-      value: '[W/S]
-
-        Para moverte
-
-'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontAsset
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: tutorialUI
       value: 
-      objectReference: {fileID: 11400000, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.9025157
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.9025157
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4293322495
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1227450876}
     - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_Name
-      value: Texto (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
+      value: '[W/S]ParaMoverte'
       objectReference: {fileID: 0}
     - target: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
 --- !u!1001 &1010161092
 PrefabInstance:
@@ -5933,18 +5779,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2018830246}
     m_Modifications:
-    - target: {fileID: 28632898654425881, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.32831383
@@ -5985,61 +5819,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1180391230448752861, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_text
-      value: '[SPACE]
-
-        para saltar
-
-'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontAsset
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: tutorialUI
       value: 
-      objectReference: {fileID: 11400000, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.90588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.90588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4293388287
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1227450876}
     - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_Name
-      value: Texto
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
+      value: '[Space]ParaSaltar'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
 --- !u!1001 &1018266729
 PrefabInstance:
@@ -7674,6 +7465,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1956478557065398016, guid: 821b19044ded06b41a60c0e4523047c4, type: 3}
   m_PrefabInstance: {fileID: 1220320173}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1227450876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7910624861379790747, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
+  m_PrefabInstance: {fileID: 1574720407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1227586299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8460,18 +8256,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2018830246}
     m_Modifications:
-    - target: {fileID: 28632898654425881, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 60.71797
@@ -8512,59 +8296,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1180391230448752861, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_text
-      value: '[J/Click izquierdo]
-
-        Atacar al enemigo'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontAsset
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: tutorialUI
       value: 
-      objectReference: {fileID: 11400000, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.90588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.90588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4293388287
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1227450876}
     - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_Name
-      value: Texto (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
+      value: '[J/ClickIzquierdo]AtacarAlEnemigo'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
 --- !u!1 &1319264445
 GameObject:
@@ -9949,13 +9692,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
 --- !u!4 &1539125314 stripped
 Transform:
@@ -9970,22 +9714,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2018830246}
     m_Modifications:
-    - target: {fileID: 28632898654425881, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 28632898654425881, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.6105175
@@ -10026,63 +9754,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1180391230448752861, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180391230448752861, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.049978256
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_text
-      value: '[SHIFT]
-
-        para hacer dash y ir rapido'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontAsset
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: tutorialUI
       value: 
-      objectReference: {fileID: 11400000, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.90588236
+      objectReference: {fileID: 1227450876}
+    - target: {fileID: 3073738522455022494, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: m_Size.x
+      value: 3.4454966
       objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.90588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4293388287
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
+    - target: {fileID: 3073738522455022494, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: m_Offset.x
+      value: -1.0619302
       objectReference: {fileID: 0}
     - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_Name
-      value: Texto
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
+      value: '[Shift]ParaHacerDashIrRapido'
       objectReference: {fileID: 0}
     - target: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
 --- !u!1001 &1559434011
 PrefabInstance:
@@ -10278,14 +9973,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 3661388522616478806, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6131779347918096367, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6780203959239502016, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -10293,14 +9980,6 @@ PrefabInstance:
     - target: {fileID: 6780203959239502016, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6780203959239502016, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.0000038146973
-      objectReference: {fileID: 0}
-    - target: {fileID: 6780203959239502016, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -1.0858002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11256,18 +10935,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2018830246}
     m_Modifications:
-    - target: {fileID: 28632898654425881, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 84.03
@@ -11308,59 +10975,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1180391230448752861, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_text
-      value: '[F]
-
-        Lanza la pocion'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontAsset
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: tutorialUI
       value: 
-      objectReference: {fileID: 11400000, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.90588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.90588236
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_sharedMaterial
+      objectReference: {fileID: 1227450876}
+    - target: {fileID: 1170226777519732422, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: tutorialUI
       value: 
-      objectReference: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4293388287
-      objectReference: {fileID: 0}
-    - target: {fileID: 2697118181770303090, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1227450876}
     - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_Name
-      value: Texto (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
+      value: '[F]LanzarLaPocion'
       objectReference: {fileID: 0}
     - target: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      propertyPath: m_Layer
-      value: 5
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7377620713516870116, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
 --- !u!1001 &1727231873
 PrefabInstance:
