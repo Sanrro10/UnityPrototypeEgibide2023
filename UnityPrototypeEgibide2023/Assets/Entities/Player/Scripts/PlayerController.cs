@@ -494,12 +494,12 @@ namespace Entities.Player.Scripts
                 public void FlipSprite()
                 {
                         float direction = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
-                        if (direction == -1)
+                        if (direction < 0)
                         {
                                 FacingRight = false;
                               
                         }
-                        else if (direction == 1)
+                        else if (direction > 0)
                         {
                                 FacingRight = true;
                                 
