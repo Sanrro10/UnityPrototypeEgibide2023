@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6289706874115930631}
   - component: {fileID: 8116859330659438842}
   - component: {fileID: 8984454819494292638}
+  - component: {fileID: 8960239492271729879}
   m_Layer: 0
   m_Name: WorldAudio
   m_TagString: Untagged
@@ -225,3 +226,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8960239492271729879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3878756916921600168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb96a3802fe78d348a36ee7156572b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicSliderVolume: {fileID: 0}
+  scriptableWorldAudios: {fileID: 11400000, guid: 18dd89d7a60ff2d4daed12140bb6e84f, type: 2}
+  SoundEffectSliderVolume: {fileID: 0}
+  masterSliderVolume: {fileID: 0}
+  masterMixer: {fileID: 24100000, guid: 78ee3f4d62ae5b14894c02e9b0a4bd5f, type: 2}
