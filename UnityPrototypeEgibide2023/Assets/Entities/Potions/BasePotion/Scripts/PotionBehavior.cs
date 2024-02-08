@@ -1,4 +1,5 @@
 using System;
+using Entities.Destructible;
 using Entities.Player.Scripts;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -36,7 +37,7 @@ namespace Entities.Potions.BasePotion.Scripts
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.layer == 7)
+            if (collision.gameObject.layer == 7 || collision.gameObject.GetComponent<DestructibleController>() != null)
             {
                 Explode();
                 return;
