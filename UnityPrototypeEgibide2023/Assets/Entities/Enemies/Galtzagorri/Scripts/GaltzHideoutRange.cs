@@ -22,5 +22,13 @@ namespace Entities.Enemies.Galtzagorri.Scripts
                 PlayerExited?.Invoke(gameObject.transform.parent.gameObject);
             }
         }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("PlayerHelper"))
+            {
+                PlayerEntered?.Invoke(gameObject.transform.parent.gameObject);
+            }
+        }
     }
 }
