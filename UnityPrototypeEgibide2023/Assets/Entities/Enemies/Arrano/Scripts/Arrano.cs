@@ -44,9 +44,6 @@ namespace Entities.Enemies.Arrano.Scripts
         // Posiciones entre las que vuela
         private Vector3 _leftLimitPosition;
         private Vector3 _rightLimitPosition;
-
-        // Variable que controla la direccion
-        private bool _facingRight = true;
     
         // Variable que controla si te puede pegar
         private bool _hit;
@@ -83,7 +80,7 @@ namespace Entities.Enemies.Arrano.Scripts
 
             _originalFS = flyingSpeed;
 
-            _facingRight = true;
+            FacingRight = true;
             
             _player = GameController.Instance.GetPlayerGameObject();
         
@@ -122,16 +119,16 @@ namespace Entities.Enemies.Arrano.Scripts
     
             }
             
-            if (!_facingRight && Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
+            if (!FacingRight && Math.Abs(transform.position.x - _leftLimitPosition.x) < 0.5)
             {
-                _facingRight = true;
+                FacingRight = true;
                 _direction = _rightLimitPosition;
                 StartCoroutine(nameof(Rotate));
             }
         
-            if (_facingRight && Math.Abs(transform.position.x - _rightLimitPosition.x) < 0.5)
+            if (FacingRight && Math.Abs(transform.position.x - _rightLimitPosition.x) < 0.5)
             {
-                _facingRight = false;
+                FacingRight = false;
                 _direction = _leftLimitPosition;
                 StartCoroutine(nameof(Rotate));
             }
@@ -149,7 +146,7 @@ namespace Entities.Enemies.Arrano.Scripts
         private void LookForPlayer()
         {
             RaycastHit2D hitData;
-            if (_facingRight)
+            if (FacingRight)
             {
                 hitData = Physics2D.Raycast(transform.position, Vector2.down + Vector2.right, 50, playerLayer);
                 //Debug.DrawRay(transform.position, Vector2.down + Vector2.right, Color.red, 3f);
@@ -161,7 +158,6 @@ namespace Entities.Enemies.Arrano.Scripts
             }
             
             if (hitData.collider == null) return;
-            Debug.Log(hitData.collider.tag);
             if (hitData.collider.CompareTag("Player"))
             {
                 _animator.SetBool("IsPreAttack", true);
@@ -201,10 +197,7 @@ namespace Entities.Enemies.Arrano.Scripts
             CancelInvoke(nameof(LookForPlayer));
             _startPosition = transform.position;
             _endPosition = _player.transform.position;
-            
-            //_animator.SetBool("IsPreAttack", false);
-            
-            //Debug.Log(_endPosition);
+
             StartCoroutine(nameof(GoDown));
         }
     
@@ -217,15 +210,13 @@ namespace Entities.Enemies.Arrano.Scripts
         // Corutina para ir hacia abajo hasta que llega al Y del jugador
         private IEnumerator GoDown()
         {
-        
-            // TODO: Animacion Picado
+
             _animator.SetBool("IsAttack", true);
             _animator.SetBool("IsPreAttack", false);
 
             _posX = transform.position.x;
             InvokeRepeating(nameof(StartMovingDown),0,0.01f);
             yield return new WaitUntil(() => Math.Abs(transform.position.y - _endPosition.y) < 0.1f);
-            //yield return new WaitUntil(() => transform.position.y < _endPosition.y);
             CancelInvoke(nameof(StartMovingDown));
             StartCoroutine(nameof(GoTowards));
         }
@@ -233,8 +224,7 @@ namespace Entities.Enemies.Arrano.Scripts
         // Metodo que se mueva hacia abajo
         private void StartMovingDown()
         {
-            Debug.Log(transform.position.y + " --- " + _endPosition.y);
-            if (_facingRight)
+            if (FacingRight)
             {
                 Move(transform.position, new Vector2(transform.position.x + 3, _endPosition.y), flyingSpeed * 1.2f);
             }
@@ -248,11 +238,8 @@ namespace Entities.Enemies.Arrano.Scripts
         // Corutina para ir en linea recta hasta atravesar al jugador
         private IEnumerator GoTowards()
         {
-        
-            // TODO: Animacion Idle
-        
             InvokeRepeating(nameof(StartMovingTowards), 0, 0.01f);
-            if (_facingRight)
+            if (FacingRight)
             {
                 yield return new WaitUntil(() => Math.Abs((transform.position.x - 8) - _endPosition.x) <= 0.5f);
             }
@@ -271,8 +258,7 @@ namespace Entities.Enemies.Arrano.Scripts
         // Metodo que se mueva en linea recta hacia el jugador
         private void StartMovingTowards()
         {
-            Debug.Log(_endPosition.x - (transform.position.x + 8));
-            if (_facingRight)
+            if (FacingRight)
             {
                 Move(transform.position, new Vector2(_endPosition.x + 50, transform.position.y), flyingSpeed * 0.8f);
             }
@@ -286,8 +272,6 @@ namespace Entities.Enemies.Arrano.Scripts
         // Corutina que vuelve al Y inicial
         private IEnumerator GoUp()
         {
-            
-            // TODO: Animacion subida
             _animator.SetBool("IsUp", true);
             if (_tiempoTotal == 0 && _tiempoAudioUp == 0)
             {
@@ -324,14 +308,14 @@ namespace Entities.Enemies.Arrano.Scripts
 
         private void ChangeDirection()
         {
-            if (_facingRight)
+            if (FacingRight)
             {
-                _facingRight = false;
+                FacingRight = false;
                 _direction = _leftLimitPosition;
             }
             else
             {
-                _facingRight = true;
+                FacingRight = true;
                 _direction = _rightLimitPosition;
 
             }
@@ -343,7 +327,7 @@ namespace Entities.Enemies.Arrano.Scripts
         {
             float newEndPosition;
         
-            if (_facingRight)
+            if (FacingRight)
             {
                 newEndPosition = _endPosition.x + (_endPosition.x - _startPosition.x);
             }
@@ -373,7 +357,7 @@ namespace Entities.Enemies.Arrano.Scripts
             flyingSpeed *= 0.3f;
             _rotated = false;
             CancelInvoke(nameof(TurnAround));
-            InvokeRepeating(nameof(TurnAround),0f, 0.1f);
+            InvokeRepeating(nameof(TurnAround),0f, 0.03f);
             yield return new WaitUntil(() => _rotated);
             CancelInvoke(nameof(TurnAround));
             flyingSpeed = _originalFS;
@@ -382,9 +366,8 @@ namespace Entities.Enemies.Arrano.Scripts
         // Metodo temporal que hace que se de la vuelta (bruscamente)
         private void TurnAround()
         {
-
             int newEulerY;
-            if (_facingRight)
+            if (FacingRight)
             {
                 transform.eulerAngles = new Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y - 30, transform.rotation.eulerAngles.z);
                 newEulerY = (int)transform.rotation.eulerAngles.y;
@@ -472,7 +455,6 @@ namespace Entities.Enemies.Arrano.Scripts
 
         public override void OnDeath()
         {
-            //TODO Animacion Muerte
             _animator.SetBool("IsDead", true );
             Instantiate(plumasMuerte, transform.position, transform.rotation);
             Invoke(nameof(DestroyThis),2f);
