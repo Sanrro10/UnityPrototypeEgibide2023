@@ -1,6 +1,7 @@
 using Entities.Player.Scripts;
 using General.Scripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Entities.Enemies.Witch.Scripts
 {
@@ -13,7 +14,7 @@ namespace Entities.Enemies.Witch.Scripts
         [SerializeField] private SpriteRenderer magicCircleSprites;
         private GameObject _playerGoRef;
         private PlayerController _playerRef;
-        private LandWitchData _witchData;
+        public LandWitchData witchData;
         [SerializeField] private AttackComponent _attackComponent;
         
         void Awake()
@@ -22,16 +23,16 @@ namespace Entities.Enemies.Witch.Scripts
         // Start is called before the first frame update
         void Start()
         {
-            _attackComponent = GetComponentInChildren<AttackComponent>(true);
+            //_attackComponent = GetComponentInChildren<AttackComponent>(true);
             _attackComponent.DeactivateHitbox();
             _playerGoRef = GameController.Instance.GetPlayerGameObject();
             _playerRef = GameController.Instance.GetPlayerController();
-            _witchData = GameObject.Find("SorginaLand").GetComponent<LandWitch>().landWitchData;
-            _attackComponent.AddAttackData(new AttackComponent.AttackData(_witchData.magicCircleDamage, 0, new Vector2(0,0), 6, AttackComponent.AttackType.Projectile));
+            //witchData = GameObject.Find("SorginaLand").GetComponent<LandWitch>().landWitchData;
+            _attackComponent.AddAttackData(new AttackComponent.AttackData(witchData.magicCircleDamage, 0, new Vector2(0,0), 6, AttackComponent.AttackType.Projectile));
 
 
             InvokeRepeating(nameof(MovementLogic),0,0.02f);
-            Invoke(nameof(ActivationLogic), _witchData.magicCircleChargeDuration);
+            Invoke(nameof(ActivationLogic), witchData.magicCircleChargeDuration);
         }
 
         // Update is called once per frame
@@ -50,7 +51,7 @@ namespace Entities.Enemies.Witch.Scripts
         {
             //ChangeColor();
             CancelInvoke(nameof(MovementLogic));
-            Invoke(nameof(Activate),_witchData.magicCircleActivationDelay);
+            Invoke(nameof(Activate),witchData.magicCircleActivationDelay);
         }
 
         private void Activate()
@@ -59,7 +60,7 @@ namespace Entities.Enemies.Witch.Scripts
             //magicCircleAnimator.SetTrigger("MagicCircleActivate");
             Debug.Log("Magic Circle Activated");
             _attackComponent.ActivateHitbox();
-            Invoke(nameof(EndOfLife), _witchData.magicCircleEffectDuration);
+            Invoke(nameof(EndOfLife), witchData.magicCircleEffectDuration);
         }
         private void EndOfLife()
         {

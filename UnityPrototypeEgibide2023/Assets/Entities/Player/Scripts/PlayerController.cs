@@ -53,7 +53,8 @@ namespace Entities.Player.Scripts
                 public float dashSpeed;
                 public float jumpForce;
                 public float baseGravity;
-        
+                public Vector2 lastGroundedPosition;
+                
                 [SerializeField] private AnimationCurve dashCurve;
                 public bool onDashCooldown = false;
                 public bool onAirDashCooldown = false;
@@ -197,7 +198,7 @@ namespace Entities.Player.Scripts
                         _potionSelector = transform.Find("PotionSelector").gameObject;
                         potionList = _sPlayerCurrentPersistentData.PotionList;
                         
-                        if(selectedPotion is null)
+                        if(_sPlayerCurrentPersistentData.SelectedPotion is not null)
                                 selectedPotion = _sPlayerCurrentPersistentData.SelectedPotion;
                         _selectedPotionImage.sprite = 
                                 selectedPotion != null ? selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite : null;
@@ -216,12 +217,16 @@ namespace Entities.Player.Scripts
                 private void OnDestroy()
                 {
                         PotionBehavior.OnPotionDestroy -= ResetPotionCooldown;
-                         GameController.SPlayerPersistentData thePlayerDataThatIsGoingToBePersisted =
+                        _controls.GeneralActionMap.ChangePotionL.performed -= ctx=> ShowPotionSelector(true);
+                        _controls.GeneralActionMap.ChangePotionR.performed -= ctx => ShowPotionSelector(false);
+                        _controls.Disable();
+                         GameController.SPlayerPersistentData playerPersistentData =
                                  new GameController.SPlayerPersistentData();
-                         thePlayerDataThatIsGoingToBePersisted.CurrentHealth = Health.Get();
-                         thePlayerDataThatIsGoingToBePersisted.PotionList = potionList;
-                         thePlayerDataThatIsGoingToBePersisted.SelectedPotion = selectedPotion;
-                        GameController.Instance.PlayerPersistentDataBetweenScenes = thePlayerDataThatIsGoingToBePersisted;
+                         
+                         playerPersistentData.CurrentHealth = Health.Get() <= 0 ? 100 : Health.Get();
+                         playerPersistentData.PotionList = potionList;
+                         playerPersistentData.SelectedPotion = selectedPotion;
+                        GameController.Instance.PlayerPersistentDataBetweenScenes = playerPersistentData;
                 }
 
                 private void ResetPotionCooldown(GameObject entity)
@@ -392,7 +397,6 @@ namespace Entities.Player.Scripts
                                 int objective = FacingRight ? 0:180;
                                 if ((int)_spriteRenderer.gameObject.transform.rotation.eulerAngles.y !=  objective)
                                 {
-                                        Debug.Log((int)_spriteRenderer.gameObject.transform.rotation.eulerAngles.y);
                                         _spriteRenderer.gameObject.transform.eulerAngles = new UnityEngine.Vector3(_spriteRenderer.transform.transform.eulerAngles.x, _spriteRenderer.transform.rotation.eulerAngles.y + (FacingRight ? -30: 30), _spriteRenderer.transform.rotation.eulerAngles.z);
 
                                 }
@@ -490,12 +494,12 @@ namespace Entities.Player.Scripts
                 public void FlipSprite()
                 {
                         float direction = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
-                        if (direction == -1)
+                        if (direction < 0)
                         {
                                 FacingRight = false;
                               
                         }
-                        else if (direction == 1)
+                        else if (direction > 0)
                         {
                                 FacingRight = true;
                                 
@@ -563,9 +567,6 @@ namespace Entities.Player.Scripts
                         //float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
                         float yDirection = _controls.GeneralActionMap.VerticalMovement.ReadValue<float>();
                         float xDirection = _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>();
-                        Debug.Log("yDirection: " + yDirection);
-                        Debug.Log("xDirection: " + xDirection);
-                        Debug.Log("FacingRight: " + FacingRight);
                         if (yDirection == 1)
                         {
                                 PmStateMachine.TransitionTo(PmStateMachine.AirMeleeAttackUpState);
@@ -719,9 +720,10 @@ namespace Entities.Player.Scripts
                 {
                         DisablePlayerControls();
                         GameController.Instance.GameOver();
+                        GameController.Instance.justDied = true;
                         //Invoke(nameof(CallSceneLoad), 1);
                         //_audioSource.PlayOneShot(_playerAudios.audios[1]);
-                        
+
                 }
                 
 
@@ -735,15 +737,14 @@ namespace Entities.Player.Scripts
                 /*Saves the playerSpawnData so that it can be moved to it's starting position*/
                 public void CheckSceneChanged()
                 {
-                        _sPlayerSpawnData = GameController.Instance._playerSpawnDataInNewScene;
+                        _sPlayerSpawnData = GameController.Instance.PlayerSpawnDataInNewScene;
                 }
                 
                 /*Transitions to SceneChangeState which handles player spawn in new scene*/
                 private void OnSceneChange()
                 {
-                        //SetSPlayerSpawnData(playerSpawnData);
-                        PmStateMachine.TransitionTo(PmStateMachine.SceneChangeState);
-                        
+                        if(!GameController.Instance.justDied) PmStateMachine.TransitionTo(PmStateMachine.SceneChangeState);
+                        GameController.Instance.justDied = false;
                 }
                 
                 /*
@@ -947,8 +948,11 @@ namespace Entities.Player.Scripts
                 {
                         _controls = new InputActions();
                 }
-                public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true) 
+                public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
                 {
+                        if (attack.damage > 10) PmStateMachine.TransitionTo(PmStateMachine.StunnedState);
+                        if (attack.attackType == AttackComponent.AttackType.KillArea)
+                                transform.position = lastGroundedPosition;
                         base.OnReceiveDamage(attack, facingRight);
                         StartCoroutine(CoInvulnerability());
                         healthText.text = Health.Get().ToString();

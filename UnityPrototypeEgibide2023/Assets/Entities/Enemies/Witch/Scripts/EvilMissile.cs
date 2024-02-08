@@ -2,17 +2,18 @@ using System.Collections;
 using Entities.Player.Scripts;
 using General.Scripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Entities.Enemies.Witch.Scripts
 {
-    public class EvilMissile : MonoBehaviour
+    public class EvilMissile : EntityControler
     {
         [SerializeField] private GameObject explosion;
         [SerializeField] private Animator missileAnimator;
         
         private Rigidbody2D _missileBody;
         private GameObject _playerRef;
-        private LandWitchData _witchData;
+        public LandWitchData witchData;
         private bool _damageDealt = false;
         [SerializeField] private AttackComponent _attackComponent;
 
@@ -20,15 +21,17 @@ namespace Entities.Enemies.Witch.Scripts
 
         void Start()
         {
-            _attackComponent = GetComponentInChildren<AttackComponent>();
+            Health.Set(1);
+            //_attackComponent = GetComponentInChildren<AttackComponent>();
             _attackComponent.ActivateHitbox();
-            _witchData = GameObject.Find("SorginaLand").GetComponent<LandWitch>().landWitchData;
+            //witchData = GameObject.Find("SorginaLand").GetComponent<LandWitch>().landWitchData;
             _playerRef = GameController.Instance.GetPlayerGameObject();
             _missileBody = gameObject.GetComponent<Rigidbody2D>();
-            _attackComponent.AddAttackData(new AttackComponent.AttackData(_witchData.missileDamage, 0, new Vector2(0,0), 6, AttackComponent.AttackType.Normal));
+            _attackComponent.AddAttackData(new AttackComponent.AttackData(witchData.missileDamage, 0, new Vector2(0,0), 6, AttackComponent.AttackType.Normal));
             Rotacion();
             StartCoroutine(nameof(ApplyForce),0f);
-            Invoke(nameof(MaximumAliveTime),15f);
+            //Maximun Time Alive
+            Invoke(nameof(Delete),15f);
         
         
         }
@@ -53,7 +56,7 @@ namespace Entities.Enemies.Witch.Scripts
             Rotacion();
             Vector2 whereToGoPlease = _playerRef.transform.position - transform.position;
             whereToGoPlease.Normalize();
-            Vector2 speedwagon = whereToGoPlease * _witchData.missileSpeed;
+            Vector2 speedwagon = whereToGoPlease * witchData.missileSpeed;
             _missileBody.velocity = speedwagon;
         }
     
@@ -73,10 +76,9 @@ namespace Entities.Enemies.Witch.Scripts
             Destroy(gameObject);
         }
 
-        private void MaximumAliveTime()
-        {
-            Invoke(nameof(Delete), 0.1f);
+        public override void OnDeath()
+        { 
+            Explode();
         }
-
     }
 }

@@ -27,7 +27,6 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 
         public virtual void Exit()
         {
-            
         }
     }
 }

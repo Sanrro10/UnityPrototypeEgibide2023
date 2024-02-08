@@ -99,11 +99,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2726033690915117363, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
       propertyPath: attackData.Array.data[0].damage
-      value: 999
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2726033690915117363, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
       propertyPath: attackData.Array.data[0].knockback
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726033690915117363, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
+      propertyPath: attackData.Array.data[0].attackType
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4957305020468123477, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
       propertyPath: m_Name

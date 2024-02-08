@@ -14,7 +14,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public void Enter()
         {
             //  Debug.Log("Entering Stunned State");
-            player.Invoke(nameof(player.EndStun), player.timeStunned);
+            player.Invoke(nameof(player.EndStun), 0.25f);
             player.isStunned = true;
         }
         

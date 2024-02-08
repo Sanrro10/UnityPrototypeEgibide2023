@@ -16,25 +16,45 @@ public class OneSpriteFadeOnT : MonoBehaviour
         mat = textMeshPro.fontMaterial;
         fadeAmount = mat.GetFloat("_FadeAmount");
     }
-    public void StartFade()
+    public void StartFadeOut(float speed)
     {
-        StartCoroutine("Fade");
+        tiempo = speed;
+        fadeAmount = mat.GetFloat("_FadeAmount");
+        StartCoroutine("FadeOut",tiempo);
     }
-    private IEnumerator Fade()
+    private IEnumerator FadeOut(float speed)
     {
 
         while (fadeAmount<1f)
         {
             mat.SetFloat("_FadeAmount", fadeAmount);
-            yield return new WaitForSeconds(tiempo);
+            yield return new WaitForSeconds(speed);
             fadeAmount += resta;
         }
         //return null;
 
     }
-    // Update is called once per frame
-    void Update()
+    public void StartFadeIn(float speed)
     {
-        
+        tiempo = speed;
+        fadeAmount = mat.GetFloat("_FadeAmount");
+        StartCoroutine("FadeIn", tiempo);
     }
+    private IEnumerator FadeIn(float speed)
+    {
+
+        while (fadeAmount>=0f)
+        {
+            mat.SetFloat("_FadeAmount", fadeAmount);
+            yield return new WaitForSeconds(speed);
+            fadeAmount -= resta;
+        }
+        //return null;
+
+    }
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
 }

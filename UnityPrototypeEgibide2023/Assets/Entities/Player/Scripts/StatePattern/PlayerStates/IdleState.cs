@@ -58,6 +58,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public override void Exit()
         {
             base.Exit();
+            Player.lastGroundedPosition = Player.transform.position;
             Player.animator.SetBool("IsIdle", false);
             // Debug.Log("Exiting Idle State");
         }

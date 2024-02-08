@@ -16,5 +16,6 @@ namespace Entities.Enemies.Witch.Scripts
         public float magicCircleEffectDuration;
         public float normalTeleportationCooldown;
         public float fastTeleportationCooldown;
+        public float angerIncrement;
     }
 }

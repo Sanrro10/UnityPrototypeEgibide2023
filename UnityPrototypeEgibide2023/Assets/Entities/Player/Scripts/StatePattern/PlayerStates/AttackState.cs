@@ -19,6 +19,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             Player.meleeAttack.GetComponent<AttackComponent>().ClearAttackData();
             Player.meleeAttack.GetComponent<AttackComponent>().AddAttackData(new AttackComponent.AttackData(Player.GetPlayerData().damage, Player.GetPlayerData().knockback * KnockbackMultiplier, AttackDirection, 7, AttackComponent.AttackType.Normal));
             Player.meleeAttack.GetComponent<AttackComponent>().AddAttackData(new AttackComponent.AttackData(1, Player.GetPlayerData().knockbackPotion * KnockbackMultiplier, AttackDirection, 8, AttackComponent.AttackType.Normal));
+            Player.meleeAttack.GetComponent<AttackComponent>().AddAttackData(new AttackComponent.AttackData(1, 0, AttackDirection, 12, AttackComponent.AttackType.Normal));
         }
 
         public virtual void Update()

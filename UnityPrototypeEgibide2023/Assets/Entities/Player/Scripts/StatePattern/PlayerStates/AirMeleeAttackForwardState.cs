@@ -20,7 +20,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             else Player.animator.SetBool("IsAAForwardLeft", true);
             Player.animator.SetBool("IsAARight", true);
             Player.InvokeRepeating(nameof(Player.AirMove), 0, 0.01f);
-            Player.Invoke(nameof(Player.EndAirAttack), 0.5f);
+            Player.Invoke(nameof(Player.EndAirAttack), 0.3f);
         }
 
         // per-frame logic, include condition to transition to a new state
