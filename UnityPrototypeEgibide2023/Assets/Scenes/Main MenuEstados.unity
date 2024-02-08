@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2106067939}
-  m_IndirectSpecularColor: {r: 0.15044099, g: 0.103233285, b: 0.1415708, a: 1}
+  m_IndirectSpecularColor: {r: 0.15047127, g: 0.10313008, b: 0.14140841, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7373,6 +7373,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameCamerasInicio
       objectReference: {fileID: 0}
+    - target: {fileID: 4853393950567005150, guid: 2cba9d16f7d9e68478cfb94e6ab1bb81, type: 3}
+      propertyPath: weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853393950567005150, guid: 2cba9d16f7d9e68478cfb94e6ab1bb81, type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d56ec6b3e67ef4438d8cbb3ef1d0cea, type: 2}
     - target: {fileID: 5005540349192126026, guid: 2cba9d16f7d9e68478cfb94e6ab1bb81, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7414,6 +7422,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5979121288214625108, guid: 2cba9d16f7d9e68478cfb94e6ab1bb81, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979121288214625108, guid: 2cba9d16f7d9e68478cfb94e6ab1bb81, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 26b40add62228aa4dbbb879e22088b69, type: 2}
@@ -7434,8 +7446,28 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6201007784015866669, guid: 2cba9d16f7d9e68478cfb94e6ab1bb81, type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 2106067939}
+    - target: {fileID: 6201007784015866669, guid: 2cba9d16f7d9e68478cfb94e6ab1bb81, type: 3}
+      propertyPath: LightsModule.ratio
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201007784015866669, guid: 2cba9d16f7d9e68478cfb94e6ab1bb81, type: 3}
+      propertyPath: TrailModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201007784015866669, guid: 2cba9d16f7d9e68478cfb94e6ab1bb81, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201007784015866669, guid: 2cba9d16f7d9e68478cfb94e6ab1bb81, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6201007784015866669, guid: 2cba9d16f7d9e68478cfb94e6ab1bb81, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6521909104759457691, guid: 2cba9d16f7d9e68478cfb94e6ab1bb81, type: 3}
       propertyPath: m_LocalPosition.y
