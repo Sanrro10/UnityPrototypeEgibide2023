@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -5,38 +6,21 @@ namespace Entities.Enemies.Galtzagorri.Scripts
 {
     public class GaltzActiveZone : MonoBehaviour
     {
-        [SerializeField] private GameObject[] galtzagorris;
-        public bool isIn;
+        public static event Action<GameObject> PlayerEnteredArea;
+        public static event Action<GameObject> PlayerExitedArea;
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.gameObject.CompareTag("Player")) return;
+            if (!other.gameObject.CompareTag("PlayerHelper")) return;
             if (other.gameObject.name != "EnemyDetection") return;
-            isIn = true;
-            foreach (var galtzagorri in galtzagorris)
-            {
-                var script = galtzagorri.GetComponent<NewGaltzScript>();
-                if (script.StateMachine.CurrentState == script.StateMachine.GaltzHiddenState)
-                {
-                    script.StateMachine.TransitionTo(script.StateMachine.GaltzRunningState);
-                }
-            }
+            PlayerEnteredArea?.Invoke(gameObject);
         }
         
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (!other.gameObject.CompareTag("Player")) return;
+            if (!other.gameObject.CompareTag("PlayerHelper")) return;
             if (other.gameObject.name != "EnemyDetection") return;
-            isIn = false;
-            foreach (var galtzagorri in galtzagorris)
-            {
-                var script = galtzagorri.GetComponent<NewGaltzScript>();
-                if (script.StateMachine.CurrentState == script.StateMachine.GaltzRunningState ||
-                    script.StateMachine.CurrentState == script.StateMachine.GaltzAttackState)
-                {
-                    script.StateMachine.TransitionTo(script.StateMachine.GaltzHidingState);
-                }
-            }
-            
+            PlayerExitedArea?.Invoke(gameObject);
         }
 
         
