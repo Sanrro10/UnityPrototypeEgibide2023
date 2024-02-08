@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using Entities.Enemies.Galtzagorri.Scripts.StatePattern;
 using General.Scripts;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Entities.Enemies.Galtzagorri.Scripts
 {
@@ -12,14 +14,15 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         [SerializeField] private BasicEnemyData data;
         [SerializeField] public GameObject attackZone;
         [SerializeField] public GameObject startHideout;
-
+        [SerializeField] public GameObject activeZone;
+        
         public bool waiting;
         public GaltzStateMachine StateMachine;
         public Animator animator;
         public GameObject playerGameObject;
         public Vector2 target;
         public GameObject currentHideout;
-        public GameObject activeZone;
+        
         private SpriteRenderer _spriteRenderer;
         private bool _rotated = true;
         public bool canExit = true;
@@ -33,8 +36,12 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             StateMachine.Initialize(StateMachine.GaltzHidingState);
             PlaceToHide(startHideout);
             Health.Set(data.health);
+            
             GaltzHideoutRange.PlayerEntered += PlayerEntered;
             GaltzHideoutRange.PlayerExited += PlayerExited;
+            GaltzActiveZone.PlayerEnteredArea += PlayerEnteredArea;
+            GaltzActiveZone.PlayerExitedArea += PlayerExitedArea;
+            
             playerGameObject = GameController.Instance.GetPlayerGameObject();
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             InvokeRepeating(nameof(CheckDirection), 0f, 0.03f);
@@ -54,6 +61,34 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             if (hideout.Equals(currentHideout))
             {
                 canExit = true;
+            }
+        }
+
+        private void PlayerEnteredArea(GameObject area)
+        {
+            if (area.Equals(activeZone))
+            {
+                isIn = true;
+                if (canExit)
+                {
+                    if (StateMachine.CurrentState == StateMachine.GaltzHiddenState)
+                    {
+                        StateMachine.TransitionTo(StateMachine.GaltzRunningState);
+                    }
+                }
+            }
+        }
+
+        private void PlayerExitedArea(GameObject area)
+        {
+            if (area.Equals(activeZone))
+            {
+                isIn = false;
+                if (StateMachine.CurrentState == StateMachine.GaltzRunningState ||
+                    StateMachine.CurrentState == StateMachine.GaltzAttackState)
+                {
+                    StateMachine.TransitionTo(StateMachine.GaltzHidingState);
+                }
             }
         }
 
@@ -85,7 +120,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         {
             if (StateMachine.CurrentState == StateMachine.GaltzRunningState && _rotated)
             {
-                if (Vector3.Distance(gameObject.transform.position, playerGameObject.transform.position) < 3)
+                if (Vector3.Distance(gameObject.transform.position, playerGameObject.transform.position) < 2)
                 {
                     StateMachine.TransitionTo(StateMachine.GaltzAttackState);
                 }
@@ -161,7 +196,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
 
         public void Move()
         {
-            transform.position = Vector2.MoveTowards(transform.position, target, speed);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.x, transform.position.y), speed);
         }
         
         private void OnTriggerEnter2D(Collider2D other)
@@ -214,14 +249,8 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             AnimationClip currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
             GaltzHideoutRange.PlayerEntered -= PlayerEntered;
             GaltzHideoutRange.PlayerEntered -= PlayerEntered;
-
-            for (int i = 0; i < activeZone.GetComponent<GaltzActiveZone>().galtzagorris.Length; i++)
-            {
-                if (activeZone.GetComponent<GaltzActiveZone>().galtzagorris[i].Equals(gameObject))
-                {
-                    activeZone.GetComponent<GaltzActiveZone>().galtzagorris[i] = null;
-                }
-            }
+            GaltzActiveZone.PlayerEnteredArea -= PlayerEnteredArea;
+            GaltzActiveZone.PlayerExitedArea -= PlayerExitedArea;
             Invoke(nameof(DestroyThis), currentAnim.length + 2f);
         }
         
