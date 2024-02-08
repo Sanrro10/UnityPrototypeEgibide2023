@@ -63,7 +63,7 @@ namespace Entities.Enemies.Witch.Scripts
 
         private void SelfDeath()
         {
-            _angerLevel++;
+            _angerLevel = _angerLevel + landWitchData.angerIncrement;
         }
 
         private void OnDestroy()
@@ -81,7 +81,7 @@ namespace Entities.Enemies.Witch.Scripts
             _isActive = state;
             if (_isActive)
             {
-                InvokeRepeating(nameof(TurnToPlayer) , 1 , 1);
+                InvokeRepeating(nameof(TurnToPlayer) , 0.03f , 0.03f);
                 InvokeRepeating(nameof(WitchAttack),0,0.5f);
                 if (!_hasBeenActivated)
                 {
@@ -105,8 +105,7 @@ namespace Entities.Enemies.Witch.Scripts
         {
             _canMagicCircle = state;
         }
-
-
+        
         /*The LandWitch tries to face the players position*/
         private void TurnToPlayer()
         {
@@ -115,12 +114,17 @@ namespace Entities.Enemies.Witch.Scripts
             
             if (playerRelativePos > 0)
             {
-                Debug.Log("Derecha");
-                spriteWitch.flipX = true;
+                FacingRight = false;
             }else if (playerRelativePos < 0)
             {
-                Debug.Log("Izquierda");
-                spriteWitch.flipX = false;
+                FacingRight = true;
+            }
+            
+            int objective = FacingRight ? 0:180;
+            if ((int)spriteWitch.gameObject.transform.rotation.eulerAngles.y !=  objective)
+            {
+                spriteWitch.gameObject.transform.eulerAngles = new UnityEngine.Vector3(spriteWitch.transform.transform.eulerAngles.x, spriteWitch.transform.rotation.eulerAngles.y + (FacingRight ? -30: 30), spriteWitch.transform.rotation.eulerAngles.z);
+
             }
 
         }
@@ -173,8 +177,9 @@ namespace Entities.Enemies.Witch.Scripts
             _isLaunchingMagicCircles = false;
             CancelInvoke(nameof(LaunchMagicCircle));
             CancelInvoke(nameof(ActivateAnimMagicCircle));
-            InvokeRepeating(nameof(ActivateAnimMissile), 0, landWitchData.missileCooldown * _angerLevel);
-            InvokeRepeating(nameof(LaunchEvilMissile),0.5f, landWitchData.missileCooldown * _angerLevel);
+            InvokeRepeating(nameof(ActivateAnimMissile), 0, landWitchData.missileCooldown / _angerLevel);
+            InvokeRepeating(nameof(LaunchEvilMissile),0.5f, landWitchData.missileCooldown / _angerLevel);
+            Debug.Log($"{landWitchData.missileCooldown / _angerLevel}");
         }
 
         /*Manages the logic and variables needed to launch MagicCircles and cancels other attacks*/
@@ -184,8 +189,8 @@ namespace Entities.Enemies.Witch.Scripts
             _isLaunchingMissiles = false;
             CancelInvoke(nameof(LaunchEvilMissile));
             CancelInvoke(nameof(ActivateAnimMissile));
-            InvokeRepeating(nameof(ActivateAnimMagicCircle),0,landWitchData.magicCircleCooldown * _angerLevel);
-            InvokeRepeating(nameof(LaunchMagicCircle) , 0.2f, landWitchData.magicCircleCooldown * _angerLevel);
+            InvokeRepeating(nameof(ActivateAnimMagicCircle),0,landWitchData.magicCircleCooldown / _angerLevel);
+            InvokeRepeating(nameof(LaunchMagicCircle) , 0.2f, landWitchData.magicCircleCooldown / _angerLevel);
             
         }
 

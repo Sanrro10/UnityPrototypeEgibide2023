@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 namespace Entities.Enemies.Witch.Scripts
 {
-    public class EvilMissile : MonoBehaviour
+    public class EvilMissile : EntityControler
     {
         [SerializeField] private GameObject explosion;
         [SerializeField] private Animator missileAnimator;
@@ -21,6 +21,7 @@ namespace Entities.Enemies.Witch.Scripts
 
         void Start()
         {
+            Health.Set(1);
             //_attackComponent = GetComponentInChildren<AttackComponent>();
             _attackComponent.ActivateHitbox();
             //witchData = GameObject.Find("SorginaLand").GetComponent<LandWitch>().landWitchData;
@@ -74,7 +75,10 @@ namespace Entities.Enemies.Witch.Scripts
             Instantiate(explosion, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
             Destroy(gameObject);
         }
-        
 
+        public override void OnDeath()
+        { 
+            Explode();
+        }
     }
 }
