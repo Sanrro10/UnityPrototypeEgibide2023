@@ -198,7 +198,7 @@ namespace Entities.Player.Scripts
                         _potionSelector = transform.Find("PotionSelector").gameObject;
                         potionList = _sPlayerCurrentPersistentData.PotionList;
                         
-                        if(selectedPotion is null)
+                        if(_sPlayerCurrentPersistentData.SelectedPotion is not null)
                                 selectedPotion = _sPlayerCurrentPersistentData.SelectedPotion;
                         _selectedPotionImage.sprite = 
                                 selectedPotion != null ? selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite : null;
