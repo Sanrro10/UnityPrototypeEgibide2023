@@ -129,7 +129,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         
         public void CheckDirection()
         {
-            if (StateMachine.CurrentState == StateMachine.GaltzHiddenState) return;
+            //if (StateMachine.CurrentState == StateMachine.GaltzHiddenState) return;
             
             if (FacingRight && target.x < transform.position.x)
             {

@@ -9926,7 +9926,7 @@ GameObject:
   - component: {fileID: 3084254963327391329}
   - component: {fileID: 4046272210985061691}
   - component: {fileID: 405251208428994576}
-  m_Layer: 7
+  m_Layer: 16
   m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10100,10 +10100,15 @@ MonoBehaviour:
   - {fileID: 0}
   data: {fileID: 11400000, guid: 5144410f825c2e846a5f8e903fe19d89, type: 2}
   attackZone: {fileID: 5619438104037316313}
+  startHideout: {fileID: 0}
+  activeZone: {fileID: 0}
+  waiting: 0
   animator: {fileID: 1823551605130537553}
   playerGameObject: {fileID: 0}
   target: {x: 0, y: 0}
   currentHideout: {fileID: 0}
+  canExit: 1
+  isIn: 0
 --- !u!60 &4046883017854984871
 PolygonCollider2D:
   m_ObjectHideFlags: 0

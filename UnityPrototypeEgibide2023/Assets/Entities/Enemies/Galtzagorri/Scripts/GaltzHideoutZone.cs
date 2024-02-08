@@ -9,7 +9,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             GameObject parent = transform.parent.gameObject;
             var entity = parent.GetComponent<NewGaltzScript>();
             if (entity.StateMachine.CurrentState != entity.StateMachine.GaltzHidingState) return;
-            if (other.gameObject.name.Equals("HideoutCollider"))
+            if (other.gameObject.name.Equals("HideoutCollider") && entity.currentHideout.Equals(other.transform.parent.gameObject))
             {
                 entity.StateMachine.TransitionTo(entity.StateMachine.GaltzHiddenState);
             }
