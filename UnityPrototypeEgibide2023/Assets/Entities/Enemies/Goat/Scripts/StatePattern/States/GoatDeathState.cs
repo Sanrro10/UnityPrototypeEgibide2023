@@ -18,10 +18,11 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
 
         public void Enter()
         {
-            entity.animator.SetBool("IsStunned", true);
+            entity.animator.SetBool("IsDeath", true);
+            AnimationClip currentAnim = entity.animator.GetCurrentAnimatorClipInfo(0)[0].clip;
             entity.StopAllCoroutines();
             entity.CancelInvoke();
-            entity.Invoke(nameof(entity.DestroyEntity), 1.5f);
+            entity.Invoke(nameof(entity.DestroyEntity), currentAnim.length + 2f);
 
         }
 
@@ -33,7 +34,7 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         
         public void Exit()
         {
-            entity.animator.SetBool("IsStunned", false);
+            entity.animator.SetBool("IsDeath", false);
         }
     }
 }
