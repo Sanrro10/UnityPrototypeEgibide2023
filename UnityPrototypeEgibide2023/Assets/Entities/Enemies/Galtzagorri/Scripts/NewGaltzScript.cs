@@ -213,7 +213,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             waiting = true;
             yield return new WaitForSeconds(2f);
             waiting = false;
-            yield return new WaitUntil(() => canExit);
+            yield return new WaitUntil(() => canExit && isIn);
             if(isIn) StateMachine.TransitionTo(StateMachine.GaltzRunningState);
         }
         
