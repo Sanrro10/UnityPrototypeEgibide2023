@@ -103,6 +103,9 @@ namespace Entities.Player.Scripts
                 private bool _rotated;
                 private bool _onCooldown;
                 private GameObject _potionSelector;
+                
+                //Particles
+                public ParticleEvents particleEvents;
 
 
                 [SerializeField] private GameObject effectSpawner;
@@ -130,7 +133,8 @@ namespace Entities.Player.Scripts
                         animator = GetComponentInChildren<Animator>();
                         _spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
                         _controls = new InputActions();
-                        
+
+                        particleEvents = GetComponent<ParticleEvents>();
                         
                         //Enable the actions
                         _controls.Enable();
