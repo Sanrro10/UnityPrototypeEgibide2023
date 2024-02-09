@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 namespace Entities.Destructible
 {
-    [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Collider2D))]
     public class DestructibleController : EntityControler
     {
         [SerializeField] private AttackComponent.AttackType vulnerabilityType = AttackComponent.AttackType.Normal;
@@ -19,23 +20,28 @@ namespace Entities.Destructible
         void Start()
         {
             Health.Set(numberOfHitsToDestroy);
-            _animator = GetComponent<Animator>();
         }
     
         public override void OnReceiveDamage(AttackComponent.AttackData attack, bool toTheRight = true)
         {
+            Debug.Log(attack);
             if (attack.attackType != vulnerabilityType)
             {
-                _animator.SetTrigger(FailedHit);
                 return;
             }
-            _animator.SetTrigger(Hit);
+            Debug.Log("Damage");
             Health.RemoveHealth(1);
         }
     
         public override void OnDeath()
         {
-            _animator.SetTrigger(Remove);
+            Destroy(gameObject);
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            
+            Debug.Log("Collision" + other.gameObject.name);
         }
     }
 }
