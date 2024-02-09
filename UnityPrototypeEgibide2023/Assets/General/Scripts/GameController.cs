@@ -18,6 +18,7 @@ namespace General.Scripts
         public SPlayerPersistentData PlayerPersistentDataBetweenScenes;
         private GameData gameData;
         private string mainSceneName  = "1.0.1 (Tutorial)";
+        private string mainMenuName = "Main MenuEstados";
         public List<int> collectedItems = new List<int>();
         
         public GameObject playerPrefab;
@@ -81,12 +82,9 @@ namespace General.Scripts
             {
                 Instance = this;
                 DontDestroyOnLoad(transform.gameObject);
-                //DontDestroyOnLoad(menuPausa);
-                //DontDestroyOnLoad(canvasGameOver);
-                //DontDestroyOnLoad(canvasOptions);
                 gameData = SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
-                /*if (gameData.isValid && !Application.isEditor)
-                {*/
+                if (gameData.isValid && !Application.isEditor)
+                {
                     _lastCheckpoint.Scene = gameData.spawnScene;
                     _lastCheckpoint.Position = gameData.spawnPosition;
                     PlayerSpawnDataInNewScene.Scene = _lastCheckpoint.Scene;
@@ -95,19 +93,16 @@ namespace General.Scripts
                     PlayerPersistentDataBetweenScenes.CurrentHealth = 100;
                     PlayerPersistentDataBetweenScenes.AirDashUnlocked = gameData.AirDashUnlocked;
                     PlayerPersistentDataBetweenScenes.PotionList = gameData.PotionList;
-                    /*}
+                    }
                     else
                     {
                         _lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
                         _lastCheckpoint.Position = Vector3.zero;
-                    }*/
+                    }
 
             }
             else
             {
-                //Destroy(menuPausa.gameObject);
-                //Destroy(canvasGameOver.gameObject);
-                //Destroy(canvasOptions.gameObject);
                 Destroy(gameObject);
             }
 
@@ -240,8 +235,8 @@ namespace General.Scripts
         }
         public void ChangeSceneMenu()
         {
-            // DeletePersistentElement();
-            SceneManager.LoadScene("Main MenuEstados");
+            DeletePersistentElement();
+            SceneManager.LoadScene(mainMenuName);
         }
         
         public void ChangeScene(string escena)
@@ -275,9 +270,6 @@ namespace General.Scripts
         }
         public void DeletePersistentElement()
         {
-            //Destroy(canvasPausa.gameObject);
-            //Destroy(canvasGameOver.gameObject);
-            //Destroy(canvasOptions.gameObject);
             Destroy(gameObject);
             Time.timeScale = 1;
         }

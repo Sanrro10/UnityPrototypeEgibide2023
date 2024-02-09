@@ -24,6 +24,7 @@ public class OneSpriteFadeOnT : MonoBehaviour
     {
         tiempo = speed;
         fadeAmount = mat.GetFloat("_FadeAmount");
+        fadeAmount = 0f;
         StartCoroutine("FadeOut",tiempo);
     }
     private IEnumerator FadeOut(float speed)
@@ -48,6 +49,7 @@ public class OneSpriteFadeOnT : MonoBehaviour
     {
         tiempo = speed;
         fadeAmount = mat.GetFloat("_FadeAmount");
+        fadeAmount = 1f;
         StartCoroutine("FadeIn", tiempo);
     }
     private IEnumerator FadeIn(float speed)
