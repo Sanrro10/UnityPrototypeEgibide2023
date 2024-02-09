@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Entities.Player.Scripts;
 using General.Scripts;
 using UnityEngine;
 
@@ -22,9 +23,10 @@ public class CheckpointManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Colision con el player
-        if (collision.gameObject.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             GameController.Instance.GetComponent<GameController>().SetCheckpoint(_checkpoint);
+            collision.gameObject.GetComponent<PlayerController>().heal();
         }
     }
 }

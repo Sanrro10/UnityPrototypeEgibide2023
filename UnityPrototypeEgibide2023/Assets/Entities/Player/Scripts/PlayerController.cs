@@ -915,6 +915,16 @@ namespace Entities.Player.Scripts
                         potionList.Add(newPotion);
                         selectedPotion = potionList[potionList.Count - 1];
                         ShowPotionSelector(false);
+                        _sPlayerCurrentPersistentData.SelectedPotion = selectedPotion;
+                        _sPlayerCurrentPersistentData.PotionList = potionList.ToArray();
+                        GameController.Instance.PlayerPersistentDataBetweenScenes = _sPlayerCurrentPersistentData;
+                }
+
+                public void heal()
+                {
+                        Health.Set(100);
+                        healthText.text = Health.Get().ToString();
+                        healthBar.value = Health.Get();
                 }
 
                 public IEnumerator MaxJumpDuration()
