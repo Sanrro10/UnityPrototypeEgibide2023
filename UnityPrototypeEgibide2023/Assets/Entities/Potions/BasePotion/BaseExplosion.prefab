@@ -50,7 +50,12 @@ MonoBehaviour:
     knockback: 4000
     angle: {x: 1, y: 0}
     layer: 7
-    attackType: 0
+    attackType: 1
+  - damage: 50
+    knockback: 0
+    angle: {x: 0, y: 0}
+    layer: 11
+    attackType: 1
   entity: {fileID: 0}
   toTheRight: 0
 --- !u!60 &4799214992414770992
@@ -154,7 +159,12 @@ MonoBehaviour:
     knockback: 4000
     angle: {x: 1, y: 0}
     layer: 7
-    attackType: 0
+    attackType: 1
+  - damage: 50
+    knockback: 0
+    angle: {x: 0, y: 0}
+    layer: 11
+    attackType: 1
   entity: {fileID: 0}
   toTheRight: 1
 --- !u!60 &831735206859212356
