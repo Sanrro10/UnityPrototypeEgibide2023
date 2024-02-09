@@ -201,8 +201,10 @@ namespace Entities.Player.Scripts
                         _sliderPotion.value = playerData.potionColdownTime;
 
                         _potionSelector = transform.Find("PotionSelector").gameObject;
-                        potionList.AddRange(_sPlayerCurrentPersistentData.PotionList);
-                        
+                        if(_sPlayerCurrentPersistentData.PotionList != null ) 
+                        {
+                                potionList.AddRange(_sPlayerCurrentPersistentData.PotionList);
+                        }
                         if(_sPlayerCurrentPersistentData.SelectedPotion is not null)
                                 selectedPotion = _sPlayerCurrentPersistentData.SelectedPotion;
                         _selectedPotionImage.sprite = 
