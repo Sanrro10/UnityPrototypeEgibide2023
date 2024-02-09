@@ -47,6 +47,7 @@ namespace General.Scripts
             public int CurrentHealth;
             public GameObject[] PotionList;
             public GameObject SelectedPotion;
+            public bool AirDashUnlocked;
 
         }
 
@@ -84,21 +85,23 @@ namespace General.Scripts
                 //DontDestroyOnLoad(canvasGameOver);
                 //DontDestroyOnLoad(canvasOptions);
                 gameData = SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
-                if (gameData.isValid && !Application.isEditor)
-                {
+                /*if (gameData.isValid && !Application.isEditor)
+                {*/
                     _lastCheckpoint.Scene = gameData.spawnScene;
                     _lastCheckpoint.Position = gameData.spawnPosition;
                     PlayerSpawnDataInNewScene.Scene = _lastCheckpoint.Scene;
                     PlayerSpawnDataInNewScene.Position = _lastCheckpoint.Position;
                     PlayerSpawnDataInNewScene.GoToPosition = _lastCheckpoint.Position;
                     PlayerPersistentDataBetweenScenes.CurrentHealth = 100;
-                }
-                else
-                {
-                    _lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
-                    _lastCheckpoint.Position = Vector3.zero;
-                }
-            
+                    PlayerPersistentDataBetweenScenes.AirDashUnlocked = gameData.AirDashUnlocked;
+                    PlayerPersistentDataBetweenScenes.PotionList = gameData.PotionList;
+                    /*}
+                    else
+                    {
+                        _lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
+                        _lastCheckpoint.Position = Vector3.zero;
+                    }*/
+
             }
             else
             {
@@ -140,6 +143,11 @@ namespace General.Scripts
             gameData.spawnScene = _lastCheckpoint.Scene;
             gameData.spawnPosition = _lastCheckpoint.Position;
             gameData.isValid = true;
+            gameData.collectedItems = collectedItems;
+            gameData.CurrentHealth = PlayerPersistentDataBetweenScenes.CurrentHealth;
+            gameData.PotionList = PlayerPersistentDataBetweenScenes.PotionList;
+            gameData.SelectedPotion = PlayerPersistentDataBetweenScenes.SelectedPotion;
+            gameData.AirDashUnlocked = PlayerPersistentDataBetweenScenes.AirDashUnlocked;
             SaveGame();
         }
 

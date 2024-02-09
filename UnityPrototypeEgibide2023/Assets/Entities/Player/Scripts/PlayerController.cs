@@ -998,6 +998,7 @@ namespace Entities.Player.Scripts
                         if (attack.attackType == AttackComponent.AttackType.KillArea)
                                 transform.position = lastGroundedPosition;
                         base.OnReceiveDamage(attack, facingRight);
+                        _sPlayerCurrentPersistentData.CurrentHealth = Health.Get();
                         StartCoroutine(CoInvulnerability());
                         healthText.text = Health.Get().ToString();
                         healthBar.value = Health.Get();

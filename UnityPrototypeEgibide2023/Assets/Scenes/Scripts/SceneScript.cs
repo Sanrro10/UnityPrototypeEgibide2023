@@ -29,6 +29,8 @@ public class SceneScript : MonoBehaviour
 
     public void Start()
     {
+        Destroy(GameObject.Find("GameControler"));
+        Time.timeScale = 1;
         fillGameDatas();
     }
 
