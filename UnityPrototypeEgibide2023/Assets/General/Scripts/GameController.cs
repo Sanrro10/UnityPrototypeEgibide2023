@@ -120,7 +120,6 @@ namespace General.Scripts
 
         public GameObject GetPlayerGameObject()
         {
-            Debug.Log("Jugador " + _jugador);
             return _jugador;
         }
 
