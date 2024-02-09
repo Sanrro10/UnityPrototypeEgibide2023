@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Entities.Enemies.Galtzagorri.Scripts.StatePattern;
 using General.Scripts;
@@ -56,8 +57,12 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         // Variable que controla si el player está dentro de la zona de activación
         public bool isIn;
         
+        // Variable que controla que esté en el suelo
+        public bool isGrounded = true;
+        
         // variables para reducir las comparaciones con strings
         private static readonly int Alpha = Shader.PropertyToID("_Alpha");
+        private static readonly int IsDead = Animator.StringToHash("IsDead");
 
         private void Start()
         {
@@ -248,13 +253,27 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         }
         
         // Metodo para que cuando el galtzagorri acaba el salto inicie el estado de "Hiding"
+        // Metodo para que cuando esté en el suelo y entre en el estado de "Death" se active la logica de muerte
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.CompareTag("Floor")) return;
+            isGrounded = true;
             if (StateMachine.CurrentState == StateMachine.GaltzAttackState)
             {
                 StateMachine.TransitionTo(StateMachine.GaltzHidingState);
             }
+
+            if (StateMachine.CurrentState == StateMachine.GaltzDeathState)
+            {
+                Die();
+                AlternateHitbox(false);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (!other.CompareTag("Floor")) return;
+            isGrounded = false;
         }
 
         // Metodo para esperar 2 segundos y que el player esté disponible para salir del escondite
@@ -300,6 +319,8 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         // Metodo con la lógica de la muerte
         public void Die()
         {
+            // Iniciar la animación de "IsDead" (muerte)
+            
             AnimationClip currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
             GaltzHideoutRange.PlayerEntered -= PlayerEntered;
             GaltzHideoutRange.PlayerEntered -= PlayerEntered;

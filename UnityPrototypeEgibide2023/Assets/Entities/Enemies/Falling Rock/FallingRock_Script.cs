@@ -16,6 +16,9 @@ public class FallingRock_Script : EntityControler
  
     void FixedUpdate ()
     {
+        
+        Invoke(nameof(DeleteRock), 15);
+        
         //Guardar la velocidad de la piedra
         rbVelocity = Rb.velocity;
         
