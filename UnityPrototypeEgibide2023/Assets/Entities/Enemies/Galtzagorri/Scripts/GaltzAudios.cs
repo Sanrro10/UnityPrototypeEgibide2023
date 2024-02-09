@@ -6,6 +6,7 @@ public class GaltzAudios : MonoBehaviour
 {
     private AudioSource _audioSource;
     [SerializeField] private Audios _audios;
+    int time;
     
     // Start is called before the first frame update
     void Start()
@@ -25,25 +26,36 @@ public class GaltzAudios : MonoBehaviour
         _audioSource.Play();
     }
 
-    public void Audio2Play()
+    public void AudioIdleOutPlay()
     {
-        _audioSource.clip = _audios.audios[1];
-        _audioSource.Play();
+        //_audioSource.clip = _audios.audios[1];
+        _audioSource.PlayOneShot(_audios.audios[1]);
     }
 
     public void AudioIdlePlay()
     {
-        _audioSource.clip = _audios.audios[2];
-        _audioSource.Play();
+        //_audioSource.clip = _audios.audios[2];
+        if (time == 0)
+        {
+            _audioSource.PlayOneShot(_audios.audios[2]);
+            time = 5;
+        }
+        else
+        {
+            time -= 1;
+        }
+        
+        
     }
 
-    public void Audio4Play()
+    public void AudioDeadPlay()
     {
-        _audioSource.clip = _audios.audios[3];
-        _audioSource.Play();
+        //_audioSource.clip = _audios.audios[3];
+        
+        _audioSource.PlayOneShot(_audios.audios[3]);
     }
 
-    public void Audio5Play()
+    public void AudioHurtPlay()
     {
         _audioSource.clip = _audios.audios[4];
         _audioSource.Play();
