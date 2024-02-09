@@ -4,6 +4,7 @@ using StatePattern;
 
 namespace Entities.Enemies.Galtzagorri.Scripts.StatePattern
 {
+    // Lógica de la Steate Machine
     public class GaltzStateMachine : IStateMachine
     {
         public IState CurrentState { get; private set; }
