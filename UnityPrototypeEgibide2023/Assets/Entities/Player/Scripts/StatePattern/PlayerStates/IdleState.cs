@@ -5,7 +5,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
     public class IdleState: GroundState
     {
-        
+        private ParticleEvents _particleEvents;
         public IdleState(PlayerController player) : base(player)
         {
         }
@@ -15,6 +15,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             base.Enter();
             // Debug.Log("Entering Idle State");
             Player.animator.SetBool("IsIdle", true);
+            
         }
 
         // per-frame logic, include condition to transition to a new state

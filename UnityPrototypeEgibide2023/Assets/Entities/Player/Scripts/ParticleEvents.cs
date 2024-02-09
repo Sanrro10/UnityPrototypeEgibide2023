@@ -7,14 +7,10 @@ public class ParticleEvents : MonoBehaviour
 
     public ParticleSystem walkParticles;
     public ParticleSystem dashParticles;
+    public ParticleSystem jumpParticles;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    public void PldaayDashParticles()
+    public void PlayDashParticles()
     {
         dashParticles.Play();
     }
@@ -22,6 +18,11 @@ public class ParticleEvents : MonoBehaviour
     public void PlayWalkParticles()
     {
         walkParticles.Play();
+    }
+
+    public void PlayJumpParticles()
+    {
+        jumpParticles.Play();
     }
 
 
