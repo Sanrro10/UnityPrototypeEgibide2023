@@ -10,9 +10,9 @@ using UnityEngine.UI;
 public class SceneScript : MonoBehaviour
 {
     
-    [SerializeField] private Canvas canvaSlotPartidas;
+    [SerializeField] private GameObject canvaSlotPartidas;
     [SerializeField] private Canvas canvasManuPrincipal;
-    [SerializeField] private Canvas canvasConfirmDeleteGame;
+    [SerializeField] private GameObject canvasConfirmDeleteGame;
     [SerializeField] private Canvas canvasOptions;
     
     private string mainScene = "1.0.1 (Tutorial)";
@@ -27,6 +27,8 @@ public class SceneScript : MonoBehaviour
     private Button btnSlot2Delete;
     private Button btnSlot3Delete;
 
+    [SerializeField] private Button[] allButtons;
+
     public void Start()
     {
         fillGameDatas();
@@ -39,12 +41,12 @@ public class SceneScript : MonoBehaviour
 
     public void newLoadGame()
     {
-        canvasManuPrincipal.gameObject.SetActive(false);
+        //canvasManuPrincipal.gameObject.SetActive(false);
         canvaSlotPartidas.gameObject.SetActive(true);
-        GameObject botones = GameObject.Find("CanvasSlotPartidas");
-        if (botones != null)
+        //GameObject botones = GameObject.Find("CanvasSlotPartidas");
+        if (canvaSlotPartidas != null)
         {
-            Button[] allButtons = botones.GetComponentsInChildren<Button>();
+            allButtons = canvaSlotPartidas.GetComponentsInChildren<Button>();
             bool btn_Slot1_delete = false;
             bool btn_Slot2_delete = false;
             bool btn_Slot3_delete = false;
