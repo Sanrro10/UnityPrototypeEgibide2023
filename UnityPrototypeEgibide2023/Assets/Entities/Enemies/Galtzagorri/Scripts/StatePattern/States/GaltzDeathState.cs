@@ -5,6 +5,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts.StatePattern.States
 {
     public class GaltzDeathState : IState
     {
+        // Referencia al script principal
         private NewGaltzScript _entity;
         private static readonly int IsDead = Animator.StringToHash("IsDead");
 
@@ -15,9 +16,8 @@ namespace Entities.Enemies.Galtzagorri.Scripts.StatePattern.States
 
         public void Enter()
         {
+            // Iniciar la animación de "IsDead" (muerte)
             _entity.animator.SetBool(IsDead, true);
-            _entity.AlternateHitbox(false);
-            _entity.Die();
         }
 
         public void Update()

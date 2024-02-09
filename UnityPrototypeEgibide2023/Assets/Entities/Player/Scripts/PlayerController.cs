@@ -97,7 +97,7 @@ namespace Entities.Player.Scripts
                 private Image _selectedPotionImage;
                 
                 //Potion 
-                public GameObject[] potionList;
+                public List<GameObject> potionList;
                 public GameObject selectedPotion;
                 public GameObject throwPosition;
                 private bool _rotated;
@@ -115,7 +115,7 @@ namespace Entities.Player.Scripts
                         if (GameController.Instance.PlayerPersistentDataBetweenScenes.Equals(default(GameController.SPlayerPersistentData)))
                         {
                                 _sPlayerCurrentPersistentData.CurrentHealth = 100;
-                                _sPlayerCurrentPersistentData.PotionList = potionList;
+                                _sPlayerCurrentPersistentData.PotionList = potionList.ToArray();
                                 _sPlayerCurrentPersistentData.SelectedPotion = null;
                         }
                         else
@@ -142,6 +142,7 @@ namespace Entities.Player.Scripts
                         // Subscribe to events
                         AttackComponent.OnHit += OnHit;
                         PotionBehavior.OnPotionDestroy += ResetPotionCooldown;
+                        PotionUnlockerScript.OnPotionUnlock += unlockPotion;
                         
                         
                         //Inputs
@@ -196,7 +197,7 @@ namespace Entities.Player.Scripts
                         _sliderPotion.value = playerData.potionColdownTime;
 
                         _potionSelector = transform.Find("PotionSelector").gameObject;
-                        potionList = _sPlayerCurrentPersistentData.PotionList;
+                        potionList.AddRange(_sPlayerCurrentPersistentData.PotionList);
                         
                         if(_sPlayerCurrentPersistentData.SelectedPotion is not null)
                                 selectedPotion = _sPlayerCurrentPersistentData.SelectedPotion;
@@ -217,6 +218,7 @@ namespace Entities.Player.Scripts
                 private void OnDestroy()
                 {
                         PotionBehavior.OnPotionDestroy -= ResetPotionCooldown;
+                        PotionUnlockerScript.OnPotionUnlock -= unlockPotion;
                         _controls.GeneralActionMap.ChangePotionL.performed -= ctx=> ShowPotionSelector(true);
                         _controls.GeneralActionMap.ChangePotionR.performed -= ctx => ShowPotionSelector(false);
                         _controls.Disable();
@@ -224,7 +226,7 @@ namespace Entities.Player.Scripts
                                  new GameController.SPlayerPersistentData();
                          
                          playerPersistentData.CurrentHealth = Health.Get() <= 0 ? 100 : Health.Get();
-                         playerPersistentData.PotionList = potionList;
+                         playerPersistentData.PotionList = potionList.ToArray();
                          playerPersistentData.SelectedPotion = selectedPotion;
                         GameController.Instance.PlayerPersistentDataBetweenScenes = playerPersistentData;
                 }
@@ -433,6 +435,7 @@ namespace Entities.Player.Scripts
                 {
                         _sliderPotion.value = 0;
                         _onPotionCooldown = true;
+                        if (!selectedPotion) return;
                        Instantiate(selectedPotion, 
                                new Vector2(throwPosition.transform.position.x + (this.FacingRight ? 0.3f : -0.3f), throwPosition.transform.position.y), 
                                Quaternion.identity)
@@ -502,7 +505,7 @@ namespace Entities.Player.Scripts
 
                 public bool CanThrowPotion()
                 {
-                        return !_onPotionCooldown && isPerformingPotionThrow;
+                        return !_onPotionCooldown && isPerformingPotionThrow && selectedPotion;
                 }
 
                 public void FlipSprite()
@@ -670,7 +673,7 @@ namespace Entities.Player.Scripts
                         int rightIndex = -1;
                         int valueChange = leftwards ? -1 : 1;//Joder! Un Operador Ternario
                         
-                        for (var i = 0; i < potionList.Length; i++)
+                        for (var i = 0; i < potionList.Count; i++)
                         {
                                 if (potionList[i] == selectedPotion)
                                 {
@@ -680,21 +683,22 @@ namespace Entities.Player.Scripts
                         }
 
                         selectedIndex += valueChange;
-                        if (selectedIndex >= potionList.Length) selectedIndex = 0;
-                        if (selectedIndex < 0) selectedIndex = potionList.Length - 1;
+                        if (selectedIndex >= potionList.Count) selectedIndex = 0;
+                        if (selectedIndex < 0) selectedIndex = potionList.Count - 1;
                         
                         //Put the selected potion index as center image, and change the flowers image
                         selectedPotion = potionList[selectedIndex];
                         _potionSelector.transform.Find("SelectedPotionSprite").gameObject.GetComponent<SpriteRenderer>().sprite =
                                 selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite;
-                        
+
+                        _selectedPotionImage.color = new Color(255, 255, 255, 255);
                         _selectedPotionImage.sprite = selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite;
                         
-                        if (potionList.Length > 1)
+                        if (potionList.Count > 1)
                         {
                                 leftIndex = selectedIndex - 1;
-                                if (leftIndex >= potionList.Length) leftIndex = 0;
-                                if (leftIndex < 0) leftIndex = potionList.Length - 1;
+                                if (leftIndex >= potionList.Count) leftIndex = 0;
+                                if (leftIndex < 0) leftIndex = potionList.Count - 1;
                                 var leftPotionSprite = _potionSelector.transform.Find("LeftPotionSprite").gameObject;
                                 if(!leftPotionSprite.activeSelf) leftPotionSprite.SetActive(true);
                                 
@@ -702,11 +706,11 @@ namespace Entities.Player.Scripts
                                         potionList[leftIndex].transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite;
                         }
 
-                        if (potionList.Length > 2)
+                        if (potionList.Count > 2)
                         {
                                 rightIndex = selectedIndex + 1;
-                                if (rightIndex >= potionList.Length) rightIndex = 0;
-                                if (rightIndex < 0) rightIndex = potionList.Length - 1;
+                                if (rightIndex >= potionList.Count) rightIndex = 0;
+                                if (rightIndex < 0) rightIndex = potionList.Count - 1;
                                 var rightPotionSprite = _potionSelector.transform.Find("RightPotionSprite").gameObject;
                                 if(!rightPotionSprite.activeSelf) rightPotionSprite.SetActive(true);
 
@@ -718,6 +722,7 @@ namespace Entities.Player.Scripts
 
                 private void ShowPotionSelector(bool leftwards)
                 {
+                        if(potionList.Count == 0) return;//If no potions, no change
                         CancelInvoke(nameof(HidePotionSelector));
                         Invoke(nameof(HidePotionSelector),0.5f);
                         _potionSelector.SetActive(true);
@@ -900,6 +905,17 @@ namespace Entities.Player.Scripts
                 }
 
                 // --------------- EVENTS ----------------------
+
+                private void unlockPotion(GameObject newPotion)
+                {
+                        foreach (GameObject ownedPotion in potionList)
+                        {
+                                if (ownedPotion == newPotion) return;
+                        }
+                        potionList.Add(newPotion);
+                        selectedPotion = potionList[potionList.Count - 1];
+                        ShowPotionSelector(false);
+                }
 
                 public IEnumerator MaxJumpDuration()
                 {
