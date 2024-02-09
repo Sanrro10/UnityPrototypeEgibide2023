@@ -414,6 +414,20 @@ namespace Entities.Player.Scripts
                         // if (Rb.velocity.y > 0) return false;
                         return 0 < _numberOfGrounds;
                 }
+                public void StartUpdatingLastGroundedPosition()
+                {
+                        InvokeRepeating(nameof(UpdateLastGroundedPosition), 0, 0.5f);
+                }
+                
+                public void StopUpdatingLastGroundedPosition()
+                {
+                        CancelInvoke(nameof(UpdateLastGroundedPosition));
+                }
+                
+                private void UpdateLastGroundedPosition()
+                {
+                        lastGroundedPosition = transform.position;
+                }
 
                 public void ThrowPotion()
                 {
