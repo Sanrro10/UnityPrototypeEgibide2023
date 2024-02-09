@@ -17,7 +17,6 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         {
             Player.GetRigidbody().drag = 5;
             Player.StartUpdatingLastGroundedPosition();
-            Player.particleEvents.PlayJumpParticles();
         }
         
         public virtual void Update()
