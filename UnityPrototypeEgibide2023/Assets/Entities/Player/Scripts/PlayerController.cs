@@ -201,8 +201,10 @@ namespace Entities.Player.Scripts
                         _sliderPotion.value = playerData.potionColdownTime;
 
                         _potionSelector = transform.Find("PotionSelector").gameObject;
-                        potionList.AddRange(_sPlayerCurrentPersistentData.PotionList);
-                        
+                        if(_sPlayerCurrentPersistentData.PotionList != null ) 
+                        {
+                                potionList.AddRange(_sPlayerCurrentPersistentData.PotionList);
+                        }
                         if(_sPlayerCurrentPersistentData.SelectedPotion is not null)
                                 selectedPotion = _sPlayerCurrentPersistentData.SelectedPotion;
                         _selectedPotionImage.sprite = 
@@ -998,6 +1000,7 @@ namespace Entities.Player.Scripts
                         if (attack.attackType == AttackComponent.AttackType.KillArea)
                                 transform.position = lastGroundedPosition;
                         base.OnReceiveDamage(attack, facingRight);
+                        _sPlayerCurrentPersistentData.CurrentHealth = Health.Get();
                         StartCoroutine(CoInvulnerability());
                         healthText.text = Health.Get().ToString();
                         healthBar.value = Health.Get();
