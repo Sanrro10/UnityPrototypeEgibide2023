@@ -19,6 +19,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
             Player.StartCoroutine(Player.MaxJumpDuration());
             Player.StartCoroutine(Player.GroundedCooldown());
             Player.InvokeRepeating(nameof(Player.AirMove), 0, 0.01f);
+            
         }
 
         // per-frame logic, include condition to transition to a new state
