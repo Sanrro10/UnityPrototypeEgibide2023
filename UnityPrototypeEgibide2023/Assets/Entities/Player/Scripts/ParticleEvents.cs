@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class ParticleEvents : MonoBehaviour
 {
+
+    public ParticleSystem walkParticles;
+    public ParticleSystem dashParticles;
+    
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    public void DashParticles()
+    public void PldaayDashParticles()
     {
-        //this.GetComponent<ParticleSystem>().Play();
+        dashParticles.Play();
+    }
+
+    public void PlayWalkParticles()
+    {
+        walkParticles.Play();
     }
 
 
