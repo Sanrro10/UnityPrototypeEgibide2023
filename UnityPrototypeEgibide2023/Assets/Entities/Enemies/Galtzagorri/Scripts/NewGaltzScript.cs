@@ -255,6 +255,12 @@ namespace Entities.Enemies.Galtzagorri.Scripts
             {
                 StateMachine.TransitionTo(StateMachine.GaltzHidingState);
             }
+
+            if (StateMachine.CurrentState == StateMachine.GaltzDeathState)
+            {
+                Die();
+                AlternateHitbox(false);
+            }
         }
 
         // Metodo para esperar 2 segundos y que el player esté disponible para salir del escondite
@@ -301,6 +307,7 @@ namespace Entities.Enemies.Galtzagorri.Scripts
         public void Die()
         {
             AnimationClip currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+            GetComponent<Rigidbody2D>().mass = 500;
             GaltzHideoutRange.PlayerEntered -= PlayerEntered;
             GaltzHideoutRange.PlayerEntered -= PlayerEntered;
             GaltzActiveZone.PlayerEnteredArea -= PlayerEnteredArea;

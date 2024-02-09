@@ -18,12 +18,6 @@ namespace Entities.Enemies.Galtzagorri.Scripts.StatePattern.States
         {
             // Iniciar la animación de "IsDead" (muerte)
             _entity.animator.SetBool(IsDead, true);
-            
-            // Desactivar hitboxes
-            _entity.AlternateHitbox(false);
-            
-            // Llamar a la lógica de muerte
-            _entity.Die();
         }
 
         public void Update()
