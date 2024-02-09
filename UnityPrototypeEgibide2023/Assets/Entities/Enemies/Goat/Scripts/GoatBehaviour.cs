@@ -25,6 +25,8 @@ namespace Entities.Enemies.Goat.Scripts
         [SerializeField] public Animator animator;
 
         [SerializeField] private GameObject eyes;
+        
+        private static readonly int Alpha = Shader.PropertyToID("_Alpha");
         // Start is called before the first frame update
         void Start()
         {
@@ -57,11 +59,29 @@ namespace Entities.Enemies.Goat.Scripts
         public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
         {
             base.OnReceiveDamage(attack, FacingRight);
+            StartCoroutine(nameof(CoInvulnerability));
+        }
+        
+        private IEnumerator CoInvulnerability()
+        {
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.material.EnableKeyword("HITEFFECT_ON");
+            while (Invulnerable)
+            {
+                spriteRenderer.material.SetFloat(Alpha, 0.3f);
+                                
+                yield return new WaitForSeconds(0.02f);
+                spriteRenderer.material.SetFloat(Alpha, 1f);
+                yield return new WaitForSeconds(0.05f);
+            }
+            spriteRenderer.material.SetFloat(Alpha, 1f);
+            spriteRenderer.material.DisableKeyword("HITEFFECT_ON");
+            yield return null;
         }
 
         public override void OnDeath()
         {
-            base.OnDeath();
+            //base.OnDeath();
             stateMachine.TransitionTo(stateMachine.GoatDeathState);
         }
         
