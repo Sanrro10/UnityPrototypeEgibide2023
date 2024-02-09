@@ -1,20 +1,28 @@
 using General.Scripts;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Entities
 {
     public class CollectableBehaviour : MonoBehaviour
     {
         public int id;
-    
+        private GameObject _collectableImage;
+        private GameObject _infoText;
         void Start()
         {
             Search();
+            _collectableImage = gameObject.transform.Find("Sprite").gameObject;
+            _infoText = gameObject.transform.Find("Info").gameObject;
         }
 
         protected virtual void Effect()
         {
-            Destroy(gameObject);
+            _collectableImage.SetActive(false);
+            _infoText.GetComponent<TextMeshPro>().text = GameController.Instance.collectedItems.Count + "/9";
+            _infoText.SetActive(true);
+            Invoke(nameof(Delete), 3f);
         }
 
         protected virtual void Search()
@@ -33,6 +41,11 @@ namespace Entities
                 GameController.Instance.collectedItems.Add(id);
                 Effect();
             }
+        }
+
+        protected virtual void Delete()
+        {
+            Destroy(gameObject);
         }
 
     }
