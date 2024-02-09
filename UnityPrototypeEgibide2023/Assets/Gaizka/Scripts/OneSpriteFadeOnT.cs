@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
+using System;
 
 public class OneSpriteFadeOnT : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class OneSpriteFadeOnT : MonoBehaviour
     [SerializeField] float fadeAmount;
     [SerializeField] float tiempo;
     [SerializeField] float resta;
+    public UnityEvent fadeCompletado;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +36,14 @@ public class OneSpriteFadeOnT : MonoBehaviour
             fadeAmount += resta;
         }
         //return null;
-
+        //FadeCompletado();
     }
+
+    private void FadeCompletado()
+    {
+        fadeCompletado.Invoke();
+    }
+
     public void StartFadeIn(float speed)
     {
         tiempo = speed;
@@ -50,7 +60,7 @@ public class OneSpriteFadeOnT : MonoBehaviour
             fadeAmount -= resta;
         }
         //return null;
-
+        FadeCompletado();
     }
     private void OnDestroy()
     {
