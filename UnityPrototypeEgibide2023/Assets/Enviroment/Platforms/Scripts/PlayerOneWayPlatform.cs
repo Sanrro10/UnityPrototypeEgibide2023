@@ -1,53 +1,51 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerOneWayPlatform : MonoBehaviour
+namespace Enviroment.Platforms.Scripts
 {
-
-    private Collider2D _collider;
-    private GameObject _target;
-    private void Start()
-    {
-        _target = GameObject.FindWithTag ("Player");
-        _collider = GetComponent<Collider2D>();
-        Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
-    }
-    
-    private void OnTriggerEnter2D(Collider2D other)
+    public class PlayerOneWayPlatform : MonoBehaviour
     {
 
-        if (other.CompareTag("PlayerHelper") && other.name == "Feet")
+        private Collider2D _collider;
+        private GameObject _target;
+        private void Start()
         {
-            if (_target.GetComponent<Rigidbody2D>().velocity.y <= 0)
-            {
-                Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), false);
-                return;
-            }
+            _target = GameObject.FindWithTag("Player");
+            _collider = GetComponent<Collider2D>();
             Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
         }
-
-
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("PlayerHelper") && other.name == "Feet") Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
-    }
     
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("PlayerHelper") && other.name == "Feet")
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (_target.GetComponent<Rigidbody2D>().velocity.y <= 0)
+            if (other.CompareTag("PlayerHelper") && other.name == "Feet")
             {
-                Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), false);
-                return;
+                if (_target.GetComponent<Rigidbody2D>().velocity.y <= 0)
+                {
+                    Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), false);
+                    return;
+                }
+                Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
             }
-            Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
+
+
         }
-    }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.CompareTag("PlayerHelper") && other.name == "Feet") Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
+        }
     
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.CompareTag("PlayerHelper") && other.name == "Feet")
+            {
+                if (_target.GetComponent<Rigidbody2D>().velocity.y <= 0)
+                {
+                    Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), false);
+                    return;
+                }
+                Physics2D.IgnoreCollision(_collider, _target.GetComponent<Collider2D>(), true);
+            }
+        }
+    
+    }
 }

@@ -331,7 +331,7 @@ namespace Entities.Player.Scripts
                         }
 
                         Rb.velocity =
-                                new Vector2((FacingRight ? horizontalSpeed : horizontalSpeed * -1), Rb.velocity.y); 
+                                new Vector2((horizontalSpeed * _controls.GeneralActionMap.HorizontalMovement.ReadValue<float>()), Rb.velocity.y); 
 
                 }
 

@@ -8,7 +8,6 @@ public class FallingRock_Script : EntityControler
     private bool isMoving = false;
     private bool asExploded = false;
     private Vector3 rbVelocity;
-    [SerializeField] private Rigidbody Rb;
     [SerializeField] GameObject collider;
     [SerializeField] GameObject rock;
     [SerializeField] GameObject explotion;
