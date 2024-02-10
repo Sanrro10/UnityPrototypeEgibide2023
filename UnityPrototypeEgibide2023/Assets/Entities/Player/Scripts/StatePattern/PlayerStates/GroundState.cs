@@ -1,5 +1,4 @@
-﻿using Palmmedia.ReportGenerator.Core.Parser.Analysis;
-using StatePattern;
+﻿using StatePattern;
 using UnityEngine;
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
