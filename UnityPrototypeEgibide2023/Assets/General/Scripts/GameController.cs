@@ -56,7 +56,6 @@ namespace General.Scripts
         void Start()
         {
             //reset unlocks (esto se deberia cambiar cuando metamos saves)
-            playerData.airDashUnlocked = false;
         }
 
         // Update is called once per frame
@@ -83,6 +82,7 @@ namespace General.Scripts
                 Instance = this;
                 DontDestroyOnLoad(transform.gameObject);
                 gameData = SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
+                // add chgeck if it's the editor
                 if (gameData.isValid && !Application.isEditor)
                 {
                     _lastCheckpoint.Scene = gameData.spawnScene;

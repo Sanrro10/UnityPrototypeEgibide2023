@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Entities.Player.Scripts;
+using General.Scripts;
 using UnityEngine;
 
 public class AirdashUnlocker : MonoBehaviour
@@ -13,6 +14,7 @@ public class AirdashUnlocker : MonoBehaviour
             var pc = other.GetComponent<PlayerController>();
             if (pc == null) return;
             pc.isAirDashUnlocked = true;
+            GameController.Instance.PlayerPersistentDataBetweenScenes.AirDashUnlocked = true;
         }
     }
 }

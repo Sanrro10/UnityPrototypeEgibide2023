@@ -76,10 +76,8 @@ namespace Entities
         {
             attackData.ForEach((attack) =>
             {
-                Debug.Log(other.gameObject.layer);
                 if (attack.layer == other.gameObject.layer)
                 {
-                    Debug.Log(attack.layer);
                     var otherEntity = other.GetComponent<EntityControler>();
                     if (otherEntity == null) return;
                     if (entity != null) OnHit?.Invoke(entity, otherEntity);

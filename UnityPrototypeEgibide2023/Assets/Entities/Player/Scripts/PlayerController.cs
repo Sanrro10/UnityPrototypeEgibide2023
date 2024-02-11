@@ -179,7 +179,6 @@ namespace Entities.Player.Scripts
                         Rb.gravityScale = playerData.gravity;
                         _dashCurve = playerData.dashCurve;
                         maxFallSpeed = playerData.maxFallSpeed;
-                        Rb.gravityScale = playerData.gravity;
                         jumpForce = playerData.jumpPower;
                         dashSpeed = playerData.dashSpeed;
                         // Pause
@@ -215,7 +214,8 @@ namespace Entities.Player.Scripts
                 
                 
                         //Check unlocks
-                        isAirDashUnlocked = playerData.airDashUnlocked;
+                        isAirDashUnlocked = _sPlayerCurrentPersistentData.AirDashUnlocked;
+                        
                         dashEffect.SetActive(false);
                         //CheckSceneChanged
                         OnSceneChange();
@@ -235,6 +235,7 @@ namespace Entities.Player.Scripts
                          playerPersistentData.CurrentHealth = Health.Get() <= 0 ? 100 : Health.Get();
                          playerPersistentData.PotionList = potionList.ToArray();
                          playerPersistentData.SelectedPotion = selectedPotion;
+                         playerPersistentData.AirDashUnlocked = isAirDashUnlocked;
                         GameController.Instance.PlayerPersistentDataBetweenScenes = playerPersistentData;
                 }
 
