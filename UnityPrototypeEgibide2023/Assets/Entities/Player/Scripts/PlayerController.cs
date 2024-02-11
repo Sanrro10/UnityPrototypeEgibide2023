@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using Cinemachine;
+using Entities.Player.Scripts.StatePattern.PlayerStates;
 using Entities.Potions.BasePotion.Scripts;
 using General.Scripts;
 using StatePattern;
@@ -854,10 +855,11 @@ namespace Entities.Player.Scripts
                 public IEnumerator AirDashCooldown()
                 {
                         onAirDashCooldown = true;
-                        while (!IsGrounded())
+                        while (!IsGrounded() && PmStateMachine.CurrentState is AirState)
                         { 
                                 yield return new WaitForFixedUpdate();
                         }
+                        yield return new WaitForSeconds(0.2f);
                         onAirDashCooldown = false;
                 }
 
@@ -946,25 +948,7 @@ namespace Entities.Player.Scripts
                         return playerData;
                 }
                 
-                
-                private void OnCollisionEnter2D(Collision2D collision)
-                {
-                        //Colision con el enemigo
-                        /* if (collision.gameObject.CompareTag("Enemy"))
-                        {
-                                CameraShakeManager.instance.CameraShake(_impulseSource);
-                                _audioSource.PlayOneShot(_playerAudios.audios[0]);
-                                OnReceiveDamage(25);
-                        } */
-                
-                        //Colision con el enemigo
-                        if (collision.gameObject.CompareTag("AirDashUnlock"))
-                        {
-                                isAirDashUnlocked = true;
-                                playerData.airDashUnlocked = true;
-                                
-                        }
-                }
+
 
                 private void OnCollisionStay2D(Collision2D other)
                 {
