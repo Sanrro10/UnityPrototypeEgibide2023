@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9126876362323145307}
   - component: {fileID: 7893753506799236116}
   m_Layer: 11
-  m_Name: Destructible
+  m_Name: DestructibleDoor
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,3 +121,4 @@ MonoBehaviour:
   FacingRight: 0
   vulnerabilityType: 3
   numberOfHitsToDestroy: 1
+  explotion: {fileID: 3397103888295994882, guid: 7356fab9f41682840bb187ffa2193b54, type: 3}
