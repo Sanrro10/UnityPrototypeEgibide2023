@@ -38,8 +38,16 @@ namespace Entities
         {
             if (other.gameObject.layer == 6)
             {
-                GameController.Instance.collectedItems.Add(id);
-                Effect();
+                bool collected = false;
+                GameController.Instance.collectedItems.ForEach(i =>
+                {
+                    if (i == id) collected = true;
+                });
+                if (!collected)
+                {
+                    GameController.Instance.collectedItems.Add(id);
+                    Effect();
+                }
             }
         }
 
