@@ -1,5 +1,6 @@
 ﻿using StatePattern;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
@@ -13,6 +14,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public override void Enter()
         {
             base.Enter();
+            Player.GetRigidbody().velocity =  new Vector2( Player.GetRigidbody().velocity.x, 0);
             // Debug.Log("Entering Idle State");
             Player.animator.SetBool("IsIdle", true);
             
