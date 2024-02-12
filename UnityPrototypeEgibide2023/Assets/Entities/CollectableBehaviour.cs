@@ -20,7 +20,7 @@ namespace Entities
         protected virtual void Effect()
         {
             _collectableImage.SetActive(false);
-            _infoText.GetComponent<TextMeshPro>().text = GameController.Instance.collectedItems.Count + "/9";
+            _infoText.GetComponent<TextMeshPro>().text = GameController.Instance.collectedItems.Count + "/10";
             _infoText.SetActive(true);
             Invoke(nameof(Delete), 3f);
         }
