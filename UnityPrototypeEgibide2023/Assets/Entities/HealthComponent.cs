@@ -39,6 +39,7 @@ namespace Entities
         
             if (_healthPoints <= 0)
             {
+                _healthPoints = 0;
                 controler.OnDeath();
             }
 
