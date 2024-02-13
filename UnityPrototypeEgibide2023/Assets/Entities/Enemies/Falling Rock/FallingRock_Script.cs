@@ -14,6 +14,8 @@ public class FallingRock_Script : EntityControler
     [SerializeField] GameObject explotion;
     [SerializeField] private Rigidbody Rb;
     private GameObject spawnedExplotion;
+
+    private bool destructionCalled = false;
  
     void FixedUpdate ()
     {
@@ -30,11 +32,13 @@ public class FallingRock_Script : EntityControler
             asExploded = true;
             spawnedExplotion = Instantiate(explotion, transform.position = new Vector3(transform.position.x,transform.position.y,transform.position.z), Quaternion.identity);
             rock.SetActive(false);
-            
-            //Invoke("DeleteExplotion", 1);
-            Invoke("DeleteRock", 1);
 
-                      
+            if (!destructionCalled)
+            {
+                //Invoke("DeleteExplotion", 1);
+                Invoke("DeleteRock", 1);
+                destructionCalled = true;
+            }
         }
         else if (!isMoving && rbVelocity != Vector3.zero)
         {
@@ -50,7 +54,7 @@ public class FallingRock_Script : EntityControler
     private void DeleteRock()
     { 
         Destroy(gameObject);
-        
+        //Debug.Log("Destruccion!");
     }
     
 }
