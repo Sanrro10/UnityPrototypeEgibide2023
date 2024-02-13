@@ -98,8 +98,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 9169923234749025779}
     m_Modifications:
     - target: {fileID: 2726033690915117363, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
+      propertyPath: attackData.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726033690915117363, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
+      propertyPath: attackData.Array.data[1].layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726033690915117363, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
       propertyPath: attackData.Array.data[0].damage
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726033690915117363, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
+      propertyPath: attackData.Array.data[1].damage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726033690915117363, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
+      propertyPath: attackData.Array.data[1].angle.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726033690915117363, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
+      propertyPath: attackData.Array.data[1].angle.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2726033690915117363, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
       propertyPath: attackData.Array.data[0].knockback
@@ -107,6 +127,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2726033690915117363, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
       propertyPath: attackData.Array.data[0].attackType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726033690915117363, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
+      propertyPath: attackData.Array.data[1].attackType
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4957305020468123477, guid: 1c33ddf7d0fcef14ca4a9620e5e34338, type: 3}
