@@ -139,9 +139,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FacingRight: 0
+  speed: 0
   collider: {fileID: 1680163348106986282}
   rock: {fileID: 9184462301646381687}
   explotion: {fileID: 3397103888295994882, guid: ba6624572166b2b45ad847242bb7936c, type: 3}
+  Rb: {fileID: 2909683260815608079}
 --- !u!54 &2909683260815608079
 Rigidbody:
   m_ObjectHideFlags: 0
