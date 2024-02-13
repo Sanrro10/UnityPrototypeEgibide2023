@@ -22,6 +22,7 @@ namespace Entities.Potions.BasePotion.Scripts
         
         public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
         {
+            if (attack.attackType == AttackComponent.AttackType.KillArea) Explode();
             if (!Invulnerable && !_hasBeenHitted)
             {
                 GetComponentInChildren<ParticleSystem>().Play();
