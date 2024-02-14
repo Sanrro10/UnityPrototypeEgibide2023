@@ -83,4 +83,11 @@ public class GaltzAudios : MonoBehaviour
         _audioSource.clip = _audios.audios[4];
         _audioSource.Play();
     }
+
+    public void AudioIdle1Play()
+    {
+        tiempoHide -= 1;
+        tiempoIdle -= 1;
+        tiempoAttack -= 1;
+    }
 }
