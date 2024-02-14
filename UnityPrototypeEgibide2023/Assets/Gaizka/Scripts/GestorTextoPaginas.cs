@@ -16,6 +16,8 @@ public class GestorTextoPaginas : MonoBehaviour
     public OneSpriteFadeOnT [] textos;
     private OneSpriteFadeOnT actual;
     [SerializeField] Button[] botones;
+    [SerializeField] GameObject alineaBotones;
+    
 
 
 
@@ -74,6 +76,14 @@ public class GestorTextoPaginas : MonoBehaviour
                 //textos[0].StartFadeOut();
                 print ("Incorrect intelligence level.");
                 break;
+        }
+        if (pagina != 2)
+        {
+            alineaBotones.SetActive(false);
+        }
+        else
+        {
+            alineaBotones.SetActive(true);
         }
     }
 

@@ -45,7 +45,7 @@ public class SceneScript : MonoBehaviour
     public void newLoadGame()
     {
         //canvasManuPrincipal.gameObject.SetActive(false);
-        canvaSlotPartidas.gameObject.SetActive(true);
+        //canvaSlotPartidas.gameObject.SetActive(true);
         //GameObject botones = GameObject.Find("CanvasSlotPartidas");
         if (canvaSlotPartidas != null)
         {
