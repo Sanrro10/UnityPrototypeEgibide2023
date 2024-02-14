@@ -14,9 +14,11 @@ public class SceneScript : MonoBehaviour
     [SerializeField] private Canvas canvasManuPrincipal;
     [SerializeField] private GameObject canvasConfirmDeleteGame;
     [SerializeField] private Canvas canvasOptions;
+    [SerializeField] private TMP_Text page2Text;
+    
     
     private string mainScene = "1.0.1 (Tutorial)";
-    private string textSlotDefault = "Nueva Partida";
+    private string textSlotDefault = "New Game";
     private bool confirm = false;
     private string guardarSlot;
     private List <GameData>  gameDatas;
@@ -26,6 +28,7 @@ public class SceneScript : MonoBehaviour
     private Button btnSlot1Delete;
     private Button btnSlot2Delete;
     private Button btnSlot3Delete;
+    private string [] textToPage2 = new string[3];
 
     [SerializeField] private Button[] allButtons;
 
@@ -64,6 +67,8 @@ public class SceneScript : MonoBehaviour
                             btn_Slot1_delete = true;
                         }
                         buttonText.text = slotDataInfo;
+                        //page2Text.text = slotDataInfo + "\n";
+                        textToPage2[0] = slotDataInfo;
                     }
                     if (button.name == "btn_Slot_2")
                     {
@@ -74,6 +79,8 @@ public class SceneScript : MonoBehaviour
                             btn_Slot2_delete = true;
                         }
                         buttonText.text = slotDataInfo;
+                        //page2Text.text += slotDataInfo + "\n";
+                        textToPage2[1] = slotDataInfo;
                     }
                     if (button.name == "btn_Slot_3")
                     {
@@ -84,6 +91,8 @@ public class SceneScript : MonoBehaviour
                             btn_Slot3_delete = true;
                         }
                         buttonText.text = slotDataInfo;
+                        //page2Text.text += slotDataInfo;
+                        textToPage2[2] = slotDataInfo;
                     }
                     if (button.name == "btn_Slot_1_delete")
                     {
@@ -113,8 +122,18 @@ public class SceneScript : MonoBehaviour
             }
         }
 
+        fillTextToPAge2(textToPage2);
+
     }
-    
+
+    private void fillTextToPAge2(string[] texts)
+    {
+        foreach (string text in texts)
+        {
+            page2Text.text += text + "\n";
+        }
+    }
+
     public void returnMainMenu()
     {
         canvasManuPrincipal.gameObject.SetActive(true);
