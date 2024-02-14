@@ -23,9 +23,6 @@ namespace Entities.Enemies.Gizotso.Scripts
         // Referencia al Animator
         [SerializeField] private Animator animator;
         
-        // Referencia a los audios
-        [SerializeField] private Audios audioData;
-        
         // Referencia al objeto hijo de la hitbox de ataque
         [SerializeField] private GameObject attackHitBox;
 
