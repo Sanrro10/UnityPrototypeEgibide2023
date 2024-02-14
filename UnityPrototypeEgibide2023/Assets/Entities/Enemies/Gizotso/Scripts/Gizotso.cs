@@ -329,7 +329,7 @@ namespace Entities.Enemies.Gizotso.Scripts
             component.isKinematic = true;
             component.simulated = false;
             
-            PolygonCollider2D gisotzoCollider = gameObject.GetComponent<PolygonCollider2D>();
+            PolygonCollider2D gisotzoCollider = gameObject.GetComponentInChildren<PolygonCollider2D>();
             gisotzoCollider.enabled = false;
             
             AnimationClip currentAnim = animator.GetCurrentAnimatorClipInfo(0)[0].clip;
