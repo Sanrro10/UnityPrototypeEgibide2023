@@ -1,22 +1,10 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Entities.Enemies.Galtzagorri.Scripts;
-using Entities.Player.Scripts;
-using General.Scripts;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace Entities.Enemies.Gizotso.Scripts
 {
     public class Gizotso : EntityControler
     {
-        // Referencia al audio source
-        [SerializeField] private AudioSource _audioSource;
-        
         // Datos del enemigo
         [SerializeField] private PassiveEnemyData passiveEnemyData;
         
@@ -53,11 +41,6 @@ namespace Entities.Enemies.Gizotso.Scripts
         // Variable que controla el estado de muerte
         private bool _isDying;
         
-        private int _tiempoTotal = 30;
-        private int _tiempoAudioIdle = 0;
-        private int _tiempoAudioAttack = 0;
-        private int _tiempoAudioUp = 0;
-        
         // Pasar nombre de booleanos a "IDs" para ahorrarnos comparaciones de strings
         private static readonly int IsIdle = Animator.StringToHash("IsIdle");
         private static readonly int IsPreAttack = Animator.StringToHash("IsPreAttack");
@@ -75,8 +58,6 @@ namespace Entities.Enemies.Gizotso.Scripts
 
             // Establecer que su target inicial sea el izquierdo
             _target = new Vector2(transform.position.x - 1000, transform.position.y);
-
-            _audioSource = GetComponent<AudioSource>();
             
             animator.SetBool(IsPreAttack, false);
             animator.SetBool(IsFirstAttack, false);
@@ -114,8 +95,6 @@ namespace Entities.Enemies.Gizotso.Scripts
         // Pequeña corutina para que mientres gire no pueda atacar al jugador
         private IEnumerator Rotate()
         {
-            //_audioSource.clip = audioData.audios[1];
-            //_audioSource.Play();
             _rotated = false;
             CancelInvoke(nameof(TurnAround));
             InvokeRepeating(nameof(TurnAround),0f, 0.1f);
@@ -241,73 +220,6 @@ namespace Entities.Enemies.Gizotso.Scripts
             {
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x - 0.1f, transform.position.y), 0.1f);
             }
-        }
-
-        public void Audios(int audio, int tiempoAudioTotal, int tiempoAudioModo, char tipo)
-        {
-            switch (tipo)
-            {
-                case 'I':
-                    if (tiempoAudioTotal == 0 && tiempoAudioModo == 0 )
-                    {
-                        _audioSource.clip = audioData.audios[audio];
-                        _audioSource.Play();
-
-                        _tiempoAudioIdle = 30;
-                        _tiempoTotal = 30;
-                    }
-                    else
-                    {
-                        Timer();
-                    
-                    }
-
-                    break;
-                case 'A':
-                    if ( tiempoAudioModo == 0)
-                    {
-                        _audioSource.clip = audioData.audios[audio];
-                        _audioSource.Play();
-
-                        _tiempoAudioAttack = 30;
-                        _tiempoTotal = 20;
-                    }
-                    else
-                    {
-                        Timer();
-                    }
-                
-                    break;
-                case 'U':
-                    if (tiempoAudioModo == 0)
-                    {
-                        _audioSource.clip = audioData.audios[audio];
-                        _audioSource.Play();
-
-                        _tiempoAudioUp = 30;
-                        _tiempoTotal = 20;
-                    }
-                    else
-                    {
-                        Timer();
-                    }
-                    break;
-            }
-        
-            void Timer()
-            {
-                if (_tiempoAudioAttack >= 1)
-                {
-                    _tiempoAudioAttack -= 1;
-                } else if (_tiempoAudioIdle >= 1)
-                {
-                    _tiempoAudioIdle -= 1;
-                } else if (_tiempoAudioUp >= 1)
-                {
-                    _tiempoAudioUp -= 1;
-                }    
-            }        
-        
         }
         
         public override void OnDeath()

@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Entities.Enemies.Gizotso.Scripts
