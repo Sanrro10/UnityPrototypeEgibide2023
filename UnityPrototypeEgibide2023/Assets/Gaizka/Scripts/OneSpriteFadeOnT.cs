@@ -11,13 +11,23 @@ public class OneSpriteFadeOnT : MonoBehaviour
     [SerializeField] float fadeAmount;
     [SerializeField] float tiempo;
     [SerializeField] float resta;
+    [SerializeField] bool sourceMat;
     public UnityEvent fadeCompletado;
 
     // Start is called before the first frame update
     void Start()
     {
         TextMeshProUGUI textMeshPro = GetComponent<TextMeshProUGUI>();
-        mat = textMeshPro.fontMaterial;
+        if (sourceMat)
+        {
+            mat = textMeshPro.fontSharedMaterial;
+
+        }
+        else
+        {
+            mat = textMeshPro.fontMaterial;
+
+        }
         fadeAmount = mat.GetFloat("_FadeAmount");
     }
     public void StartFadeOut(float speed)
