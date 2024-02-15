@@ -11,8 +11,18 @@ public class OneSpriteFadeOnT : MonoBehaviour
     [SerializeField] float fadeAmount;
     [SerializeField] float tiempo;
     [SerializeField] float resta;
+    [SerializeField] float valorInicial;
+
     [SerializeField] bool sourceMat;
     public UnityEvent fadeCompletado;
+
+    private void OnDisable()
+    {
+        if (valorInicial != null)
+        {
+            mat.SetFloat("_FadeAmount", valorInicial);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +39,10 @@ public class OneSpriteFadeOnT : MonoBehaviour
 
         }
         fadeAmount = mat.GetFloat("_FadeAmount");
+        if (valorInicial != null)
+        {
+            mat.SetFloat("_FadeAmount", valorInicial);
+        }
     }
     public void StartFadeOut(float speed)
     {

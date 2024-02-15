@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2106067939}
-  m_IndirectSpecularColor: {r: 0.15046284, g: 0.103065975, b: 0.14134252, a: 1}
+  m_IndirectSpecularColor: {r: 0.15033653, g: 0.10328779, b: 0.14152509, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -274,6 +274,7 @@ MonoBehaviour:
   fadeAmount: 0.01
   tiempo: 0.01
   resta: 0.01
+  valorInicial: 1
   sourceMat: 0
   fadeCompletado:
     m_PersistentCalls:
@@ -1694,6 +1695,7 @@ MonoBehaviour:
   fadeAmount: 0
   tiempo: 0.01
   resta: 0.01
+  valorInicial: 1
   sourceMat: 0
   fadeCompletado:
     m_PersistentCalls:
@@ -2098,6 +2100,7 @@ MonoBehaviour:
   fadeAmount: 0
   tiempo: 0.015
   resta: 0.01
+  valorInicial: 0
   sourceMat: 0
   fadeCompletado:
     m_PersistentCalls:
@@ -3001,6 +3004,7 @@ MonoBehaviour:
   fadeAmount: 0
   tiempo: 0.01
   resta: 0.01
+  valorInicial: 1
   sourceMat: 1
   fadeCompletado:
     m_PersistentCalls:
@@ -4935,6 +4939,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: OneSpriteFadeOnT, Assembly-CSharp
         m_MethodName: StartFadeIn
         m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.01
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1809095767}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

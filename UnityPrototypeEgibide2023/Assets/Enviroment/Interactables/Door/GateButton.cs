@@ -25,12 +25,18 @@ public class GateButton : MonoBehaviour
     {
         _gate2D.SetActive(false);
         _gate3D.GetComponent<Animator>().SetBool("Action", true);
-        Invoke(nameof(CloseGate),delay);
+        Invoke(nameof(CloseGate), delay);
+        Invoke(nameof(CloseGateAnim), delay - 0.4f);
     }
 
     private void CloseGate()
     {
         _gate2D.SetActive(true);
+    }
+
+    private void CloseGateAnim()
+    {
+        
         _gate3D.GetComponent<Animator>().SetBool("Action", false);
     }
 }
