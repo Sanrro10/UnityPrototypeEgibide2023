@@ -83,7 +83,7 @@ namespace Entities.Potions.BasePotion.Scripts
             {
                 yield return new WaitForSeconds(1);
             }
-            Destroy(gameObject);
+            Explode();
         }
     }
 }
