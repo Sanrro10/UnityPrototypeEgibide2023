@@ -48,7 +48,8 @@ namespace Entities.Player.Scripts
                 public float friction;
                 public bool isStunned = false;
                 public bool hasReachedSpawnPoint = false;
-        
+                public bool isInCoyoteTime = false;
+                
                 // internal state variables
                 public float horizontalSpeed;
                 public float dashSpeed;
@@ -65,7 +66,7 @@ namespace Entities.Player.Scripts
                 public bool onHitPushback = false;
                 private AnimationCurve _dashCurve;
                 private int _numberOfGrounds;
-        
+                
                 [SerializeField] private float floatDuration;
         
                 //UI
@@ -1016,6 +1017,11 @@ namespace Entities.Player.Scripts
                 public void SetOutOfDashVelocity()
                 {
                         Rb.velocity = new Vector2((FacingRight ? 15f : -15f), Rb.velocity.y);
+                }
+
+                public void CoyoteTime()
+                {
+                        isInCoyoteTime = false;
                 }
         }
 }

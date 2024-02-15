@@ -21,7 +21,11 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public override void Update()
         {
             base.Update();
-            
+            if (Player.isInCoyoteTime && Player.isPerformingJump)
+            {
+                Player.PmStateMachine.TransitionTo((Player.PmStateMachine.JumpState));
+                return;
+            }
             if (Player.isPerformingMeleeAttack)
             {
                 Player.AirAttack();
