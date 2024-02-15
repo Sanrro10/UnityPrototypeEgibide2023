@@ -22,6 +22,8 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         {
             if (!Player.IsGrounded())
             {
+                Player.isInCoyoteTime = true;
+                Player.Invoke(nameof(Player.CoyoteTime), 0.1f);
                 Player.PmStateMachine.TransitionTo(Player.PmStateMachine.AirborneState);
                 return;
             }
