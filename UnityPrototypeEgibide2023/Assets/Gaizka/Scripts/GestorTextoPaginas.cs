@@ -54,6 +54,7 @@ public class GestorTextoPaginas : MonoBehaviour
         {
             case 0:
                 eventoP0.Invoke();
+                actual = null;
                 break;
             case 2:
                 eventoP2.Invoke();
