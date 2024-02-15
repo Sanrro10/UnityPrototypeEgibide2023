@@ -994,7 +994,7 @@ namespace Entities.Player.Scripts
                         base.OnReceiveDamage(attack, facingRight);
                         _sPlayerCurrentPersistentData.CurrentHealth = Health.Get();
                         StartCoroutine(CoInvulnerability());
-                        healthText.text = Health.Get().ToString();
+                        healthText.text = (Health.Get() >= 0 ? Health.Get() : 0).ToString();
                         healthBar.value = Health.Get();
                 } 
 

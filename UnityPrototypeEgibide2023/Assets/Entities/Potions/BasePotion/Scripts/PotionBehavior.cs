@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using Entities.Destructible;
 using Entities.Player.Scripts;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 namespace Entities.Potions.BasePotion.Scripts
@@ -18,6 +20,7 @@ namespace Entities.Potions.BasePotion.Scripts
             Health.Set(data.health);
             InvulnerableTime = 0.1f;
             GetComponent<Rigidbody2D>().angularVelocity = Random.Range(-200, 200);
+            StartCoroutine(DestroyPotionWhenTooFar());
         }
         
         public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
@@ -72,5 +75,15 @@ namespace Entities.Potions.BasePotion.Scripts
             OnPotionDestroy?.Invoke(gameObject);
         }
 
+        private IEnumerator DestroyPotionWhenTooFar()
+        {
+            // Wait for a distance of 30 units from the spawn point to destroy the potion
+            Vector2 spawnPoint = transform.position;
+            while (Vector2.Distance(transform.position, spawnPoint) < 30)
+            {
+                yield return new WaitForSeconds(1);
+            }
+            Destroy(gameObject);
+        }
     }
 }
