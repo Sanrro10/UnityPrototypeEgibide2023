@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5857886683013669801}
+  - component: {fileID: 7927373560828697065}
   m_Layer: 5
   m_Name: MenuOptions
   m_TagString: Untagged
@@ -36,6 +37,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7927373560828697065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774696477526177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5736173a5e53e4cb8f26460df0ee0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonSelected: {fileID: 8238351323025347695}
 --- !u!1 &160312087185819132
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7165408445649992479}
+  - component: {fileID: 7284791716530213380}
   m_Layer: 5
   m_Name: MenuPausa
   m_TagString: Untagged
@@ -618,6 +633,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7284791716530213380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629973782096403335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5736173a5e53e4cb8f26460df0ee0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonSelected: {fileID: 2669548586559035080}
 --- !u!1 &695226057446057146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,6 +2633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 811585743234947689}
+  - component: {fileID: 4747944496383640920}
   m_Layer: 5
   m_Name: MenuGameOver
   m_TagString: Untagged
@@ -2634,6 +2663,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4747944496383640920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5343057171329261318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5736173a5e53e4cb8f26460df0ee0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonSelected: {fileID: 4977689871152212761}
 --- !u!1 &5554370061617987623
 GameObject:
   m_ObjectHideFlags: 0
