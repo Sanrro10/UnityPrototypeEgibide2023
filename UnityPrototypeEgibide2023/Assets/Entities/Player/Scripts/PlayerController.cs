@@ -91,7 +91,8 @@ namespace Entities.Player.Scripts
                 private GameController.SPlayerSpawnData _sPlayerSpawnData;
                 //CurrentPersistentData
                 private GameController.SPlayerPersistentData _sPlayerCurrentPersistentData;
-        
+
+                public static event Action<PlayerController> OnPlayerSpawn;
                 //Potion UI
                 private bool _onPotionCooldown;
                 private Slider _sliderPotion;
@@ -189,7 +190,6 @@ namespace Entities.Player.Scripts
                         mainText = GameObject.Find("TextMain").GetComponent<Text>();
                         healthBar = GameObject.Find("SliderHealth").GetComponent<Slider>();
                         _selectedPotionImage = GameObject.Find("ImagePotionSelected").GetComponent<Image>();
-        
                         //Set health
                         Health.Set(_sPlayerCurrentPersistentData.CurrentHealth);
                         healthText.text = Health.Get().ToString();
@@ -205,10 +205,16 @@ namespace Entities.Player.Scripts
                         {
                                 potionList.AddRange(_sPlayerCurrentPersistentData.PotionList);
                         }
-                        if(_sPlayerCurrentPersistentData.SelectedPotion is not null)
+
+                        if (_sPlayerCurrentPersistentData.SelectedPotion is not null)
+                        {
                                 selectedPotion = _sPlayerCurrentPersistentData.SelectedPotion;
-                        _selectedPotionImage.sprite = 
-                                selectedPotion != null ? selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite : null;
+                                        _selectedPotionImage.color = new Color(255, 255, 255, 255);
+                                        _selectedPotionImage.sprite = selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite;
+                        }
+                                selectedPotion = _sPlayerCurrentPersistentData.SelectedPotion;
+                        _selectedPotionImage.sprite ??= selectedPotion.transform.Find("Sprite").gameObject
+                                .GetComponent<SpriteRenderer>().sprite;
                         
                         _impulseSource = GetComponent<CinemachineImpulseSource>();
                 
@@ -220,6 +226,7 @@ namespace Entities.Player.Scripts
                         //CheckSceneChanged
                         OnSceneChange();
                         StartCoroutine(KeepSpriteStraight());
+                        OnPlayerSpawn?.Invoke(this);
                 }
 
                 private void OnDestroy()
