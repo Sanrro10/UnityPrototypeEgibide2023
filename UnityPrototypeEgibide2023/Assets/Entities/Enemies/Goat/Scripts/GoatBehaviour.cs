@@ -146,7 +146,7 @@ namespace Entities.Enemies.Goat.Scripts
         
             if (hit.collider != null)
             {
-                if (hit.collider.CompareTag("PlayerHelper"))
+                if (hit.collider.CompareTag("Player"))
                 {
                     stateMachine.TransitionTo(stateMachine.GoatPrepareState);
                     

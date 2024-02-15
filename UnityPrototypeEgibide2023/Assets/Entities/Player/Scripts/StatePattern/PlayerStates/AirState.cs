@@ -20,8 +20,9 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 
         public virtual void Update()
         {
-            if (Player.IsGrounded() && Player.GetRigidbody().velocity.y < 0.01f )
+            if (Player.IsGrounded() && Player.GetRigidbody().velocity.y < 1f)
             {
+                Player.particleEvents.PlayJumpParticles();
                 if (Player.isHoldingHorizontal)
                     Player.PmStateMachine.TransitionTo(Player.PmStateMachine.WalkState);
                 else

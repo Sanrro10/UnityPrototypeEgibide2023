@@ -1,11 +1,12 @@
 ﻿using StatePattern;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
     public class IdleState: GroundState
     {
-        
+        private ParticleEvents _particleEvents;
         public IdleState(PlayerController player) : base(player)
         {
         }
@@ -13,8 +14,10 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public override void Enter()
         {
             base.Enter();
+            Player.GetRigidbody().velocity =  new Vector2( Player.GetRigidbody().velocity.x, 0);
             // Debug.Log("Entering Idle State");
             Player.animator.SetBool("IsIdle", true);
+            
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -58,7 +61,6 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public override void Exit()
         {
             base.Exit();
-            Player.lastGroundedPosition = Player.transform.position;
             Player.animator.SetBool("IsIdle", false);
             // Debug.Log("Exiting Idle State");
         }

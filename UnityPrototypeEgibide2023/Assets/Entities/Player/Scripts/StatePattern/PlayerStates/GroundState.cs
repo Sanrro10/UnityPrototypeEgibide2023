@@ -1,4 +1,5 @@
 ﻿using StatePattern;
+using UnityEngine;
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
@@ -14,8 +15,9 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public virtual void Enter()
         {
             Player.GetRigidbody().drag = 5;
+            Player.StartUpdatingLastGroundedPosition();
         }
-
+        
         public virtual void Update()
         {
             if (!Player.IsGrounded())
@@ -27,6 +29,7 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
 
         public virtual void Exit()
         {
+            Player.StopUpdatingLastGroundedPosition();
         }
     }
 }

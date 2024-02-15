@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7442219277751077717
 Transform:
@@ -49,7 +49,7 @@ GameObject:
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6243119114065482144
 Transform:
@@ -122,7 +122,7 @@ GameObject:
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1982698426381500043
 Transform:
@@ -195,7 +195,7 @@ GameObject:
   m_TagString: Ceiling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2887988026996547572
 Transform:
@@ -265,9 +265,17 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2830427574301222728, guid: 9b28de97f7d1c484aba7aea5c674b9a2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5290790237299423769, guid: 9b28de97f7d1c484aba7aea5c674b9a2, type: 3}
       propertyPath: m_Name
       value: 1 X 1 Ruler (Ramp) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290790237299423769, guid: 9b28de97f7d1c484aba7aea5c674b9a2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5639100993130278841, guid: 9b28de97f7d1c484aba7aea5c674b9a2, type: 3}
       propertyPath: m_Material
@@ -359,6 +367,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8844622398060820529, guid: 9b28de97f7d1c484aba7aea5c674b9a2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002109289782411714, guid: 9b28de97f7d1c484aba7aea5c674b9a2, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:

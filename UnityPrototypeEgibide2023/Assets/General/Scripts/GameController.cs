@@ -18,6 +18,7 @@ namespace General.Scripts
         public SPlayerPersistentData PlayerPersistentDataBetweenScenes;
         private GameData gameData;
         private string mainSceneName  = "1.0.1 (Tutorial)";
+        private string mainMenuName = "Main MenuEstados";
         public List<int> collectedItems = new List<int>();
         
         public GameObject playerPrefab;
@@ -47,6 +48,7 @@ namespace General.Scripts
             public int CurrentHealth;
             public GameObject[] PotionList;
             public GameObject SelectedPotion;
+            public bool AirDashUnlocked;
 
         }
 
@@ -54,7 +56,6 @@ namespace General.Scripts
         void Start()
         {
             //reset unlocks (esto se deberia cambiar cuando metamos saves)
-            playerData.airDashUnlocked = false;
         }
 
         // Update is called once per frame
@@ -80,10 +81,8 @@ namespace General.Scripts
             {
                 Instance = this;
                 DontDestroyOnLoad(transform.gameObject);
-                //DontDestroyOnLoad(menuPausa);
-                //DontDestroyOnLoad(canvasGameOver);
-                //DontDestroyOnLoad(canvasOptions);
                 gameData = SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
+                // add chgeck if it's the editor
                 if (gameData.isValid && !Application.isEditor)
                 {
                     _lastCheckpoint.Scene = gameData.spawnScene;
@@ -92,19 +91,18 @@ namespace General.Scripts
                     PlayerSpawnDataInNewScene.Position = _lastCheckpoint.Position;
                     PlayerSpawnDataInNewScene.GoToPosition = _lastCheckpoint.Position;
                     PlayerPersistentDataBetweenScenes.CurrentHealth = 100;
-                }
-                else
-                {
-                    _lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
-                    _lastCheckpoint.Position = Vector3.zero;
-                }
-            
+                    PlayerPersistentDataBetweenScenes.AirDashUnlocked = gameData.AirDashUnlocked;
+                    PlayerPersistentDataBetweenScenes.PotionList = gameData.PotionList;
+                    }
+                    else
+                    {
+                        _lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
+                        _lastCheckpoint.Position = Vector3.zero;
+                    }
+
             }
             else
             {
-                //Destroy(menuPausa.gameObject);
-                //Destroy(canvasGameOver.gameObject);
-                //Destroy(canvasOptions.gameObject);
                 Destroy(gameObject);
             }
 
@@ -120,7 +118,6 @@ namespace General.Scripts
 
         public GameObject GetPlayerGameObject()
         {
-            Debug.Log("Jugador " + _jugador);
             return _jugador;
         }
 
@@ -141,6 +138,11 @@ namespace General.Scripts
             gameData.spawnScene = _lastCheckpoint.Scene;
             gameData.spawnPosition = _lastCheckpoint.Position;
             gameData.isValid = true;
+            gameData.collectedItems = collectedItems;
+            gameData.CurrentHealth = PlayerPersistentDataBetweenScenes.CurrentHealth;
+            gameData.PotionList = PlayerPersistentDataBetweenScenes.PotionList;
+            gameData.SelectedPotion = PlayerPersistentDataBetweenScenes.SelectedPotion;
+            gameData.AirDashUnlocked = PlayerPersistentDataBetweenScenes.AirDashUnlocked;
             SaveGame();
         }
 
@@ -233,8 +235,8 @@ namespace General.Scripts
         }
         public void ChangeSceneMenu()
         {
-            // DeletePersistentElement();
-            SceneManager.LoadScene("Main MenuEstados");
+            DeletePersistentElement();
+            SceneManager.LoadScene(mainMenuName);
         }
         
         public void ChangeScene(string escena)
@@ -268,9 +270,6 @@ namespace General.Scripts
         }
         public void DeletePersistentElement()
         {
-            //Destroy(canvasPausa.gameObject);
-            //Destroy(canvasGameOver.gameObject);
-            //Destroy(canvasOptions.gameObject);
             Destroy(gameObject);
             Time.timeScale = 1;
         }

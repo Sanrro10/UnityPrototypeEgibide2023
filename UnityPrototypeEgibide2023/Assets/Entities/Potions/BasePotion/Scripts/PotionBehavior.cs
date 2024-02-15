@@ -22,7 +22,12 @@ namespace Entities.Potions.BasePotion.Scripts
         
         public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
         {
-            if (!Invulnerable && !_hasBeenHitted)  Rb.velocity = new Vector2();
+            if (attack.attackType == AttackComponent.AttackType.KillArea) Explode();
+            if (!Invulnerable && !_hasBeenHitted)
+            {
+                GetComponentInChildren<ParticleSystem>().Play();
+                Rb.velocity = new Vector2();
+            }
             attack.damage = 1;
             if (Health.Get() <= 1) attack.damage = 0;
             base.OnReceiveDamage(attack, facingRight);

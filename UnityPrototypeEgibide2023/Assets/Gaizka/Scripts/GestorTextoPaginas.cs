@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class GestorTextoPaginas : MonoBehaviour
 {
@@ -11,8 +12,29 @@ public class GestorTextoPaginas : MonoBehaviour
     public UnityEvent eventoP2;
     public UnityEvent eventoP4;
     public UnityEvent eventoP0;
+    public UnityEvent eventoDef;
     public OneSpriteFadeOnT [] textos;
     private OneSpriteFadeOnT actual;
+    [SerializeField] Button[] botones;
+
+
+
+    public void ActivarDesactivar()
+    {
+        foreach (Button boton in botones)
+        {
+            if (boton.interactable)
+            {
+                boton.interactable = false;
+
+            }
+            else
+            {
+                boton.interactable = true;
+            }
+
+        }
+    }
     private void Start()
     {
         ComprobarPag();
@@ -32,6 +54,7 @@ public class GestorTextoPaginas : MonoBehaviour
         {
             case 0:
                 eventoP0.Invoke();
+                actual = null;
                 break;
             case 2:
                 eventoP2.Invoke();
@@ -48,6 +71,7 @@ public class GestorTextoPaginas : MonoBehaviour
                 print ("Sexta pagina");
                 break;
             default:
+                eventoDef.Invoke();
                 //textos[0].StartFadeOut();
                 print ("Incorrect intelligence level.");
                 break;
