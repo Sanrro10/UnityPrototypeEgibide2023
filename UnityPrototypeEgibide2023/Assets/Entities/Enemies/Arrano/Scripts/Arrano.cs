@@ -37,6 +37,9 @@ namespace Entities.Enemies.Arrano.Scripts
     
         // Cooldown del ataque
         [SerializeField] private float attackCooldown;
+        
+        // Referencia a la hitbox del ataque
+        [SerializeField] private GameObject attack;
     
         // Variable que controla la rotación
         private bool _rotated;
@@ -44,9 +47,6 @@ namespace Entities.Enemies.Arrano.Scripts
         // Posiciones entre las que vuela
         private Vector3 _leftLimitPosition;
         private Vector3 _rightLimitPosition;
-    
-        // Variable que controla si te puede pegar
-        private bool _hit;
     
         // Posiciones a la hora de atacar
         private Vector3 _direction;
@@ -344,7 +344,6 @@ namespace Entities.Enemies.Arrano.Scripts
         private IEnumerator AttackCooldown()
         {
             yield return new WaitForSeconds(attackCooldown);
-            _hit = false;
             InvokeRepeating(nameof(LookForPlayer),0,0.1f);
         }
         
@@ -455,6 +454,8 @@ namespace Entities.Enemies.Arrano.Scripts
 
         public override void OnDeath()
         {
+            attack.SetActive(false);
+            flyingSpeed = flyingSpeed * 0.1f;
             _animator.SetBool("IsDead", true );
             Instantiate(plumasMuerte, transform.position, transform.rotation);
             Invoke(nameof(DestroyThis),2f);
