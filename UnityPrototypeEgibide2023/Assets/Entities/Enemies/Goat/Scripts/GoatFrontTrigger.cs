@@ -16,7 +16,7 @@ namespace Entities.Enemies.Goat.Scripts
     
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Wall") || other.CompareTag("Floor"))
+            if (other.CompareTag("Wall") || other.CompareTag("Floor") || other.CompareTag("Destructible"))
             {
                 goatBehaviour.BounceAgainstWall();
                 return;
