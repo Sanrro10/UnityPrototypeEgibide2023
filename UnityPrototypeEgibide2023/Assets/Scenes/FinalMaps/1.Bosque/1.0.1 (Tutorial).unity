@@ -809,11 +809,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3699689095935734553, guid: 3afd60ee68e34c0438be8eb3d9894f3a, type: 3}
+    - {fileID: 1606771732645582240, guid: 3afd60ee68e34c0438be8eb3d9894f3a, type: 3}
     m_RemovedGameObjects:
     - {fileID: 3117506485510598759, guid: 3afd60ee68e34c0438be8eb3d9894f3a, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8650927304465671914, guid: 3afd60ee68e34c0438be8eb3d9894f3a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1586944670}
   m_SourcePrefab: {fileID: 100100000, guid: 3afd60ee68e34c0438be8eb3d9894f3a, type: 3}
 --- !u!4 &124399741 stripped
 Transform:
@@ -1250,6 +1255,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4193518acfbca6478c03760deb5e239, type: 3}
+--- !u!1 &201858838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6167294583904168027, guid: 34041593080544842b36d3fe7ecb8c5f, type: 3}
+  m_PrefabInstance: {fileID: 1588802319}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &207327618
 GameObject:
   m_ObjectHideFlags: 0
@@ -10431,6 +10441,34 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4193518acfbca6478c03760deb5e239, type: 3}
+--- !u!1 &1586944665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8650927304465671914, guid: 3afd60ee68e34c0438be8eb3d9894f3a, type: 3}
+  m_PrefabInstance: {fileID: 124399740}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1586944670
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586944665}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 22.576027
+  m_Direction: 1
+  m_Center: {x: 0, y: -8.987494, z: -0.0000008141271}
 --- !u!1001 &1588802319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10487,16 +10525,55 @@ PrefabInstance:
       propertyPath: potionToUnlock
       value: 
       objectReference: {fileID: 1266867429699652061, guid: 7ce027b4de00be1428e71ad3b8217ddb, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7592340122426876287, guid: 34041593080544842b36d3fe7ecb8c5f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6167294583904168027, guid: 34041593080544842b36d3fe7ecb8c5f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1588802324}
   m_SourcePrefab: {fileID: 100100000, guid: 34041593080544842b36d3fe7ecb8c5f, type: 3}
 --- !u!4 &1588802320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4971723077781346576, guid: 34041593080544842b36d3fe7ecb8c5f, type: 3}
   m_PrefabInstance: {fileID: 1588802319}
   m_PrefabAsset: {fileID: 0}
+--- !u!70 &1588802324
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201858838}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.041999817, y: 2.6299305}
+  m_Size: {x: 1.4454956, y: 6.9940596}
+  m_Direction: 0
 --- !u!1001 &1592511816
 PrefabInstance:
   m_ObjectHideFlags: 0
