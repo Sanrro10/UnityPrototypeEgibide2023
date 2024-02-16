@@ -12,7 +12,7 @@ public class PlayerAudios : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void AudioIdlePlay()
+    public void AudioWalkPlay()
     {
         if (time <= 0)
         {

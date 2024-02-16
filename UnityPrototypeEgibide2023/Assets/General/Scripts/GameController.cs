@@ -52,17 +52,6 @@ namespace General.Scripts
 
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            //reset unlocks (esto se deberia cambiar cuando metamos saves)
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     
         void Awake()
         {
@@ -83,7 +72,7 @@ namespace General.Scripts
                 DontDestroyOnLoad(transform.gameObject);
                 gameData = SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
                 // add chgeck if it's the editor
-                if (gameData.isValid && !Application.isEditor)
+                if (gameData.isValid)
                 {
                     _lastCheckpoint.Scene = gameData.spawnScene;
                     _lastCheckpoint.Position = gameData.spawnPosition;

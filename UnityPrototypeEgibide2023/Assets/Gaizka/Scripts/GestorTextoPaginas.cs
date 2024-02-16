@@ -60,7 +60,7 @@ public class GestorTextoPaginas : MonoBehaviour
                 eventoP2.Invoke();
                 //textos[0].StartFadeIn();
                 actual = textos[0];
-                Debug.Log ("Segunda pagina");
+                //Debug.Log ("Segunda pagina");
                 break;
             case 4:
                 eventoP4.Invoke();
