@@ -12,6 +12,7 @@ Material:
   m_Parent: {fileID: 2100000, guid: aaf9e836f5fc5af4b809957c0659fc2a, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - ALPHAOUTLINE_ON
   - DOODLE_ON
   - FADE_ON
   - OUTBASE8DIR_ON
@@ -33,8 +34,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaCutoffValue: 0.62
-    - _AlphaOutlineGlow: 72
-    - _AlphaOutlineMinAlpha: 1
+    - _AlphaOutlineBlend: 1
+    - _AlphaOutlineGlow: 100
+    - _AlphaOutlineMinAlpha: 0.05
     - _AlphaOutlinePower: 5
     - _AlphaRoundThreshold: 0.29
     - _BlurIntensity: 0
@@ -65,7 +67,7 @@ Material:
     - _WeightBold: 0.75
     - _ZWrite: 0
     m_Colors:
-    - _AlphaOutlineColor: {r: 0.9622642, g: 0, b: 0, a: 1}
+    - _AlphaOutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
