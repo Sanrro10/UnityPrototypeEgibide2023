@@ -15,7 +15,7 @@ namespace Entities.Potions.BasePotion.Scripts
         {
             _attackComponents = GetComponentsInChildren<AttackComponent>(true);
             Invoke(nameof(ActivateHitbox), delay);
-            _audioSource = GetComponent<AudioSource>();
+            _audioSource ??= GetComponent<AudioSource>();
             Despawn();
         }
         
@@ -34,8 +34,10 @@ namespace Entities.Potions.BasePotion.Scripts
         
         private void Destroy()
         {
-            _audioSource.clip = _audios.audios[0];
-            _audioSource.Play();
+            if ( _audioSource != null ) {
+                _audioSource.clip ??= _audios.audios[0];
+                _audioSource?.Play();
+            }
             Destroy(gameObject);
             
         }
