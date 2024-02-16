@@ -31,6 +31,7 @@ public class SceneScript : MonoBehaviour
 
     public void Start()
     {
+        SaveLoadManager.CreateFilesDataSave();
         fillGameDatas();
     }
 
@@ -163,6 +164,7 @@ public class SceneScript : MonoBehaviour
                 btnSlot3Delete.gameObject.SetActive(false);
             }
             hideConfirmationDeleteGame();
+            confirm = !confirm;
         }
         else
         {

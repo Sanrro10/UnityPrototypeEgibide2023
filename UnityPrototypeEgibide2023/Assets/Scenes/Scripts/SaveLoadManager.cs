@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -64,18 +65,24 @@ public class SaveLoadManager
             else
             {
                 Debug.LogError("Save file not found in " + path);
+                SaveGame(returnIsValidFalse(), i.ToString());
             }
         }
 
         return listDataGame;
     }
     
-    /*public static void CreateGame(GameData gameData)
+    public static void CreateFilesDataSave()
     {
-        string json = JsonUtility.ToJson(gameData);
-        string path = Application.persistentDataPath + "/savegame.json";
-        File.WriteAllText(path, json);
-    }*/
+        string path = Application.persistentDataPath + "/" + nameFile + 1 + extensionFile ;
+        if (!File.Exists(path))
+        {
+            for (int i = 1; i < 4; i++)
+            { 
+                SaveGame(returnIsValidFalse(), i.ToString());
+            }
+        }
+    }
 
     private static GameData returnIsValidFalse()
     {

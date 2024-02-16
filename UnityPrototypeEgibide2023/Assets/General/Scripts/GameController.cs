@@ -82,12 +82,12 @@ namespace General.Scripts
                     PlayerPersistentDataBetweenScenes.CurrentHealth = 100;
                     PlayerPersistentDataBetweenScenes.AirDashUnlocked = gameData.AirDashUnlocked;
                     PlayerPersistentDataBetweenScenes.PotionList = gameData.PotionList;
-                    }
-                    else
-                    {
-                        _lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
-                        _lastCheckpoint.Position = Vector3.zero;
-                    }
+                }
+                else
+                {
+                    _lastCheckpoint.Scene = SceneManager.GetActiveScene().name;
+                    _lastCheckpoint.Position = Vector3.zero;
+                }
 
             }
             else
