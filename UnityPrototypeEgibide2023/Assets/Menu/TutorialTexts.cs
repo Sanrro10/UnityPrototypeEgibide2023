@@ -32,10 +32,7 @@ public class TutorialTexts : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (control is not null)
-            {
-                image.SetActive(true);
-            }
+            image.SetActive(true);
             image.GetComponent<RawImage>().texture = control;
             line1.GetComponent<TextMeshProUGUI>().text = linea1;
             line2.GetComponent<TextMeshProUGUI>().text = linea2;
@@ -46,10 +43,7 @@ public class TutorialTexts : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (control is not null)
-            {
-                image.SetActive(false);
-            }
+            image.SetActive(false);
             line1.GetComponent<TextMeshProUGUI>().text = "";
             line2.GetComponent<TextMeshProUGUI>().text = "";
         }

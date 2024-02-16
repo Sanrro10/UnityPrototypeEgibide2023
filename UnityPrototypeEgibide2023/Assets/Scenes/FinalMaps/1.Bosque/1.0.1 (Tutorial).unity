@@ -195,11 +195,11 @@ PrefabInstance:
       objectReference: {fileID: 207327618}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea1
-      value: '[Shift]'
+      value: '[SHIFT]'
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea2
-      value: El dash te hace invulnerable
+      value: EL DASH TAMBIEN TE HACE INVULNERABLE
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: control
@@ -1036,12 +1036,16 @@ PrefabInstance:
       objectReference: {fileID: 207327618}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea1
-      value: 
+      value: 'INFO:'
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea2
-      value: Si mueres reapareces en el checkpoint
+      value: LOS DOLMENES SON PUNTOS DE GUARDADO, USALOS PARA CURARTE
       objectReference: {fileID: 0}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: control
+      value: 
+      objectReference: {fileID: 2800000, guid: ba12ee6e75b4f6042851ba646dff7713, type: 3}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: tutorialUI
       value: 
@@ -1305,8 +1309,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
-  m_sharedMaterial: {fileID: -8985007698984550682, guid: ec90f82928cb9984a85bdd3773f0a168, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1e7387c23f198f74ca64889ac2e2e69d, type: 2}
+  m_sharedMaterial: {fileID: -8030376796783021681, guid: 1e7387c23f198f74ca64889ac2e2e69d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3382,7 +3386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &506346002
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3593,12 +3597,16 @@ PrefabInstance:
       objectReference: {fileID: 207327618}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea1
-      value: 
+      value: 'Info:'
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea2
-      value: "Puedes golpear la poci\xF3n para lanzarla en cualquier direcci\xF3n"
+      value: PUEDES GOLPEAR LA POCION PARA EMPUJARLA O MOVERTE EN EL AIRE
       objectReference: {fileID: 0}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: control
+      value: 
+      objectReference: {fileID: 2800000, guid: ba12ee6e75b4f6042851ba646dff7713, type: 3}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: tutorialUI
       value: 
@@ -6083,7 +6091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea2
-      value: Movimiento
+      value: MOVIMIENTO
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: control
@@ -6168,11 +6176,11 @@ PrefabInstance:
       objectReference: {fileID: 207327618}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea1
-      value: '[Space]'
+      value: '[SPACE]'
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea2
-      value: Saltar
+      value: SALTAR
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: control
@@ -8667,11 +8675,11 @@ PrefabInstance:
       objectReference: {fileID: 207327618}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea1
-      value: '[J/ClickIzquierdo]'
+      value: '[J/CLICK IZQUIERDO]'
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea2
-      value: Atacar
+      value: ATAQUE CUERPO A CUERPO
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: control
@@ -10057,11 +10065,11 @@ PrefabInstance:
       objectReference: {fileID: 207327618}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea1
-      value: '[Shift]'
+      value: '[SHIFT]'
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea2
-      value: "Dash para desplazarte una peque\xF1a distancia"
+      value: DASH PARA DESPLAZARTE RAPIDAMENTE
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: control
@@ -10196,8 +10204,20 @@ PrefabInstance:
       value: 72.55862
       objectReference: {fileID: 0}
     - target: {fileID: 1526929007135396523, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e7387c23f198f74ca64889ac2e2e69d, type: 2}
+    - target: {fileID: 1526929007135396523, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8030376796783021681, guid: 1e7387c23f198f74ca64889ac2e2e69d, type: 2}
+    - target: {fileID: 1526929007135396523, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1526929007135396523, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3314289266991505355, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
       propertyPath: m_Pivot.x
@@ -11381,7 +11401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea2
-      value: "Lanzar poci\xF3n"
+      value: LANZAR POCION PARA ATAQUE A DISTANCIA
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: control
