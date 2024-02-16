@@ -11,6 +11,7 @@ public class GestorTextoPaginas : MonoBehaviour
     [SerializeField] private int page;
     public UnityEvent eventoP2;
     public UnityEvent eventoP4;
+    public UnityEvent eventoP6;
     public UnityEvent eventoP0;
     public UnityEvent eventoDef;
     public OneSpriteFadeOnT [] textos;
@@ -68,6 +69,8 @@ public class GestorTextoPaginas : MonoBehaviour
                 print ("Cuarta pagina");
                 break;  
             case 6:
+                eventoP6.Invoke();
+                actual = textos[2];
                 print ("Sexta pagina");
                 break;
             default:
