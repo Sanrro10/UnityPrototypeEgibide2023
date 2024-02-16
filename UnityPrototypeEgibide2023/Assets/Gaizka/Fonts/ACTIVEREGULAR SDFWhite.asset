@@ -12,6 +12,8 @@ Material:
   m_Parent: {fileID: 2100000, guid: 31bf5b79d039c2d46a8a40d305134d79, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - ALPHACUTOFF_ON
+  - ALPHAROUND_ON
   - DOODLE_ON
   - FADE_ON
   - NEGATIVE_ON
@@ -33,11 +35,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaCutoffValue: 0.62
+    - _Alpha: 1
+    - _AlphaCutoffValue: 0.43
     - _AlphaOutlineGlow: 72
     - _AlphaOutlineMinAlpha: 1
     - _AlphaOutlinePower: 5
-    - _AlphaRoundThreshold: 0.29
+    - _AlphaRoundThreshold: 0.005
     - _BlurIntensity: 0
     - _Brightness: 1
     - _Contrast: 6
@@ -53,7 +56,7 @@ Material:
     - _InnerOutlineThickness: 3
     - _MySrcMode: 5
     - _NegativeAmount: 1
-    - _OutlineAlpha: 0
+    - _OutlineAlpha: 1
     - _OutlineGlow: 1
     - _OutlineWidth: 0
     - _PixelateSize: 512
@@ -66,7 +69,7 @@ Material:
     - _AlphaOutlineColor: {r: 0.9622642, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &11400000
 MonoBehaviour:

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
 using System;
+using UnityEngine.UI;
 
 public class OneSpriteFadeOnT : MonoBehaviour
 {
@@ -28,15 +29,23 @@ public class OneSpriteFadeOnT : MonoBehaviour
     void Start()
     {
         TextMeshProUGUI textMeshPro = GetComponent<TextMeshProUGUI>();
-        if (sourceMat)
+        if (textMeshPro == null)
         {
-            mat = textMeshPro.fontSharedMaterial;
+            var material = GetComponent<Image>().material;
+            mat = material;
 
         }
-        else
-        {
-            mat = textMeshPro.fontMaterial;
+        else {
+            if (sourceMat)
+            {
+                mat = textMeshPro.fontSharedMaterial;
 
+            }
+            else
+            {
+                mat = textMeshPro.fontMaterial;
+
+            }
         }
         fadeAmount = mat.GetFloat("_FadeAmount");
         if (valorInicial != null)
