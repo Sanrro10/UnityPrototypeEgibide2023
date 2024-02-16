@@ -4,13 +4,18 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TutorialTexts : MonoBehaviour
 {
+    [SerializeField] private Texture control;
     [SerializeField] private String linea1;
     [SerializeField] private String linea2;
-    [SerializeField] private GameObject tutorialUI;
+    [SerializeField] private GameObject line1;
+    [SerializeField] private GameObject line2;
+    [SerializeField] private GameObject image;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +32,13 @@ public class TutorialTexts : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            tutorialUI.gameObject.GetComponent<TextMeshProUGUI>().text = linea1 + "\n" + linea2;
+            if (control is not null)
+            {
+                image.SetActive(true);
+            }
+            image.GetComponent<RawImage>().texture = control;
+            line1.GetComponent<TextMeshProUGUI>().text = linea1;
+            line2.GetComponent<TextMeshProUGUI>().text = linea2;
         }
     }
 
@@ -35,7 +46,12 @@ public class TutorialTexts : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            tutorialUI.gameObject.GetComponent<TextMeshProUGUI>().text = "";
+            if (control is not null)
+            {
+                image.SetActive(false);
+            }
+            line1.GetComponent<TextMeshProUGUI>().text = "";
+            line2.GetComponent<TextMeshProUGUI>().text = "";
         }
     }
 
