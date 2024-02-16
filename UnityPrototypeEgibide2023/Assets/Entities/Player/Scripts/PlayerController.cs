@@ -213,7 +213,6 @@ namespace Entities.Player.Scripts
                                         _selectedPotionImage.color = new Color(255, 255, 255, 255);
                                         _selectedPotionImage.sprite = selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite;
                         }
-                                selectedPotion = _sPlayerCurrentPersistentData.SelectedPotion;
                         _selectedPotionImage.sprite ??= selectedPotion.transform.Find("Sprite").gameObject
                                 .GetComponent<SpriteRenderer>().sprite;
                         
