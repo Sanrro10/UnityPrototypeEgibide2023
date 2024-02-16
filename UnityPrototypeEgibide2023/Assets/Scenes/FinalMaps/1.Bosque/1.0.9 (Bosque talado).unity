@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 5d53e17d147558b47b996be5ba406d3d
+  m_OcclusionCullingData: {fileID: 36300000, guid: 1a429df3185b772449e5bfe9aa78016c, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 755058875}
-  m_IndirectSpecularColor: {r: 0.49083596, g: 0.68157864, b: 0.7856399, a: 1}
+  m_IndirectSpecularColor: {r: 0.49069333, g: 0.68173146, b: 0.78593034, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -211,6 +211,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -343,7 +347,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1723324853848515267, guid: 5a8296a45a8d64e41821a3dcfa264aa3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -405,7 +410,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -482,6 +488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tablon3 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ead5c24dd6e10644c88e57caf537169c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -556,6 +566,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra8 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -581,7 +595,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &58279992
 SpriteRenderer:
@@ -702,6 +716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -764,7 +782,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -857,6 +876,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -929,6 +952,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (60)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1006,6 +1033,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 90c2d545dd296d8499e8600397b85a13, type: 3}
       propertyPath: m_Name
       value: Tablon4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90c2d545dd296d8499e8600397b85a13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1133,7 +1164,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3303647722639586241, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1216,6 +1248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1290,6 +1326,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1368,6 +1408,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1519,6 +1563,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1592,6 +1640,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (49)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1648,6 +1700,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1722,6 +1778,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1783,6 +1843,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
       propertyPath: m_Name
       value: valla parcial 2 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1854,6 +1918,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
       propertyPath: m_Name
       value: valla parcial 3 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1928,6 +1996,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (53)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1984,6 +2056,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 25aadcf9cd198f54898363bd17a37208, type: 3}
       propertyPath: m_Name
       value: valla completa 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 25aadcf9cd198f54898363bd17a37208, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2058,6 +2134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2078,7 +2158,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &195994026
 SpriteRenderer:
@@ -2204,6 +2284,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tablon4 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90c2d545dd296d8499e8600397b85a13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2276,6 +2360,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2355,6 +2443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2415,6 +2507,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
       propertyPath: m_Name
       value: valla parcial 2 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2561,6 +2657,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2681,6 +2781,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2697,6 +2801,10 @@ PrefabInstance:
     - target: {fileID: 2022720626091110343, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
       propertyPath: m_Name
       value: flores-1 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022720626091110343, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4134939537970454558, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2810,6 +2918,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2985,6 +3097,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 2 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3050,7 +3166,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1723324853848515267, guid: 5a8296a45a8d64e41821a3dcfa264aa3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3128,6 +3245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3189,6 +3310,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
       propertyPath: m_Name
       value: valla parcial 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3263,6 +3388,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (44)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3332,7 +3461,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3405,6 +3535,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (54)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3462,6 +3596,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 4 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3482,7 +3620,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &350454845
 SpriteRenderer:
@@ -3607,6 +3745,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plataforma Tablones (sin patas) (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6bd021d5e6afd5f44bf09841547c8565, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3679,6 +3821,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3763,6 +3909,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3824,6 +3974,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
       propertyPath: m_Name
       value: valla parcial 2 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3898,6 +4052,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3923,7 +4081,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &366002142
 SpriteRenderer:
@@ -4268,6 +4426,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4324,6 +4486,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
       propertyPath: m_Name
       value: valla parcial 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4544,7 +4710,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5965856577368227271, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4613,7 +4780,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4850,6 +5018,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4922,6 +5094,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5006,6 +5182,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (55)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5078,6 +5258,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5216,6 +5400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5295,7 +5483,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5356,7 +5545,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5965856577368227271, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5439,6 +5629,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5515,6 +5709,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5576,7 +5774,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5965856577368227271, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5642,7 +5841,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5704,7 +5904,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5775,6 +5976,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
       propertyPath: m_Name
       value: valla parcial 3 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5848,6 +6053,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5983,7 +6192,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6119,6 +6329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (61)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6139,7 +6353,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &664492766
 SpriteRenderer:
@@ -6260,6 +6474,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6343,6 +6561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6408,7 +6630,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1723324853848515267, guid: 5a8296a45a8d64e41821a3dcfa264aa3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6485,6 +6708,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6501,6 +6728,10 @@ PrefabInstance:
     - target: {fileID: 2022720626091110343, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
       propertyPath: m_Name
       value: flores-1 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022720626091110343, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4134939537970454558, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6604,6 +6835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6673,7 +6908,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6751,6 +6987,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6812,7 +7052,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3776822234677564516, guid: e20052fafbbf6274a87276c5c99e39a3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7069,6 +7310,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7125,6 +7370,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
       propertyPath: m_Name
       value: valla parcial 3 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7199,6 +7448,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (46)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7271,6 +7524,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7403,6 +7660,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7459,6 +7720,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
       propertyPath: m_Name
       value: valla parcial 2 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7537,6 +7802,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7621,6 +7890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7683,6 +7956,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 4 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7739,6 +8016,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
       propertyPath: m_Name
       value: valla parcial 3 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7823,6 +8104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (58)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7873,7 +8158,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &896587643
 SpriteRenderer:
@@ -8173,6 +8458,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8235,7 +8524,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8319,7 +8609,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8339,7 +8630,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &933570469
 SpriteRenderer:
@@ -8469,7 +8760,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5965856577368227271, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8525,6 +8817,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8663,6 +8959,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (64)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8788,7 +9088,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8871,6 +9172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8936,7 +9241,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1723324853848515267, guid: 5a8296a45a8d64e41821a3dcfa264aa3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9008,6 +9314,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (59)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9102,6 +9412,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9179,7 +9493,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3776822234677564516, guid: e20052fafbbf6274a87276c5c99e39a3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9247,6 +9562,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
       propertyPath: m_Name
       value: valla parcial 2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9321,7 +9640,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9334,6 +9654,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2090871366}
     m_Modifications:
+    - target: {fileID: 5249050768797919897, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563544440890622569, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6022142399314153538, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455188398716486412, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7328789597655832153, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 46.19
@@ -9377,6 +9713,14 @@ PrefabInstance:
     - target: {fileID: 7998049768769768675, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
       propertyPath: m_Name
       value: Pila troncos (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7998049768769768675, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533591705192212599, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9465,6 +9809,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9600,6 +9948,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9753,7 +10105,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1723324853848515267, guid: 5a8296a45a8d64e41821a3dcfa264aa3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9809,6 +10162,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9883,6 +10240,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9939,6 +10300,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
       propertyPath: m_Name
       value: valla parcial 2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10246,6 +10611,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10338,7 +10707,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &1193307031
 SpriteRenderer:
@@ -10544,7 +10913,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1723324853848515267, guid: 5a8296a45a8d64e41821a3dcfa264aa3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10601,7 +10971,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1659606066125989250, guid: 3fe08819e00f783499a20b750ae1b04b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10736,6 +11107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (62)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10797,6 +11172,14 @@ PrefabInstance:
     - target: {fileID: 716355749690521423, guid: c163d21bda509594899fd2579ea0aa50, type: 3}
       propertyPath: m_Name
       value: Plataforma Hojas (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 716355749690521423, guid: c163d21bda509594899fd2579ea0aa50, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358531582395670177, guid: c163d21bda509594899fd2579ea0aa50, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10937,6 +11320,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11010,6 +11397,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (56)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11072,6 +11463,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 2 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11088,6 +11483,10 @@ PrefabInstance:
     - target: {fileID: 2022720626091110343, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
       propertyPath: m_Name
       value: flores-1 1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022720626091110343, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4134939537970454558, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11186,6 +11585,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11263,6 +11666,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (45)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11385,6 +11792,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11446,7 +11857,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5965856577368227271, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11586,6 +11998,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11642,6 +12058,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ba573841cef87414e9d3d08bc3b8c0c2, type: 3}
       propertyPath: m_Name
       value: Dolmen
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ba573841cef87414e9d3d08bc3b8c0c2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11716,6 +12136,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11772,6 +12196,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ead5c24dd6e10644c88e57caf537169c, type: 3}
       propertyPath: m_Name
       value: Tablon3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ead5c24dd6e10644c88e57caf537169c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11853,7 +12281,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1723324853848515267, guid: 5a8296a45a8d64e41821a3dcfa264aa3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11909,6 +12338,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
       propertyPath: m_Name
       value: valla parcial 3 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11983,7 +12416,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12066,6 +12500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12135,6 +12573,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra7 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12203,6 +12645,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 466a2b5a669c1a14882c3c35fcf7edcc, type: 3}
       propertyPath: m_Name
       value: Piedra3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 466a2b5a669c1a14882c3c35fcf7edcc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12422,6 +12868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12505,6 +12955,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (48)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12583,6 +13037,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12640,7 +13098,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3776822234677564516, guid: e20052fafbbf6274a87276c5c99e39a3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12772,6 +13231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12849,6 +13312,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (63)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12944,7 +13411,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13005,7 +13473,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5965856577368227271, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13087,6 +13556,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13359,6 +13832,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (51)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13428,7 +13905,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1379744411680119400, guid: e4193518acfbca6478c03760deb5e239, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13537,6 +14015,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13593,6 +14075,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 41066eabf7ba74a4b982407f32e9c3fa, type: 3}
       propertyPath: m_Name
       value: valla completa 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 41066eabf7ba74a4b982407f32e9c3fa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13676,6 +14162,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13791,6 +14281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 2 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13847,6 +14341,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13909,6 +14407,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 3 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13969,6 +14471,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6bd021d5e6afd5f44bf09841547c8565, type: 3}
       propertyPath: m_Name
       value: Plataforma Tablones (sin patas)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6bd021d5e6afd5f44bf09841547c8565, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14094,6 +14600,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
       propertyPath: m_Name
       value: valla parcial 2 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14290,6 +14800,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14361,6 +14875,14 @@ PrefabInstance:
     - target: {fileID: 716355749690521423, guid: c163d21bda509594899fd2579ea0aa50, type: 3}
       propertyPath: m_Name
       value: Plataforma Hojas (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 716355749690521423, guid: c163d21bda509594899fd2579ea0aa50, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358531582395670177, guid: c163d21bda509594899fd2579ea0aa50, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14480,6 +15002,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 3 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14557,6 +15083,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14629,6 +15159,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (41)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14717,6 +15251,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14959,6 +15497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 3 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15037,6 +15579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15102,6 +15648,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15186,6 +15736,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (57)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15263,6 +15817,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15517,6 +16075,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15594,6 +16156,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15740,6 +16306,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15866,6 +16436,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15922,6 +16496,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ead5c24dd6e10644c88e57caf537169c, type: 3}
       propertyPath: m_Name
       value: Tablon3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ead5c24dd6e10644c88e57caf537169c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16010,6 +16588,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1 (52)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16146,6 +16728,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 4 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16219,6 +16805,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cilindrotest 1 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16244,7 +16834,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &1981698054
 SpriteRenderer:
@@ -16369,7 +16959,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5965856577368227271, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16425,6 +17016,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
       propertyPath: m_Name
       value: valla parcial 4 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16513,6 +17108,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
       propertyPath: m_Name
       value: cilindrotest 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 295504e07ef36774683ddb0f36aef44b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16687,6 +17286,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16743,6 +17346,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
       propertyPath: m_Name
       value: valla parcial 3 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16821,7 +17428,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6873531262031409383, guid: 5527074bca040b84fb2f0a00f334c723, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16951,6 +17559,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17007,6 +17619,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d30d72c6eaff6f5429a1a911723f3f0d, type: 3}
       propertyPath: m_Name
       value: Tablon1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d30d72c6eaff6f5429a1a911723f3f0d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17074,6 +17690,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra8
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17130,6 +17750,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17199,6 +17823,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
       propertyPath: m_Name
       value: Piedra4 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17324,7 +17952,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1723324853848515267, guid: 5a8296a45a8d64e41821a3dcfa264aa3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17586,6 +18215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17643,6 +18276,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 3 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17673,7 +18310,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &2119494040
 SpriteRenderer:
@@ -17765,6 +18402,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2090871366}
     m_Modifications:
+    - target: {fileID: 5249050768797919897, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563544440890622569, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6022142399314153538, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455188398716486412, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 7328789597655832153, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -26.69
@@ -17808,6 +18461,14 @@ PrefabInstance:
     - target: {fileID: 7998049768769768675, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
       propertyPath: m_Name
       value: Pila troncos
+      objectReference: {fileID: 0}
+    - target: {fileID: 7998049768769768675, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533591705192212599, guid: 10de1406df471584fab9eb94b55a1b2a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

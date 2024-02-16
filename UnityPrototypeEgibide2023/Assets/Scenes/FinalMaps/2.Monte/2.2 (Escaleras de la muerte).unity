@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 842f68819ac15bf48b2ae3653eb70df0
+  m_OcclusionCullingData: {fileID: 36300000, guid: 6250c80a3f8e42a4190c30ad8daf2070, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 53d73dd4f99c4c84d95a657e638c4553, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 48d4f62e2d5af1643a431d2f4b07ccbb, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 755058875}
   m_IndirectSpecularColor: {r: 0.10526762, g: 0.18650743, b: 0.23125023, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 9b9702af7d76e2c45861bae774961b4b, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: e38d1a11fb02aab4ba2df31036494c9a, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -192,6 +192,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -248,6 +252,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -450,6 +458,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -585,6 +597,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -653,6 +669,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -783,6 +803,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -839,6 +863,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1097,6 +1125,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1287,6 +1319,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1404,6 +1440,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
       propertyPath: m_Name
       value: Piedra5 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1671,6 +1711,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dolmen
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ba573841cef87414e9d3d08bc3b8c0c2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1735,6 +1779,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
       propertyPath: m_Name
       value: Piedra8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1857,6 +1905,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
       propertyPath: m_Name
       value: Piedra7 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2058,6 +2110,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2137,6 +2193,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2207,6 +2267,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2271,6 +2335,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 866159b77a56c4c42a163bb66e33101e, type: 3}
       propertyPath: m_Name
       value: Piedra2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 866159b77a56c4c42a163bb66e33101e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2566,6 +2634,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2914,6 +2986,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra6 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3209,6 +3285,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3411,6 +3491,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 866159b77a56c4c42a163bb66e33101e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3475,6 +3559,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
       propertyPath: m_Name
       value: Piedra7 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3680,6 +3768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3877,6 +3969,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3933,6 +4029,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
       propertyPath: m_Name
       value: Piedra6 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4153,6 +4253,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4486,6 +4590,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4561,6 +4669,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra6 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4627,6 +4739,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4707,6 +4823,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4768,6 +4888,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
       propertyPath: m_Name
       value: Piedra4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4887,6 +5011,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5269,6 +5397,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra8
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5330,6 +5462,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
       propertyPath: m_Name
       value: Piedra4 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5522,6 +5658,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra7 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5578,6 +5718,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
       propertyPath: m_Name
       value: Piedra6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5652,6 +5796,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
       propertyPath: m_Name
       value: Piedra5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5899,6 +6047,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra8 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5972,7 +6124,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -6057,6 +6209,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
       propertyPath: m_Name
       value: Piedra7 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6281,6 +6437,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra6 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6451,6 +6611,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
       propertyPath: m_Name
       value: Piedra7 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7088,6 +7252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra8 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7226,6 +7394,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
       propertyPath: m_Name
       value: Piedra8 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7456,6 +7628,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7517,6 +7693,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7602,6 +7782,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 866159b77a56c4c42a163bb66e33101e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7658,6 +7842,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
       propertyPath: m_Name
       value: Piedra4 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7867,6 +8055,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
       propertyPath: m_Name
       value: Piedra8 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8148,6 +8340,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra7 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8282,6 +8478,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8360,6 +8560,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8666,6 +8870,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1238622132}
+  - component: {fileID: 1238622133}
   m_Layer: 0
   m_Name: TerrainStuff
   m_TagString: Untagged
@@ -8766,6 +8971,19 @@ Transform:
   - {fileID: 1463218272}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1238622133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238622131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44672ad16dc07b542bcbdc7239c5d01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidadRotacion: 0.5
 --- !u!4 &1247329843 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
@@ -9128,6 +9346,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9184,6 +9406,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
       propertyPath: m_Name
       value: Piedra6 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9263,6 +9489,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9408,6 +9638,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra7 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9464,6 +9698,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
       propertyPath: m_Name
       value: Piedra6 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9676,6 +9914,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra7 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9878,7 +10120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4401700721903503407, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00000047683716
+      value: -0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 4401700721903503407, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10557,6 +10799,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10626,6 +10872,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10691,6 +10941,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
       propertyPath: m_Name
       value: Piedra8 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10873,6 +11127,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint
       objectReference: {fileID: 0}
+    - target: {fileID: 4617325823200407039, guid: b1ccebbbf7d236d4fa97a4a9a7c14764, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673033495530110482, guid: b1ccebbbf7d236d4fa97a4a9a7c14764, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11044,6 +11306,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 866159b77a56c4c42a163bb66e33101e, type: 3}
       propertyPath: m_Name
       value: Piedra2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 866159b77a56c4c42a163bb66e33101e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11250,6 +11516,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11306,6 +11576,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11574,6 +11848,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11630,6 +11908,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
       propertyPath: m_Name
       value: Piedra4 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11880,6 +12162,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra6 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11953,6 +12239,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
       propertyPath: m_Name
       value: Piedra7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12121,6 +12411,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12181,6 +12475,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
       propertyPath: m_Name
       value: Piedra8 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12248,6 +12546,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12318,6 +12620,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
       propertyPath: m_Name
       value: Piedra7 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12398,6 +12704,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
       propertyPath: m_Name
       value: Piedra5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12580,6 +12890,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra6 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12640,6 +12954,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
       propertyPath: m_Name
       value: Piedra7 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12714,6 +13032,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13070,6 +13392,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13134,6 +13460,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 866159b77a56c4c42a163bb66e33101e, type: 3}
       propertyPath: m_Name
       value: Piedra2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 866159b77a56c4c42a163bb66e33101e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13248,6 +13578,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13493,6 +13827,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13549,6 +13887,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
       propertyPath: m_Name
       value: Piedra8 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14065,6 +14407,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

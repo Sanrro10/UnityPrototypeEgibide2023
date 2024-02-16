@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18905267, g: 0.21915069, b: 0.24250522, a: 1}
+  m_IndirectSpecularColor: {r: 0.18889779, g: 0.21909595, b: 0.24246809, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 4c48159ce0ebacd4c88e105d169f7a48, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: e38d1a11fb02aab4ba2df31036494c9a, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -193,6 +193,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
       propertyPath: m_Name
       value: Piedra6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -312,6 +316,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 3 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -373,6 +381,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
       propertyPath: m_Name
       value: valla parcial 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -451,10 +463,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!1001 &59437412
 PrefabInstance:
@@ -507,6 +516,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -649,6 +662,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -718,6 +735,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -774,6 +795,10 @@ PrefabInstance:
     - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Name
       value: nube (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 1708063092708624957, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -848,6 +873,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
       propertyPath: m_Name
       value: Piedra7 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -925,10 +954,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!1001 &153771703
 PrefabInstance:
@@ -1051,6 +1077,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1125,6 +1155,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1190,10 +1224,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5773037054852599180, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
 --- !u!4 &183824831 stripped
 Transform:
@@ -1443,6 +1474,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra6 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1529,10 +1564,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!4 &242077415 stripped
 Transform:
@@ -1598,10 +1630,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!4 &244146422 stripped
 Transform:
@@ -1675,10 +1704,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!1001 &258360645
 PrefabInstance:
@@ -1735,10 +1761,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5773037054852599180, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
 --- !u!1001 &265699847
 PrefabInstance:
@@ -1791,6 +1814,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
       propertyPath: m_Name
       value: valla parcial 4 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1853,10 +1880,7 @@ PrefabInstance:
     - {fileID: 3303647722639586241, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!1001 &279158511
 PrefabInstance:
@@ -1917,6 +1941,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
       propertyPath: m_Name
       value: Piedra7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1989,10 +2017,7 @@ PrefabInstance:
     - {fileID: 3303647722639586241, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!4 &288021299 stripped
 Transform:
@@ -2055,6 +2080,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2193,6 +2222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: nube (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 1708063092708624957, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2253,6 +2286,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
       propertyPath: m_Name
       value: Piedra6 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2320,6 +2357,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2376,6 +2417,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
       propertyPath: m_Name
       value: valla parcial 3 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2450,6 +2495,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2709,6 +2758,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 4 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2781,6 +2834,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 4 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2842,6 +2899,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
       propertyPath: m_Name
       value: Piedra6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2915,10 +2976,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4658159663495017341, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
 --- !u!1001 &416321461
 PrefabInstance:
@@ -2976,10 +3034,7 @@ PrefabInstance:
     - {fileID: 3303647722639586241, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!1001 &428763614
 PrefabInstance:
@@ -3036,10 +3091,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5773037054852599180, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
 --- !u!1001 &443854612
 PrefabInstance:
@@ -3105,6 +3157,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3166,6 +3222,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
       propertyPath: m_Name
       value: Piedra8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3241,6 +3301,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: nube (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 1708063092708624957, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3311,6 +3375,10 @@ PrefabInstance:
     - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Name
       value: nube (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3396,6 +3464,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3464,6 +3536,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
       propertyPath: m_Name
       value: Piedra6 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3540,10 +3616,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5773037054852599180, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
 --- !u!4 &539932658 stripped
 Transform:
@@ -3693,6 +3766,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3827,6 +3904,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 866159b77a56c4c42a163bb66e33101e, type: 3}
       propertyPath: m_Name
       value: Piedra2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 866159b77a56c4c42a163bb66e33101e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3976,10 +4057,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3047430541371815946, guid: e4193518acfbca6478c03760deb5e239, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4193518acfbca6478c03760deb5e239, type: 3}
 --- !u!1001 &604478832
 PrefabInstance:
@@ -4032,6 +4110,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
       propertyPath: m_Name
       value: Piedra5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4099,6 +4181,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra6 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4164,6 +4250,10 @@ PrefabInstance:
     - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Name
       value: nube (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 1708063092708624957, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4246,10 +4336,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3047430541371815946, guid: e4193518acfbca6478c03760deb5e239, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4193518acfbca6478c03760deb5e239, type: 3}
 --- !u!4 &644952514 stripped
 Transform:
@@ -4307,6 +4394,10 @@ PrefabInstance:
     - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Name
       value: nube (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 1708063092708624957, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4388,10 +4479,7 @@ PrefabInstance:
     - {fileID: 3303647722639586241, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!4 &656250669 stripped
 Transform:
@@ -4453,10 +4541,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!4 &667274281 stripped
 Transform:
@@ -4526,10 +4611,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3047430541371815946, guid: e4193518acfbca6478c03760deb5e239, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4193518acfbca6478c03760deb5e239, type: 3}
 --- !u!1001 &682540131
 PrefabInstance:
@@ -4582,6 +4664,10 @@ PrefabInstance:
     - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Name
       value: nube (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 1708063092708624957, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4672,6 +4758,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4761,6 +4851,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4822,6 +4916,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
       propertyPath: m_Name
       value: valla parcial 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4911,6 +5009,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5207,6 +5309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5299,10 +5405,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5773037054852599180, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
 --- !u!1001 &787921919
 PrefabInstance:
@@ -5489,6 +5592,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 2 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5551,6 +5658,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5607,6 +5718,10 @@ PrefabInstance:
     - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Name
       value: nube (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 1708063092708624957, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5793,10 +5908,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5773037054852599180, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
 --- !u!4 &848718737 stripped
 Transform:
@@ -5854,6 +5966,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
       propertyPath: m_Name
       value: Piedra6 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5921,6 +6037,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5985,6 +6105,10 @@ PrefabInstance:
     - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Name
       value: nube (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 1708063092708624957, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6188,6 +6312,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
       propertyPath: m_Name
       value: Piedra5 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6479,6 +6607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6616,10 +6748,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4658159663495017341, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
 --- !u!1001 &960502984
 PrefabInstance:
@@ -6672,6 +6801,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
       propertyPath: m_Name
       value: valla parcial 2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6954,10 +7087,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!1001 &1081559801
 PrefabInstance:
@@ -7030,10 +7160,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!1 &1088946895 stripped
 GameObject:
@@ -7171,6 +7298,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 466a2b5a669c1a14882c3c35fcf7edcc, type: 3}
       propertyPath: m_Name
       value: Piedra3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 466a2b5a669c1a14882c3c35fcf7edcc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7414,6 +7545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 4 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7475,6 +7610,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7625,6 +7764,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra8
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7704,6 +7847,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
       propertyPath: m_Name
       value: Piedra7 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7875,10 +8022,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3047430541371815946, guid: e4193518acfbca6478c03760deb5e239, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4193518acfbca6478c03760deb5e239, type: 3}
 --- !u!1001 &1213407560
 PrefabInstance:
@@ -8146,10 +8290,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5773037054852599180, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
 --- !u!1001 &1274492340
 PrefabInstance:
@@ -8206,6 +8347,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
       propertyPath: m_Name
       value: Piedra6 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8268,6 +8413,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8334,6 +8483,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
       propertyPath: m_Name
       value: Piedra5 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8404,10 +8557,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!1001 &1296769159
 PrefabInstance:
@@ -8460,6 +8610,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
       propertyPath: m_Name
       value: Piedra4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8647,6 +8801,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8703,6 +8861,10 @@ PrefabInstance:
     - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Name
       value: nube (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8764,6 +8926,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
       propertyPath: m_Name
       value: Piedra8 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8884,6 +9050,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Palo4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46a4772a781e30249aba9f6af2a4202c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8949,6 +9119,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2ef086ff57bad3b47ac71307132819b6, type: 3}
       propertyPath: m_Name
       value: Palo2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2ef086ff57bad3b47ac71307132819b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9076,10 +9250,7 @@ PrefabInstance:
     - {fileID: 3303647722639586241, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!1001 &1415179001
 PrefabInstance:
@@ -9140,6 +9311,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
       propertyPath: m_Name
       value: valla parcial 4 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9269,6 +9444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 466a2b5a669c1a14882c3c35fcf7edcc, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9341,6 +9520,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9410,6 +9593,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9467,6 +9654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 4 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9523,6 +9714,10 @@ PrefabInstance:
     - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Name
       value: nube (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 1708063092708624957, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -9590,6 +9785,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7910f96ed94ef3744b9b843462fc33e6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9609,12 +9808,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 153034733405335366, guid: b79f68355f896a04586835700a90f915, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 153034733405335366, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 160013988021940176, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_ChildCameras.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1509413639970668840, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_Name
@@ -9670,7 +9873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4401700721903503407, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00000047683716
+      value: -0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 4401700721903503407, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9789,6 +9992,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9862,10 +10069,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3047430541371815946, guid: e4193518acfbca6478c03760deb5e239, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4193518acfbca6478c03760deb5e239, type: 3}
 --- !u!1001 &1496719597
 PrefabInstance:
@@ -9926,6 +10130,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10008,10 +10216,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!1 &1504399966
 GameObject:
@@ -10102,10 +10307,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!4 &1543180178 stripped
 Transform:
@@ -10261,6 +10463,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10327,10 +10533,7 @@ PrefabInstance:
     - {fileID: 3303647722639586241, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!4 &1565199820 stripped
 Transform:
@@ -10518,6 +10721,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Palo5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb0107861a518354d89c10d7d2494784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10656,6 +10863,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: nube (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 1708063092708624957, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -10772,10 +10983,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3047430541371815946, guid: e4193518acfbca6478c03760deb5e239, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4193518acfbca6478c03760deb5e239, type: 3}
 --- !u!4 &1629515508 stripped
 Transform:
@@ -10968,10 +11176,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3047430541371815946, guid: e4193518acfbca6478c03760deb5e239, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4193518acfbca6478c03760deb5e239, type: 3}
 --- !u!4 &1660805098 stripped
 Transform:
@@ -11033,6 +11238,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
       propertyPath: m_Name
       value: Piedra8 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42786f8f34618a74098811178afef182, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11111,10 +11320,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5773037054852599180, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
 --- !u!1001 &1692327510
 PrefabInstance:
@@ -11241,10 +11447,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5773037054852599180, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
 --- !u!4 &1699549275 stripped
 Transform:
@@ -11319,10 +11522,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3047430541371815946, guid: e4193518acfbca6478c03760deb5e239, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4193518acfbca6478c03760deb5e239, type: 3}
 --- !u!1001 &1743157302
 PrefabInstance:
@@ -11399,10 +11599,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3047430541371815946, guid: e4193518acfbca6478c03760deb5e239, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4193518acfbca6478c03760deb5e239, type: 3}
 --- !u!4 &1750392135 stripped
 Transform:
@@ -11476,10 +11673,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3047430541371815946, guid: e4193518acfbca6478c03760deb5e239, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4193518acfbca6478c03760deb5e239, type: 3}
 --- !u!1001 &1757292524
 PrefabInstance:
@@ -11540,6 +11734,10 @@ PrefabInstance:
     - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Name
       value: nube (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 1708063092708624957, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -11617,10 +11815,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3047430541371815946, guid: e4193518acfbca6478c03760deb5e239, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4193518acfbca6478c03760deb5e239, type: 3}
 --- !u!1001 &1790955575
 PrefabInstance:
@@ -11795,10 +11990,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5773037054852599180, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a38217659657349be2fd9d7c54d2fb, type: 3}
 --- !u!4 &1797626138 stripped
 Transform:
@@ -11856,6 +12048,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11918,6 +12114,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12046,6 +12246,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12107,6 +12311,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12286,6 +12494,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: valla parcial 3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7e0d8f75efb8864a837514080d04a06, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12360,6 +12572,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12461,6 +12677,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd56255821bf248b0d717efa36ed8e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12521,6 +12741,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
       propertyPath: m_Name
       value: valla parcial 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12588,6 +12812,10 @@ PrefabInstance:
     - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Name
       value: nube
+      objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 1708063092708624957, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -12665,10 +12893,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4658159663495017341, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
 --- !u!1001 &1943612568
 PrefabInstance:
@@ -12729,6 +12954,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12826,10 +13055,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!1001 &1964609169
 PrefabInstance:
@@ -12886,10 +13112,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!1001 &1974712664
 PrefabInstance:
@@ -12950,6 +13173,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
       propertyPath: m_Name
       value: Piedra6 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13017,6 +13244,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
       propertyPath: m_Name
       value: valla parcial 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b16b689ef47e504a8d986a6f3e22696, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13091,6 +13322,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
       propertyPath: m_Name
       value: Piedra1 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13409,6 +13644,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Piedra1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 261957e45e9fd7d41bb6904d78f97b1c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13487,6 +13726,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
       propertyPath: m_Name
       value: Piedra6 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13635,6 +13878,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: nube (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 915565692272897000, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 1708063092708624957, guid: bb2f2347de4cc7648995cf97506ef65b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -13700,6 +13947,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
       propertyPath: m_Name
       value: valla parcial 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faaa3297ff3f8a943b509078cdca1360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13783,10 +14034,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4658159663495017341, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b87a245abe6d73408e4a9ca680ada57, type: 3}
 --- !u!1001 &2110603947
 PrefabInstance:
@@ -13855,10 +14103,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!4 &2118691148 stripped
 Transform:
@@ -13932,10 +14177,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1492830905798447523, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca1eafa42e2b7b42bfae45f4870fc1b, type: 3}
 --- !u!1001 &2126148329
 PrefabInstance:
