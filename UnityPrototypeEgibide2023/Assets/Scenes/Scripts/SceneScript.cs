@@ -16,7 +16,7 @@ public class SceneScript : MonoBehaviour
     [SerializeField] private Canvas canvasOptions;
     
     private string mainScene = "1.0.1 (Tutorial)";
-    private string textSlotDefault = "Nueva Partida";
+    private string textSlotDefault = "New Game";
     private bool confirm = false;
     private string guardarSlot;
     private List <GameData>  gameDatas;
@@ -177,7 +177,25 @@ public class SceneScript : MonoBehaviour
     public void playGame(string slot)
     {
         PlayerPrefs.SetString("slot", slot);
-        ChangeScene(mainScene);
+        string scene = "";
+        
+        if (slot.Equals("1"))
+        {
+            scene = gameDatas[0].spawnScene.GetSceneName();
+        }
+        if (slot.Equals("2"))
+        {
+            scene = gameDatas[1].spawnScene.GetSceneName();
+        }
+        if (slot.Equals("3"))
+        {
+            scene = gameDatas[2].spawnScene.GetSceneName();
+        }
+        if (scene.Equals(""))
+        {
+            scene = mainScene;
+        }
+        ChangeScene(scene);
     }
     
     private List<GameData> fillGameDatas()
