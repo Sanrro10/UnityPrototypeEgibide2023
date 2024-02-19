@@ -25,7 +25,7 @@ Shader "Simple Toon/SToon Outline"
 
 		[Header(Outline)][Space(5)]  //outline
 		_OtlColor ("Color", COLOR) = (0,0,0,1)
-		_OtlWidth ("Width", Range(0,5)) = 1
+		_OtlWidth ("Width", Range(0,7)) = 1
 
         [Header(Shine)][Space(5)]  //shine
 		[HDR] _ShnColor ("Color", COLOR) = (1,1,0,1)
