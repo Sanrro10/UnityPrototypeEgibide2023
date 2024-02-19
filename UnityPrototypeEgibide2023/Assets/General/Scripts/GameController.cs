@@ -72,7 +72,7 @@ namespace General.Scripts
                 DontDestroyOnLoad(transform.gameObject);
                 gameData = SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
                 // add chgeck if it's the editor
-                if (gameData.isValid)
+                if (gameData.isValid && !Application.isEditor)
                 {
                     _lastCheckpoint.Scene = gameData.spawnScene;
                     _lastCheckpoint.Position = gameData.spawnPosition;

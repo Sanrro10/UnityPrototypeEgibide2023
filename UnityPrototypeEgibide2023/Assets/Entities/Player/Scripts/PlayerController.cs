@@ -205,9 +205,10 @@ namespace Entities.Player.Scripts
                         if(_sPlayerCurrentPersistentData.PotionList != null ) 
                         {
                                 potionList.AddRange(_sPlayerCurrentPersistentData.PotionList);
+                                
                         }
 
-                        if (_sPlayerCurrentPersistentData.SelectedPotion is not null)
+                        if (_sPlayerCurrentPersistentData.SelectedPotion != null)
                         {
                                 selectedPotion = _sPlayerCurrentPersistentData.SelectedPotion;
                                         _selectedPotionImage.color = new Color(255, 255, 255, 255);

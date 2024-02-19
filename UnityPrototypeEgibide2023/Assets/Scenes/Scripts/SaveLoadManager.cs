@@ -74,6 +74,7 @@ public class SaveLoadManager
     
     public static void CreateFilesDataSave()
     {
+        if (Application.isEditor) return;
         string path = Application.persistentDataPath + "/" + nameFile + 1 + extensionFile ;
         if (!File.Exists(path))
         {
