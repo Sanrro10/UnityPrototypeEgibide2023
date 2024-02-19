@@ -233,6 +233,7 @@ namespace Entities.Player.Scripts
                 {
                         PotionBehavior.OnPotionDestroy -= ResetPotionCooldown;
                         PotionUnlockerScript.OnPotionUnlock -= UnlockPotion;
+                        UnlockEverything.OnAllUnlock -= UnlockEverythingN;
                         _controls.GeneralActionMap.ChangePotionL.performed -= ctx=> ShowPotionSelector(true);
                         _controls.GeneralActionMap.ChangePotionR.performed -= ctx => ShowPotionSelector(false);
                         _controls.Disable();
