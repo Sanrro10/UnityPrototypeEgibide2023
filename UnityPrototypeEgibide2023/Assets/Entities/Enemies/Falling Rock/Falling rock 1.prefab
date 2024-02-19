@@ -139,7 +139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FacingRight: 0
-  speed: 0
   collider: {fileID: 1680163348106986282}
   rock: {fileID: 9184462301646381687}
   explotion: {fileID: 3397103888295994882, guid: ba6624572166b2b45ad847242bb7936c, type: 3}
@@ -5047,6 +5046,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7c921082780ac6644becc8438d6424cb, type: 2}
     - target: {fileID: 919132149155446097, guid: 69ab5013a292d2d44b175c52bb486efb, type: 3}
       propertyPath: m_Name
       value: Piedra4

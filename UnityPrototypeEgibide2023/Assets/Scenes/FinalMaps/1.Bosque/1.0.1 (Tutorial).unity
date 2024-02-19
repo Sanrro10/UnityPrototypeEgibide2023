@@ -249,7 +249,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &31979696
 Transform:
@@ -775,7 +775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7841997040456867318, guid: 3afd60ee68e34c0438be8eb3d9894f3a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.0871058
+      value: 6.178
       objectReference: {fileID: 0}
     - target: {fileID: 7841997040456867318, guid: 3afd60ee68e34c0438be8eb3d9894f3a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1651,7 +1651,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &243862533
 SpriteRenderer:
@@ -2365,10 +2365,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plataforma Hojas (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5698396648163890062, guid: 585af35264617434c85a51b14818a1c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637040559702375535, guid: 585af35264617434c85a51b14818a1c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8285721290009009594, guid: 585af35264617434c85a51b14818a1c3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 64a6fffb9aa3ed2408e3b31ea7268929, type: 2}
+      objectReference: {fileID: 2100000, guid: 1957b82341cc6be40870ac4e93a9a6c5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2635,7 +2643,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &408052349
 SpriteRenderer:
@@ -2719,7 +2727,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &414229753
 SpriteRenderer:
@@ -3476,7 +3484,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &516788115
 SpriteRenderer:
@@ -3985,6 +3993,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plataforma Hojas (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5698396648163890062, guid: 585af35264617434c85a51b14818a1c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637040559702375535, guid: 585af35264617434c85a51b14818a1c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4321,7 +4337,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &660403951
 SpriteRenderer:
@@ -4932,6 +4948,10 @@ PrefabInstance:
     - target: {fileID: 2022720626091110343, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
       propertyPath: m_Name
       value: flores-1 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022720626091110343, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4134939537970454558, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6367,6 +6387,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: flores-1 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2022720626091110343, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4134939537970454558, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.49999994
@@ -6867,6 +6891,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plataforma Hojas (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5698396648163890062, guid: 585af35264617434c85a51b14818a1c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637040559702375535, guid: 585af35264617434c85a51b14818a1c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285721290009009594, guid: 585af35264617434c85a51b14818a1c3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1957b82341cc6be40870ac4e93a9a6c5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7247,7 +7283,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &1172880024
 SpriteRenderer:
@@ -7934,7 +7970,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1229936499
 Transform:
@@ -8213,6 +8249,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plataforma Hojas (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5698396648163890062, guid: 585af35264617434c85a51b14818a1c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7637040559702375535, guid: 585af35264617434c85a51b14818a1c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285721290009009594, guid: 585af35264617434c85a51b14818a1c3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1957b82341cc6be40870ac4e93a9a6c5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8301,6 +8349,10 @@ PrefabInstance:
     - target: {fileID: 2022720626091110343, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
       propertyPath: m_Name
       value: flores-1 1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022720626091110343, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4134939537970454558, guid: b2cc5b772767bbb4a8bee8393408b474, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8723,7 +8775,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &1319264446
 SpriteRenderer:
@@ -9114,6 +9166,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plataforma Hojas (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 716355749690521423, guid: c163d21bda509594899fd2579ea0aa50, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358531582395670177, guid: c163d21bda509594899fd2579ea0aa50, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015710628400103284, guid: c163d21bda509594899fd2579ea0aa50, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1957b82341cc6be40870ac4e93a9a6c5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9692,7 +9756,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!212 &1482838455
 SpriteRenderer:
@@ -14108,7 +14172,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ccbc8da4077f94241bc141aee9ed1b94, type: 2}
+  - {fileID: 2100000, guid: 0819295bc72bc3947a7228fb73b4ad92, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
