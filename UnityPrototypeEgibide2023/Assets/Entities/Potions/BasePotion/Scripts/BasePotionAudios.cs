@@ -17,6 +17,12 @@ public class BasePotionAudios : MonoBehaviour
         _audioSource.Play();
     }
 
+    public void AudioExplosionPlay()
+    {
+        _audioSource.clip = _audios.audios[1];
+        _audioSource.Play();
+    }
+
     // Update is called once per frame
     void Update()
     {

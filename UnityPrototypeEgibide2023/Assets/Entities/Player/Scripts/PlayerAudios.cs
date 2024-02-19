@@ -49,14 +49,14 @@ public class PlayerAudios : MonoBehaviour
     }
     public void AudioHurtPlay()
     {
-        _audioSource.clip = _audios.audios[3];
+        _audioSource.clip = _audios.audios[5];
         _audioSource.volume = 0.5f;
         _audioSource.Play();
     }
     
     public void AudioDeadPlay()
     {
-        _audioSource.clip = _audios.audios[4];
+        _audioSource.clip = _audios.audios[6];
         _audioSource.volume = 0.5f;
         _audioSource.Play();
     }
@@ -67,9 +67,16 @@ public class PlayerAudios : MonoBehaviour
         _audioSource.Play();
     }
 
-    public void AudioPotionThrow()
+    public void AudioJumpPlay()
     {
-        
+        _audioSource.clip = _audios.audios[3];
+        _audioSource.Play();
+    }
+
+    public void AudioThrowPotionPlay()
+    {
+        _audioSource.clip = _audios.audios[4];
+        _audioSource.Play();
     }
     
     
