@@ -82,6 +82,7 @@ namespace General.Scripts
                     PlayerPersistentDataBetweenScenes.CurrentHealth = 100;
                     PlayerPersistentDataBetweenScenes.AirDashUnlocked = gameData.AirDashUnlocked;
                     PlayerPersistentDataBetweenScenes.PotionList = gameData.PotionList;
+                    collectedItems = gameData.collectedItems;
                 }
                 else
                 {
