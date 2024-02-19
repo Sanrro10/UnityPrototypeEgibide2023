@@ -116,6 +116,33 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UnlockPotionExplosion"",
+                    ""type"": ""Button"",
+                    ""id"": ""adaa9269-fc37-4fac-b61d-18b4d911018a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UnlockPotionThunder"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a7f28b3-5956-48ae-be48-7f8e18a465a8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UnlockAirdash"",
+                    ""type"": ""Button"",
+                    ""id"": ""fcb614f7-1019-4c7a-b216-943c45064720"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -844,6 +871,39 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""ChangePotionR"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2071c0d-80d2-4287-b852-3c11ab60110d"",
+                    ""path"": ""<Keyboard>/#(1)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnlockPotionExplosion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33c7206c-a282-4928-b2a4-78cf628ca03a"",
+                    ""path"": ""<Keyboard>/#(2)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnlockPotionThunder"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1a1c1014-d2ab-4555-8fe2-acec7d605933"",
+                    ""path"": ""<Keyboard>/#(3)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UnlockAirdash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -862,6 +922,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_GeneralActionMap_VerticalMovement = m_GeneralActionMap.FindAction("VerticalMovement", throwIfNotFound: true);
         m_GeneralActionMap_ChangePotionL = m_GeneralActionMap.FindAction("ChangePotionL", throwIfNotFound: true);
         m_GeneralActionMap_ChangePotionR = m_GeneralActionMap.FindAction("ChangePotionR", throwIfNotFound: true);
+        m_GeneralActionMap_UnlockPotionExplosion = m_GeneralActionMap.FindAction("UnlockPotionExplosion", throwIfNotFound: true);
+        m_GeneralActionMap_UnlockPotionThunder = m_GeneralActionMap.FindAction("UnlockPotionThunder", throwIfNotFound: true);
+        m_GeneralActionMap_UnlockAirdash = m_GeneralActionMap.FindAction("UnlockAirdash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -933,6 +996,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_GeneralActionMap_VerticalMovement;
     private readonly InputAction m_GeneralActionMap_ChangePotionL;
     private readonly InputAction m_GeneralActionMap_ChangePotionR;
+    private readonly InputAction m_GeneralActionMap_UnlockPotionExplosion;
+    private readonly InputAction m_GeneralActionMap_UnlockPotionThunder;
+    private readonly InputAction m_GeneralActionMap_UnlockAirdash;
     public struct GeneralActionMapActions
     {
         private @InputActions m_Wrapper;
@@ -947,6 +1013,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @VerticalMovement => m_Wrapper.m_GeneralActionMap_VerticalMovement;
         public InputAction @ChangePotionL => m_Wrapper.m_GeneralActionMap_ChangePotionL;
         public InputAction @ChangePotionR => m_Wrapper.m_GeneralActionMap_ChangePotionR;
+        public InputAction @UnlockPotionExplosion => m_Wrapper.m_GeneralActionMap_UnlockPotionExplosion;
+        public InputAction @UnlockPotionThunder => m_Wrapper.m_GeneralActionMap_UnlockPotionThunder;
+        public InputAction @UnlockAirdash => m_Wrapper.m_GeneralActionMap_UnlockAirdash;
         public InputActionMap Get() { return m_Wrapper.m_GeneralActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -986,6 +1055,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ChangePotionR.started += instance.OnChangePotionR;
             @ChangePotionR.performed += instance.OnChangePotionR;
             @ChangePotionR.canceled += instance.OnChangePotionR;
+            @UnlockPotionExplosion.started += instance.OnUnlockPotionExplosion;
+            @UnlockPotionExplosion.performed += instance.OnUnlockPotionExplosion;
+            @UnlockPotionExplosion.canceled += instance.OnUnlockPotionExplosion;
+            @UnlockPotionThunder.started += instance.OnUnlockPotionThunder;
+            @UnlockPotionThunder.performed += instance.OnUnlockPotionThunder;
+            @UnlockPotionThunder.canceled += instance.OnUnlockPotionThunder;
+            @UnlockAirdash.started += instance.OnUnlockAirdash;
+            @UnlockAirdash.performed += instance.OnUnlockAirdash;
+            @UnlockAirdash.canceled += instance.OnUnlockAirdash;
         }
 
         private void UnregisterCallbacks(IGeneralActionMapActions instance)
@@ -1020,6 +1098,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ChangePotionR.started -= instance.OnChangePotionR;
             @ChangePotionR.performed -= instance.OnChangePotionR;
             @ChangePotionR.canceled -= instance.OnChangePotionR;
+            @UnlockPotionExplosion.started -= instance.OnUnlockPotionExplosion;
+            @UnlockPotionExplosion.performed -= instance.OnUnlockPotionExplosion;
+            @UnlockPotionExplosion.canceled -= instance.OnUnlockPotionExplosion;
+            @UnlockPotionThunder.started -= instance.OnUnlockPotionThunder;
+            @UnlockPotionThunder.performed -= instance.OnUnlockPotionThunder;
+            @UnlockPotionThunder.canceled -= instance.OnUnlockPotionThunder;
+            @UnlockAirdash.started -= instance.OnUnlockAirdash;
+            @UnlockAirdash.performed -= instance.OnUnlockAirdash;
+            @UnlockAirdash.canceled -= instance.OnUnlockAirdash;
         }
 
         public void RemoveCallbacks(IGeneralActionMapActions instance)
@@ -1049,5 +1136,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnVerticalMovement(InputAction.CallbackContext context);
         void OnChangePotionL(InputAction.CallbackContext context);
         void OnChangePotionR(InputAction.CallbackContext context);
+        void OnUnlockPotionExplosion(InputAction.CallbackContext context);
+        void OnUnlockPotionThunder(InputAction.CallbackContext context);
+        void OnUnlockAirdash(InputAction.CallbackContext context);
     }
 }

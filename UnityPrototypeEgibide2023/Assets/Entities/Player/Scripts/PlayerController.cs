@@ -149,9 +149,8 @@ namespace Entities.Player.Scripts
                         // Subscribe to events
                         AttackComponent.OnHit += OnHit;
                         PotionBehavior.OnPotionDestroy += ResetPotionCooldown;
-                        PotionUnlockerScript.OnPotionUnlock += unlockPotion;
-                        
-                        
+                        PotionUnlockerScript.OnPotionUnlock += UnlockPotion;
+                        UnlockEverything.OnAllUnlock += UnlockEverythingN;
                         //Inputs
                         _controls.GeneralActionMap.HorizontalMovement.started += ctx => isHoldingHorizontal = true;
                         _controls.GeneralActionMap.HorizontalMovement.canceled += ctx => isHoldingHorizontal = false;
@@ -233,7 +232,7 @@ namespace Entities.Player.Scripts
                 private void OnDestroy()
                 {
                         PotionBehavior.OnPotionDestroy -= ResetPotionCooldown;
-                        PotionUnlockerScript.OnPotionUnlock -= unlockPotion;
+                        PotionUnlockerScript.OnPotionUnlock -= UnlockPotion;
                         _controls.GeneralActionMap.ChangePotionL.performed -= ctx=> ShowPotionSelector(true);
                         _controls.GeneralActionMap.ChangePotionR.performed -= ctx => ShowPotionSelector(false);
                         _controls.Disable();
@@ -923,7 +922,7 @@ namespace Entities.Player.Scripts
 
                 // --------------- EVENTS ----------------------
 
-                private void unlockPotion(GameObject newPotion)
+                private void UnlockPotion(GameObject newPotion)
                 {
                         foreach (GameObject ownedPotion in potionList)
                         {
@@ -933,6 +932,22 @@ namespace Entities.Player.Scripts
                         selectedPotion = potionList[potionList.Count - 1];
                         ShowPotionSelector(false);
                         _sPlayerCurrentPersistentData.SelectedPotion = selectedPotion;
+                        _sPlayerCurrentPersistentData.PotionList = potionList.ToArray();
+                        GameController.Instance.PlayerPersistentDataBetweenScenes = _sPlayerCurrentPersistentData;
+                }
+                
+                private void UnlockEverythingN(GameObject[] potions)
+                {
+ 
+                        foreach (GameObject potion in potions)
+                        {
+                                potionList.Add(potion);
+                        }
+                        selectedPotion = potionList[potionList.Count - 1];
+                        ShowPotionSelector(false);
+                        isAirDashUnlocked = true;
+                        _sPlayerCurrentPersistentData.SelectedPotion = selectedPotion;
+                        _sPlayerCurrentPersistentData.AirDashUnlocked = true;
                         _sPlayerCurrentPersistentData.PotionList = potionList.ToArray();
                         GameController.Instance.PlayerPersistentDataBetweenScenes = _sPlayerCurrentPersistentData;
                 }

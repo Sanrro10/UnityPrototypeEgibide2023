@@ -94,6 +94,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "UnlockPotionExplosion",
+                    "type": "Button",
+                    "id": "adaa9269-fc37-4fac-b61d-18b4d911018a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UnlockPotionThunder",
+                    "type": "Button",
+                    "id": "7a7f28b3-5956-48ae-be48-7f8e18a465a8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UnlockAirdash",
+                    "type": "Button",
+                    "id": "fcb614f7-1019-4c7a-b216-943c45064720",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -820,6 +847,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "ChangePotionR",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c2071c0d-80d2-4287-b852-3c11ab60110d",
+                    "path": "<Keyboard>/#(1)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnlockPotionExplosion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "33c7206c-a282-4928-b2a4-78cf628ca03a",
+                    "path": "<Keyboard>/#(2)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnlockPotionThunder",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1a1c1014-d2ab-4555-8fe2-acec7d605933",
+                    "path": "<Keyboard>/#(3)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnlockAirdash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
