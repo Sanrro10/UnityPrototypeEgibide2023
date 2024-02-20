@@ -63,12 +63,13 @@ namespace Entities.Enemies.Witch.Scripts
 
         private void SelfDeath()
         {
-            _angerLevel = _angerLevel + landWitchData.angerIncrement;
+            _angerLevel += landWitchData.angerIncrement;
         }
 
         private void OnDestroy()
         {
             AllyDeath -= SelfDeath;
+            AllyDeath?.Invoke();
         }
 
 
@@ -356,7 +357,7 @@ namespace Entities.Enemies.Witch.Scripts
             ActivateAnimTeleport();
             /*Audio Risa*/
             Invoke(nameof(Delete),_tpTime + 0.5f);
-            AllyDeath?.Invoke();
+            
         }
         
         /*Teleports the witch on receiveing damage*/

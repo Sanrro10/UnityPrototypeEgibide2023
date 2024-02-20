@@ -20,6 +20,7 @@ public class BossFightManager : MonoBehaviour
     private float _fadeSpeed = 1f;
     
     
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,8 @@ public class BossFightManager : MonoBehaviour
 
     private void CheckAllWitchesDead()
     {
-        if (_aliveWitches != 0) return;
+        _aliveWitches--;
+         if (_aliveWitches != 0) return;
         beginTheEnd();
     }
     private void beginTheEnd()
@@ -74,7 +76,9 @@ public class BossFightManager : MonoBehaviour
             {
                 bruja.SetActive(true);
             }
+            gameObject.GetComponent<CircleCollider2D>().gameObject.SetActive(false);
         }
+        
     }
 
     private void GoToCredits()
