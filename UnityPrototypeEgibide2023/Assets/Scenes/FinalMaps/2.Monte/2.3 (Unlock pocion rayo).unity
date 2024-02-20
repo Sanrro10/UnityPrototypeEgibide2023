@@ -473,6 +473,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 866159b77a56c4c42a163bb66e33101e, type: 3}
   m_PrefabInstance: {fileID: 145124825}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &165193973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7865708398420468437, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
+  m_PrefabInstance: {fileID: 1574720407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &191454980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3007,6 +3012,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 073dbe1cd1c8a614ba15394dfd90ddf6, type: 3}
   m_PrefabInstance: {fileID: 191454980}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &930907845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6167294583904168027, guid: 34041593080544842b36d3fe7ecb8c5f, type: 3}
+  m_PrefabInstance: {fileID: 1714077845}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &974738140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4495,7 +4505,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.8178024
+      value: 11.65
       objectReference: {fileID: 0}
     - target: {fileID: 910811508919538440, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4534,13 +4544,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 165193973}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: line1
+      value: 
+      objectReference: {fileID: 1003577841}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: line2
+      value: 
+      objectReference: {fileID: 1795795503}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea1
       value: '[Q/E]'
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea2
-      value: Cambiar la pocion seleccionada
+      value: CAMBIAR POCION SLECCIONADA
       objectReference: {fileID: 0}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: control
+      value: 
+      objectReference: {fileID: 2800000, guid: 1e54c2c17ba42a842bbbd8d4c34ca698, type: 3}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: tutorialUI
       value: 
@@ -5805,6 +5831,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1504399967}
     m_Modifications:
     - target: {fileID: 4971723077781346576, guid: 34041593080544842b36d3fe7ecb8c5f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.2538
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971723077781346576, guid: 34041593080544842b36d3fe7ecb8c5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.128662
       objectReference: {fileID: 0}
@@ -5852,16 +5882,55 @@ PrefabInstance:
       propertyPath: potionToUnlock
       value: 
       objectReference: {fileID: 1266867429699652061, guid: ec67b8f63f9b3b2488fd048913b90480, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7592340122426876287, guid: 34041593080544842b36d3fe7ecb8c5f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6167294583904168027, guid: 34041593080544842b36d3fe7ecb8c5f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1714077850}
   m_SourcePrefab: {fileID: 100100000, guid: 34041593080544842b36d3fe7ecb8c5f, type: 3}
 --- !u!4 &1714077846 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4971723077781346576, guid: 34041593080544842b36d3fe7ecb8c5f, type: 3}
   m_PrefabInstance: {fileID: 1714077845}
   m_PrefabAsset: {fileID: 0}
+--- !u!70 &1714077850
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930907845}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.08687019, y: 5.1784697}
+  m_Size: {x: 2.2519722, y: 11.356939}
+  m_Direction: 0
 --- !u!1001 &1723483784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6080,6 +6149,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 38d8cb5eaae678945affaec57581fa29, type: 3}
   m_PrefabInstance: {fileID: 1776666792}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1795795503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8616968085070200552, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
+  m_PrefabInstance: {fileID: 1574720407}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1811581402
 PrefabInstance:
@@ -6443,17 +6517,41 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 165193973}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: line1
+      value: 
+      objectReference: {fileID: 1003577841}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: line2
+      value: 
+      objectReference: {fileID: 1795795503}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea1
-      value: La pocion de rayo puede destruir ciertos elementos
+      value: LA POCION DE RAYO PUEDE DESTRUIR ALGUNOS ELEMENTOS
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea2
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: control
+      value: 
+      objectReference: {fileID: 2800000, guid: ba12ee6e75b4f6042851ba646dff7713, type: 3}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: tutorialUI
       value: 
       objectReference: {fileID: 1003577841}
+    - target: {fileID: 3073738522455022494, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: m_Size.x
+      value: 6.5085545
+      objectReference: {fileID: 0}
+    - target: {fileID: 3073738522455022494, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.3139925
+      objectReference: {fileID: 0}
     - target: {fileID: 6525185880371465055, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: m_Name
       value: Pocion rayo
