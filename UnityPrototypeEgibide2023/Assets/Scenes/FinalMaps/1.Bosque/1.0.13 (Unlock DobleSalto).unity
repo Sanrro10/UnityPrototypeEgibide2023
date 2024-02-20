@@ -946,6 +946,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a25c226388ac0f44b4b10ebfaa991f4, type: 3}
+--- !u!1 &102540879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8616968085070200552, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
+  m_PrefabInstance: {fileID: 1574720407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &105530471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7192,6 +7197,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6154c12aeb5ba9943880e91a02545a87, type: 3}
+--- !u!1 &1150361165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7865708398420468437, guid: 866800dd83898a14da28cd9cecfa013b, type: 3}
+  m_PrefabInstance: {fileID: 1574720407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1151137730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11292,17 +11302,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 1150361165}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: line1
+      value: 
+      objectReference: {fileID: 1267442648}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: line2
+      value: 
+      objectReference: {fileID: 102540879}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: texto
       value: '[SPACE + SHIFT] Dash aereo'
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea1
-      value: '[SPACE + W/A/S/D + SHIFT]'
+      value: '[SHIFT] En el aire'
       objectReference: {fileID: 0}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: linea2
-      value: Dash aereo
+      value: DASH AERERO
       objectReference: {fileID: 0}
+    - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
+      propertyPath: control
+      value: 
+      objectReference: {fileID: 2800000, guid: 8a7c5c2b48513b94cb544ec33e2293c1, type: 3}
     - target: {fileID: 914730969401039318, guid: f6a6fffd0e2a27c49b8610fa6de07fcb, type: 3}
       propertyPath: tutorialUI
       value: 
