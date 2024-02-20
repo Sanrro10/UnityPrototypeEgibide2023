@@ -14,10 +14,12 @@ public class SceneChangeTrigger : MonoBehaviour
     [SerializeField] private Vector3 goToPosition;
     public bool onTheLeft;
     public bool useSceneChangeTrigger = true;
+    public bool requiredInputPress = false;
     
     
     private GameController.SPlayerSpawnData _spawnData;
-
+    public static event Action OnSceneChangeOverlap;
+    public static event Action OnSceneChangeExit;
     private void Awake()
     {
         _spawnData = new GameController.SPlayerSpawnData();
@@ -30,12 +32,23 @@ public class SceneChangeTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            var pc = other.GetComponent<PlayerController>();
-            if (pc == null) return;
-            if (pc.PmStateMachine.CurrentState is SceneChangeState) return;
-            GameController.Instance.SceneLoad(_spawnData,false);
-        }
+        if (requiredInputPress || !other.CompareTag("Player")) return;
+        ChangeScene(other.GetComponent<PlayerController>());
+    }
+    
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!requiredInputPress || !other.CompareTag("Player")) return;
+        OnSceneChangeOverlap?.Invoke();
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3)) ChangeScene(other.GetComponent<PlayerController>());
+    }
+
+    private void OnTriggerExit2D(Collider2D other) => OnSceneChangeExit?.Invoke();
+
+    private void ChangeScene(PlayerController pc)
+    {
+        if (pc == null) return;
+        if (pc.PmStateMachine.CurrentState is SceneChangeState) return;
+        GameController.Instance.SceneLoad(_spawnData,false);
     }
 }

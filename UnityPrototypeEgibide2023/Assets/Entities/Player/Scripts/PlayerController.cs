@@ -29,7 +29,7 @@ namespace Entities.Player.Scripts
                 [SerializeField] private GameObject dashEffect;
                 public Animator animator;
                 [SerializeField] private SpriteRenderer _spriteRenderer;
-                
+                [SerializeField] private GameObject changeButton;
         
         
                 // internal state controls
@@ -151,6 +151,8 @@ namespace Entities.Player.Scripts
                         PotionBehavior.OnPotionDestroy += ResetPotionCooldown;
                         PotionUnlockerScript.OnPotionUnlock += UnlockPotion;
                         UnlockEverything.OnAllUnlock += UnlockEverythingN;
+                        SceneChangeTrigger.OnSceneChangeOverlap += ShowChangeButton;
+                        SceneChangeTrigger.OnSceneChangeExit += HideChangeButton;
                         //Inputs
                         _controls.GeneralActionMap.HorizontalMovement.started += ctx => isHoldingHorizontal = true;
                         _controls.GeneralActionMap.HorizontalMovement.canceled += ctx => isHoldingHorizontal = false;
@@ -234,6 +236,8 @@ namespace Entities.Player.Scripts
                         PotionBehavior.OnPotionDestroy -= ResetPotionCooldown;
                         PotionUnlockerScript.OnPotionUnlock -= UnlockPotion;
                         UnlockEverything.OnAllUnlock -= UnlockEverythingN;
+                        SceneChangeTrigger.OnSceneChangeOverlap -= ShowChangeButton;
+                        SceneChangeTrigger.OnSceneChangeExit -= HideChangeButton;
                         _controls.GeneralActionMap.ChangePotionL.performed -= ctx=> ShowPotionSelector(true);
                         _controls.GeneralActionMap.ChangePotionR.performed -= ctx => ShowPotionSelector(false);
                         _controls.Disable();
@@ -1038,6 +1042,16 @@ namespace Entities.Player.Scripts
                 public void CoyoteTime()
                 {
                         isInCoyoteTime = false;
+                }
+
+                private void ShowChangeButton()
+                {
+                        changeButton.SetActive(true);
+                }
+                
+                private void HideChangeButton()
+                {
+                        changeButton.SetActive(false);
                 }
         }
 }
