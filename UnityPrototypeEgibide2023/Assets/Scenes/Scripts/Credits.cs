@@ -8,7 +8,7 @@ public class Credits : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("WaitToEnd", 5);
+        //Invoke("WaitToEnd", 5);
     }
 
     // Update is called once per frame
@@ -16,12 +16,12 @@ public class Credits : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Main Menu");
+            SceneManager.LoadScene(0);
         }
     }
 
     public void WaitToEnd()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene(0);
     }
 }
