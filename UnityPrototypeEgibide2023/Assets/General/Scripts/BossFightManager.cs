@@ -13,11 +13,12 @@ public class BossFightManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> brujas;
     private int _aliveWitches = 3;
-    public Canvas fadeOut;
-    public Canvas muteall;
+    private GameObject _fadeOut;
+    private GameObject _muteall;
     private Image _canvasFade;
     private TextMeshProUGUI _endingText;
     private float _fadeSpeed = 1f;
+    private bool _fightStarted = false;
     
     
     
@@ -25,20 +26,30 @@ public class BossFightManager : MonoBehaviour
     void Start()
     {
         LandWitch.AllyDeath += CheckAllWitchesDead;
-        _canvasFade = fadeOut.transform.Find("Panel").gameObject.GetComponent<Image>();
-        _endingText = fadeOut.transform.Find("Fin").gameObject.GetComponent<TextMeshProUGUI>();
+        _muteall = GameObject.Find("Canvas");
+        _fadeOut = GameObject.Find("FadeOut");
+        _canvasFade = _fadeOut.transform.Find("Panel").gameObject.GetComponent<Image>();
+        _endingText = _fadeOut.transform.Find("Fin").gameObject.GetComponent<TextMeshProUGUI>();
+        
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Se ha destruido");
     }
 
     private void CheckAllWitchesDead()
     {
         _aliveWitches--;
-         if (_aliveWitches != 0) return;
+        Debug.Log("Brujas Vivas" + _aliveWitches);
+         if (_aliveWitches > 0) return;
         beginTheEnd();
     }
     private void beginTheEnd()
     {
-        muteall.gameObject.SetActive(false);
         StartCoroutine(showPanel(_fadeSpeed, _canvasFade));
+        _muteall.gameObject.SetActive(false);
+        
     }
 
     private IEnumerator showText(float fade, TextMeshProUGUI text)
@@ -70,13 +81,15 @@ public class BossFightManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (_fightStarted) return;
         if (other.CompareTag("Player"))
         {
             foreach (GameObject bruja in brujas)
             {
                 bruja.SetActive(true);
             }
-            gameObject.GetComponent<CircleCollider2D>().gameObject.SetActive(false);
+
+            _fightStarted = true;
         }
         
     }
