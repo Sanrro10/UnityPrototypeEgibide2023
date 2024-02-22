@@ -19,8 +19,8 @@ public class ThunderAudios : MonoBehaviour
     }
     public void AudioGlassPlay()
     {
-        _audioSource.clip = _audios.audios[1];
-        _audioSource.Play();
+        // _audioSource.clip = _audios.audios[1];
+        // _audioSource.Play();
     }
     
 
