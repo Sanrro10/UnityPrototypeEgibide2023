@@ -15,8 +15,8 @@ public class ThunderSpawner : MonoBehaviour
     {
     	while(true)
     	{
-    		yield return new WaitForSeconds(Random.Range(1, 3));
-    		Instantiate(thunderPrefab, new Vector3(Random.Range(-10, 10) + transform.position.x,  transform.position.y, Random.Range(0, 10)), Quaternion.identity);
+    		yield return new WaitForSeconds(Random.Range(5, 20));
+    		Instantiate(thunderPrefab, new Vector3(transform.position.x,  transform.position.y, transform.position.z ), Quaternion.identity);
     	}
     }
 
