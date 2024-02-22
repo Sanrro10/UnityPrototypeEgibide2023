@@ -438,7 +438,7 @@ namespace Entities.Player.Scripts
                 }
                 public void StartUpdatingLastGroundedPosition()
                 {
-                        InvokeRepeating(nameof(UpdateLastGroundedPosition), 0, 0.5f);
+                        InvokeRepeating(nameof(UpdateLastGroundedPosition), 1f, 0.5f);
                 }
                 
                 public void StopUpdatingLastGroundedPosition()
@@ -1011,7 +1011,7 @@ namespace Entities.Player.Scripts
                 {
                         if (attack.damage > 10) PmStateMachine.TransitionTo(PmStateMachine.StunnedState);
                         if (attack.attackType == AttackComponent.AttackType.KillArea)
-                                transform.position = lastGroundedPosition;
+                                TeleportToSafePosition();
                         base.OnReceiveDamage(attack, facingRight);
                         _sPlayerCurrentPersistentData.CurrentHealth = Health.Get();
                         StartCoroutine(CoInvulnerability());
@@ -1052,6 +1052,13 @@ namespace Entities.Player.Scripts
                 private void HideChangeButton()
                 {
                         changeButton.SetActive(false);
+                }
+
+                private void TeleportToSafePosition()
+                {
+                        Rb.velocity = new Vector2();
+                        PmStateMachine.TransitionTo(PmStateMachine.IdleState);
+                        transform.position = lastGroundedPosition;
                 }
         }
 }
