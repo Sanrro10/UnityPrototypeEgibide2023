@@ -4,7 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
+using System;
 
 namespace DigitalRuby.SoundManagerNamespace
 {
@@ -22,6 +23,12 @@ namespace DigitalRuby.SoundManagerNamespace
         private GameObject go;
         private bool isOk;
         private Slider sl;
+
+        [SerializeField] AudioSource musicSource;
+        [SerializeField] AudioClip musica1;
+        [SerializeField] AudioClip musica2;
+        public float fadeDuration = 1.0f;
+
         private void Awake()
         {
             if (audioScript == null)
@@ -40,11 +47,48 @@ namespace DigitalRuby.SoundManagerNamespace
         // Start is called before the first frame update
         void Start()
         {
-            
+            SceneManager.sceneLoaded += OnSceneLoaded;
             //value = audioVolume;
             //SetVolume(audioVolume);
         }
 
+        private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
+        {
+            Debug.Log("la escena cargada tiene un indice =" + scene.buildIndex);
+            switch (scene.buildIndex)
+            {
+                case 1:
+                    StartCoroutine(PlayMusicWithFade(musica1));
+                    break;
+                case 13:
+                    StartCoroutine(PlayMusicWithFade(musica2));
+                    break;
+                // Agrega más casos según sea necesario para tus escenas
+                default:
+                    //StartCoroutine(PlayDefaultMusicWithFade());
+                    break;
+            }
+        }
+        private IEnumerator PlayMusicWithFade(AudioClip music)
+        {
+            float initialVolume = 0.0f;
+            float targetVolume = 1.0f;
+            float fadeTimer = 0.0f;
+
+            musicSource.Stop();
+            musicSource.clip = music;
+            musicSource.Play();
+
+            while (fadeTimer < fadeDuration)
+            {
+                fadeTimer += Time.deltaTime;
+                float t = fadeTimer / fadeDuration;
+                musicSource.volume = Mathf.Lerp(initialVolume, targetVolume, t);
+                yield return null;
+            }
+
+            musicSource.volume = targetVolume;
+        }
         // Update is called once per frame
         void Update()
         {
