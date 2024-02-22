@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Entities.Enemies.Witch.Scripts;
+using Entities.Player.Scripts;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,6 +13,7 @@ using UnityEngine.UI;
 public class BossFightManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> brujas;
+    [SerializeField] private GameObject _block;
     private int _aliveWitches = 3;
     private GameObject _fadeOut;
     private GameObject _muteall;
@@ -25,18 +27,22 @@ public class BossFightManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerController.OnPlayerDeath += DeactivateBlock;
         LandWitch.AllyDeath += CheckAllWitchesDead;
         _muteall = GameObject.Find("Canvas");
         _fadeOut = GameObject.Find("FadeOut");
         _canvasFade = _fadeOut.transform.Find("Panel").gameObject.GetComponent<Image>();
         _endingText = _fadeOut.transform.Find("Fin").gameObject.GetComponent<TextMeshProUGUI>();
-        
     }
 
     private void OnDestroy()
     {
         Debug.Log("Se ha destruido");
+        LandWitch.AllyDeath -= CheckAllWitchesDead;
+        PlayerController.OnPlayerDeath -= DeactivateBlock;
     }
+    
+    private void DeactivateBlock() => _block.SetActive(false);
 
     private void CheckAllWitchesDead()
     {
@@ -91,7 +97,7 @@ public class BossFightManager : MonoBehaviour
 
             _fightStarted = true;
         }
-        
+        _block.SetActive(true);
     }
 
     private void GoToCredits()
