@@ -6,7 +6,7 @@ public class AudioGoatScript : MonoBehaviour
 {
     private AudioSource _audioSource;
     [SerializeField] private Audios _audios;
-    
+    private int timeIdle;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +21,15 @@ public class AudioGoatScript : MonoBehaviour
     
     public void PlayIdleAudio()
     {
-        _audioSource.clip = _audios.audios[1];
-        _audioSource.Play();
+        if (timeIdle <= 0)
+        {
+            _audioSource.clip = _audios.audios[1];
+            _audioSource.Play();
+            timeIdle = 4;
+        }
+
+        timeIdle -= 1;
+
     }
 
     public void PlayAttackAudio()

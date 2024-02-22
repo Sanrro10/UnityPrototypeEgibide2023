@@ -82,11 +82,11 @@ namespace Entities.Player.Scripts
 
                 private CinemachineImpulseSource _impulseSource;
 
-                public CinemachineStateDrivenCamera cinemachine;
+                [SerializeField] private CinemachineStateDrivenCamera cinemachine;
                 
                 [SerializeField] private Audios _playerAudios;
 
-                private AudioSource _audioSource;
+                [SerializeField] private AudioSource _audioSource;
                 
                 //SpawnData
                 private GameController.SPlayerSpawnData _sPlayerSpawnData;
@@ -113,6 +113,7 @@ namespace Entities.Player.Scripts
 
                 [SerializeField] private GameObject effectSpawner;
                 [SerializeField] private GameObject airDashEffect;
+                [SerializeField] private Audios _audios;
                 //private AudioSource _audioSource;
                 
                 void Start()
@@ -131,7 +132,7 @@ namespace Entities.Player.Scripts
                         }
 
                         // Audio = 
-                        _audioSource = GetComponent<AudioSource>();
+                        //_audioSource = GetComponent<AudioSource>();
                         //_force2D = GetComponent<ConstantForce2D>();
                         animator = GetComponentInChildren<Animator>();
                         _spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -187,7 +188,7 @@ namespace Entities.Player.Scripts
                         // Pause
                         _controls.GeneralActionMap.Pause.performed += ctx => GameController.Instance.Pause();
                 
-                        cinemachine = GameObject.Find("Main Camera").GetComponent<CinemachineStateDrivenCamera>();
+                        cinemachine = GameObject.Find("State-Driven Camera").GetComponent<CinemachineStateDrivenCamera>();
                         healthText = GameObject.Find("TextHealth").GetComponent<Text>();
                         mainText = GameObject.Find("TextMain").GetComponent<Text>();
                         healthBar = GameObject.Find("SliderHealth").GetComponent<Slider>();
@@ -438,7 +439,7 @@ namespace Entities.Player.Scripts
                 }
                 public void StartUpdatingLastGroundedPosition()
                 {
-                        InvokeRepeating(nameof(UpdateLastGroundedPosition), 0, 0.5f);
+                        InvokeRepeating(nameof(UpdateLastGroundedPosition), 1f, 0.5f);
                 }
                 
                 public void StopUpdatingLastGroundedPosition()
@@ -1011,8 +1012,10 @@ namespace Entities.Player.Scripts
                 {
                         if (attack.damage > 10) PmStateMachine.TransitionTo(PmStateMachine.StunnedState);
                         if (attack.attackType == AttackComponent.AttackType.KillArea)
-                                transform.position = lastGroundedPosition;
+                                TeleportToSafePosition();
                         base.OnReceiveDamage(attack, facingRight);
+                        _audioSource.clip = _audios.audios[5];
+                        _audioSource.Play();
                         _sPlayerCurrentPersistentData.CurrentHealth = Health.Get();
                         StartCoroutine(CoInvulnerability());
                         healthText.text = (Health.Get() >= 0 ? Health.Get() : 0).ToString();
@@ -1052,6 +1055,13 @@ namespace Entities.Player.Scripts
                 private void HideChangeButton()
                 {
                         changeButton.SetActive(false);
+                }
+
+                private void TeleportToSafePosition()
+                {
+                        Rb.velocity = new Vector2();
+                        PmStateMachine.TransitionTo(PmStateMachine.IdleState);
+                        transform.position = lastGroundedPosition;
                 }
         }
 }
