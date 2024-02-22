@@ -94,6 +94,7 @@ namespace Entities.Player.Scripts
                 private GameController.SPlayerPersistentData _sPlayerCurrentPersistentData;
 
                 public static event Action<PlayerController> OnPlayerSpawn;
+                public static event Action OnPlayerDeath;
                 //Potion UI
                 private bool _onPotionCooldown;
                 private Slider _sliderPotion;
@@ -757,6 +758,7 @@ namespace Entities.Player.Scripts
 
                 public override void OnDeath()
                 {
+                        OnPlayerDeath?.Invoke();
                         DisablePlayerControls();
                         GameController.Instance.GameOver();
                         GameController.Instance.justDied = true;
