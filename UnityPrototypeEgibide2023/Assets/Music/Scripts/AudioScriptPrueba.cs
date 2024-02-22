@@ -27,8 +27,6 @@ namespace DigitalRuby.SoundManagerNamespace
         [SerializeField] AudioSource musicSource;
         [SerializeField] AudioClip musica1;
         [SerializeField] AudioClip musica2;
-        [SerializeField] AudioClip musica3;
-        [SerializeField] AudioClip musica4;
         public float fadeDuration = 1.0f;
 
         private void Awake()
@@ -65,13 +63,7 @@ namespace DigitalRuby.SoundManagerNamespace
                 case 13:
                     StartCoroutine(PlayMusicWithFade(musica2));
                     break;
-                case 18:
-                    StartCoroutine(PlayMusicWithFade(musica3));
-                    break;
-                case 21:
-                    StartCoroutine(PlayMusicWithFade(musica4));
-                    break;
-                // Agrega mï¿½s casos segï¿½n sea necesario para tus escenas
+                // Agrega más casos según sea necesario para tus escenas
                 default:
                     //StartCoroutine(PlayDefaultMusicWithFade());
                     break;
