@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2106067939}
-  m_IndirectSpecularColor: {r: 0.13113275, g: 0.09078867, b: 0.14000049, a: 1}
+  m_IndirectSpecularColor: {r: 0.13112965, g: 0.09076702, b: 0.13994548, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7719,7 +7719,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945152475}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7727,7 +7727,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 719, y: 22}
+  m_AnchoredPosition: {x: 719, y: 68}
   m_SizeDelta: {x: 1500, y: 2199.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1945152477
@@ -7783,12 +7783,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "CREDITOS\r\n\nAlumnos\n\r\nRAUL ESTRADA GARCIA \r\nMARKEL FERNANDEZ DE
-    LABASTIDA\r\nALEJANDRO LOPEZ DE GUERENU MACAZAGA\r\nJON MANEIRO GARCIA\r\nEGOITZ
-    PEREZ DE ARRILUCEA MONTEJO\r\nDAVID RAMIREZ SENSO\r\nANDER RODRIGUEZ GANCEDO\r\n\r\nMencion
-    especial al profesorado\n\r\nGAIZKA BERTOL BAYON\r\nINIGO GONZALEZ DE SAN ROMAN
-    ANTOLIN\r\nLEIRE OZAETA RODRIGUEZ\r\nLAURA DEL RIO MARTIN\r\n\r\nAgradecimiento
-    a todas aquellas personas que han jugado a nuestro juego."
+  m_text: "Alumnos:\r\n\r\n    Enemigos:\r\n        RAUL ESTRADA GARCIA [Raultxo]\r\n   
+    Combate:\r\n        ALEJANDRO LOPEZ DE GUERENU MACAZAGA [Dan(dy)]\r\n    Bruja:\r\n       
+    JON MANEIRO GARCIA [cafeconhelado]\r\n    Entornos:\r\n        EGOITZ PEREZ DE
+    ARRILUCEA MONTEJO [GOTXI1000]\r\n    Menus y guardado:\r\n        DAVID RAMIREZ
+    SENSO\r\n    Arte:\r\n        ANDER RODRIGUEZ GANCEDO [Andoru]\r\n    Audios
+    y camara:\r\n        MARKEL FERNANDEZ DE LABASTIDA\r\n\r\nMencion especial al
+    profesorado:\r\n\r\n    Diseno grafico 2D y 3D:\r\n        GAIZKA BERTOL BAYON\r\n   
+    Programacion y motores de videojuegos:\r\n        INIGO GONZALEZ DE SAN ROMAN
+    ANTOLIN\r\n    Programacion en red y inteligencia artificial:\r\n        LEIRE
+    OZAETA RODRIGUEZ\r\n    Gestion, publicacion y produccion:\r\n        LAURA DEL
+    RIO MARTIN\r\n\r\n    \u200BMusica:\r\n        Oreka TX\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 150186ab8d537a5408ecfafc94149951, type: 2}
   m_sharedMaterial: {fileID: -8030376796783021681, guid: 150186ab8d537a5408ecfafc94149951, type: 2}
@@ -7815,8 +7820,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
