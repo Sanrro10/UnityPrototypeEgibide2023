@@ -9698,11 +9698,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 153034733405335366, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.33
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 160013988021940176, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_ChildCameras.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1509413639970668840, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_Name
@@ -9752,9 +9752,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3248374679953100155, guid: b79f68355f896a04586835700a90f915, type: 3}
+      propertyPath: m_Lens.FarClipPlane
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 4018521029065746310, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_TrackedObjectOffset.y
-      value: -0.33
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4401700721903503407, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9770,7 +9774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5654634431472323380, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.32999945
+      value: -1.000001
       objectReference: {fileID: 0}
     - target: {fileID: 5654634431472323380, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9799,6 +9803,14 @@ PrefabInstance:
     - target: {fileID: 7390101292561489702, guid: b79f68355f896a04586835700a90f915, type: 3}
       propertyPath: field of view
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390101292561489702, guid: b79f68355f896a04586835700a90f915, type: 3}
+      propertyPath: far clip plane
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 9169578502533656293, guid: b79f68355f896a04586835700a90f915, type: 3}
+      propertyPath: m_Lens.FarClipPlane
+      value: 1500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
