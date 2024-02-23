@@ -72,7 +72,7 @@ namespace General.Scripts
                 DontDestroyOnLoad(transform.gameObject);
                 gameData = SaveLoadManager.LoadGame(PlayerPrefs.GetString("slot"));
                 // add chgeck if it's the editor
-                if (gameData.isValid && !Application.isEditor)
+                if (gameData.isValid)
                 {
                     _lastCheckpoint.Scene = gameData.spawnScene;
                     _lastCheckpoint.Position = gameData.spawnPosition;
@@ -133,6 +133,7 @@ namespace General.Scripts
             gameData.PotionList = PlayerPersistentDataBetweenScenes.PotionList;
             gameData.SelectedPotion = PlayerPersistentDataBetweenScenes.SelectedPotion;
             gameData.AirDashUnlocked = PlayerPersistentDataBetweenScenes.AirDashUnlocked;
+            
             SaveGame();
         }
 

@@ -119,18 +119,10 @@ namespace Entities.Player.Scripts
                 
                 void Start()
                 {
-
-                        if (GameController.Instance.PlayerPersistentDataBetweenScenes.Equals(default(GameController.SPlayerPersistentData)))
-                        {
-                                _sPlayerCurrentPersistentData.CurrentHealth = 100;
-                                _sPlayerCurrentPersistentData.PotionList = potionList.ToArray();
-                                _sPlayerCurrentPersistentData.SelectedPotion = null;
-                        }
-                        else
-                        {
-                                _sPlayerCurrentPersistentData =
-                                        GameController.Instance.PlayerPersistentDataBetweenScenes;
-                        }
+                       
+                        
+                        _sPlayerCurrentPersistentData =
+                                GameController.Instance.PlayerPersistentDataBetweenScenes;
 
                         // Audio = 
                         //_audioSource = GetComponent<AudioSource>();
@@ -191,7 +183,6 @@ namespace Entities.Player.Scripts
                         healthText = GameObject.Find("TextHealth").GetComponent<Text>();
                         mainText = GameObject.Find("TextMain").GetComponent<Text>();
                         healthBar = GameObject.Find("SliderHealth").GetComponent<Slider>();
-                        _selectedPotionImage = GameObject.Find("ImagePotionSelected").GetComponent<Image>();
                         //Set health
                         Health.Set(_sPlayerCurrentPersistentData.CurrentHealth);
                         healthText.text = Health.Get().ToString();
@@ -208,15 +199,19 @@ namespace Entities.Player.Scripts
                                 potionList.AddRange(_sPlayerCurrentPersistentData.PotionList);
                                 
                         }
-
-                        if (_sPlayerCurrentPersistentData.SelectedPotion != null)
+                        
+                        _selectedPotionImage ??= GameObject.Find("ImagePotionSelected").GetComponent<Image>();
+                        if (_sPlayerCurrentPersistentData.SelectedPotion != null )
                         {
                                 selectedPotion = _sPlayerCurrentPersistentData.SelectedPotion;
-                                        _selectedPotionImage.color = new Color(255, 255, 255, 255);
-                                        _selectedPotionImage.sprite = selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite;
+                                _selectedPotionImage.color = new Color(255, 255, 255, 255);
+                                _selectedPotionImage.sprite = selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite;
                         }
-                        _selectedPotionImage.sprite ??= selectedPotion.transform.Find("Sprite").gameObject
-                                .GetComponent<SpriteRenderer>().sprite;
+                        
+                        if (selectedPotion != null)
+                        {
+                                _selectedPotionImage.sprite = selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite;
+                        }
                         
                         _impulseSource = GetComponent<CinemachineImpulseSource>();
                         
@@ -946,6 +941,7 @@ namespace Entities.Player.Scripts
                         _sPlayerCurrentPersistentData.SelectedPotion = selectedPotion;
                         _sPlayerCurrentPersistentData.PotionList = potionList.ToArray();
                         GameController.Instance.PlayerPersistentDataBetweenScenes = _sPlayerCurrentPersistentData;
+                        _selectedPotionImage.sprite = selectedPotion.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite;
                 }
                 
                 private void UnlockEverythingN(GameObject[] potions)
