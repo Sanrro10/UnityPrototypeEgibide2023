@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Entities.Player.Scripts.StatePattern.PlayerStates;
 using StatePattern;
 using UnityEngine;
 
@@ -19,7 +20,8 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         public void Enter()
         {
             entity.animator.SetBool("IsStunned", true);
-            entity.StartCoroutine(entity.TurnAround());
+            entity.FacingRight = !entity.FacingRight;
+            entity.Invoke(nameof(entity.IdleState), 0.3f);
         }
 
         // per-frame logic, include condition to transition to a new state
@@ -30,7 +32,6 @@ namespace Entities.Enemies.Goat.Scripts.StatePattern.States
         
         public void Exit()
         {
-            entity.FacingRight = !entity.FacingRight;
             entity.animator.SetBool("IsStunned", false);
         }
     }

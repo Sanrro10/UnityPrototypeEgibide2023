@@ -38,6 +38,10 @@ namespace Entities.Enemies.Goat.Scripts
             AttackComponent.AddAttackData(new AttackComponent.AttackData(data.damage, data.knockback, data.angle, 6, AttackComponent.AttackType.Normal));
             AttackComponent.DeactivateHitbox();
             AttackComponent.OnHit += OnHit;
+            if (FacingRight) 
+                transform.eulerAngles = new Vector2(0, transform.eulerAngles.y + 180);
+            
+            StartCoroutine(nameof(TurnAround));
         }
         
         private void OnHit(EntityControler attacker, EntityControler victim)
@@ -113,18 +117,23 @@ namespace Entities.Enemies.Goat.Scripts
 
         public IEnumerator TurnAround()
         {
-            Vector2 startRotation = transform.eulerAngles;
-            float endRotation = startRotation.x + 180.0f;
-            float t = 0.0f;
-            while ( t  < 0.5f )
+            
+            
+            while (true)
             {
-                t += Time.deltaTime;
-                float yRotation = Mathf.Lerp(startRotation.x, endRotation, t / 0.5f);
-                transform.eulerAngles = new Vector2(startRotation.x, yRotation);
-                yield return 0.1f;
-            }
+                               
+                int objective = FacingRight ? 180:0;
+                if ((int)gameObject.transform.rotation.eulerAngles.y !=  objective)
+                {
+                    gameObject.transform.eulerAngles = new UnityEngine.Vector3(transform.transform.eulerAngles.x, transform.rotation.eulerAngles.y + (FacingRight ? -30: 30), transform.rotation.eulerAngles.z);
 
-            stateMachine.TransitionTo(stateMachine.GoatPrepareState);
+                }
+                                
+                                
+                                
+                yield return new WaitForSeconds(0.03f);
+            }
+            
         }
 
         public IEnumerator HasStopped(bool wasPlayer)
@@ -169,6 +178,11 @@ namespace Entities.Enemies.Goat.Scripts
         {
             collidedWithPlayer = true;
             stateMachine.TransitionTo(stateMachine.GoatStunnedState);
+        }
+        
+        public void IdleState()
+        {
+            stateMachine.TransitionTo(stateMachine.GoatPrepareState);
         }
     }
 }
