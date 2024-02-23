@@ -66,17 +66,17 @@ public class GestorTextoPaginas : MonoBehaviour
             case 4:
                 eventoP4.Invoke();
                 actual = textos[1];
-                print ("Cuarta pagina");
+               // print ("Cuarta pagina");
                 break;  
             case 6:
                 eventoP6.Invoke();
                 actual = textos[2];
-                print ("Sexta pagina");
+               // print ("Sexta pagina");
                 break;
             default:
                 eventoDef.Invoke();
                 //textos[0].StartFadeOut();
-                print ("Incorrect intelligence level.");
+               // print ("Incorrect intelligence level.");
                 break;
         }
     }

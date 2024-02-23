@@ -68,8 +68,8 @@ namespace Entities.Enemies.Witch.Scripts
 
         private void OnDestroy()
         {
-            AllyDeath -= SelfDeath;
             AllyDeath?.Invoke();
+            AllyDeath -= SelfDeath;
         }
 
 

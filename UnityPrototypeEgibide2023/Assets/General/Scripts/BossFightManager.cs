@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Entities.Enemies.Witch.Scripts;
+using Entities.Player.Scripts;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,33 +13,49 @@ using UnityEngine.UI;
 public class BossFightManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> brujas;
+    [SerializeField] private GameObject _block;
     private int _aliveWitches = 3;
-    public Canvas fadeOut;
-    public Canvas muteall;
+    private GameObject _fadeOut;
+    private GameObject _muteall;
     private Image _canvasFade;
     private TextMeshProUGUI _endingText;
     private float _fadeSpeed = 1f;
+    private bool _fightStarted = false;
     
     
     
     // Start is called before the first frame update
     void Start()
     {
+        PlayerController.OnPlayerDeath += DeactivateBlock;
         LandWitch.AllyDeath += CheckAllWitchesDead;
-        _canvasFade = fadeOut.transform.Find("Panel").gameObject.GetComponent<Image>();
-        _endingText = fadeOut.transform.Find("Fin").gameObject.GetComponent<TextMeshProUGUI>();
+        _muteall = GameObject.Find("Canvas");
+        _fadeOut = GameObject.Find("FadeOut");
+        _canvasFade = _fadeOut.transform.Find("Panel").gameObject.GetComponent<Image>();
+        _endingText = _fadeOut.transform.Find("Fin").gameObject.GetComponent<TextMeshProUGUI>();
     }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Se ha destruido");
+        LandWitch.AllyDeath -= CheckAllWitchesDead;
+        PlayerController.OnPlayerDeath -= DeactivateBlock;
+    }
+    
+    private void DeactivateBlock() => _block.SetActive(false);
 
     private void CheckAllWitchesDead()
     {
         _aliveWitches--;
-         if (_aliveWitches != 0) return;
+        Debug.Log("Brujas Vivas" + _aliveWitches);
+         if (_aliveWitches > 0) return;
         beginTheEnd();
     }
     private void beginTheEnd()
     {
-        muteall.gameObject.SetActive(false);
         StartCoroutine(showPanel(_fadeSpeed, _canvasFade));
+        _muteall.gameObject.SetActive(false);
+        
     }
 
     private IEnumerator showText(float fade, TextMeshProUGUI text)
@@ -70,15 +87,17 @@ public class BossFightManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (_fightStarted) return;
         if (other.CompareTag("Player"))
         {
             foreach (GameObject bruja in brujas)
             {
                 bruja.SetActive(true);
             }
-            gameObject.GetComponent<CircleCollider2D>().gameObject.SetActive(false);
+
+            _fightStarted = true;
         }
-        
+        _block.SetActive(true);
     }
 
     private void GoToCredits()
