@@ -72,6 +72,7 @@ namespace StatePattern
 
         public void TransitionTo(IState nextState)
         {
+            if (CurrentState is DeathState) return;
             LastState = CurrentState;
             CurrentState = nextState;
             LastState.Exit();

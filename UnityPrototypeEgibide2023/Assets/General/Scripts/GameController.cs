@@ -271,7 +271,7 @@ namespace General.Scripts
         
         public void GameOver()
         {
-            Time.timeScale = 0;
+            Time.timeScale = 1;
             _jugador.GetComponent<PlayerController>().DisablePlayerControls();
             menuGameOver.SetActive(true);
         }

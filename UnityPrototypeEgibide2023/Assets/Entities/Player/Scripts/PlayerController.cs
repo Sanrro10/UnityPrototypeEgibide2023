@@ -755,13 +755,21 @@ namespace Entities.Player.Scripts
 
                 public override void OnDeath()
                 {
+                        if (PmStateMachine.CurrentState is DeathState) return;
                         OnPlayerDeath?.Invoke();
                         DisablePlayerControls();
-                        GameController.Instance.GameOver();
+                        PmStateMachine.TransitionTo(PmStateMachine.DeathState);
+
+                        Invoke(nameof(CallGameOver), 1.5f);
                         GameController.Instance.justDied = true;
                         //Invoke(nameof(CallSceneLoad), 1);
                         //_audioSource.PlayOneShot(_playerAudios.audios[1]);
 
+                }
+
+                private void CallGameOver()
+                {
+                    GameController.Instance.GameOver();
                 }
                 
 
