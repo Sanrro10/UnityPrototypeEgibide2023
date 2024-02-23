@@ -40,7 +40,7 @@ public class SceneChangeTrigger : MonoBehaviour
     {
         if (!requiredInputPress || !other.CompareTag("Player")) return;
         OnSceneChangeOverlap?.Invoke();
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton3)) ChangeScene(other.GetComponent<PlayerController>());
+        if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.JoystickButton12) || Input.GetKey(KeyCode.JoystickButton19) ||  Input.GetKey(KeyCode.JoystickButton3)) ChangeScene(other.GetComponent<PlayerController>());
     }
 
     private void OnTriggerExit2D(Collider2D other) => OnSceneChangeExit?.Invoke();
