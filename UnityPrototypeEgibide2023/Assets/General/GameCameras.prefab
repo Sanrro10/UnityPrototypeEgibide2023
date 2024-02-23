@@ -327,6 +327,7 @@ GameObject:
   - component: {fileID: 160013988021940176}
   - component: {fileID: 5121953242080940459}
   - component: {fileID: 1145176053995408176}
+  - component: {fileID: 6024340712824150093}
   m_Layer: 0
   m_Name: State-Driven Camera
   m_TagString: Untagged
@@ -436,6 +437,29 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 5893816400961712001}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!114 &6024340712824150093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2529410845305625579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &3355629749007537859
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +898,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5156029180568418829}
-  - component: {fileID: 5283733498280140568}
   m_Layer: 0
   m_Name: CameraShakeManager
   m_TagString: Untagged
@@ -897,20 +920,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3103111677959427866}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5283733498280140568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5825451949151339713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de8056b4ce4c125478fd29e2749ee068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  globalShake: 0.1
-  impulseDuration: 0.15
 --- !u!1 &6187388340067687099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,7 +1025,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6525079377068774515}
   - component: {fileID: 8184701492051456426}
-  - component: {fileID: 2488090591568369018}
   m_Layer: 0
   m_Name: changeCameraByZoneTrigger
   m_TagString: Untagged
@@ -1085,18 +1093,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 25.447056, y: 14.278136}
   m_EdgeRadius: 0
---- !u!114 &2488090591568369018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6363554318465567727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f227c99f1585b44eab4896202c15029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7429586728371195166
 GameObject:
   m_ObjectHideFlags: 0
