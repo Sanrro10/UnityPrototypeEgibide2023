@@ -34,8 +34,6 @@ namespace DigitalRuby.SoundManagerNamespace
             if (audioScript == null)
             {
                 audioScript = this;
-                //MusicSliderVolume = 
-                DontDestroyOnLoad(transform.gameObject);
             }
             else
             {
@@ -58,12 +56,12 @@ namespace DigitalRuby.SoundManagerNamespace
             switch (scene.buildIndex)
             {
                 case 1:
-                    StartCoroutine(PlayMusicWithFade(musica1));
+                    audioScript.StartCoroutine(PlayMusicWithFade(musica1));
                     break;
                 case 13:
-                    StartCoroutine(PlayMusicWithFade(musica2));
+                    audioScript.StartCoroutine(PlayMusicWithFade(musica2));
                     break;
-                // Agrega más casos según sea necesario para tus escenas
+                // Agrega mï¿½s casos segï¿½n sea necesario para tus escenas
                 default:
                     //StartCoroutine(PlayDefaultMusicWithFade());
                     break;
@@ -75,19 +73,19 @@ namespace DigitalRuby.SoundManagerNamespace
             float targetVolume = 1.0f;
             float fadeTimer = 0.0f;
 
-            musicSource.Stop();
-            musicSource.clip = music;
-            musicSource.Play();
+            audioScript.musicSource.Stop();
+            audioScript.musicSource.clip = music;
+            audioScript.musicSource.Play();
 
             while (fadeTimer < fadeDuration)
             {
                 fadeTimer += Time.deltaTime;
                 float t = fadeTimer / fadeDuration;
-                musicSource.volume = Mathf.Lerp(initialVolume, targetVolume, t);
+                audioScript.musicSource.volume = Mathf.Lerp(initialVolume, targetVolume, t);
                 yield return null;
             }
 
-            musicSource.volume = targetVolume;
+            audioScript.musicSource.volume = targetVolume;
         }
         // Update is called once per frame
         void Update()
@@ -102,21 +100,21 @@ namespace DigitalRuby.SoundManagerNamespace
                 _value = .001f;
             }
             
-            RefreshVolume(slider, _value);
+            audioScript.RefreshVolume(slider, _value);
 
             if (slider.name == "MusicVolumeSlider")
             {
                 PlayerPrefs.SetFloat("SavedWorldMusic", _value);
-                masterMixer.SetFloat("WorldMusic", Mathf.Log10(_value / 100) * 20);
+                audioScript.masterMixer.SetFloat("WorldMusic", Mathf.Log10(_value / 100) * 20);
             }
             else if (slider.name == "EffectVolumeSlider")
             {
                 PlayerPrefs.SetFloat("SavedEffectMusic", _value);
-                masterMixer.SetFloat("SoundEffects", Mathf.Log10(_value / 100) * 20);
+                audioScript.masterMixer.SetFloat("SoundEffects", Mathf.Log10(_value / 100) * 20);
             } else if (slider.name == "MasterVolumeSlider")
             {
                 PlayerPrefs.SetFloat("SavedMaster", _value);
-                masterMixer.SetFloat("Master", Mathf.Log10(_value / 100) * 20);
+                audioScript.masterMixer.SetFloat("Master", Mathf.Log10(_value / 100) * 20);
             }
             
             //masterMixer.SetFloat("WorldMusic", Mathf.Log10(_value / 100) * 20);
@@ -124,17 +122,17 @@ namespace DigitalRuby.SoundManagerNamespace
 
         public void ChangeMusicVolume()
         {
-            SetVolume(MusicSliderVolume, MusicSliderVolume.value);
+            audioScript.SetVolume(MusicSliderVolume, MusicSliderVolume.value);
         }
 
         public void ChangeEffectVolume()
         {
-            SetVolume(SoundEffectSliderVolume, SoundEffectSliderVolume.value);
+            audioScript.SetVolume(SoundEffectSliderVolume, SoundEffectSliderVolume.value);
         }
 
         public void ChangeMasterVolume()
         {
-            SetVolume(masterSliderVolume, masterSliderVolume.value);
+            audioScript.SetVolume(masterSliderVolume, masterSliderVolume.value);
         }
         
         public void RefreshVolume(Slider slider, float _value)
