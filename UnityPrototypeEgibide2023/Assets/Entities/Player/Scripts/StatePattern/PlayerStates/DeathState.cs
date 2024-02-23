@@ -1,4 +1,5 @@
 ﻿using StatePattern;
+using UnityEngine;
 
 namespace Entities.Player.Scripts.StatePattern.PlayerStates
 {
@@ -12,9 +13,9 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         
         public void Enter()
         {
-            //  Debug.Log("Entering Stunned State");
+            Debug.Log("Entering Death State");
             Player.animator.SetBool("IsDeath", true);
-            Player.isStunned = true;
+            Player.Invulnerability();
         }
         
         // per-frame logic, include condition to transition to a new state
@@ -25,7 +26,8 @@ namespace Entities.Player.Scripts.StatePattern.PlayerStates
         public void Exit()
         {
             Player.animator.SetBool("IsDeath", false);
-            // Debug.Log("Exiting Stunned State");
+            Player.EndInvulnerability();
+            Debug.Log("Exiting Death State");
         }  
     }
 }
