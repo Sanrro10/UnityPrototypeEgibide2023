@@ -103,6 +103,4 @@ namespace Entities
         }
     
     }
-    
-    
 }

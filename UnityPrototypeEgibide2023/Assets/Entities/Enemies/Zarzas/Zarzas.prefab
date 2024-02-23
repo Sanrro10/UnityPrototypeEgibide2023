@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3973541534993354680}
   - component: {fileID: 635448595220904525}
-  - component: {fileID: 681161486615748967}
+  - component: {fileID: 9211672721648389102}
   m_Layer: 0
   m_Name: AttackLeft
   m_TagString: Untagged
@@ -84,7 +84,7 @@ PolygonCollider2D:
       - {x: -0.23072167, y: -0.49942654}
       - {x: -0.22648445, y: 0.29565734}
   m_UseDelaunayMesh: 0
---- !u!114 &681161486615748967
+--- !u!114 &9211672721648389102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 468131763678362965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0c13aff87825a84fa26e0b01fd890de, type: 3}
+  m_Script: {fileID: 11500000, guid: b851fa1d14084be3986b3e42da85e54a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackData:
@@ -198,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6498529534856926114}
   - component: {fileID: 8593677986935982248}
-  - component: {fileID: 3185924212561067542}
+  - component: {fileID: 4090947268949540203}
   m_Layer: 0
   m_Name: AttackRight
   m_TagString: Untagged
@@ -272,7 +272,7 @@ PolygonCollider2D:
       - {x: -0.11583932, y: -0.22949898}
       - {x: -0.012180895, y: 0.21940061}
   m_UseDelaunayMesh: 0
---- !u!114 &3185924212561067542
+--- !u!114 &4090947268949540203
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,13 +281,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4194361909487339438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0c13aff87825a84fa26e0b01fd890de, type: 3}
+  m_Script: {fileID: 11500000, guid: b851fa1d14084be3986b3e42da85e54a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackData:
   - damage: 10
     knockback: 5000
-    angle: {x: 1, y: 0.5}
+    angle: {x: 1, y: 1}
     layer: 6
     attackType: 0
   entity: {fileID: 0}

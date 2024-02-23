@@ -26,7 +26,7 @@ namespace Entities
 
         public virtual void OnReceiveDamage(AttackComponent.AttackData attack, bool toTheRight = true)
         { 
-            if (Invulnerable) return;
+            if (Invulnerable && attack.attackType != AttackComponent.AttackType.Explosion) return;
            Health.RemoveHealth(attack.damage); 
            Invulnerable = true;
            Invoke(nameof(DamageCooldown), InvulnerableTime);
