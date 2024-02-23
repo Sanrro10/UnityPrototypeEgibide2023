@@ -219,7 +219,7 @@ namespace Entities.Player.Scripts
                                 .GetComponent<SpriteRenderer>().sprite;
                         
                         _impulseSource = GetComponent<CinemachineImpulseSource>();
-                
+                        
                 
                         //Check unlocks
                         isAirDashUnlocked = _sPlayerCurrentPersistentData.AirDashUnlocked;
@@ -1015,6 +1015,7 @@ namespace Entities.Player.Scripts
                         PmStateMachine.TransitionTo(PmStateMachine.StunnedState);
                         _audioSource.clip = _audios.audios[5];
                         _audioSource.Play();
+                        _impulseSource.GenerateImpulseWithForce(0.5f);
                         _sPlayerCurrentPersistentData.CurrentHealth = Health.Get();
                         StartCoroutine(CoInvulnerability());
                         healthText.text = (Health.Get() >= 0 ? Health.Get() : 0).ToString();
