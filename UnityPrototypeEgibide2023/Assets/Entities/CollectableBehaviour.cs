@@ -10,6 +10,8 @@ namespace Entities
         public int id;
         private GameObject _collectableImage;
         private GameObject _infoText;
+        [SerializeField] AudioSource efectoAudio;
+
         void Start()
         {
             Search();
@@ -22,6 +24,7 @@ namespace Entities
             _collectableImage.SetActive(false);
             _infoText.GetComponent<TextMeshPro>().text = GameController.Instance.collectedItems.Count + "/10";
             _infoText.SetActive(true);
+            efectoAudio.Play();
             Invoke(nameof(Delete), 3f);
         }
 
