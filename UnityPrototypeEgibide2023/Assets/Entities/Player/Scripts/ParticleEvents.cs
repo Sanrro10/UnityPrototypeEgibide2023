@@ -8,7 +8,6 @@ public class ParticleEvents : MonoBehaviour
     public ParticleSystem walkParticles;
     public ParticleSystem dashParticles;
     public ParticleSystem jumpParticles;
-    public ParticleSystem deathParticles;
     
 
     public void PlayDashParticles()
@@ -24,9 +23,6 @@ public class ParticleEvents : MonoBehaviour
     public void PlayJumpParticles()
     {
         jumpParticles.Play();
-    }public void DeathParticles()
-    {
-        deathParticles.Play();
     }
 
 
