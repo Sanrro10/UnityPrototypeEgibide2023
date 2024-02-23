@@ -1008,10 +1008,11 @@ namespace Entities.Player.Scripts
                 }
                 public override void OnReceiveDamage(AttackComponent.AttackData attack, bool facingRight = true)
                 {
-                        if (attack.damage > 10) PmStateMachine.TransitionTo(PmStateMachine.StunnedState);
                         if (attack.attackType == AttackComponent.AttackType.KillArea)
                                 TeleportToSafePosition();
+                        if (Invulnerable) return;
                         base.OnReceiveDamage(attack, facingRight);
+                        PmStateMachine.TransitionTo(PmStateMachine.StunnedState);
                         _audioSource.clip = _audios.audios[5];
                         _audioSource.Play();
                         _sPlayerCurrentPersistentData.CurrentHealth = Health.Get();
